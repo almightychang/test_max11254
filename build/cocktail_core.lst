@@ -1,0 +1,406 @@
+ARM GAS  /tmp/ccdHVveh.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"cocktail_core.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.Cocktail_setPriority,"ax",%progbits
+  20              		.align	1
+  21              		.global	Cocktail_setPriority
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	Cocktail_setPriority:
+  27              	.LVL0:
+  28              	.LFB144:
+  29              		.file 1 "fw-lib-stm32-CocktailOS/kernel/cocktail_core.c"
+   1:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c **** #include "cocktail_core.h"
+   2:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c **** #include "core/sleep.h"
+   3:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c **** #include "peripheral/cocktail_periph.h"
+   4:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c **** 
+   5:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c **** Cocktail_SchedTypeDef        *_sched[_END_OF_ID];
+   6:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c **** uint8_t                       prio[_END_OF_ID];
+   7:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c **** extern Cocktail_SchedQueueDef prioq;
+   8:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c **** 
+   9:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c **** void
+  10:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c **** Cocktail_setPriority(enum SchedulerID sid, uint8_t priority)
+  11:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c **** {
+  30              		.loc 1 11 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		@ link register save eliminated.
+  12:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c ****     prio[sid] = priority;
+  35              		.loc 1 12 5 view .LVU1
+  36              		.loc 1 12 15 is_stmt 0 view .LVU2
+  37 0000 014B     		ldr	r3, .L2
+  38 0002 1954     		strb	r1, [r3, r0]
+  13:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c **** }
+  39              		.loc 1 13 1 view .LVU3
+  40 0004 7047     		bx	lr
+  41              	.L3:
+  42 0006 00BF     		.align	2
+  43              	.L2:
+  44 0008 00000000 		.word	.LANCHOR0
+  45              		.cfi_endproc
+ARM GAS  /tmp/ccdHVveh.s 			page 2
+
+
+  46              	.LFE144:
+  48              		.section	.text.Cocktail_Run,"ax",%progbits
+  49              		.align	1
+  50              		.global	Cocktail_Run
+  51              		.syntax unified
+  52              		.thumb
+  53              		.thumb_func
+  55              	Cocktail_Run:
+  56              	.LFB146:
+  14:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c **** 
+  15:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c **** void
+  16:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c **** Cocktail_Init()
+  17:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c **** {
+  18:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c ****     prio[COCKTAIL_POLLING_ID] = UINT8_MAX;
+  19:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c **** 
+  20:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c ****     for(uint8_t i = COCKTAIL_POLLING_ID; i < _END_OF_ID; i++)
+  21:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c ****         _sched[i] = INIT_SCHEDULER(i, prio[i]);
+  22:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c **** 
+  23:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c ****     Cocktail_systemInit();
+  24:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c **** }
+  25:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c **** 
+  26:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c **** void
+  27:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c **** Cocktail_Run()
+  28:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c **** {
+  57              		.loc 1 28 1 is_stmt 1 view -0
+  58              		.cfi_startproc
+  59              		@ args = 0, pretend = 0, frame = 0
+  60              		@ frame_needed = 0, uses_anonymous_args = 0
+  61 0000 38B5     		push	{r3, r4, r5, lr}
+  62              	.LCFI0:
+  63              		.cfi_def_cfa_offset 16
+  64              		.cfi_offset 3, -16
+  65              		.cfi_offset 4, -12
+  66              		.cfi_offset 5, -8
+  67              		.cfi_offset 14, -4
+  29:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c ****     Cocktail_SchedTypeDef *sched;
+  68              		.loc 1 29 5 view .LVU5
+  30:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c ****     _sched[COCKTAIL_POLLING_ID]->trg_cnt++;
+  69              		.loc 1 30 5 view .LVU6
+  70              		.loc 1 30 11 is_stmt 0 view .LVU7
+  71 0002 194B     		ldr	r3, .L17
+  72 0004 1A68     		ldr	r2, [r3]
+  73              		.loc 1 30 32 view .LVU8
+  74 0006 5369     		ldr	r3, [r2, #20]
+  75              		.loc 1 30 41 view .LVU9
+  76 0008 0133     		adds	r3, r3, #1
+  77 000a 5361     		str	r3, [r2, #20]
+  31:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c **** 
+  32:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c ****     LOAD_SCHEDULER(sched);
+  78              		.loc 1 32 5 is_stmt 1 view .LVU10
+  79              		.loc 1 32 5 view .LVU11
+  80 000c 174B     		ldr	r3, .L17+4
+  81 000e 1B68     		ldr	r3, [r3]
+  82              	.LVL1:
+  83              		.loc 1 32 5 is_stmt 0 view .LVU12
+  84 0010 00E0     		b	.L5
+  85              	.L14:
+ARM GAS  /tmp/ccdHVveh.s 			page 3
+
+
+  86              		.loc 1 32 5 is_stmt 1 discriminator 3 view .LVU13
+  87 0012 DB68     		ldr	r3, [r3, #12]
+  88              	.LVL2:
+  89              	.L5:
+  90              		.loc 1 32 5 discriminator 4 view .LVU14
+  91 0014 13B1     		cbz	r3, .L6
+  92              		.loc 1 32 5 discriminator 5 view .LVU15
+  93 0016 5A69     		ldr	r2, [r3, #20]
+  94 0018 002A     		cmp	r2, #0
+  95 001a FAD0     		beq	.L14
+  96              	.L6:
+  97              		.loc 1 32 5 discriminator 6 view .LVU16
+  33:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c ****     EXECUTE(sched);
+  98              		.loc 1 33 5 discriminator 6 view .LVU17
+  99              	.LBB2:
+ 100              		.loc 1 33 5 discriminator 6 view .LVU18
+ 101              		.loc 1 33 5 discriminator 6 view .LVU19
+ 102              		.loc 1 33 5 discriminator 6 view .LVU20
+ 103              		.loc 1 33 5 discriminator 6 view .LVU21
+ 104              	.LVL3:
+ 105              		.loc 1 33 5 discriminator 6 view .LVU22
+ 106 001c EBB1     		cbz	r3, .L4
+ 107              		.loc 1 33 5 discriminator 2 view .LVU23
+ 108 001e 1C68     		ldr	r4, [r3]
+ 109 0020 DCB1     		cbz	r4, .L4
+ 110              		.loc 1 33 5 discriminator 4 view .LVU24
+ 111 0022 5A69     		ldr	r2, [r3, #20]
+ 112 0024 013A     		subs	r2, r2, #1
+ 113 0026 5A61     		str	r2, [r3, #20]
+ 114              		.loc 1 33 5 discriminator 4 view .LVU25
+ 115 0028 9969     		ldr	r1, [r3, #24]
+ 116 002a 0139     		subs	r1, r1, #1
+ 117 002c 9961     		str	r1, [r3, #24]
+ 118              		.loc 1 33 5 discriminator 4 view .LVU26
+ 119 002e 8A42     		cmp	r2, r1
+ 120 0030 28BF     		it	cs
+ 121 0032 0A46     		movcs	r2, r1
+ 122 0034 5A61     		str	r2, [r3, #20]
+ 123              		.loc 1 33 5 discriminator 4 view .LVU27
+ 124              		.loc 1 33 5 discriminator 4 view .LVU28
+ 125              	.LVL4:
+ 126              		.loc 1 33 5 discriminator 4 view .LVU29
+ 127              		.loc 1 33 5 discriminator 4 view .LVU30
+ 128 0036 6269     		ldr	r2, [r4, #20]
+ 129 0038 1A60     		str	r2, [r3]
+ 130 003a 7AB1     		cbz	r2, .L15
+ 131              	.L9:
+ 132              		.loc 1 33 5 discriminator 7 view .LVU31
+ 133              		.loc 1 33 5 discriminator 7 view .LVU32
+ 134              		.loc 1 33 5 discriminator 7 view .LVU33
+ 135 003c E568     		ldr	r5, [r4, #12]
+ 136 003e 4DB1     		cbz	r5, .L10
+ 137              		.loc 1 33 5 discriminator 8 view .LVU34
+ 138              		.loc 1 33 5 discriminator 8 view .LVU35
+ 139              	.LVL5:
+ 140              		.loc 1 33 5 discriminator 8 view .LVU36
+ 141              		.loc 1 33 5 discriminator 8 view .LVU37
+ARM GAS  /tmp/ccdHVveh.s 			page 4
+
+
+ 142 0040 2B69     		ldr	r3, [r5, #16]
+ 143              	.LVL6:
+ 144              		.loc 1 33 5 is_stmt 0 discriminator 8 view .LVU38
+ 145 0042 E360     		str	r3, [r4, #12]
+ 146 0044 63B1     		cbz	r3, .L16
+ 147              	.L11:
+ 148              		.loc 1 33 5 is_stmt 1 discriminator 12 view .LVU39
+ 149              		.loc 1 33 5 discriminator 12 view .LVU40
+ 150              		.loc 1 33 5 discriminator 12 view .LVU41
+ 151              		.loc 1 33 5 discriminator 12 view .LVU42
+ 152 0046 2B68     		ldr	r3, [r5]
+ 153 0048 0BB1     		cbz	r3, .L12
+ 154              		.loc 1 33 5 discriminator 13 view .LVU43
+ 155 004a 2846     		mov	r0, r5
+ 156 004c 9847     		blx	r3
+ 157              	.LVL7:
+ 158              	.L12:
+ 159              		.loc 1 33 5 discriminator 15 view .LVU44
+ 160              		.loc 1 33 5 discriminator 15 view .LVU45
+ 161 004e 2846     		mov	r0, r5
+ 162 0050 FFF7FEFF 		bl	free
+ 163              	.LVL8:
+ 164              	.L10:
+ 165              		.loc 1 33 5 discriminator 16 view .LVU46
+ 166 0054 2046     		mov	r0, r4
+ 167 0056 FFF7FEFF 		bl	Cocktail_Schedule
+ 168              	.LVL9:
+ 169              	.LBE2:
+ 170              		.loc 1 33 5 discriminator 16 view .LVU47
+ 171              	.L4:
+  34:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c **** }
+ 172              		.loc 1 34 1 is_stmt 0 view .LVU48
+ 173 005a 38BD     		pop	{r3, r4, r5, pc}
+ 174              	.LVL10:
+ 175              	.L15:
+ 176              	.LBB3:
+  33:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c ****     EXECUTE(sched);
+ 177              		.loc 1 33 5 is_stmt 1 discriminator 5 view .LVU49
+ 178 005c 5B60     		str	r3, [r3, #4]
+ 179 005e EDE7     		b	.L9
+ 180              	.LVL11:
+ 181              	.L16:
+  33:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c ****     EXECUTE(sched);
+ 182              		.loc 1 33 5 discriminator 10 view .LVU50
+ 183 0060 04F10C03 		add	r3, r4, #12
+ 184 0064 2361     		str	r3, [r4, #16]
+ 185 0066 EEE7     		b	.L11
+ 186              	.L18:
+ 187              		.align	2
+ 188              	.L17:
+ 189 0068 00000000 		.word	.LANCHOR1
+ 190 006c 00000000 		.word	prioq
+ 191              	.LBE3:
+ 192              		.cfi_endproc
+ 193              	.LFE146:
+ 195              		.section	.text.Cocktail_systemInit,"ax",%progbits
+ 196              		.align	1
+ARM GAS  /tmp/ccdHVveh.s 			page 5
+
+
+ 197              		.weak	Cocktail_systemInit
+ 198              		.syntax unified
+ 199              		.thumb
+ 200              		.thumb_func
+ 202              	Cocktail_systemInit:
+ 203              	.LFB147:
+  35:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c **** 
+  36:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c **** __weak void
+  37:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c **** Cocktail_systemInit()
+  38:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c **** {
+ 204              		.loc 1 38 1 view -0
+ 205              		.cfi_startproc
+ 206              		@ args = 0, pretend = 0, frame = 0
+ 207              		@ frame_needed = 0, uses_anonymous_args = 0
+ 208              		@ link register save eliminated.
+  39:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c **** }
+ 209              		.loc 1 39 1 view .LVU52
+ 210 0000 7047     		bx	lr
+ 211              		.cfi_endproc
+ 212              	.LFE147:
+ 214              		.section	.text.Cocktail_Init,"ax",%progbits
+ 215              		.align	1
+ 216              		.global	Cocktail_Init
+ 217              		.syntax unified
+ 218              		.thumb
+ 219              		.thumb_func
+ 221              	Cocktail_Init:
+ 222              	.LFB145:
+  17:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c ****     prio[COCKTAIL_POLLING_ID] = UINT8_MAX;
+ 223              		.loc 1 17 1 view -0
+ 224              		.cfi_startproc
+ 225              		@ args = 0, pretend = 0, frame = 0
+ 226              		@ frame_needed = 0, uses_anonymous_args = 0
+ 227 0000 10B5     		push	{r4, lr}
+ 228              	.LCFI1:
+ 229              		.cfi_def_cfa_offset 8
+ 230              		.cfi_offset 4, -8
+ 231              		.cfi_offset 14, -4
+  18:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c **** 
+ 232              		.loc 1 18 5 view .LVU54
+  18:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c **** 
+ 233              		.loc 1 18 31 is_stmt 0 view .LVU55
+ 234 0002 094B     		ldr	r3, .L24
+ 235 0004 FF22     		movs	r2, #255
+ 236 0006 1A70     		strb	r2, [r3]
+  20:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c ****         _sched[i] = INIT_SCHEDULER(i, prio[i]);
+ 237              		.loc 1 20 5 is_stmt 1 view .LVU56
+ 238              	.LBB4:
+  20:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c ****         _sched[i] = INIT_SCHEDULER(i, prio[i]);
+ 239              		.loc 1 20 9 view .LVU57
+ 240              	.LVL12:
+  20:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c ****         _sched[i] = INIT_SCHEDULER(i, prio[i]);
+ 241              		.loc 1 20 17 is_stmt 0 view .LVU58
+ 242 0008 0024     		movs	r4, #0
+ 243              	.LVL13:
+ 244              	.L21:
+  20:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c ****         _sched[i] = INIT_SCHEDULER(i, prio[i]);
+ARM GAS  /tmp/ccdHVveh.s 			page 6
+
+
+ 245              		.loc 1 20 42 is_stmt 1 discriminator 1 view .LVU59
+  20:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c ****         _sched[i] = INIT_SCHEDULER(i, prio[i]);
+ 246              		.loc 1 20 5 is_stmt 0 discriminator 1 view .LVU60
+ 247 000a 14B1     		cbz	r4, .L22
+ 248              	.LBE4:
+  21:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c **** 
+ 249              		.loc 1 21 47 is_stmt 1 view .LVU61
+  23:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c **** }
+ 250              		.loc 1 23 5 view .LVU62
+ 251 000c FFF7FEFF 		bl	Cocktail_systemInit
+ 252              	.LVL14:
+  24:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c **** 
+ 253              		.loc 1 24 1 is_stmt 0 view .LVU63
+ 254 0010 10BD     		pop	{r4, pc}
+ 255              	.LVL15:
+ 256              	.L22:
+ 257              	.LBB5:
+  21:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c **** 
+ 258              		.loc 1 21 9 is_stmt 1 discriminator 3 view .LVU64
+  21:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c **** 
+ 259              		.loc 1 21 21 is_stmt 0 discriminator 3 view .LVU65
+ 260 0012 054B     		ldr	r3, .L24
+ 261 0014 195D     		ldrb	r1, [r3, r4]	@ zero_extendqisi2
+ 262 0016 2046     		mov	r0, r4
+ 263 0018 FFF7FEFF 		bl	Cocktail_addScheduler
+ 264              	.LVL16:
+  21:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c **** 
+ 265              		.loc 1 21 19 discriminator 3 view .LVU66
+ 266 001c 034B     		ldr	r3, .L24+4
+ 267 001e 43F82400 		str	r0, [r3, r4, lsl #2]
+  20:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c ****         _sched[i] = INIT_SCHEDULER(i, prio[i]);
+ 268              		.loc 1 20 58 is_stmt 1 discriminator 3 view .LVU67
+  20:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c ****         _sched[i] = INIT_SCHEDULER(i, prio[i]);
+ 269              		.loc 1 20 59 is_stmt 0 discriminator 3 view .LVU68
+ 270 0022 0134     		adds	r4, r4, #1
+ 271              	.LVL17:
+  20:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c ****         _sched[i] = INIT_SCHEDULER(i, prio[i]);
+ 272              		.loc 1 20 59 discriminator 3 view .LVU69
+ 273 0024 E4B2     		uxtb	r4, r4
+ 274              	.LVL18:
+  20:fw-lib-stm32-CocktailOS/kernel/cocktail_core.c ****         _sched[i] = INIT_SCHEDULER(i, prio[i]);
+ 275              		.loc 1 20 59 discriminator 3 view .LVU70
+ 276 0026 F0E7     		b	.L21
+ 277              	.L25:
+ 278              		.align	2
+ 279              	.L24:
+ 280 0028 00000000 		.word	.LANCHOR0
+ 281 002c 00000000 		.word	.LANCHOR1
+ 282              	.LBE5:
+ 283              		.cfi_endproc
+ 284              	.LFE145:
+ 286              		.global	prio
+ 287              		.global	_sched
+ 288              		.section	.bss._sched,"aw",%nobits
+ 289              		.align	2
+ 290              		.set	.LANCHOR1,. + 0
+ 293              	_sched:
+ARM GAS  /tmp/ccdHVveh.s 			page 7
+
+
+ 294 0000 00000000 		.space	4
+ 295              		.section	.bss.prio,"aw",%nobits
+ 296              		.align	2
+ 297              		.set	.LANCHOR0,. + 0
+ 300              	prio:
+ 301 0000 00       		.space	1
+ 302              		.text
+ 303              	.Letext0:
+ 304              		.file 2 "/usr/share/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/_default_types.h"
+ 305              		.file 3 "/usr/share/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_stdint.h"
+ 306              		.file 4 "fw-lib-stm32-CocktailOS/kernel/core/task.h"
+ 307              		.file 5 "fw-lib-stm32-CocktailOS/kernel/core/pcb.h"
+ 308              		.file 6 "fw-lib-stm32-CocktailOS/kernel/core/event.h"
+ 309              		.file 7 "fw-lib-stm32-CocktailOS/kernel/core/sched.h"
+ 310              		.file 8 "fw-lib-stm32-CocktailOS/kernel/cocktail_core.h"
+ 311              		.file 9 "/usr/share/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/stdlib.h"
+ 312              		.file 10 "fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_periph.h"
+ARM GAS  /tmp/ccdHVveh.s 			page 8
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 cocktail_core.c
+     /tmp/ccdHVveh.s:20     .text.Cocktail_setPriority:0000000000000000 $t
+     /tmp/ccdHVveh.s:26     .text.Cocktail_setPriority:0000000000000000 Cocktail_setPriority
+     /tmp/ccdHVveh.s:44     .text.Cocktail_setPriority:0000000000000008 $d
+     /tmp/ccdHVveh.s:49     .text.Cocktail_Run:0000000000000000 $t
+     /tmp/ccdHVveh.s:55     .text.Cocktail_Run:0000000000000000 Cocktail_Run
+     /tmp/ccdHVveh.s:189    .text.Cocktail_Run:0000000000000068 $d
+     /tmp/ccdHVveh.s:196    .text.Cocktail_systemInit:0000000000000000 $t
+     /tmp/ccdHVveh.s:202    .text.Cocktail_systemInit:0000000000000000 Cocktail_systemInit
+     /tmp/ccdHVveh.s:215    .text.Cocktail_Init:0000000000000000 $t
+     /tmp/ccdHVveh.s:221    .text.Cocktail_Init:0000000000000000 Cocktail_Init
+     /tmp/ccdHVveh.s:280    .text.Cocktail_Init:0000000000000028 $d
+     /tmp/ccdHVveh.s:300    .bss.prio:0000000000000000 prio
+     /tmp/ccdHVveh.s:293    .bss._sched:0000000000000000 _sched
+     /tmp/ccdHVveh.s:289    .bss._sched:0000000000000000 $d
+     /tmp/ccdHVveh.s:296    .bss.prio:0000000000000000 $d
+
+UNDEFINED SYMBOLS
+free
+Cocktail_Schedule
+prioq
+Cocktail_addScheduler

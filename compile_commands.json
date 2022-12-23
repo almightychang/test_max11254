@@ -1,0 +1,42 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/arm-none-eabi-gcc",
+      "-c",
+      "-mcpu=cortex-m7",
+      "-mthumb",
+      "-mfpu=fpv5-sp-d16",
+      "-mfloat-abi=hard",
+      "-DUSE_HAL_DRIVER",
+      "-DSTM32F746xx",
+      "-Ifw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples",
+      "-ICore/Inc",
+      "-IDrivers/STM32F7xx_HAL_Driver/Inc",
+      "-IDrivers/STM32F7xx_HAL_Driver/Inc/Legacy",
+      "-IDrivers/CMSIS/Device/ST/STM32F7xx/Include",
+      "-IDrivers/CMSIS/Include",
+      "-Ifw-lib-stm32-CocktailOS/kernel",
+      "-Ifw-lib-stm32-CocktailOS/kernel/core",
+      "-Ifw-lib-stm32-CocktailOS/kernel/peripheral",
+      "-Ifw-lib-stm32-BuildKit/multiplexer",
+      "-Ifw-lib-stm32-BuildKit/decoder",
+      "-Ifw-lib-stm32-BuildKit/adc-essential",
+      "-Ifw-lib-stm32-BuildKit/adc-toolkit/max116xx-i2c/App",
+      "-Ifw-lib-stm32-BuildKit/adc-toolkit/max116xx-i2c/Target",
+      "-Ifw-lib-stm32-BuildKit/adc-toolkit/max11254-spi",
+      "-Og",
+      "-Wall",
+      "-fdata-sections",
+      "-ffunction-sections",
+      "-g",
+      "-gdwarf-2",
+      "-Wa,-a,-ad,-alms=build/main.lst",
+      "-o",
+      "build/main.o",
+      "Core/Src/main.c"
+    ],
+    "directory": "/home/almightychang/Workspace/test_MAX11254",
+    "file": "/home/almightychang/Workspace/test_MAX11254/Core/Src/main.c",
+    "output": "/home/almightychang/Workspace/test_MAX11254/build/main.o"
+  }
+]

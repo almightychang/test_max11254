@@ -1,0 +1,1169 @@
+ARM GAS  /tmp/ccwkQZmc.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"pipe.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.Pipe_establish,"ax",%progbits
+  20              		.align	1
+  21              		.global	Pipe_establish
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	Pipe_establish:
+  27              	.LVL0:
+  28              	.LFB0:
+  29              		.file 1 "fw-lib-stm32-CocktailOS/kernel/core/pipe.c"
+   1:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** #include "pipe.h"
+   2:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** #include <stdlib.h>
+   3:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** #include <string.h>
+   4:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** 
+   5:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** void
+   6:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** Pipe_establish(Pipe_TypeDef **conn1, Pipe_TypeDef **conn2, uint32_t size)
+   7:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** {
+  30              		.loc 1 7 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		.loc 1 7 1 is_stmt 0 view .LVU1
+  35 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 24
+  38              		.cfi_offset 3, -24
+  39              		.cfi_offset 4, -20
+  40              		.cfi_offset 5, -16
+  41              		.cfi_offset 6, -12
+  42              		.cfi_offset 7, -8
+  43              		.cfi_offset 14, -4
+  44 0002 0546     		mov	r5, r0
+  45 0004 0C46     		mov	r4, r1
+  46 0006 1746     		mov	r7, r2
+   8:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     CircBuf_TypeDef *in, *out;
+  47              		.loc 1 8 5 is_stmt 1 view .LVU2
+   9:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** 
+  10:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     in     = CircBuf_Init(size);
+  48              		.loc 1 10 5 view .LVU3
+ARM GAS  /tmp/ccwkQZmc.s 			page 2
+
+
+  49              		.loc 1 10 14 is_stmt 0 view .LVU4
+  50 0008 1046     		mov	r0, r2
+  51              	.LVL1:
+  52              		.loc 1 10 14 view .LVU5
+  53 000a FFF7FEFF 		bl	CircBuf_Init
+  54              	.LVL2:
+  55              		.loc 1 10 14 view .LVU6
+  56 000e 0646     		mov	r6, r0
+  57              	.LVL3:
+  11:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     out    = CircBuf_Init(size);
+  58              		.loc 1 11 5 is_stmt 1 view .LVU7
+  59              		.loc 1 11 14 is_stmt 0 view .LVU8
+  60 0010 3846     		mov	r0, r7
+  61              	.LVL4:
+  62              		.loc 1 11 14 view .LVU9
+  63 0012 FFF7FEFF 		bl	CircBuf_Init
+  64              	.LVL5:
+  65 0016 0746     		mov	r7, r0
+  66              	.LVL6:
+  12:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** 
+  13:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     *conn1 = (Pipe_TypeDef *)malloc(sizeof(Pipe_TypeDef));
+  67              		.loc 1 13 5 is_stmt 1 view .LVU10
+  68              		.loc 1 13 30 is_stmt 0 view .LVU11
+  69 0018 0820     		movs	r0, #8
+  70              	.LVL7:
+  71              		.loc 1 13 30 view .LVU12
+  72 001a FFF7FEFF 		bl	malloc
+  73              	.LVL8:
+  74              		.loc 1 13 12 view .LVU13
+  75 001e 2860     		str	r0, [r5]
+  14:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     *conn2 = (Pipe_TypeDef *)malloc(sizeof(Pipe_TypeDef));
+  76              		.loc 1 14 5 is_stmt 1 view .LVU14
+  77              		.loc 1 14 30 is_stmt 0 view .LVU15
+  78 0020 0820     		movs	r0, #8
+  79 0022 FFF7FEFF 		bl	malloc
+  80              	.LVL9:
+  81              		.loc 1 14 12 view .LVU16
+  82 0026 2060     		str	r0, [r4]
+  15:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** 
+  16:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     if(!in || !out || !conn1 || !conn2)
+  83              		.loc 1 16 5 is_stmt 1 view .LVU17
+  84              		.loc 1 16 7 is_stmt 0 view .LVU18
+  85 0028 002F     		cmp	r7, #0
+  86 002a 18BF     		it	ne
+  87 002c 002E     		cmpne	r6, #0
+  88 002e 0DD0     		beq	.L2
+  89              		.loc 1 16 33 discriminator 1 view .LVU19
+  90 0030 B4FA84F3 		clz	r3, r4
+  91 0034 5B09     		lsrs	r3, r3, #5
+  92              		.loc 1 16 30 discriminator 1 view .LVU20
+  93 0036 4DB1     		cbz	r5, .L2
+  94 0038 43B9     		cbnz	r3, .L2
+  17:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     {
+  18:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****         free(in);
+  19:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****         free(out);
+  20:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****         free(*conn1);
+  21:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****         free(*conn2);
+ARM GAS  /tmp/ccwkQZmc.s 			page 3
+
+
+  22:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****         *conn1 = NULL;
+  23:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****         *conn2 = NULL;
+  24:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****         return;
+  25:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     }
+  26:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** 
+  27:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     (*conn1)->in  = in;
+  95              		.loc 1 27 5 is_stmt 1 view .LVU21
+  96              		.loc 1 27 6 is_stmt 0 view .LVU22
+  97 003a 2B68     		ldr	r3, [r5]
+  98              		.loc 1 27 19 view .LVU23
+  99 003c 1E60     		str	r6, [r3]
+  28:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     (*conn1)->out = out;
+ 100              		.loc 1 28 5 is_stmt 1 view .LVU24
+ 101              		.loc 1 28 6 is_stmt 0 view .LVU25
+ 102 003e 2B68     		ldr	r3, [r5]
+ 103              		.loc 1 28 19 view .LVU26
+ 104 0040 5F60     		str	r7, [r3, #4]
+  29:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** 
+  30:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     (*conn2)->in  = out;
+ 105              		.loc 1 30 5 is_stmt 1 view .LVU27
+ 106              		.loc 1 30 6 is_stmt 0 view .LVU28
+ 107 0042 2368     		ldr	r3, [r4]
+ 108              		.loc 1 30 19 view .LVU29
+ 109 0044 1F60     		str	r7, [r3]
+  31:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     (*conn2)->out = in;
+ 110              		.loc 1 31 5 is_stmt 1 view .LVU30
+ 111              		.loc 1 31 6 is_stmt 0 view .LVU31
+ 112 0046 2368     		ldr	r3, [r4]
+ 113              		.loc 1 31 19 view .LVU32
+ 114 0048 5E60     		str	r6, [r3, #4]
+ 115              	.L1:
+  32:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** }
+ 116              		.loc 1 32 1 view .LVU33
+ 117 004a F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 118              	.LVL10:
+ 119              	.L2:
+  18:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****         free(out);
+ 120              		.loc 1 18 9 is_stmt 1 view .LVU34
+ 121 004c 3046     		mov	r0, r6
+ 122 004e FFF7FEFF 		bl	free
+ 123              	.LVL11:
+  19:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****         free(*conn1);
+ 124              		.loc 1 19 9 view .LVU35
+ 125 0052 3846     		mov	r0, r7
+ 126 0054 FFF7FEFF 		bl	free
+ 127              	.LVL12:
+  20:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****         free(*conn2);
+ 128              		.loc 1 20 9 view .LVU36
+ 129 0058 2868     		ldr	r0, [r5]
+ 130 005a FFF7FEFF 		bl	free
+ 131              	.LVL13:
+  21:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****         *conn1 = NULL;
+ 132              		.loc 1 21 9 view .LVU37
+ 133 005e 2068     		ldr	r0, [r4]
+ 134 0060 FFF7FEFF 		bl	free
+ 135              	.LVL14:
+  22:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****         *conn2 = NULL;
+ARM GAS  /tmp/ccwkQZmc.s 			page 4
+
+
+ 136              		.loc 1 22 9 view .LVU38
+  22:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****         *conn2 = NULL;
+ 137              		.loc 1 22 16 is_stmt 0 view .LVU39
+ 138 0064 0023     		movs	r3, #0
+ 139 0066 2B60     		str	r3, [r5]
+  23:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****         return;
+ 140              		.loc 1 23 9 is_stmt 1 view .LVU40
+  23:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****         return;
+ 141              		.loc 1 23 16 is_stmt 0 view .LVU41
+ 142 0068 2360     		str	r3, [r4]
+  24:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     }
+ 143              		.loc 1 24 9 is_stmt 1 view .LVU42
+ 144 006a EEE7     		b	.L1
+ 145              		.cfi_endproc
+ 146              	.LFE0:
+ 148              		.section	.text.Pipe_put_nowait,"ax",%progbits
+ 149              		.align	1
+ 150              		.global	Pipe_put_nowait
+ 151              		.syntax unified
+ 152              		.thumb
+ 153              		.thumb_func
+ 155              	Pipe_put_nowait:
+ 156              	.LVL15:
+ 157              	.LFB1:
+  33:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** 
+  34:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** CircBuf_StatusTypeDef
+  35:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** Pipe_put_nowait(Pipe_TypeDef *pipe, uint8_t src[], uint32_t size)
+  36:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** {
+ 158              		.loc 1 36 1 view -0
+ 159              		.cfi_startproc
+ 160              		@ args = 0, pretend = 0, frame = 0
+ 161              		@ frame_needed = 0, uses_anonymous_args = 0
+ 162              		.loc 1 36 1 is_stmt 0 view .LVU44
+ 163 0000 08B5     		push	{r3, lr}
+ 164              	.LCFI1:
+ 165              		.cfi_def_cfa_offset 8
+ 166              		.cfi_offset 3, -8
+ 167              		.cfi_offset 14, -4
+  37:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     return CircBuf_write(pipe->in, src, size);
+ 168              		.loc 1 37 5 is_stmt 1 view .LVU45
+ 169              		.loc 1 37 12 is_stmt 0 view .LVU46
+ 170 0002 0068     		ldr	r0, [r0]
+ 171              	.LVL16:
+ 172              		.loc 1 37 12 view .LVU47
+ 173 0004 FFF7FEFF 		bl	CircBuf_write
+ 174              	.LVL17:
+  38:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** }
+ 175              		.loc 1 38 1 view .LVU48
+ 176 0008 08BD     		pop	{r3, pc}
+ 177              		.cfi_endproc
+ 178              	.LFE1:
+ 180              		.section	.text.Pipe_get_nowait,"ax",%progbits
+ 181              		.align	1
+ 182              		.global	Pipe_get_nowait
+ 183              		.syntax unified
+ 184              		.thumb
+ 185              		.thumb_func
+ARM GAS  /tmp/ccwkQZmc.s 			page 5
+
+
+ 187              	Pipe_get_nowait:
+ 188              	.LVL18:
+ 189              	.LFB2:
+  39:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** 
+  40:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** uint32_t
+  41:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** Pipe_get_nowait(Pipe_TypeDef *pipe, uint8_t dst[], uint32_t size)
+  42:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** {
+ 190              		.loc 1 42 1 is_stmt 1 view -0
+ 191              		.cfi_startproc
+ 192              		@ args = 0, pretend = 0, frame = 0
+ 193              		@ frame_needed = 0, uses_anonymous_args = 0
+ 194              		.loc 1 42 1 is_stmt 0 view .LVU50
+ 195 0000 08B5     		push	{r3, lr}
+ 196              	.LCFI2:
+ 197              		.cfi_def_cfa_offset 8
+ 198              		.cfi_offset 3, -8
+ 199              		.cfi_offset 14, -4
+  43:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     return CircBuf_read(pipe->out, dst, size);
+ 200              		.loc 1 43 5 is_stmt 1 view .LVU51
+ 201              		.loc 1 43 12 is_stmt 0 view .LVU52
+ 202 0002 4068     		ldr	r0, [r0, #4]
+ 203              	.LVL19:
+ 204              		.loc 1 43 12 view .LVU53
+ 205 0004 FFF7FEFF 		bl	CircBuf_read
+ 206              	.LVL20:
+  44:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** }
+ 207              		.loc 1 44 1 view .LVU54
+ 208 0008 08BD     		pop	{r3, pc}
+ 209              		.cfi_endproc
+ 210              	.LFE2:
+ 212              		.section	.text.Pipe_fetch_nowait,"ax",%progbits
+ 213              		.align	1
+ 214              		.global	Pipe_fetch_nowait
+ 215              		.syntax unified
+ 216              		.thumb
+ 217              		.thumb_func
+ 219              	Pipe_fetch_nowait:
+ 220              	.LVL21:
+ 221              	.LFB3:
+  45:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** 
+  46:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** uint32_t
+  47:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** Pipe_fetch_nowait(Pipe_TypeDef *pipe, uint8_t dst[], uint32_t size)
+  48:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** {
+ 222              		.loc 1 48 1 is_stmt 1 view -0
+ 223              		.cfi_startproc
+ 224              		@ args = 0, pretend = 0, frame = 0
+ 225              		@ frame_needed = 0, uses_anonymous_args = 0
+ 226              		.loc 1 48 1 is_stmt 0 view .LVU56
+ 227 0000 08B5     		push	{r3, lr}
+ 228              	.LCFI3:
+ 229              		.cfi_def_cfa_offset 8
+ 230              		.cfi_offset 3, -8
+ 231              		.cfi_offset 14, -4
+  49:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     return CircBuf_get_data(pipe->out, dst, size);
+ 232              		.loc 1 49 5 is_stmt 1 view .LVU57
+ 233              		.loc 1 49 12 is_stmt 0 view .LVU58
+ 234 0002 4068     		ldr	r0, [r0, #4]
+ARM GAS  /tmp/ccwkQZmc.s 			page 6
+
+
+ 235              	.LVL22:
+ 236              		.loc 1 49 12 view .LVU59
+ 237 0004 FFF7FEFF 		bl	CircBuf_get_data
+ 238              	.LVL23:
+  50:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** }
+ 239              		.loc 1 50 1 view .LVU60
+ 240 0008 08BD     		pop	{r3, pc}
+ 241              		.cfi_endproc
+ 242              	.LFE3:
+ 244              		.section	.text.Pipe_clear_nowait,"ax",%progbits
+ 245              		.align	1
+ 246              		.global	Pipe_clear_nowait
+ 247              		.syntax unified
+ 248              		.thumb
+ 249              		.thumb_func
+ 251              	Pipe_clear_nowait:
+ 252              	.LVL24:
+ 253              	.LFB4:
+  51:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** 
+  52:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** CircBuf_StatusTypeDef
+  53:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** Pipe_clear_nowait(Pipe_TypeDef *pipe, uint32_t size)
+  54:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** {
+ 254              		.loc 1 54 1 is_stmt 1 view -0
+ 255              		.cfi_startproc
+ 256              		@ args = 0, pretend = 0, frame = 0
+ 257              		@ frame_needed = 0, uses_anonymous_args = 0
+ 258              		.loc 1 54 1 is_stmt 0 view .LVU62
+ 259 0000 08B5     		push	{r3, lr}
+ 260              	.LCFI4:
+ 261              		.cfi_def_cfa_offset 8
+ 262              		.cfi_offset 3, -8
+ 263              		.cfi_offset 14, -4
+  55:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     return CircBuf_consume(pipe->out, size);
+ 264              		.loc 1 55 5 is_stmt 1 view .LVU63
+ 265              		.loc 1 55 12 is_stmt 0 view .LVU64
+ 266 0002 4068     		ldr	r0, [r0, #4]
+ 267              	.LVL25:
+ 268              		.loc 1 55 12 view .LVU65
+ 269 0004 FFF7FEFF 		bl	CircBuf_consume
+ 270              	.LVL26:
+  56:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** }
+ 271              		.loc 1 56 1 view .LVU66
+ 272 0008 08BD     		pop	{r3, pc}
+ 273              		.cfi_endproc
+ 274              	.LFE4:
+ 276              		.section	.text.LinkedPipe_establish,"ax",%progbits
+ 277              		.align	1
+ 278              		.global	LinkedPipe_establish
+ 279              		.syntax unified
+ 280              		.thumb
+ 281              		.thumb_func
+ 283              	LinkedPipe_establish:
+ 284              	.LVL27:
+ 285              	.LFB5:
+  57:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** 
+  58:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** void
+  59:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** LinkedPipe_establish(LinkedPipe_TypeDef **conn1, LinkedPipe_TypeDef **conn2,
+ARM GAS  /tmp/ccwkQZmc.s 			page 7
+
+
+  60:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****                      uint32_t size)
+  61:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** {
+ 286              		.loc 1 61 1 is_stmt 1 view -0
+ 287              		.cfi_startproc
+ 288              		@ args = 0, pretend = 0, frame = 0
+ 289              		@ frame_needed = 0, uses_anonymous_args = 0
+ 290              		.loc 1 61 1 is_stmt 0 view .LVU68
+ 291 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 292              	.LCFI5:
+ 293              		.cfi_def_cfa_offset 24
+ 294              		.cfi_offset 3, -24
+ 295              		.cfi_offset 4, -20
+ 296              		.cfi_offset 5, -16
+ 297              		.cfi_offset 6, -12
+ 298              		.cfi_offset 7, -8
+ 299              		.cfi_offset 14, -4
+ 300 0002 0446     		mov	r4, r0
+ 301 0004 0D46     		mov	r5, r1
+ 302 0006 1746     		mov	r7, r2
+  62:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     SizedQ_TypeDef *in, *out;
+ 303              		.loc 1 62 5 is_stmt 1 view .LVU69
+  63:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** 
+  64:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     in     = SizedQ_init(size);
+ 304              		.loc 1 64 5 view .LVU70
+ 305              		.loc 1 64 14 is_stmt 0 view .LVU71
+ 306 0008 1046     		mov	r0, r2
+ 307              	.LVL28:
+ 308              		.loc 1 64 14 view .LVU72
+ 309 000a FFF7FEFF 		bl	SizedQ_init
+ 310              	.LVL29:
+ 311              		.loc 1 64 14 view .LVU73
+ 312 000e 0646     		mov	r6, r0
+ 313              	.LVL30:
+  65:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     out    = SizedQ_init(size);
+ 314              		.loc 1 65 5 is_stmt 1 view .LVU74
+ 315              		.loc 1 65 14 is_stmt 0 view .LVU75
+ 316 0010 3846     		mov	r0, r7
+ 317              	.LVL31:
+ 318              		.loc 1 65 14 view .LVU76
+ 319 0012 FFF7FEFF 		bl	SizedQ_init
+ 320              	.LVL32:
+ 321 0016 0746     		mov	r7, r0
+ 322              	.LVL33:
+  66:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** 
+  67:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     *conn1 = (LinkedPipe_TypeDef *)malloc(sizeof(LinkedPipe_TypeDef));
+ 323              		.loc 1 67 5 is_stmt 1 view .LVU77
+ 324              		.loc 1 67 36 is_stmt 0 view .LVU78
+ 325 0018 0820     		movs	r0, #8
+ 326              	.LVL34:
+ 327              		.loc 1 67 36 view .LVU79
+ 328 001a FFF7FEFF 		bl	malloc
+ 329              	.LVL35:
+ 330              		.loc 1 67 12 view .LVU80
+ 331 001e 2060     		str	r0, [r4]
+  68:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     *conn2 = (LinkedPipe_TypeDef *)malloc(sizeof(LinkedPipe_TypeDef));
+ 332              		.loc 1 68 5 is_stmt 1 view .LVU81
+ 333              		.loc 1 68 36 is_stmt 0 view .LVU82
+ARM GAS  /tmp/ccwkQZmc.s 			page 8
+
+
+ 334 0020 0820     		movs	r0, #8
+ 335 0022 FFF7FEFF 		bl	malloc
+ 336              	.LVL36:
+ 337              		.loc 1 68 12 view .LVU83
+ 338 0026 2860     		str	r0, [r5]
+  69:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** 
+  70:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     if(!in || !out || !(*conn1) || !(*conn2))
+ 339              		.loc 1 70 5 is_stmt 1 view .LVU84
+ 340              		.loc 1 70 7 is_stmt 0 view .LVU85
+ 341 0028 002F     		cmp	r7, #0
+ 342 002a 18BF     		it	ne
+ 343 002c 002E     		cmpne	r6, #0
+ 344 002e 0AD0     		beq	.L16
+ 345              		.loc 1 70 25 discriminator 1 view .LVU86
+ 346 0030 2368     		ldr	r3, [r4]
+ 347              		.loc 1 70 20 discriminator 1 view .LVU87
+ 348 0032 43B1     		cbz	r3, .L16
+ 349              		.loc 1 70 33 discriminator 2 view .LVU88
+ 350 0034 38B1     		cbz	r0, .L16
+  71:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     {
+  72:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****         free(in);
+  73:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****         free(out);
+  74:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****         free(*conn1);
+  75:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****         free(*conn2);
+  76:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****         *conn1 = NULL;
+  77:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****         *conn2 = NULL;
+  78:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****         return;
+  79:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     }
+  80:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** 
+  81:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     (*conn1)->in  = in;
+ 351              		.loc 1 81 5 is_stmt 1 view .LVU89
+ 352              		.loc 1 81 19 is_stmt 0 view .LVU90
+ 353 0036 1E60     		str	r6, [r3]
+  82:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     (*conn1)->out = out;
+ 354              		.loc 1 82 5 is_stmt 1 view .LVU91
+ 355              		.loc 1 82 6 is_stmt 0 view .LVU92
+ 356 0038 2368     		ldr	r3, [r4]
+ 357              		.loc 1 82 19 view .LVU93
+ 358 003a 5F60     		str	r7, [r3, #4]
+  83:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** 
+  84:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     (*conn2)->in  = out;
+ 359              		.loc 1 84 5 is_stmt 1 view .LVU94
+ 360              		.loc 1 84 6 is_stmt 0 view .LVU95
+ 361 003c 2B68     		ldr	r3, [r5]
+ 362              		.loc 1 84 19 view .LVU96
+ 363 003e 1F60     		str	r7, [r3]
+  85:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     (*conn2)->out = in;
+ 364              		.loc 1 85 5 is_stmt 1 view .LVU97
+ 365              		.loc 1 85 6 is_stmt 0 view .LVU98
+ 366 0040 2B68     		ldr	r3, [r5]
+ 367              		.loc 1 85 19 view .LVU99
+ 368 0042 5E60     		str	r6, [r3, #4]
+ 369              	.L15:
+  86:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** }
+ 370              		.loc 1 86 1 view .LVU100
+ 371 0044 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 372              	.LVL37:
+ARM GAS  /tmp/ccwkQZmc.s 			page 9
+
+
+ 373              	.L16:
+  72:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****         free(out);
+ 374              		.loc 1 72 9 is_stmt 1 view .LVU101
+ 375 0046 3046     		mov	r0, r6
+ 376 0048 FFF7FEFF 		bl	free
+ 377              	.LVL38:
+  73:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****         free(*conn1);
+ 378              		.loc 1 73 9 view .LVU102
+ 379 004c 3846     		mov	r0, r7
+ 380 004e FFF7FEFF 		bl	free
+ 381              	.LVL39:
+  74:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****         free(*conn2);
+ 382              		.loc 1 74 9 view .LVU103
+ 383 0052 2068     		ldr	r0, [r4]
+ 384 0054 FFF7FEFF 		bl	free
+ 385              	.LVL40:
+  75:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****         *conn1 = NULL;
+ 386              		.loc 1 75 9 view .LVU104
+ 387 0058 2868     		ldr	r0, [r5]
+ 388 005a FFF7FEFF 		bl	free
+ 389              	.LVL41:
+  76:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****         *conn2 = NULL;
+ 390              		.loc 1 76 9 view .LVU105
+  76:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****         *conn2 = NULL;
+ 391              		.loc 1 76 16 is_stmt 0 view .LVU106
+ 392 005e 0023     		movs	r3, #0
+ 393 0060 2360     		str	r3, [r4]
+  77:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****         return;
+ 394              		.loc 1 77 9 is_stmt 1 view .LVU107
+  77:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****         return;
+ 395              		.loc 1 77 16 is_stmt 0 view .LVU108
+ 396 0062 2B60     		str	r3, [r5]
+  78:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     }
+ 397              		.loc 1 78 9 is_stmt 1 view .LVU109
+ 398 0064 EEE7     		b	.L15
+ 399              		.cfi_endproc
+ 400              	.LFE5:
+ 402              		.section	.text.LinkedPipe_put_nowait,"ax",%progbits
+ 403              		.align	1
+ 404              		.global	LinkedPipe_put_nowait
+ 405              		.syntax unified
+ 406              		.thumb
+ 407              		.thumb_func
+ 409              	LinkedPipe_put_nowait:
+ 410              	.LVL42:
+ 411              	.LFB6:
+  87:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** 
+  88:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** QueueEx_StatusTypeDef
+  89:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** LinkedPipe_put_nowait(LinkedPipe_TypeDef *pipe, void *src, uint32_t size)
+  90:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** {
+ 412              		.loc 1 90 1 view -0
+ 413              		.cfi_startproc
+ 414              		@ args = 0, pretend = 0, frame = 0
+ 415              		@ frame_needed = 0, uses_anonymous_args = 0
+  91:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     QueueEx_NodeTypeDef *node;
+ 416              		.loc 1 91 5 view .LVU111
+  92:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     void                *dst;
+ARM GAS  /tmp/ccwkQZmc.s 			page 10
+
+
+ 417              		.loc 1 92 5 view .LVU112
+  93:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** 
+  94:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     if(!pipe || !src || !size) return QUEUE_EX_EINVAL;
+ 418              		.loc 1 94 5 view .LVU113
+ 419              		.loc 1 94 7 is_stmt 0 view .LVU114
+ 420 0000 0029     		cmp	r1, #0
+ 421 0002 18BF     		it	ne
+ 422 0004 0028     		cmpne	r0, #0
+ 423 0006 15D0     		beq	.L22
+  90:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     QueueEx_NodeTypeDef *node;
+ 424              		.loc 1 90 1 discriminator 2 view .LVU115
+ 425 0008 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 426              	.LCFI6:
+ 427              		.cfi_def_cfa_offset 24
+ 428              		.cfi_offset 3, -24
+ 429              		.cfi_offset 4, -20
+ 430              		.cfi_offset 5, -16
+ 431              		.cfi_offset 6, -12
+ 432              		.cfi_offset 7, -8
+ 433              		.cfi_offset 14, -4
+ 434 000a 1446     		mov	r4, r2
+ 435 000c 0646     		mov	r6, r0
+ 436 000e 0F46     		mov	r7, r1
+ 437              		.loc 1 94 22 discriminator 2 view .LVU116
+ 438 0010 92B1     		cbz	r2, .L23
+  95:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** 
+  96:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     dst = malloc(size);
+ 439              		.loc 1 96 5 is_stmt 1 view .LVU117
+ 440              		.loc 1 96 11 is_stmt 0 view .LVU118
+ 441 0012 1046     		mov	r0, r2
+ 442              	.LVL43:
+ 443              		.loc 1 96 11 view .LVU119
+ 444 0014 FFF7FEFF 		bl	malloc
+ 445              	.LVL44:
+ 446              		.loc 1 96 11 view .LVU120
+ 447 0018 0546     		mov	r5, r0
+ 448              	.LVL45:
+  97:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     memcpy(dst, src, size);
+ 449              		.loc 1 97 5 is_stmt 1 view .LVU121
+ 450 001a 2246     		mov	r2, r4
+ 451 001c 3946     		mov	r1, r7
+ 452 001e FFF7FEFF 		bl	memcpy
+ 453              	.LVL46:
+  98:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     node = QueueEx_init_node(dst, size);
+ 454              		.loc 1 98 5 view .LVU122
+ 455              		.loc 1 98 12 is_stmt 0 view .LVU123
+ 456 0022 2146     		mov	r1, r4
+ 457 0024 2846     		mov	r0, r5
+ 458 0026 FFF7FEFF 		bl	QueueEx_init_node
+ 459              	.LVL47:
+ 460 002a 0146     		mov	r1, r0
+ 461              	.LVL48:
+  99:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** 
+ 100:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     return SizedQ_put(pipe->in, node);
+ 462              		.loc 1 100 5 is_stmt 1 view .LVU124
+ 463              		.loc 1 100 12 is_stmt 0 view .LVU125
+ 464 002c 3068     		ldr	r0, [r6]
+ARM GAS  /tmp/ccwkQZmc.s 			page 11
+
+
+ 465              	.LVL49:
+ 466              		.loc 1 100 12 view .LVU126
+ 467 002e FFF7FEFF 		bl	SizedQ_put
+ 468              	.LVL50:
+ 469              	.L21:
+ 101:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** }
+ 470              		.loc 1 101 1 view .LVU127
+ 471 0032 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 472              	.LVL51:
+ 473              	.L22:
+ 474              	.LCFI7:
+ 475              		.cfi_def_cfa_offset 0
+ 476              		.cfi_restore 3
+ 477              		.cfi_restore 4
+ 478              		.cfi_restore 5
+ 479              		.cfi_restore 6
+ 480              		.cfi_restore 7
+ 481              		.cfi_restore 14
+  94:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** 
+ 482              		.loc 1 94 39 view .LVU128
+ 483 0034 0420     		movs	r0, #4
+ 484              	.LVL52:
+ 485              		.loc 1 101 1 view .LVU129
+ 486 0036 7047     		bx	lr
+ 487              	.LVL53:
+ 488              	.L23:
+ 489              	.LCFI8:
+ 490              		.cfi_def_cfa_offset 24
+ 491              		.cfi_offset 3, -24
+ 492              		.cfi_offset 4, -20
+ 493              		.cfi_offset 5, -16
+ 494              		.cfi_offset 6, -12
+ 495              		.cfi_offset 7, -8
+ 496              		.cfi_offset 14, -4
+  94:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** 
+ 497              		.loc 1 94 39 view .LVU130
+ 498 0038 0420     		movs	r0, #4
+ 499              	.LVL54:
+  94:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** 
+ 500              		.loc 1 94 39 view .LVU131
+ 501 003a FAE7     		b	.L21
+ 502              		.cfi_endproc
+ 503              	.LFE6:
+ 505              		.section	.text.LinkedPipe_put_reverse_nowait,"ax",%progbits
+ 506              		.align	1
+ 507              		.global	LinkedPipe_put_reverse_nowait
+ 508              		.syntax unified
+ 509              		.thumb
+ 510              		.thumb_func
+ 512              	LinkedPipe_put_reverse_nowait:
+ 513              	.LVL55:
+ 514              	.LFB7:
+ 102:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** 
+ 103:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** QueueEx_StatusTypeDef
+ 104:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** LinkedPipe_put_reverse_nowait(LinkedPipe_TypeDef *pipe, void *src,
+ 105:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****                               uint32_t size)
+ 106:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** {
+ARM GAS  /tmp/ccwkQZmc.s 			page 12
+
+
+ 515              		.loc 1 106 1 is_stmt 1 view -0
+ 516              		.cfi_startproc
+ 517              		@ args = 0, pretend = 0, frame = 8
+ 518              		@ frame_needed = 0, uses_anonymous_args = 0
+ 519              		.loc 1 106 1 is_stmt 0 view .LVU133
+ 520 0000 00B5     		push	{lr}
+ 521              	.LCFI9:
+ 522              		.cfi_def_cfa_offset 4
+ 523              		.cfi_offset 14, -4
+ 524 0002 83B0     		sub	sp, sp, #12
+ 525              	.LCFI10:
+ 526              		.cfi_def_cfa_offset 16
+ 107:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     LinkedPipe_TypeDef reverse_pipe = { .in = pipe->out, .out = pipe->in };
+ 527              		.loc 1 107 5 is_stmt 1 view .LVU134
+ 528              		.loc 1 107 51 is_stmt 0 view .LVU135
+ 529 0004 4368     		ldr	r3, [r0, #4]
+ 530              		.loc 1 107 24 view .LVU136
+ 531 0006 0093     		str	r3, [sp]
+ 532              		.loc 1 107 69 view .LVU137
+ 533 0008 0368     		ldr	r3, [r0]
+ 534              		.loc 1 107 24 view .LVU138
+ 535 000a 0193     		str	r3, [sp, #4]
+ 108:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** 
+ 109:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     return LinkedPipe_put_nowait(&reverse_pipe, src, size);
+ 536              		.loc 1 109 5 is_stmt 1 view .LVU139
+ 537              		.loc 1 109 12 is_stmt 0 view .LVU140
+ 538 000c 6846     		mov	r0, sp
+ 539              	.LVL56:
+ 540              		.loc 1 109 12 view .LVU141
+ 541 000e FFF7FEFF 		bl	LinkedPipe_put_nowait
+ 542              	.LVL57:
+ 110:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** }
+ 543              		.loc 1 110 1 view .LVU142
+ 544 0012 03B0     		add	sp, sp, #12
+ 545              	.LCFI11:
+ 546              		.cfi_def_cfa_offset 4
+ 547              		@ sp needed
+ 548 0014 5DF804FB 		ldr	pc, [sp], #4
+ 549              		.cfi_endproc
+ 550              	.LFE7:
+ 552              		.section	.text.LinkedPipe_get_nowait,"ax",%progbits
+ 553              		.align	1
+ 554              		.global	LinkedPipe_get_nowait
+ 555              		.syntax unified
+ 556              		.thumb
+ 557              		.thumb_func
+ 559              	LinkedPipe_get_nowait:
+ 560              	.LVL58:
+ 561              	.LFB8:
+ 111:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** 
+ 112:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** QueueEx_StatusTypeDef
+ 113:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** LinkedPipe_get_nowait(LinkedPipe_TypeDef *pipe, void **dst, uint32_t *size)
+ 114:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** {
+ 562              		.loc 1 114 1 is_stmt 1 view -0
+ 563              		.cfi_startproc
+ 564              		@ args = 0, pretend = 0, frame = 8
+ 565              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  /tmp/ccwkQZmc.s 			page 13
+
+
+ 566              		.loc 1 114 1 is_stmt 0 view .LVU144
+ 567 0000 70B5     		push	{r4, r5, r6, lr}
+ 568              	.LCFI12:
+ 569              		.cfi_def_cfa_offset 16
+ 570              		.cfi_offset 4, -16
+ 571              		.cfi_offset 5, -12
+ 572              		.cfi_offset 6, -8
+ 573              		.cfi_offset 14, -4
+ 574 0002 82B0     		sub	sp, sp, #8
+ 575              	.LCFI13:
+ 576              		.cfi_def_cfa_offset 24
+ 115:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     if(!pipe) return QUEUE_EX_OK;
+ 577              		.loc 1 115 5 is_stmt 1 view .LVU145
+ 578              		.loc 1 115 7 is_stmt 0 view .LVU146
+ 579 0004 C0B1     		cbz	r0, .L34
+ 580 0006 0E46     		mov	r6, r1
+ 581 0008 1546     		mov	r5, r2
+ 116:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** 
+ 117:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     QueueEx_StatusTypeDef status;
+ 582              		.loc 1 117 5 is_stmt 1 view .LVU147
+ 118:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     QueueEx_NodeTypeDef  *node;
+ 583              		.loc 1 118 5 view .LVU148
+ 119:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** 
+ 120:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     status = SizedQ_get(pipe->out, &node);
+ 584              		.loc 1 120 5 view .LVU149
+ 585              		.loc 1 120 14 is_stmt 0 view .LVU150
+ 586 000a 01A9     		add	r1, sp, #4
+ 587              	.LVL59:
+ 588              		.loc 1 120 14 view .LVU151
+ 589 000c 4068     		ldr	r0, [r0, #4]
+ 590              	.LVL60:
+ 591              		.loc 1 120 14 view .LVU152
+ 592 000e FFF7FEFF 		bl	SizedQ_get
+ 593              	.LVL61:
+ 121:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** 
+ 122:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     *dst   = (status) ? NULL : node->data;
+ 594              		.loc 1 122 5 is_stmt 1 view .LVU153
+ 595              		.loc 1 122 30 is_stmt 0 view .LVU154
+ 596 0012 0446     		mov	r4, r0
+ 597 0014 10B9     		cbnz	r0, .L35
+ 598              		.loc 1 122 36 discriminator 1 view .LVU155
+ 599 0016 019B     		ldr	r3, [sp, #4]
+ 600              		.loc 1 122 30 discriminator 1 view .LVU156
+ 601 0018 5B68     		ldr	r3, [r3, #4]
+ 602 001a 00E0     		b	.L32
+ 603              	.L35:
+ 604              		.loc 1 122 30 view .LVU157
+ 605 001c 0023     		movs	r3, #0
+ 606              	.L32:
+ 607              		.loc 1 122 12 discriminator 4 view .LVU158
+ 608 001e 3360     		str	r3, [r6]
+ 123:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     *size  = (status) ? 0 : node->size;
+ 609              		.loc 1 123 5 is_stmt 1 discriminator 4 view .LVU159
+ 610              		.loc 1 123 27 is_stmt 0 discriminator 4 view .LVU160
+ 611 0020 14B9     		cbnz	r4, .L36
+ 612              		.loc 1 123 33 discriminator 1 view .LVU161
+ 613 0022 019B     		ldr	r3, [sp, #4]
+ARM GAS  /tmp/ccwkQZmc.s 			page 14
+
+
+ 614              		.loc 1 123 27 discriminator 1 view .LVU162
+ 615 0024 9B68     		ldr	r3, [r3, #8]
+ 616 0026 00E0     		b	.L33
+ 617              	.L36:
+ 618              		.loc 1 123 27 view .LVU163
+ 619 0028 0023     		movs	r3, #0
+ 620              	.L33:
+ 621              		.loc 1 123 12 discriminator 4 view .LVU164
+ 622 002a 2B60     		str	r3, [r5]
+ 124:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** 
+ 125:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     free(node);
+ 623              		.loc 1 125 5 is_stmt 1 discriminator 4 view .LVU165
+ 624 002c 0198     		ldr	r0, [sp, #4]
+ 625              	.LVL62:
+ 626              		.loc 1 125 5 is_stmt 0 discriminator 4 view .LVU166
+ 627 002e FFF7FEFF 		bl	free
+ 628              	.LVL63:
+ 126:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** 
+ 127:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     return status;
+ 629              		.loc 1 127 5 is_stmt 1 discriminator 4 view .LVU167
+ 630              	.L31:
+ 128:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** }
+ 631              		.loc 1 128 1 is_stmt 0 view .LVU168
+ 632 0032 2046     		mov	r0, r4
+ 633 0034 02B0     		add	sp, sp, #8
+ 634              	.LCFI14:
+ 635              		.cfi_remember_state
+ 636              		.cfi_def_cfa_offset 16
+ 637              		@ sp needed
+ 638 0036 70BD     		pop	{r4, r5, r6, pc}
+ 639              	.LVL64:
+ 640              	.L34:
+ 641              	.LCFI15:
+ 642              		.cfi_restore_state
+ 115:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** 
+ 643              		.loc 1 115 22 view .LVU169
+ 644 0038 0024     		movs	r4, #0
+ 645 003a FAE7     		b	.L31
+ 646              		.cfi_endproc
+ 647              	.LFE8:
+ 649              		.section	.text.LinkedPipe_fetch_nowait,"ax",%progbits
+ 650              		.align	1
+ 651              		.global	LinkedPipe_fetch_nowait
+ 652              		.syntax unified
+ 653              		.thumb
+ 654              		.thumb_func
+ 656              	LinkedPipe_fetch_nowait:
+ 657              	.LVL65:
+ 658              	.LFB9:
+ 129:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** 
+ 130:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** QueueEx_StatusTypeDef
+ 131:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** LinkedPipe_fetch_nowait(LinkedPipe_TypeDef *pipe, void **dst, uint32_t *size)
+ 132:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** {
+ 659              		.loc 1 132 1 is_stmt 1 view -0
+ 660              		.cfi_startproc
+ 661              		@ args = 0, pretend = 0, frame = 8
+ 662              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  /tmp/ccwkQZmc.s 			page 15
+
+
+ 133:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     if(!pipe) return QUEUE_EX_EINVAL;
+ 663              		.loc 1 133 5 view .LVU171
+ 664              		.loc 1 133 7 is_stmt 0 view .LVU172
+ 665 0000 A8B1     		cbz	r0, .L42
+ 132:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     if(!pipe) return QUEUE_EX_EINVAL;
+ 666              		.loc 1 132 1 view .LVU173
+ 667 0002 30B5     		push	{r4, r5, lr}
+ 668              	.LCFI16:
+ 669              		.cfi_def_cfa_offset 12
+ 670              		.cfi_offset 4, -12
+ 671              		.cfi_offset 5, -8
+ 672              		.cfi_offset 14, -4
+ 673 0004 83B0     		sub	sp, sp, #12
+ 674              	.LCFI17:
+ 675              		.cfi_def_cfa_offset 24
+ 676 0006 0D46     		mov	r5, r1
+ 677 0008 1446     		mov	r4, r2
+ 134:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** 
+ 135:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     QueueEx_StatusTypeDef status;
+ 678              		.loc 1 135 5 is_stmt 1 view .LVU174
+ 136:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     QueueEx_NodeTypeDef  *node;
+ 679              		.loc 1 136 5 view .LVU175
+ 137:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** 
+ 138:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     status = SizedQ_fetch(pipe->out, &node);
+ 680              		.loc 1 138 5 view .LVU176
+ 681              		.loc 1 138 14 is_stmt 0 view .LVU177
+ 682 000a 01A9     		add	r1, sp, #4
+ 683              	.LVL66:
+ 684              		.loc 1 138 14 view .LVU178
+ 685 000c 4068     		ldr	r0, [r0, #4]
+ 686              	.LVL67:
+ 687              		.loc 1 138 14 view .LVU179
+ 688 000e FFF7FEFF 		bl	SizedQ_fetch
+ 689              	.LVL68:
+ 139:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** 
+ 140:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     *dst   = (status) ? NULL : node->data;
+ 690              		.loc 1 140 5 is_stmt 1 view .LVU180
+ 691              		.loc 1 140 30 is_stmt 0 view .LVU181
+ 692 0012 10B9     		cbnz	r0, .L43
+ 693              		.loc 1 140 36 discriminator 1 view .LVU182
+ 694 0014 019B     		ldr	r3, [sp, #4]
+ 695              		.loc 1 140 30 discriminator 1 view .LVU183
+ 696 0016 5B68     		ldr	r3, [r3, #4]
+ 697 0018 00E0     		b	.L40
+ 698              	.L43:
+ 699              		.loc 1 140 30 view .LVU184
+ 700 001a 0023     		movs	r3, #0
+ 701              	.L40:
+ 702              		.loc 1 140 12 discriminator 4 view .LVU185
+ 703 001c 2B60     		str	r3, [r5]
+ 141:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     *size  = (status) ? 0 : node->size;
+ 704              		.loc 1 141 5 is_stmt 1 discriminator 4 view .LVU186
+ 705              		.loc 1 141 27 is_stmt 0 discriminator 4 view .LVU187
+ 706 001e 10B9     		cbnz	r0, .L44
+ 707              		.loc 1 141 33 discriminator 1 view .LVU188
+ 708 0020 019B     		ldr	r3, [sp, #4]
+ 709              		.loc 1 141 27 discriminator 1 view .LVU189
+ARM GAS  /tmp/ccwkQZmc.s 			page 16
+
+
+ 710 0022 9B68     		ldr	r3, [r3, #8]
+ 711 0024 00E0     		b	.L41
+ 712              	.L44:
+ 713              		.loc 1 141 27 view .LVU190
+ 714 0026 0023     		movs	r3, #0
+ 715              	.L41:
+ 716              		.loc 1 141 12 discriminator 4 view .LVU191
+ 717 0028 2360     		str	r3, [r4]
+ 142:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** 
+ 143:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     return status;
+ 718              		.loc 1 143 5 is_stmt 1 discriminator 4 view .LVU192
+ 144:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** }
+ 719              		.loc 1 144 1 is_stmt 0 discriminator 4 view .LVU193
+ 720 002a 03B0     		add	sp, sp, #12
+ 721              	.LCFI18:
+ 722              		.cfi_def_cfa_offset 12
+ 723              		@ sp needed
+ 724 002c 30BD     		pop	{r4, r5, pc}
+ 725              	.LVL69:
+ 726              	.L42:
+ 727              	.LCFI19:
+ 728              		.cfi_def_cfa_offset 0
+ 729              		.cfi_restore 4
+ 730              		.cfi_restore 5
+ 731              		.cfi_restore 14
+ 133:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** 
+ 732              		.loc 1 133 22 view .LVU194
+ 733 002e 0420     		movs	r0, #4
+ 734              	.LVL70:
+ 735              		.loc 1 144 1 view .LVU195
+ 736 0030 7047     		bx	lr
+ 737              		.cfi_endproc
+ 738              	.LFE9:
+ 740              		.section	.text.LinkedPipe_fetch_reverse_nowait,"ax",%progbits
+ 741              		.align	1
+ 742              		.global	LinkedPipe_fetch_reverse_nowait
+ 743              		.syntax unified
+ 744              		.thumb
+ 745              		.thumb_func
+ 747              	LinkedPipe_fetch_reverse_nowait:
+ 748              	.LVL71:
+ 749              	.LFB10:
+ 145:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** 
+ 146:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** QueueEx_StatusTypeDef
+ 147:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** LinkedPipe_fetch_reverse_nowait(LinkedPipe_TypeDef *pipe, void **dst,
+ 148:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****                                 uint32_t *size)
+ 149:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** {
+ 750              		.loc 1 149 1 is_stmt 1 view -0
+ 751              		.cfi_startproc
+ 752              		@ args = 0, pretend = 0, frame = 8
+ 753              		@ frame_needed = 0, uses_anonymous_args = 0
+ 754              		.loc 1 149 1 is_stmt 0 view .LVU197
+ 755 0000 00B5     		push	{lr}
+ 756              	.LCFI20:
+ 757              		.cfi_def_cfa_offset 4
+ 758              		.cfi_offset 14, -4
+ 759 0002 83B0     		sub	sp, sp, #12
+ARM GAS  /tmp/ccwkQZmc.s 			page 17
+
+
+ 760              	.LCFI21:
+ 761              		.cfi_def_cfa_offset 16
+ 150:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     LinkedPipe_TypeDef reverse_pipe = { .in = pipe->out, .out = pipe->in };
+ 762              		.loc 1 150 5 is_stmt 1 view .LVU198
+ 763              		.loc 1 150 51 is_stmt 0 view .LVU199
+ 764 0004 4368     		ldr	r3, [r0, #4]
+ 765              		.loc 1 150 24 view .LVU200
+ 766 0006 0093     		str	r3, [sp]
+ 767              		.loc 1 150 69 view .LVU201
+ 768 0008 0368     		ldr	r3, [r0]
+ 769              		.loc 1 150 24 view .LVU202
+ 770 000a 0193     		str	r3, [sp, #4]
+ 151:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** 
+ 152:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     return LinkedPipe_fetch_nowait(&reverse_pipe, dst, size);
+ 771              		.loc 1 152 5 is_stmt 1 view .LVU203
+ 772              		.loc 1 152 12 is_stmt 0 view .LVU204
+ 773 000c 6846     		mov	r0, sp
+ 774              	.LVL72:
+ 775              		.loc 1 152 12 view .LVU205
+ 776 000e FFF7FEFF 		bl	LinkedPipe_fetch_nowait
+ 777              	.LVL73:
+ 153:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** }
+ 778              		.loc 1 153 1 view .LVU206
+ 779 0012 03B0     		add	sp, sp, #12
+ 780              	.LCFI22:
+ 781              		.cfi_def_cfa_offset 4
+ 782              		@ sp needed
+ 783 0014 5DF804FB 		ldr	pc, [sp], #4
+ 784              		.cfi_endproc
+ 785              	.LFE10:
+ 787              		.section	.text.LinkedPipe_clear_nowait,"ax",%progbits
+ 788              		.align	1
+ 789              		.global	LinkedPipe_clear_nowait
+ 790              		.syntax unified
+ 791              		.thumb
+ 792              		.thumb_func
+ 794              	LinkedPipe_clear_nowait:
+ 795              	.LVL74:
+ 796              	.LFB11:
+ 154:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** 
+ 155:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** QueueEx_StatusTypeDef
+ 156:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** LinkedPipe_clear_nowait(LinkedPipe_TypeDef *pipe)
+ 157:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** {
+ 797              		.loc 1 157 1 is_stmt 1 view -0
+ 798              		.cfi_startproc
+ 799              		@ args = 0, pretend = 0, frame = 8
+ 800              		@ frame_needed = 0, uses_anonymous_args = 0
+ 801              		.loc 1 157 1 is_stmt 0 view .LVU208
+ 802 0000 10B5     		push	{r4, lr}
+ 803              	.LCFI23:
+ 804              		.cfi_def_cfa_offset 8
+ 805              		.cfi_offset 4, -8
+ 806              		.cfi_offset 14, -4
+ 807 0002 82B0     		sub	sp, sp, #8
+ 808              	.LCFI24:
+ 809              		.cfi_def_cfa_offset 16
+ 158:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     void                 *dst;
+ARM GAS  /tmp/ccwkQZmc.s 			page 18
+
+
+ 810              		.loc 1 158 5 is_stmt 1 view .LVU209
+ 159:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     uint32_t              size;
+ 811              		.loc 1 159 5 view .LVU210
+ 160:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     QueueEx_StatusTypeDef status;
+ 812              		.loc 1 160 5 view .LVU211
+ 161:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** 
+ 162:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     status = LinkedPipe_get_nowait(pipe, &dst, &size);
+ 813              		.loc 1 162 5 view .LVU212
+ 814              		.loc 1 162 14 is_stmt 0 view .LVU213
+ 815 0004 6A46     		mov	r2, sp
+ 816 0006 01A9     		add	r1, sp, #4
+ 817 0008 FFF7FEFF 		bl	LinkedPipe_get_nowait
+ 818              	.LVL75:
+ 819              		.loc 1 162 14 view .LVU214
+ 820 000c 0446     		mov	r4, r0
+ 821              	.LVL76:
+ 163:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     free(dst);
+ 822              		.loc 1 163 5 is_stmt 1 view .LVU215
+ 823 000e 0198     		ldr	r0, [sp, #4]
+ 824 0010 FFF7FEFF 		bl	free
+ 825              	.LVL77:
+ 164:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** 
+ 165:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     return status;
+ 826              		.loc 1 165 5 view .LVU216
+ 166:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** }
+ 827              		.loc 1 166 1 is_stmt 0 view .LVU217
+ 828 0014 2046     		mov	r0, r4
+ 829 0016 02B0     		add	sp, sp, #8
+ 830              	.LCFI25:
+ 831              		.cfi_def_cfa_offset 8
+ 832              		@ sp needed
+ 833 0018 10BD     		pop	{r4, pc}
+ 834              		.loc 1 166 1 view .LVU218
+ 835              		.cfi_endproc
+ 836              	.LFE11:
+ 838              		.section	.text.LinkedPipe_clear_reverse_nowait,"ax",%progbits
+ 839              		.align	1
+ 840              		.global	LinkedPipe_clear_reverse_nowait
+ 841              		.syntax unified
+ 842              		.thumb
+ 843              		.thumb_func
+ 845              	LinkedPipe_clear_reverse_nowait:
+ 846              	.LVL78:
+ 847              	.LFB12:
+ 167:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** 
+ 168:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** QueueEx_StatusTypeDef
+ 169:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** LinkedPipe_clear_reverse_nowait(LinkedPipe_TypeDef *pipe)
+ 170:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** {
+ 848              		.loc 1 170 1 is_stmt 1 view -0
+ 849              		.cfi_startproc
+ 850              		@ args = 0, pretend = 0, frame = 8
+ 851              		@ frame_needed = 0, uses_anonymous_args = 0
+ 852              		.loc 1 170 1 is_stmt 0 view .LVU220
+ 853 0000 00B5     		push	{lr}
+ 854              	.LCFI26:
+ 855              		.cfi_def_cfa_offset 4
+ 856              		.cfi_offset 14, -4
+ARM GAS  /tmp/ccwkQZmc.s 			page 19
+
+
+ 857 0002 83B0     		sub	sp, sp, #12
+ 858              	.LCFI27:
+ 859              		.cfi_def_cfa_offset 16
+ 171:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     LinkedPipe_TypeDef reverse_pipe = { .in = pipe->out, .out = pipe->in };
+ 860              		.loc 1 171 5 is_stmt 1 view .LVU221
+ 861              		.loc 1 171 51 is_stmt 0 view .LVU222
+ 862 0004 4368     		ldr	r3, [r0, #4]
+ 863              		.loc 1 171 24 view .LVU223
+ 864 0006 0093     		str	r3, [sp]
+ 865              		.loc 1 171 69 view .LVU224
+ 866 0008 0368     		ldr	r3, [r0]
+ 867              		.loc 1 171 24 view .LVU225
+ 868 000a 0193     		str	r3, [sp, #4]
+ 172:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** 
+ 173:fw-lib-stm32-CocktailOS/kernel/core/pipe.c ****     return LinkedPipe_clear_nowait(&reverse_pipe);
+ 869              		.loc 1 173 5 is_stmt 1 view .LVU226
+ 870              		.loc 1 173 12 is_stmt 0 view .LVU227
+ 871 000c 6846     		mov	r0, sp
+ 872              	.LVL79:
+ 873              		.loc 1 173 12 view .LVU228
+ 874 000e FFF7FEFF 		bl	LinkedPipe_clear_nowait
+ 875              	.LVL80:
+ 174:fw-lib-stm32-CocktailOS/kernel/core/pipe.c **** }
+ 876              		.loc 1 174 1 view .LVU229
+ 877 0012 03B0     		add	sp, sp, #12
+ 878              	.LCFI28:
+ 879              		.cfi_def_cfa_offset 4
+ 880              		@ sp needed
+ 881 0014 5DF804FB 		ldr	pc, [sp], #4
+ 882              		.cfi_endproc
+ 883              	.LFE12:
+ 885              		.text
+ 886              	.Letext0:
+ 887              		.file 2 "/usr/share/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/_default_types.h"
+ 888              		.file 3 "/usr/share/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_stdint.h"
+ 889              		.file 4 "fw-lib-stm32-CocktailOS/kernel/core/circ_buf.h"
+ 890              		.file 5 "fw-lib-stm32-CocktailOS/kernel/core/queue_ex.h"
+ 891              		.file 6 "fw-lib-stm32-CocktailOS/kernel/core/pipe.h"
+ 892              		.file 7 "/usr/share/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/stdlib.h"
+ 893              		.file 8 "<built-in>"
+ARM GAS  /tmp/ccwkQZmc.s 			page 20
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 pipe.c
+     /tmp/ccwkQZmc.s:20     .text.Pipe_establish:0000000000000000 $t
+     /tmp/ccwkQZmc.s:26     .text.Pipe_establish:0000000000000000 Pipe_establish
+     /tmp/ccwkQZmc.s:149    .text.Pipe_put_nowait:0000000000000000 $t
+     /tmp/ccwkQZmc.s:155    .text.Pipe_put_nowait:0000000000000000 Pipe_put_nowait
+     /tmp/ccwkQZmc.s:181    .text.Pipe_get_nowait:0000000000000000 $t
+     /tmp/ccwkQZmc.s:187    .text.Pipe_get_nowait:0000000000000000 Pipe_get_nowait
+     /tmp/ccwkQZmc.s:213    .text.Pipe_fetch_nowait:0000000000000000 $t
+     /tmp/ccwkQZmc.s:219    .text.Pipe_fetch_nowait:0000000000000000 Pipe_fetch_nowait
+     /tmp/ccwkQZmc.s:245    .text.Pipe_clear_nowait:0000000000000000 $t
+     /tmp/ccwkQZmc.s:251    .text.Pipe_clear_nowait:0000000000000000 Pipe_clear_nowait
+     /tmp/ccwkQZmc.s:277    .text.LinkedPipe_establish:0000000000000000 $t
+     /tmp/ccwkQZmc.s:283    .text.LinkedPipe_establish:0000000000000000 LinkedPipe_establish
+     /tmp/ccwkQZmc.s:403    .text.LinkedPipe_put_nowait:0000000000000000 $t
+     /tmp/ccwkQZmc.s:409    .text.LinkedPipe_put_nowait:0000000000000000 LinkedPipe_put_nowait
+     /tmp/ccwkQZmc.s:506    .text.LinkedPipe_put_reverse_nowait:0000000000000000 $t
+     /tmp/ccwkQZmc.s:512    .text.LinkedPipe_put_reverse_nowait:0000000000000000 LinkedPipe_put_reverse_nowait
+     /tmp/ccwkQZmc.s:553    .text.LinkedPipe_get_nowait:0000000000000000 $t
+     /tmp/ccwkQZmc.s:559    .text.LinkedPipe_get_nowait:0000000000000000 LinkedPipe_get_nowait
+     /tmp/ccwkQZmc.s:650    .text.LinkedPipe_fetch_nowait:0000000000000000 $t
+     /tmp/ccwkQZmc.s:656    .text.LinkedPipe_fetch_nowait:0000000000000000 LinkedPipe_fetch_nowait
+     /tmp/ccwkQZmc.s:741    .text.LinkedPipe_fetch_reverse_nowait:0000000000000000 $t
+     /tmp/ccwkQZmc.s:747    .text.LinkedPipe_fetch_reverse_nowait:0000000000000000 LinkedPipe_fetch_reverse_nowait
+     /tmp/ccwkQZmc.s:788    .text.LinkedPipe_clear_nowait:0000000000000000 $t
+     /tmp/ccwkQZmc.s:794    .text.LinkedPipe_clear_nowait:0000000000000000 LinkedPipe_clear_nowait
+     /tmp/ccwkQZmc.s:839    .text.LinkedPipe_clear_reverse_nowait:0000000000000000 $t
+     /tmp/ccwkQZmc.s:845    .text.LinkedPipe_clear_reverse_nowait:0000000000000000 LinkedPipe_clear_reverse_nowait
+
+UNDEFINED SYMBOLS
+CircBuf_Init
+malloc
+free
+CircBuf_write
+CircBuf_read
+CircBuf_get_data
+CircBuf_consume
+SizedQ_init
+memcpy
+QueueEx_init_node
+SizedQ_put
+SizedQ_get
+SizedQ_fetch

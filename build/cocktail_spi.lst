@@ -1,0 +1,553 @@
+ARM GAS  /tmp/ccoHCE3P.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"cocktail_spi.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.HAL_SPI_TxCpltCallback,"ax",%progbits
+  20              		.align	1
+  21              		.global	HAL_SPI_TxCpltCallback
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	HAL_SPI_TxCpltCallback:
+  27              	.LVL0:
+  28              	.LFB144:
+  29              		.file 1 "fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c"
+   1:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #include "peripheral/cocktail_spi.h"
+   2:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #include "cocktail_core.h"
+   3:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+   4:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #ifdef HAL_I2C_MODULE_ENABLED
+   5:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** __weak void COCKTAIL_SPI_TxCpltCallback(SPI_HandleTypeDef *hspi);
+   6:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** __weak void COCKTAIL_SPI_RxCpltCallback(SPI_HandleTypeDef *hspi);
+   7:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** __weak void COCKTAIL_SPI_TxRxCpltCallback(SPI_HandleTypeDef *hspi);
+   8:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** __weak void COCKTAIL_SPI_TxHalfCpltCallback(SPI_HandleTypeDef *hspi);
+   9:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** __weak void COCKTAIL_SPI_RxHalfCpltCallback(SPI_HandleTypeDef *hspi);
+  10:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** __weak void COCKTAIL_SPI_TxRxHalfCpltCallback(SPI_HandleTypeDef *hspi);
+  11:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** __weak void COCKTAIL_SPI_ErrorCallback(SPI_HandleTypeDef *hspi);
+  12:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** __weak void COCKTAIL_SPI_AbortCpltCallback(SPI_HandleTypeDef *hspi);
+  13:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+  14:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** void
+  15:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** HAL_SPI_TxCpltCallback(SPI_HandleTypeDef *hspi)
+  16:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** {
+  30              		.loc 1 16 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		.loc 1 16 1 is_stmt 0 view .LVU1
+  35 0000 08B5     		push	{r3, lr}
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 8
+  38              		.cfi_offset 3, -8
+  39              		.cfi_offset 14, -4
+  17:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_TxCpltCallback(hspi);
+  40              		.loc 1 17 5 is_stmt 1 view .LVU2
+  41 0002 FFF7FEFF 		bl	COCKTAIL_SPI_TxCpltCallback
+ARM GAS  /tmp/ccoHCE3P.s 			page 2
+
+
+  42              	.LVL1:
+  18:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+  19:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #if USE_COCKTAIL_SPI_TX_COMPLETE(SPI1)
+  20:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_TX_COMPLETE_FN(SPI1);
+  21:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #endif
+  22:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+  23:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #if USE_COCKTAIL_SPI_TX_COMPLETE(SPI2)
+  24:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_TX_COMPLETE_FN(SPI2);
+  25:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #endif
+  26:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+  27:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #if USE_COCKTAIL_SPI_TX_COMPLETE(SPI3)
+  28:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_TX_COMPLETE_FN(SPI3);
+  29:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #endif
+  30:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+  31:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #if USE_COCKTAIL_SPI_TX_COMPLETE(SPI4)
+  32:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_TX_COMPLETE_FN(SPI4);
+  33:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #endif
+  34:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+  35:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #if USE_COCKTAIL_SPI_TX_COMPLETE(SPI5)
+  36:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_TX_COMPLETE_FN(SPI5);
+  37:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #endif
+  38:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+  39:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #if USE_COCKTAIL_SPI_TX_COMPLETE(SPI6)
+  40:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_TX_COMPLETE_FN(SPI6);
+  41:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #endif
+  42:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** }
+  43              		.loc 1 42 1 is_stmt 0 view .LVU3
+  44 0006 08BD     		pop	{r3, pc}
+  45              		.cfi_endproc
+  46              	.LFE144:
+  48              		.section	.text.HAL_SPI_RxCpltCallback,"ax",%progbits
+  49              		.align	1
+  50              		.global	HAL_SPI_RxCpltCallback
+  51              		.syntax unified
+  52              		.thumb
+  53              		.thumb_func
+  55              	HAL_SPI_RxCpltCallback:
+  56              	.LVL2:
+  57              	.LFB145:
+  43:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+  44:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** void
+  45:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** HAL_SPI_RxCpltCallback(SPI_HandleTypeDef *hspi)
+  46:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** {
+  58              		.loc 1 46 1 is_stmt 1 view -0
+  59              		.cfi_startproc
+  60              		@ args = 0, pretend = 0, frame = 0
+  61              		@ frame_needed = 0, uses_anonymous_args = 0
+  62              		.loc 1 46 1 is_stmt 0 view .LVU5
+  63 0000 08B5     		push	{r3, lr}
+  64              	.LCFI1:
+  65              		.cfi_def_cfa_offset 8
+  66              		.cfi_offset 3, -8
+  67              		.cfi_offset 14, -4
+  47:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_RxCpltCallback(hspi);
+  68              		.loc 1 47 5 is_stmt 1 view .LVU6
+  69 0002 FFF7FEFF 		bl	COCKTAIL_SPI_RxCpltCallback
+  70              	.LVL3:
+ARM GAS  /tmp/ccoHCE3P.s 			page 3
+
+
+  48:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+  49:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #if USE_COCKTAIL_SPI_RX_COMPLETE(SPI1)
+  50:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_RX_COMPLETE_FN(SPI1);
+  51:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #endif
+  52:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+  53:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #if USE_COCKTAIL_SPI_RX_COMPLETE(SPI2)
+  54:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_RX_COMPLETE_FN(SPI2);
+  55:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #endif
+  56:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+  57:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #if USE_COCKTAIL_SPI_RX_COMPLETE(SPI3)
+  58:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_RX_COMPLETE_FN(SPI3);
+  59:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #endif
+  60:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+  61:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #if USE_COCKTAIL_SPI_RX_COMPLETE(SPI4)
+  62:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_RX_COMPLETE_FN(SPI4);
+  63:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #endif
+  64:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+  65:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #if USE_COCKTAIL_SPI_RX_COMPLETE(SPI5)
+  66:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_RX_COMPLETE_FN(SPI5);
+  67:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #endif
+  68:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+  69:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #if USE_COCKTAIL_SPI_RX_COMPLETE(SPI6)
+  70:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_RX_COMPLETE_FN(SPI6);
+  71:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #endif
+  72:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** }
+  71              		.loc 1 72 1 is_stmt 0 view .LVU7
+  72 0006 08BD     		pop	{r3, pc}
+  73              		.cfi_endproc
+  74              	.LFE145:
+  76              		.section	.text.HAL_SPI_TxRxCpltCallback,"ax",%progbits
+  77              		.align	1
+  78              		.global	HAL_SPI_TxRxCpltCallback
+  79              		.syntax unified
+  80              		.thumb
+  81              		.thumb_func
+  83              	HAL_SPI_TxRxCpltCallback:
+  84              	.LVL4:
+  85              	.LFB146:
+  73:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+  74:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** void
+  75:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** HAL_SPI_TxRxCpltCallback(SPI_HandleTypeDef *hspi)
+  76:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** {
+  86              		.loc 1 76 1 is_stmt 1 view -0
+  87              		.cfi_startproc
+  88              		@ args = 0, pretend = 0, frame = 0
+  89              		@ frame_needed = 0, uses_anonymous_args = 0
+  90              		.loc 1 76 1 is_stmt 0 view .LVU9
+  91 0000 08B5     		push	{r3, lr}
+  92              	.LCFI2:
+  93              		.cfi_def_cfa_offset 8
+  94              		.cfi_offset 3, -8
+  95              		.cfi_offset 14, -4
+  77:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_TxRxCpltCallback(hspi);
+  96              		.loc 1 77 5 is_stmt 1 view .LVU10
+  97 0002 FFF7FEFF 		bl	COCKTAIL_SPI_TxRxCpltCallback
+  98              	.LVL5:
+  78:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+ARM GAS  /tmp/ccoHCE3P.s 			page 4
+
+
+  79:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #if USE_COCKTAIL_SPI_TX_RX_COMPLETE(SPI1)
+  80:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_TX_RX_COMPLETE_FN(SPI1);
+  81:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #endif
+  82:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+  83:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #if USE_COCKTAIL_SPI_TX_RX_COMPLETE(SPI2)
+  84:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_TX_RX_COMPLETE_FN(SPI2);
+  85:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #endif
+  86:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+  87:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #if USE_COCKTAIL_SPI_TX_RX_COMPLETE(SPI3)
+  88:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_TX_RX_COMPLETE_FN(SPI3);
+  89:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #endif
+  90:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+  91:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #if USE_COCKTAIL_SPI_TX_RX_COMPLETE(SPI4)
+  92:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_TX_RX_COMPLETE_FN(SPI4);
+  93:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #endif
+  94:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+  95:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #if USE_COCKTAIL_SPI_TX_RX_COMPLETE(SPI5)
+  96:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_TX_RX_COMPLETE_FN(SPI5);
+  97:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #endif
+  98:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+  99:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #if USE_COCKTAIL_SPI_TX_RX_COMPLETE(SPI6)
+ 100:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_TX_RX_COMPLETE_FN(SPI6);
+ 101:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #endif
+ 102:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** }
+  99              		.loc 1 102 1 is_stmt 0 view .LVU11
+ 100 0006 08BD     		pop	{r3, pc}
+ 101              		.cfi_endproc
+ 102              	.LFE146:
+ 104              		.section	.text.HAL_SPI_TxHalfCpltCallback,"ax",%progbits
+ 105              		.align	1
+ 106              		.global	HAL_SPI_TxHalfCpltCallback
+ 107              		.syntax unified
+ 108              		.thumb
+ 109              		.thumb_func
+ 111              	HAL_SPI_TxHalfCpltCallback:
+ 112              	.LVL6:
+ 113              	.LFB147:
+ 103:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+ 104:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** void
+ 105:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** HAL_SPI_TxHalfCpltCallback(SPI_HandleTypeDef *hspi)
+ 106:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** {
+ 114              		.loc 1 106 1 is_stmt 1 view -0
+ 115              		.cfi_startproc
+ 116              		@ args = 0, pretend = 0, frame = 0
+ 117              		@ frame_needed = 0, uses_anonymous_args = 0
+ 118              		.loc 1 106 1 is_stmt 0 view .LVU13
+ 119 0000 08B5     		push	{r3, lr}
+ 120              	.LCFI3:
+ 121              		.cfi_def_cfa_offset 8
+ 122              		.cfi_offset 3, -8
+ 123              		.cfi_offset 14, -4
+ 107:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_TxHalfCpltCallback(hspi);
+ 124              		.loc 1 107 5 is_stmt 1 view .LVU14
+ 125 0002 FFF7FEFF 		bl	COCKTAIL_SPI_TxHalfCpltCallback
+ 126              	.LVL7:
+ 108:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+ 109:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #if USE_COCKTAIL_SPI_TX_HALF_COMPLETE(SPI1)
+ARM GAS  /tmp/ccoHCE3P.s 			page 5
+
+
+ 110:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_TX_HALF_COMPLETE_FN(SPI1);
+ 111:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #endif
+ 112:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+ 113:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #if USE_COCKTAIL_SPI_TX_HALF_COMPLETE(SPI2)
+ 114:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_TX_HALF_COMPLETE_FN(SPI2);
+ 115:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #endif
+ 116:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+ 117:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #if USE_COCKTAIL_SPI_TX_HALF_COMPLETE(SPI3)
+ 118:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_TX_HALF_COMPLETE_FN(SPI3);
+ 119:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #endif
+ 120:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+ 121:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #if USE_COCKTAIL_SPI_TX_HALF_COMPLETE(SPI4)
+ 122:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_TX_HALF_COMPLETE_FN(SPI4);
+ 123:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #endif
+ 124:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+ 125:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #if USE_COCKTAIL_SPI_TX_HALF_COMPLETE(SPI5)
+ 126:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_TX_HALF_COMPLETE_FN(SPI5);
+ 127:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #endif
+ 128:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+ 129:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #if USE_COCKTAIL_SPI_TX_HALF_COMPLETE(SPI6)
+ 130:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_TX_HALF_COMPLETE_FN(SPI6);
+ 131:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #endif
+ 132:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** }
+ 127              		.loc 1 132 1 is_stmt 0 view .LVU15
+ 128 0006 08BD     		pop	{r3, pc}
+ 129              		.cfi_endproc
+ 130              	.LFE147:
+ 132              		.section	.text.HAL_SPI_RxHalfCpltCallback,"ax",%progbits
+ 133              		.align	1
+ 134              		.global	HAL_SPI_RxHalfCpltCallback
+ 135              		.syntax unified
+ 136              		.thumb
+ 137              		.thumb_func
+ 139              	HAL_SPI_RxHalfCpltCallback:
+ 140              	.LVL8:
+ 141              	.LFB148:
+ 133:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+ 134:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** void
+ 135:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** HAL_SPI_RxHalfCpltCallback(SPI_HandleTypeDef *hspi)
+ 136:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** {
+ 142              		.loc 1 136 1 is_stmt 1 view -0
+ 143              		.cfi_startproc
+ 144              		@ args = 0, pretend = 0, frame = 0
+ 145              		@ frame_needed = 0, uses_anonymous_args = 0
+ 146              		.loc 1 136 1 is_stmt 0 view .LVU17
+ 147 0000 08B5     		push	{r3, lr}
+ 148              	.LCFI4:
+ 149              		.cfi_def_cfa_offset 8
+ 150              		.cfi_offset 3, -8
+ 151              		.cfi_offset 14, -4
+ 137:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_RxHalfCpltCallback(hspi);
+ 152              		.loc 1 137 5 is_stmt 1 view .LVU18
+ 153 0002 FFF7FEFF 		bl	COCKTAIL_SPI_RxHalfCpltCallback
+ 154              	.LVL9:
+ 138:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+ 139:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #if USE_COCKTAIL_SPI_RX_HALF_COMPLETE(SPI1)
+ 140:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_RX_HALF_COMPLETE_FN(SPI1);
+ARM GAS  /tmp/ccoHCE3P.s 			page 6
+
+
+ 141:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #endif
+ 142:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+ 143:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #if USE_COCKTAIL_SPI_RX_HALF_COMPLETE(SPI2)
+ 144:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_RX_HALF_COMPLETE_FN(SPI2);
+ 145:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #endif
+ 146:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+ 147:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #if USE_COCKTAIL_SPI_RX_HALF_COMPLETE(SPI3)
+ 148:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_RX_HALF_COMPLETE_FN(SPI3);
+ 149:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #endif
+ 150:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+ 151:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #if USE_COCKTAIL_SPI_RX_HALF_COMPLETE(SPI4)
+ 152:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_RX_HALF_COMPLETE_FN(SPI4);
+ 153:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #endif
+ 154:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+ 155:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #if USE_COCKTAIL_SPI_RX_HALF_COMPLETE(SPI5)
+ 156:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_RX_HALF_COMPLETE_FN(SPI5);
+ 157:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #endif
+ 158:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+ 159:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #if USE_COCKTAIL_SPI_RX_HALF_COMPLETE(SPI6)
+ 160:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_RX_HALF_COMPLETE_FN(SPI6);
+ 161:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #endif
+ 162:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** }
+ 155              		.loc 1 162 1 is_stmt 0 view .LVU19
+ 156 0006 08BD     		pop	{r3, pc}
+ 157              		.cfi_endproc
+ 158              	.LFE148:
+ 160              		.section	.text.HAL_SPI_TxRxHalfCpltCallback,"ax",%progbits
+ 161              		.align	1
+ 162              		.global	HAL_SPI_TxRxHalfCpltCallback
+ 163              		.syntax unified
+ 164              		.thumb
+ 165              		.thumb_func
+ 167              	HAL_SPI_TxRxHalfCpltCallback:
+ 168              	.LVL10:
+ 169              	.LFB149:
+ 163:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+ 164:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** void
+ 165:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** HAL_SPI_TxRxHalfCpltCallback(SPI_HandleTypeDef *hspi)
+ 166:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** {
+ 170              		.loc 1 166 1 is_stmt 1 view -0
+ 171              		.cfi_startproc
+ 172              		@ args = 0, pretend = 0, frame = 0
+ 173              		@ frame_needed = 0, uses_anonymous_args = 0
+ 174              		.loc 1 166 1 is_stmt 0 view .LVU21
+ 175 0000 08B5     		push	{r3, lr}
+ 176              	.LCFI5:
+ 177              		.cfi_def_cfa_offset 8
+ 178              		.cfi_offset 3, -8
+ 179              		.cfi_offset 14, -4
+ 167:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_TxRxHalfCpltCallback(hspi);
+ 180              		.loc 1 167 5 is_stmt 1 view .LVU22
+ 181 0002 FFF7FEFF 		bl	COCKTAIL_SPI_TxRxHalfCpltCallback
+ 182              	.LVL11:
+ 168:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+ 169:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #if USE_COCKTAIL_SPI_TX_RX_HALF_COMPLETE(SPI1)
+ 170:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_TX_RX_HALF_COMPLETE_FN(SPI1);
+ 171:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #endif
+ARM GAS  /tmp/ccoHCE3P.s 			page 7
+
+
+ 172:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+ 173:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #if USE_COCKTAIL_SPI_TX_RX_HALF_COMPLETE(SPI2)
+ 174:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_TX_RX_HALF_COMPLETE_FN(SPI2);
+ 175:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #endif
+ 176:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+ 177:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #if USE_COCKTAIL_SPI_TX_RX_HALF_COMPLETE(SPI3)
+ 178:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_TX_RX_HALF_COMPLETE_FN(SPI3);
+ 179:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #endif
+ 180:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+ 181:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #if USE_COCKTAIL_SPI_TX_RX_HALF_COMPLETE(SPI4)
+ 182:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_TX_RX_HALF_COMPLETE_FN(SPI4);
+ 183:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #endif
+ 184:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+ 185:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #if USE_COCKTAIL_SPI_TX_RX_HALF_COMPLETE(SPI5)
+ 186:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_TX_RX_HALF_COMPLETE_FN(SPI5);
+ 187:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #endif
+ 188:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+ 189:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #if USE_COCKTAIL_SPI_TX_RX_HALF_COMPLETE(SPI6)
+ 190:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_TX_RX_HALF_COMPLETE_FN(SPI6);
+ 191:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #endif
+ 192:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** }
+ 183              		.loc 1 192 1 is_stmt 0 view .LVU23
+ 184 0006 08BD     		pop	{r3, pc}
+ 185              		.cfi_endproc
+ 186              	.LFE149:
+ 188              		.section	.text.HAL_SPI_ErrorCallback,"ax",%progbits
+ 189              		.align	1
+ 190              		.global	HAL_SPI_ErrorCallback
+ 191              		.syntax unified
+ 192              		.thumb
+ 193              		.thumb_func
+ 195              	HAL_SPI_ErrorCallback:
+ 196              	.LVL12:
+ 197              	.LFB150:
+ 193:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+ 194:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** void
+ 195:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** HAL_SPI_ErrorCallback(SPI_HandleTypeDef *hspi)
+ 196:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** {
+ 198              		.loc 1 196 1 is_stmt 1 view -0
+ 199              		.cfi_startproc
+ 200              		@ args = 0, pretend = 0, frame = 0
+ 201              		@ frame_needed = 0, uses_anonymous_args = 0
+ 202              		.loc 1 196 1 is_stmt 0 view .LVU25
+ 203 0000 08B5     		push	{r3, lr}
+ 204              	.LCFI6:
+ 205              		.cfi_def_cfa_offset 8
+ 206              		.cfi_offset 3, -8
+ 207              		.cfi_offset 14, -4
+ 197:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_ErrorCallback(hspi);
+ 208              		.loc 1 197 5 is_stmt 1 view .LVU26
+ 209 0002 FFF7FEFF 		bl	COCKTAIL_SPI_ErrorCallback
+ 210              	.LVL13:
+ 198:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+ 199:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #if USE_COCKTAIL_SPI_ERROR(SPI1)
+ 200:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_ERROR_FN(SPI1);
+ 201:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #endif
+ 202:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+ARM GAS  /tmp/ccoHCE3P.s 			page 8
+
+
+ 203:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #if USE_COCKTAIL_SPI_ERROR(SPI2)
+ 204:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_ERROR_FN(SPI2);
+ 205:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #endif
+ 206:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+ 207:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #if USE_COCKTAIL_SPI_ERROR(SPI3)
+ 208:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_ERROR_FN(SPI3);
+ 209:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #endif
+ 210:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+ 211:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #if USE_COCKTAIL_SPI_ERROR(SPI4)
+ 212:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_ERROR_FN(SPI4);
+ 213:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #endif
+ 214:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+ 215:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #if USE_COCKTAIL_SPI_ERROR(SPI5)
+ 216:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_ERROR_FN(SPI5);
+ 217:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #endif
+ 218:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+ 219:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #if USE_COCKTAIL_SPI_ERROR(SPI6)
+ 220:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_ERROR_FN(SPI6);
+ 221:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #endif
+ 222:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** }
+ 211              		.loc 1 222 1 is_stmt 0 view .LVU27
+ 212 0006 08BD     		pop	{r3, pc}
+ 213              		.cfi_endproc
+ 214              	.LFE150:
+ 216              		.section	.text.HAL_SPI_AbortCpltCallback,"ax",%progbits
+ 217              		.align	1
+ 218              		.global	HAL_SPI_AbortCpltCallback
+ 219              		.syntax unified
+ 220              		.thumb
+ 221              		.thumb_func
+ 223              	HAL_SPI_AbortCpltCallback:
+ 224              	.LVL14:
+ 225              	.LFB151:
+ 223:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+ 224:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** void
+ 225:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** HAL_SPI_AbortCpltCallback(SPI_HandleTypeDef *hspi)
+ 226:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** {
+ 226              		.loc 1 226 1 is_stmt 1 view -0
+ 227              		.cfi_startproc
+ 228              		@ args = 0, pretend = 0, frame = 0
+ 229              		@ frame_needed = 0, uses_anonymous_args = 0
+ 230              		.loc 1 226 1 is_stmt 0 view .LVU29
+ 231 0000 08B5     		push	{r3, lr}
+ 232              	.LCFI7:
+ 233              		.cfi_def_cfa_offset 8
+ 234              		.cfi_offset 3, -8
+ 235              		.cfi_offset 14, -4
+ 227:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_AbortCpltCallback(hspi);
+ 236              		.loc 1 227 5 is_stmt 1 view .LVU30
+ 237 0002 FFF7FEFF 		bl	COCKTAIL_SPI_AbortCpltCallback
+ 238              	.LVL15:
+ 228:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+ 229:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #if USE_COCKTAIL_SPI_ABORT(SPI1)
+ 230:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_ABORT_FN(SPI1);
+ 231:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #endif
+ 232:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+ 233:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #if USE_COCKTAIL_SPI_ABORT(SPI2)
+ARM GAS  /tmp/ccoHCE3P.s 			page 9
+
+
+ 234:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_ABORT_FN(SPI2);
+ 235:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #endif
+ 236:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+ 237:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #if USE_COCKTAIL_SPI_ABORT(SPI3)
+ 238:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_ABORT_FN(SPI3);
+ 239:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #endif
+ 240:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+ 241:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #if USE_COCKTAIL_SPI_ABORT(SPI4)
+ 242:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_ABORT_FN(SPI4);
+ 243:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #endif
+ 244:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+ 245:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #if USE_COCKTAIL_SPI_ABORT(SPI5)
+ 246:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_ABORT_FN(SPI5);
+ 247:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #endif
+ 248:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** 
+ 249:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #if USE_COCKTAIL_SPI_ABORT(SPI6)
+ 250:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c ****     COCKTAIL_SPI_ABORT_FN(SPI6);
+ 251:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** #endif
+ 252:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_spi.c **** }
+ 239              		.loc 1 252 1 is_stmt 0 view .LVU31
+ 240 0006 08BD     		pop	{r3, pc}
+ 241              		.cfi_endproc
+ 242              	.LFE151:
+ 244              		.weak	COCKTAIL_SPI_AbortCpltCallback
+ 245              		.weak	COCKTAIL_SPI_ErrorCallback
+ 246              		.weak	COCKTAIL_SPI_TxRxHalfCpltCallback
+ 247              		.weak	COCKTAIL_SPI_RxHalfCpltCallback
+ 248              		.weak	COCKTAIL_SPI_TxHalfCpltCallback
+ 249              		.weak	COCKTAIL_SPI_TxRxCpltCallback
+ 250              		.weak	COCKTAIL_SPI_RxCpltCallback
+ 251              		.weak	COCKTAIL_SPI_TxCpltCallback
+ 252              		.text
+ 253              	.Letext0:
+ 254              		.file 2 "/usr/share/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/_default_types.h"
+ 255              		.file 3 "/usr/share/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_stdint.h"
+ 256              		.file 4 "Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f746xx.h"
+ 257              		.file 5 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h"
+ 258              		.file 6 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_dma.h"
+ 259              		.file 7 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_spi.h"
+ARM GAS  /tmp/ccoHCE3P.s 			page 10
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 cocktail_spi.c
+     /tmp/ccoHCE3P.s:20     .text.HAL_SPI_TxCpltCallback:0000000000000000 $t
+     /tmp/ccoHCE3P.s:26     .text.HAL_SPI_TxCpltCallback:0000000000000000 HAL_SPI_TxCpltCallback
+     /tmp/ccoHCE3P.s:49     .text.HAL_SPI_RxCpltCallback:0000000000000000 $t
+     /tmp/ccoHCE3P.s:55     .text.HAL_SPI_RxCpltCallback:0000000000000000 HAL_SPI_RxCpltCallback
+     /tmp/ccoHCE3P.s:77     .text.HAL_SPI_TxRxCpltCallback:0000000000000000 $t
+     /tmp/ccoHCE3P.s:83     .text.HAL_SPI_TxRxCpltCallback:0000000000000000 HAL_SPI_TxRxCpltCallback
+     /tmp/ccoHCE3P.s:105    .text.HAL_SPI_TxHalfCpltCallback:0000000000000000 $t
+     /tmp/ccoHCE3P.s:111    .text.HAL_SPI_TxHalfCpltCallback:0000000000000000 HAL_SPI_TxHalfCpltCallback
+     /tmp/ccoHCE3P.s:133    .text.HAL_SPI_RxHalfCpltCallback:0000000000000000 $t
+     /tmp/ccoHCE3P.s:139    .text.HAL_SPI_RxHalfCpltCallback:0000000000000000 HAL_SPI_RxHalfCpltCallback
+     /tmp/ccoHCE3P.s:161    .text.HAL_SPI_TxRxHalfCpltCallback:0000000000000000 $t
+     /tmp/ccoHCE3P.s:167    .text.HAL_SPI_TxRxHalfCpltCallback:0000000000000000 HAL_SPI_TxRxHalfCpltCallback
+     /tmp/ccoHCE3P.s:189    .text.HAL_SPI_ErrorCallback:0000000000000000 $t
+     /tmp/ccoHCE3P.s:195    .text.HAL_SPI_ErrorCallback:0000000000000000 HAL_SPI_ErrorCallback
+     /tmp/ccoHCE3P.s:217    .text.HAL_SPI_AbortCpltCallback:0000000000000000 $t
+     /tmp/ccoHCE3P.s:223    .text.HAL_SPI_AbortCpltCallback:0000000000000000 HAL_SPI_AbortCpltCallback
+
+UNDEFINED SYMBOLS
+COCKTAIL_SPI_TxCpltCallback
+COCKTAIL_SPI_RxCpltCallback
+COCKTAIL_SPI_TxRxCpltCallback
+COCKTAIL_SPI_TxHalfCpltCallback
+COCKTAIL_SPI_RxHalfCpltCallback
+COCKTAIL_SPI_TxRxHalfCpltCallback
+COCKTAIL_SPI_ErrorCallback
+COCKTAIL_SPI_AbortCpltCallback

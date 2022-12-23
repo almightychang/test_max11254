@@ -1,0 +1,340 @@
+ARM GAS  /tmp/cco4bZ0O.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"decoder.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.Decoder_setGPIO,"ax",%progbits
+  20              		.align	1
+  21              		.global	Decoder_setGPIO
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	Decoder_setGPIO:
+  27              	.LVL0:
+  28              	.LFB147:
+  29              		.file 1 "fw-lib-stm32-BuildKit/decoder/decoder.c"
+   1:fw-lib-stm32-BuildKit/decoder/decoder.c **** #include "decoder.h"
+   2:fw-lib-stm32-BuildKit/decoder/decoder.c **** 
+   3:fw-lib-stm32-BuildKit/decoder/decoder.c **** Decoder_TypeDef *
+   4:fw-lib-stm32-BuildKit/decoder/decoder.c **** getDecoder(Cocktail_GPIOTypeDef gpio[], uint8_t size)
+   5:fw-lib-stm32-BuildKit/decoder/decoder.c **** {
+   6:fw-lib-stm32-BuildKit/decoder/decoder.c ****     Decoder_TypeDef *decoder =
+   7:fw-lib-stm32-BuildKit/decoder/decoder.c ****         (Decoder_TypeDef *)malloc(sizeof(Decoder_TypeDef));
+   8:fw-lib-stm32-BuildKit/decoder/decoder.c **** 
+   9:fw-lib-stm32-BuildKit/decoder/decoder.c ****     decoder->input_gpio =
+  10:fw-lib-stm32-BuildKit/decoder/decoder.c ****         (Cocktail_GPIOTypeDef *)malloc(size * sizeof(Cocktail_GPIOTypeDef));
+  11:fw-lib-stm32-BuildKit/decoder/decoder.c ****     decoder->input_size = size;
+  12:fw-lib-stm32-BuildKit/decoder/decoder.c **** 
+  13:fw-lib-stm32-BuildKit/decoder/decoder.c ****     for(uint8_t i = 0; i < size; i++)
+  14:fw-lib-stm32-BuildKit/decoder/decoder.c ****         Decoder_setGPIO(decoder, i, gpio[i].Port, gpio[i].Pin);
+  15:fw-lib-stm32-BuildKit/decoder/decoder.c **** 
+  16:fw-lib-stm32-BuildKit/decoder/decoder.c ****     return decoder;
+  17:fw-lib-stm32-BuildKit/decoder/decoder.c **** }
+  18:fw-lib-stm32-BuildKit/decoder/decoder.c **** 
+  19:fw-lib-stm32-BuildKit/decoder/decoder.c **** void
+  20:fw-lib-stm32-BuildKit/decoder/decoder.c **** Decoder_setGPIO(Decoder_TypeDef *decoder, uint8_t rank, GPIO_TypeDef *GPIO_Port,
+  21:fw-lib-stm32-BuildKit/decoder/decoder.c ****                 uint16_t GPIO_Pin)
+  22:fw-lib-stm32-BuildKit/decoder/decoder.c **** {
+  30              		.loc 1 22 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		@ link register save eliminated.
+  35              		.loc 1 22 1 is_stmt 0 view .LVU1
+  36 0000 10B4     		push	{r4}
+ARM GAS  /tmp/cco4bZ0O.s 			page 2
+
+
+  37              	.LCFI0:
+  38              		.cfi_def_cfa_offset 4
+  39              		.cfi_offset 4, -4
+  23:fw-lib-stm32-BuildKit/decoder/decoder.c ****     decoder->input_gpio[rank].Port = GPIO_Port;
+  40              		.loc 1 23 5 is_stmt 1 view .LVU2
+  41              		.loc 1 23 36 is_stmt 0 view .LVU3
+  42 0002 0468     		ldr	r4, [r0]
+  43 0004 44F83120 		str	r2, [r4, r1, lsl #3]
+  24:fw-lib-stm32-BuildKit/decoder/decoder.c ****     decoder->input_gpio[rank].Pin  = GPIO_Pin;
+  44              		.loc 1 24 5 is_stmt 1 view .LVU4
+  45              		.loc 1 24 12 is_stmt 0 view .LVU5
+  46 0008 0268     		ldr	r2, [r0]
+  47              	.LVL1:
+  48              		.loc 1 24 24 view .LVU6
+  49 000a 02EBC101 		add	r1, r2, r1, lsl #3
+  50              	.LVL2:
+  51              		.loc 1 24 36 view .LVU7
+  52 000e 8B80     		strh	r3, [r1, #4]	@ movhi
+  25:fw-lib-stm32-BuildKit/decoder/decoder.c **** }
+  53              		.loc 1 25 1 view .LVU8
+  54 0010 5DF8044B 		ldr	r4, [sp], #4
+  55              	.LCFI1:
+  56              		.cfi_restore 4
+  57              		.cfi_def_cfa_offset 0
+  58 0014 7047     		bx	lr
+  59              		.cfi_endproc
+  60              	.LFE147:
+  62              		.section	.text.getDecoder,"ax",%progbits
+  63              		.align	1
+  64              		.global	getDecoder
+  65              		.syntax unified
+  66              		.thumb
+  67              		.thumb_func
+  69              	getDecoder:
+  70              	.LVL3:
+  71              	.LFB146:
+   5:fw-lib-stm32-BuildKit/decoder/decoder.c ****     Decoder_TypeDef *decoder =
+  72              		.loc 1 5 1 is_stmt 1 view -0
+  73              		.cfi_startproc
+  74              		@ args = 0, pretend = 0, frame = 0
+  75              		@ frame_needed = 0, uses_anonymous_args = 0
+   5:fw-lib-stm32-BuildKit/decoder/decoder.c ****     Decoder_TypeDef *decoder =
+  76              		.loc 1 5 1 is_stmt 0 view .LVU10
+  77 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+  78              	.LCFI2:
+  79              		.cfi_def_cfa_offset 24
+  80              		.cfi_offset 3, -24
+  81              		.cfi_offset 4, -20
+  82              		.cfi_offset 5, -16
+  83              		.cfi_offset 6, -12
+  84              		.cfi_offset 7, -8
+  85              		.cfi_offset 14, -4
+  86 0002 0546     		mov	r5, r0
+  87 0004 0F46     		mov	r7, r1
+   6:fw-lib-stm32-BuildKit/decoder/decoder.c ****         (Decoder_TypeDef *)malloc(sizeof(Decoder_TypeDef));
+  88              		.loc 1 6 5 is_stmt 1 view .LVU11
+   7:fw-lib-stm32-BuildKit/decoder/decoder.c **** 
+ARM GAS  /tmp/cco4bZ0O.s 			page 3
+
+
+  89              		.loc 1 7 28 is_stmt 0 view .LVU12
+  90 0006 0820     		movs	r0, #8
+  91              	.LVL4:
+   7:fw-lib-stm32-BuildKit/decoder/decoder.c **** 
+  92              		.loc 1 7 28 view .LVU13
+  93 0008 FFF7FEFF 		bl	malloc
+  94              	.LVL5:
+   7:fw-lib-stm32-BuildKit/decoder/decoder.c **** 
+  95              		.loc 1 7 28 view .LVU14
+  96 000c 0646     		mov	r6, r0
+  97              	.LVL6:
+   9:fw-lib-stm32-BuildKit/decoder/decoder.c ****         (Cocktail_GPIOTypeDef *)malloc(size * sizeof(Cocktail_GPIOTypeDef));
+  98              		.loc 1 9 5 is_stmt 1 view .LVU15
+  10:fw-lib-stm32-BuildKit/decoder/decoder.c ****     decoder->input_size = size;
+  99              		.loc 1 10 33 is_stmt 0 view .LVU16
+ 100 000e F800     		lsls	r0, r7, #3
+ 101              	.LVL7:
+  10:fw-lib-stm32-BuildKit/decoder/decoder.c ****     decoder->input_size = size;
+ 102              		.loc 1 10 33 view .LVU17
+ 103 0010 FFF7FEFF 		bl	malloc
+ 104              	.LVL8:
+   9:fw-lib-stm32-BuildKit/decoder/decoder.c ****         (Cocktail_GPIOTypeDef *)malloc(size * sizeof(Cocktail_GPIOTypeDef));
+ 105              		.loc 1 9 25 view .LVU18
+ 106 0014 3060     		str	r0, [r6]
+  11:fw-lib-stm32-BuildKit/decoder/decoder.c **** 
+ 107              		.loc 1 11 5 is_stmt 1 view .LVU19
+  11:fw-lib-stm32-BuildKit/decoder/decoder.c **** 
+ 108              		.loc 1 11 25 is_stmt 0 view .LVU20
+ 109 0016 3771     		strb	r7, [r6, #4]
+  13:fw-lib-stm32-BuildKit/decoder/decoder.c ****         Decoder_setGPIO(decoder, i, gpio[i].Port, gpio[i].Pin);
+ 110              		.loc 1 13 5 is_stmt 1 view .LVU21
+ 111              	.LBB2:
+  13:fw-lib-stm32-BuildKit/decoder/decoder.c ****         Decoder_setGPIO(decoder, i, gpio[i].Port, gpio[i].Pin);
+ 112              		.loc 1 13 9 view .LVU22
+ 113              	.LVL9:
+  13:fw-lib-stm32-BuildKit/decoder/decoder.c ****         Decoder_setGPIO(decoder, i, gpio[i].Port, gpio[i].Pin);
+ 114              		.loc 1 13 17 is_stmt 0 view .LVU23
+ 115 0018 0024     		movs	r4, #0
+  13:fw-lib-stm32-BuildKit/decoder/decoder.c ****         Decoder_setGPIO(decoder, i, gpio[i].Port, gpio[i].Pin);
+ 116              		.loc 1 13 5 view .LVU24
+ 117 001a 0AE0     		b	.L4
+ 118              	.LVL10:
+ 119              	.L5:
+  14:fw-lib-stm32-BuildKit/decoder/decoder.c **** 
+ 120              		.loc 1 14 9 is_stmt 1 discriminator 3 view .LVU25
+  14:fw-lib-stm32-BuildKit/decoder/decoder.c **** 
+ 121              		.loc 1 14 41 is_stmt 0 discriminator 3 view .LVU26
+ 122 001c 05EBC403 		add	r3, r5, r4, lsl #3
+  14:fw-lib-stm32-BuildKit/decoder/decoder.c **** 
+ 123              		.loc 1 14 9 discriminator 3 view .LVU27
+ 124 0020 9B88     		ldrh	r3, [r3, #4]
+ 125 0022 55F83420 		ldr	r2, [r5, r4, lsl #3]
+ 126 0026 2146     		mov	r1, r4
+ 127 0028 3046     		mov	r0, r6
+ 128 002a FFF7FEFF 		bl	Decoder_setGPIO
+ 129              	.LVL11:
+  13:fw-lib-stm32-BuildKit/decoder/decoder.c ****         Decoder_setGPIO(decoder, i, gpio[i].Port, gpio[i].Pin);
+ARM GAS  /tmp/cco4bZ0O.s 			page 4
+
+
+ 130              		.loc 1 13 34 is_stmt 1 discriminator 3 view .LVU28
+  13:fw-lib-stm32-BuildKit/decoder/decoder.c ****         Decoder_setGPIO(decoder, i, gpio[i].Port, gpio[i].Pin);
+ 131              		.loc 1 13 35 is_stmt 0 discriminator 3 view .LVU29
+ 132 002e 0134     		adds	r4, r4, #1
+ 133              	.LVL12:
+  13:fw-lib-stm32-BuildKit/decoder/decoder.c ****         Decoder_setGPIO(decoder, i, gpio[i].Port, gpio[i].Pin);
+ 134              		.loc 1 13 35 discriminator 3 view .LVU30
+ 135 0030 E4B2     		uxtb	r4, r4
+ 136              	.LVL13:
+ 137              	.L4:
+  13:fw-lib-stm32-BuildKit/decoder/decoder.c ****         Decoder_setGPIO(decoder, i, gpio[i].Port, gpio[i].Pin);
+ 138              		.loc 1 13 24 is_stmt 1 discriminator 1 view .LVU31
+  13:fw-lib-stm32-BuildKit/decoder/decoder.c ****         Decoder_setGPIO(decoder, i, gpio[i].Port, gpio[i].Pin);
+ 139              		.loc 1 13 5 is_stmt 0 discriminator 1 view .LVU32
+ 140 0032 BC42     		cmp	r4, r7
+ 141 0034 F2D3     		bcc	.L5
+ 142              	.LBE2:
+  16:fw-lib-stm32-BuildKit/decoder/decoder.c **** }
+ 143              		.loc 1 16 5 is_stmt 1 view .LVU33
+  17:fw-lib-stm32-BuildKit/decoder/decoder.c **** 
+ 144              		.loc 1 17 1 is_stmt 0 view .LVU34
+ 145 0036 3046     		mov	r0, r6
+ 146 0038 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+  17:fw-lib-stm32-BuildKit/decoder/decoder.c **** 
+ 147              		.loc 1 17 1 view .LVU35
+ 148              		.cfi_endproc
+ 149              	.LFE146:
+ 151              		.section	.text.Decoder_select,"ax",%progbits
+ 152              		.align	1
+ 153              		.global	Decoder_select
+ 154              		.syntax unified
+ 155              		.thumb
+ 156              		.thumb_func
+ 158              	Decoder_select:
+ 159              	.LVL14:
+ 160              	.LFB148:
+  26:fw-lib-stm32-BuildKit/decoder/decoder.c **** 
+  27:fw-lib-stm32-BuildKit/decoder/decoder.c **** HAL_StatusTypeDef
+  28:fw-lib-stm32-BuildKit/decoder/decoder.c **** Decoder_select(Decoder_TypeDef *decoder, uint8_t channel)
+  29:fw-lib-stm32-BuildKit/decoder/decoder.c **** {
+ 161              		.loc 1 29 1 is_stmt 1 view -0
+ 162              		.cfi_startproc
+ 163              		@ args = 0, pretend = 0, frame = 0
+ 164              		@ frame_needed = 0, uses_anonymous_args = 0
+ 165              		.loc 1 29 1 is_stmt 0 view .LVU37
+ 166 0000 70B5     		push	{r4, r5, r6, lr}
+ 167              	.LCFI3:
+ 168              		.cfi_def_cfa_offset 16
+ 169              		.cfi_offset 4, -16
+ 170              		.cfi_offset 5, -12
+ 171              		.cfi_offset 6, -8
+ 172              		.cfi_offset 14, -4
+ 173 0002 0646     		mov	r6, r0
+ 174 0004 0D46     		mov	r5, r1
+  30:fw-lib-stm32-BuildKit/decoder/decoder.c ****     uint8_t i;
+ 175              		.loc 1 30 5 is_stmt 1 view .LVU38
+  31:fw-lib-stm32-BuildKit/decoder/decoder.c **** 
+ARM GAS  /tmp/cco4bZ0O.s 			page 5
+
+
+  32:fw-lib-stm32-BuildKit/decoder/decoder.c ****     for(i = 0; i < decoder->input_size; i++)
+ 176              		.loc 1 32 5 view .LVU39
+ 177              	.LVL15:
+ 178              		.loc 1 32 11 is_stmt 0 view .LVU40
+ 179 0006 0024     		movs	r4, #0
+ 180              		.loc 1 32 5 view .LVU41
+ 181 0008 0CE0     		b	.L8
+ 182              	.LVL16:
+ 183              	.L9:
+  33:fw-lib-stm32-BuildKit/decoder/decoder.c ****     {
+  34:fw-lib-stm32-BuildKit/decoder/decoder.c ****         HAL_GPIO_WritePin(decoder->input_gpio[i].Port,
+ 184              		.loc 1 34 9 is_stmt 1 discriminator 3 view .LVU42
+ 185              		.loc 1 34 34 is_stmt 0 discriminator 3 view .LVU43
+ 186 000a 3368     		ldr	r3, [r6]
+ 187              		.loc 1 34 46 discriminator 3 view .LVU44
+ 188 000c 03EBC401 		add	r1, r3, r4, lsl #3
+ 189              		.loc 1 34 9 discriminator 3 view .LVU45
+ 190 0010 05F00102 		and	r2, r5, #1
+ 191 0014 8988     		ldrh	r1, [r1, #4]
+ 192 0016 53F83400 		ldr	r0, [r3, r4, lsl #3]
+ 193 001a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 194              	.LVL17:
+  35:fw-lib-stm32-BuildKit/decoder/decoder.c ****                           decoder->input_gpio[i].Pin, channel % 2);
+  36:fw-lib-stm32-BuildKit/decoder/decoder.c ****         channel = channel >> 1;
+ 195              		.loc 1 36 9 is_stmt 1 discriminator 3 view .LVU46
+ 196              		.loc 1 36 17 is_stmt 0 discriminator 3 view .LVU47
+ 197 001e 6D08     		lsrs	r5, r5, #1
+ 198              	.LVL18:
+  32:fw-lib-stm32-BuildKit/decoder/decoder.c ****     {
+ 199              		.loc 1 32 41 is_stmt 1 discriminator 3 view .LVU48
+  32:fw-lib-stm32-BuildKit/decoder/decoder.c ****     {
+ 200              		.loc 1 32 42 is_stmt 0 discriminator 3 view .LVU49
+ 201 0020 0134     		adds	r4, r4, #1
+ 202              	.LVL19:
+  32:fw-lib-stm32-BuildKit/decoder/decoder.c ****     {
+ 203              		.loc 1 32 42 discriminator 3 view .LVU50
+ 204 0022 E4B2     		uxtb	r4, r4
+ 205              	.LVL20:
+ 206              	.L8:
+  32:fw-lib-stm32-BuildKit/decoder/decoder.c ****     {
+ 207              		.loc 1 32 16 is_stmt 1 discriminator 1 view .LVU51
+  32:fw-lib-stm32-BuildKit/decoder/decoder.c ****     {
+ 208              		.loc 1 32 27 is_stmt 0 discriminator 1 view .LVU52
+ 209 0024 3379     		ldrb	r3, [r6, #4]	@ zero_extendqisi2
+  32:fw-lib-stm32-BuildKit/decoder/decoder.c ****     {
+ 210              		.loc 1 32 5 discriminator 1 view .LVU53
+ 211 0026 A342     		cmp	r3, r4
+ 212 0028 EFD8     		bhi	.L9
+  37:fw-lib-stm32-BuildKit/decoder/decoder.c ****     }
+  38:fw-lib-stm32-BuildKit/decoder/decoder.c ****     if(channel) return HAL_ERROR;
+ 213              		.loc 1 38 5 is_stmt 1 view .LVU54
+ 214              		.loc 1 38 7 is_stmt 0 view .LVU55
+ 215 002a 0DB9     		cbnz	r5, .L11
+  39:fw-lib-stm32-BuildKit/decoder/decoder.c **** 
+  40:fw-lib-stm32-BuildKit/decoder/decoder.c ****     return HAL_OK;
+ 216              		.loc 1 40 12 view .LVU56
+ 217 002c 2846     		mov	r0, r5
+ARM GAS  /tmp/cco4bZ0O.s 			page 6
+
+
+ 218              	.L10:
+  41:fw-lib-stm32-BuildKit/decoder/decoder.c **** }
+ 219              		.loc 1 41 1 view .LVU57
+ 220 002e 70BD     		pop	{r4, r5, r6, pc}
+ 221              	.LVL21:
+ 222              	.L11:
+  38:fw-lib-stm32-BuildKit/decoder/decoder.c **** 
+ 223              		.loc 1 38 24 view .LVU58
+ 224 0030 0120     		movs	r0, #1
+ 225 0032 FCE7     		b	.L10
+ 226              		.cfi_endproc
+ 227              	.LFE148:
+ 229              		.text
+ 230              	.Letext0:
+ 231              		.file 2 "/usr/share/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/_default_types.h"
+ 232              		.file 3 "/usr/share/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_stdint.h"
+ 233              		.file 4 "Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f746xx.h"
+ 234              		.file 5 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h"
+ 235              		.file 6 "fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.h"
+ 236              		.file 7 "fw-lib-stm32-BuildKit/decoder/decoder.h"
+ 237              		.file 8 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_gpio.h"
+ 238              		.file 9 "/usr/share/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/stdlib.h"
+ARM GAS  /tmp/cco4bZ0O.s 			page 7
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 decoder.c
+     /tmp/cco4bZ0O.s:20     .text.Decoder_setGPIO:0000000000000000 $t
+     /tmp/cco4bZ0O.s:26     .text.Decoder_setGPIO:0000000000000000 Decoder_setGPIO
+     /tmp/cco4bZ0O.s:63     .text.getDecoder:0000000000000000 $t
+     /tmp/cco4bZ0O.s:69     .text.getDecoder:0000000000000000 getDecoder
+     /tmp/cco4bZ0O.s:152    .text.Decoder_select:0000000000000000 $t
+     /tmp/cco4bZ0O.s:158    .text.Decoder_select:0000000000000000 Decoder_select
+
+UNDEFINED SYMBOLS
+malloc
+HAL_GPIO_WritePin

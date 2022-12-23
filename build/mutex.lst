@@ -1,0 +1,467 @@
+ARM GAS  /tmp/cc7PMFui.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"mutex.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.Cocktail_sema_init,"ax",%progbits
+  20              		.align	1
+  21              		.global	Cocktail_sema_init
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	Cocktail_sema_init:
+  27              	.LVL0:
+  28              	.LFB144:
+  29              		.file 1 "fw-lib-stm32-CocktailOS/kernel/core/mutex.c"
+   1:fw-lib-stm32-CocktailOS/kernel/core/mutex.c **** #include "mutex.h"
+   2:fw-lib-stm32-CocktailOS/kernel/core/mutex.c **** 
+   3:fw-lib-stm32-CocktailOS/kernel/core/mutex.c **** Cocktail_SemaTypeDef *
+   4:fw-lib-stm32-CocktailOS/kernel/core/mutex.c **** Cocktail_sema_init(uint32_t size)
+   5:fw-lib-stm32-CocktailOS/kernel/core/mutex.c **** {
+  30              		.loc 1 5 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+   6:fw-lib-stm32-CocktailOS/kernel/core/mutex.c ****     if(size == 0) return NULL;
+  34              		.loc 1 6 5 view .LVU1
+  35              		.loc 1 6 7 is_stmt 0 view .LVU2
+  36 0000 68B1     		cbz	r0, .L3
+   5:fw-lib-stm32-CocktailOS/kernel/core/mutex.c ****     if(size == 0) return NULL;
+  37              		.loc 1 5 1 view .LVU3
+  38 0002 10B5     		push	{r4, lr}
+  39              	.LCFI0:
+  40              		.cfi_def_cfa_offset 8
+  41              		.cfi_offset 4, -8
+  42              		.cfi_offset 14, -4
+  43 0004 0446     		mov	r4, r0
+   7:fw-lib-stm32-CocktailOS/kernel/core/mutex.c **** 
+   8:fw-lib-stm32-CocktailOS/kernel/core/mutex.c ****     Cocktail_SemaTypeDef *sema =
+  44              		.loc 1 8 5 is_stmt 1 view .LVU4
+   9:fw-lib-stm32-CocktailOS/kernel/core/mutex.c ****         (Cocktail_SemaTypeDef *)malloc(sizeof(Cocktail_SemaTypeDef));
+  45              		.loc 1 9 33 is_stmt 0 view .LVU5
+  46 0006 1020     		movs	r0, #16
+  47              	.LVL1:
+  48              		.loc 1 9 33 view .LVU6
+ARM GAS  /tmp/cc7PMFui.s 			page 2
+
+
+  49 0008 FFF7FEFF 		bl	malloc
+  50              	.LVL2:
+  51 000c 0346     		mov	r3, r0
+  52              	.LVL3:
+  10:fw-lib-stm32-CocktailOS/kernel/core/mutex.c ****     if(!sema) return NULL;
+  53              		.loc 1 10 5 is_stmt 1 view .LVU7
+  54              		.loc 1 10 7 is_stmt 0 view .LVU8
+  55 000e 28B1     		cbz	r0, .L1
+  11:fw-lib-stm32-CocktailOS/kernel/core/mutex.c **** 
+  12:fw-lib-stm32-CocktailOS/kernel/core/mutex.c ****     sema->caller = NULL;
+  56              		.loc 1 12 5 is_stmt 1 view .LVU9
+  57              		.loc 1 12 18 is_stmt 0 view .LVU10
+  58 0010 0022     		movs	r2, #0
+  59 0012 0260     		str	r2, [r0]
+  13:fw-lib-stm32-CocktailOS/kernel/core/mutex.c ****     sema->cnt    = size;
+  60              		.loc 1 13 5 is_stmt 1 view .LVU11
+  61              		.loc 1 13 18 is_stmt 0 view .LVU12
+  62 0014 4460     		str	r4, [r0, #4]
+  14:fw-lib-stm32-CocktailOS/kernel/core/mutex.c ****     _INIT_ENTRY(&sema->wait_list);
+  63              		.loc 1 14 5 is_stmt 1 view .LVU13
+  64              		.loc 1 14 5 view .LVU14
+  65 0016 43F8082F 		str	r2, [r3, #8]!
+  66              		.loc 1 14 5 view .LVU15
+  67 001a C360     		str	r3, [r0, #12]
+  68              		.loc 1 14 5 view .LVU16
+  15:fw-lib-stm32-CocktailOS/kernel/core/mutex.c **** 
+  16:fw-lib-stm32-CocktailOS/kernel/core/mutex.c ****     return sema;
+  69              		.loc 1 16 5 view .LVU17
+  70              	.L1:
+  17:fw-lib-stm32-CocktailOS/kernel/core/mutex.c **** }
+  71              		.loc 1 17 1 is_stmt 0 view .LVU18
+  72 001c 10BD     		pop	{r4, pc}
+  73              	.LVL4:
+  74              	.L3:
+  75              	.LCFI1:
+  76              		.cfi_def_cfa_offset 0
+  77              		.cfi_restore 4
+  78              		.cfi_restore 14
+   6:fw-lib-stm32-CocktailOS/kernel/core/mutex.c **** 
+  79              		.loc 1 6 26 view .LVU19
+  80 001e 0020     		movs	r0, #0
+  81              	.LVL5:
+  82              		.loc 1 17 1 view .LVU20
+  83 0020 7047     		bx	lr
+  84              		.cfi_endproc
+  85              	.LFE144:
+  87              		.section	.text.Cocktail_sema_acquire,"ax",%progbits
+  88              		.align	1
+  89              		.global	Cocktail_sema_acquire
+  90              		.syntax unified
+  91              		.thumb
+  92              		.thumb_func
+  94              	Cocktail_sema_acquire:
+  95              	.LVL6:
+  96              	.LFB145:
+  18:fw-lib-stm32-CocktailOS/kernel/core/mutex.c **** 
+  19:fw-lib-stm32-CocktailOS/kernel/core/mutex.c **** Cocktail_pLockTypeDef *
+ARM GAS  /tmp/cc7PMFui.s 			page 3
+
+
+  20:fw-lib-stm32-CocktailOS/kernel/core/mutex.c **** Cocktail_sema_acquire(Cocktail_SemaTypeDef *sema, Cocktail_PcbTypeDef *caller)
+  21:fw-lib-stm32-CocktailOS/kernel/core/mutex.c **** {
+  97              		.loc 1 21 1 is_stmt 1 view -0
+  98              		.cfi_startproc
+  99              		@ args = 0, pretend = 0, frame = 0
+ 100              		@ frame_needed = 0, uses_anonymous_args = 0
+ 101              		.loc 1 21 1 is_stmt 0 view .LVU22
+ 102 0000 10B5     		push	{r4, lr}
+ 103              	.LCFI2:
+ 104              		.cfi_def_cfa_offset 8
+ 105              		.cfi_offset 4, -8
+ 106              		.cfi_offset 14, -4
+ 107 0002 0446     		mov	r4, r0
+  22:fw-lib-stm32-CocktailOS/kernel/core/mutex.c ****     Cocktail_pLockTypeDef *lock = NULL;
+ 108              		.loc 1 22 5 is_stmt 1 view .LVU23
+ 109              	.LVL7:
+  23:fw-lib-stm32-CocktailOS/kernel/core/mutex.c **** 
+  24:fw-lib-stm32-CocktailOS/kernel/core/mutex.c ****     if(sema->cnt > 0) sema->cnt--;
+ 110              		.loc 1 24 5 view .LVU24
+ 111              		.loc 1 24 12 is_stmt 0 view .LVU25
+ 112 0004 4368     		ldr	r3, [r0, #4]
+ 113              		.loc 1 24 7 view .LVU26
+ 114 0006 53B9     		cbnz	r3, .L12
+ 115 0008 0846     		mov	r0, r1
+ 116              	.LVL8:
+  25:fw-lib-stm32-CocktailOS/kernel/core/mutex.c ****     else
+  26:fw-lib-stm32-CocktailOS/kernel/core/mutex.c ****     {
+  27:fw-lib-stm32-CocktailOS/kernel/core/mutex.c ****         lock = Cocktail_lock(caller);
+ 117              		.loc 1 27 9 is_stmt 1 view .LVU27
+ 118              		.loc 1 27 16 is_stmt 0 view .LVU28
+ 119 000a FFF7FEFF 		bl	Cocktail_lock
+ 120              	.LVL9:
+  28:fw-lib-stm32-CocktailOS/kernel/core/mutex.c ****         _ADD_LOCK(&sema->wait_list, lock);
+ 121              		.loc 1 28 9 is_stmt 1 view .LVU29
+ 122              	.LBB2:
+ 123              		.loc 1 28 9 view .LVU30
+ 124              		.loc 1 28 9 view .LVU31
+ 125              		.loc 1 28 9 view .LVU32
+ 126 000e 0023     		movs	r3, #0
+ 127 0010 4361     		str	r3, [r0, #20]
+ 128              		.loc 1 28 9 view .LVU33
+ 129 0012 E368     		ldr	r3, [r4, #12]
+ 130 0014 1860     		str	r0, [r3]
+ 131              		.loc 1 28 9 view .LVU34
+ 132 0016 00F11403 		add	r3, r0, #20
+ 133 001a E360     		str	r3, [r4, #12]
+ 134              		.loc 1 28 9 view .LVU35
+ 135              	.LBE2:
+ 136              		.loc 1 28 9 view .LVU36
+  29:fw-lib-stm32-CocktailOS/kernel/core/mutex.c ****     }
+  30:fw-lib-stm32-CocktailOS/kernel/core/mutex.c **** 
+  31:fw-lib-stm32-CocktailOS/kernel/core/mutex.c ****     return lock;
+ 137              		.loc 1 31 5 view .LVU37
+ 138              	.LVL10:
+ 139              	.L8:
+  32:fw-lib-stm32-CocktailOS/kernel/core/mutex.c **** }
+ 140              		.loc 1 32 1 is_stmt 0 view .LVU38
+ARM GAS  /tmp/cc7PMFui.s 			page 4
+
+
+ 141 001c 10BD     		pop	{r4, pc}
+ 142              	.LVL11:
+ 143              	.L12:
+  24:fw-lib-stm32-CocktailOS/kernel/core/mutex.c ****     else
+ 144              		.loc 1 24 23 is_stmt 1 discriminator 1 view .LVU39
+  24:fw-lib-stm32-CocktailOS/kernel/core/mutex.c ****     else
+ 145              		.loc 1 24 32 is_stmt 0 discriminator 1 view .LVU40
+ 146 001e 013B     		subs	r3, r3, #1
+ 147 0020 4360     		str	r3, [r0, #4]
+  22:fw-lib-stm32-CocktailOS/kernel/core/mutex.c **** 
+ 148              		.loc 1 22 28 discriminator 1 view .LVU41
+ 149 0022 0020     		movs	r0, #0
+ 150              	.LVL12:
+  22:fw-lib-stm32-CocktailOS/kernel/core/mutex.c **** 
+ 151              		.loc 1 22 28 discriminator 1 view .LVU42
+ 152 0024 FAE7     		b	.L8
+ 153              		.cfi_endproc
+ 154              	.LFE145:
+ 156              		.section	.text.Cocktail_sema_release,"ax",%progbits
+ 157              		.align	1
+ 158              		.global	Cocktail_sema_release
+ 159              		.syntax unified
+ 160              		.thumb
+ 161              		.thumb_func
+ 163              	Cocktail_sema_release:
+ 164              	.LVL13:
+ 165              	.LFB146:
+  33:fw-lib-stm32-CocktailOS/kernel/core/mutex.c **** 
+  34:fw-lib-stm32-CocktailOS/kernel/core/mutex.c **** Cocktail_PcbTypeDef *
+  35:fw-lib-stm32-CocktailOS/kernel/core/mutex.c **** Cocktail_sema_release(Cocktail_SemaTypeDef *sema)
+  36:fw-lib-stm32-CocktailOS/kernel/core/mutex.c **** {
+ 166              		.loc 1 36 1 is_stmt 1 view -0
+ 167              		.cfi_startproc
+ 168              		@ args = 0, pretend = 0, frame = 0
+ 169              		@ frame_needed = 0, uses_anonymous_args = 0
+ 170              		.loc 1 36 1 is_stmt 0 view .LVU44
+ 171 0000 10B5     		push	{r4, lr}
+ 172              	.LCFI3:
+ 173              		.cfi_def_cfa_offset 8
+ 174              		.cfi_offset 4, -8
+ 175              		.cfi_offset 14, -4
+ 176 0002 0346     		mov	r3, r0
+  37:fw-lib-stm32-CocktailOS/kernel/core/mutex.c ****     Cocktail_pLockTypeDef *lock;
+ 177              		.loc 1 37 5 is_stmt 1 view .LVU45
+  38:fw-lib-stm32-CocktailOS/kernel/core/mutex.c ****     Cocktail_PcbTypeDef   *next = NULL;
+ 178              		.loc 1 38 5 view .LVU46
+ 179              	.LVL14:
+  39:fw-lib-stm32-CocktailOS/kernel/core/mutex.c **** 
+  40:fw-lib-stm32-CocktailOS/kernel/core/mutex.c ****     if(NO_ENTRY(&sema->wait_list)) sema->cnt++;
+ 180              		.loc 1 40 5 view .LVU47
+ 181              		.loc 1 40 8 is_stmt 0 view .LVU48
+ 182 0004 8068     		ldr	r0, [r0, #8]
+ 183              	.LVL15:
+ 184              		.loc 1 40 7 view .LVU49
+ 185 0006 40B1     		cbz	r0, .L18
+  41:fw-lib-stm32-CocktailOS/kernel/core/mutex.c ****     else
+  42:fw-lib-stm32-CocktailOS/kernel/core/mutex.c ****     {
+ARM GAS  /tmp/cc7PMFui.s 			page 5
+
+
+  43:fw-lib-stm32-CocktailOS/kernel/core/mutex.c ****         _POP_LOCK(&sema->wait_list, lock);
+ 186              		.loc 1 43 9 is_stmt 1 view .LVU50
+ 187              		.loc 1 43 9 view .LVU51
+ 188              	.LVL16:
+ 189              		.loc 1 43 9 view .LVU52
+ 190              		.loc 1 43 9 view .LVU53
+ 191 0008 4269     		ldr	r2, [r0, #20]
+ 192 000a 9A60     		str	r2, [r3, #8]
+ 193 000c 52B1     		cbz	r2, .L19
+ 194              	.L16:
+ 195              		.loc 1 43 9 discriminator 3 view .LVU54
+ 196              		.loc 1 43 9 discriminator 3 view .LVU55
+  44:fw-lib-stm32-CocktailOS/kernel/core/mutex.c ****         next = lock->caller->publisher;
+ 197              		.loc 1 44 9 discriminator 3 view .LVU56
+ 198              		.loc 1 44 20 is_stmt 0 discriminator 3 view .LVU57
+ 199 000e C369     		ldr	r3, [r0, #28]
+ 200              	.LVL17:
+ 201              		.loc 1 44 14 discriminator 3 view .LVU58
+ 202 0010 1C68     		ldr	r4, [r3]
+ 203              	.LVL18:
+  45:fw-lib-stm32-CocktailOS/kernel/core/mutex.c ****         Cocktail_unlock_unsafe(lock);
+ 204              		.loc 1 45 9 is_stmt 1 discriminator 3 view .LVU59
+ 205 0012 FFF7FEFF 		bl	Cocktail_unlock_unsafe
+ 206              	.LVL19:
+  46:fw-lib-stm32-CocktailOS/kernel/core/mutex.c ****     }
+  47:fw-lib-stm32-CocktailOS/kernel/core/mutex.c **** 
+  48:fw-lib-stm32-CocktailOS/kernel/core/mutex.c ****     return next;
+ 207              		.loc 1 48 5 discriminator 3 view .LVU60
+ 208              	.L13:
+  49:fw-lib-stm32-CocktailOS/kernel/core/mutex.c **** }
+ 209              		.loc 1 49 1 is_stmt 0 view .LVU61
+ 210 0016 2046     		mov	r0, r4
+ 211 0018 10BD     		pop	{r4, pc}
+ 212              	.LVL20:
+ 213              	.L18:
+  40:fw-lib-stm32-CocktailOS/kernel/core/mutex.c ****     else
+ 214              		.loc 1 40 36 is_stmt 1 discriminator 1 view .LVU62
+  40:fw-lib-stm32-CocktailOS/kernel/core/mutex.c ****     else
+ 215              		.loc 1 40 40 is_stmt 0 discriminator 1 view .LVU63
+ 216 001a 5A68     		ldr	r2, [r3, #4]
+  40:fw-lib-stm32-CocktailOS/kernel/core/mutex.c ****     else
+ 217              		.loc 1 40 45 discriminator 1 view .LVU64
+ 218 001c 0132     		adds	r2, r2, #1
+ 219 001e 5A60     		str	r2, [r3, #4]
+  38:fw-lib-stm32-CocktailOS/kernel/core/mutex.c **** 
+ 220              		.loc 1 38 28 discriminator 1 view .LVU65
+ 221 0020 0446     		mov	r4, r0
+ 222 0022 F8E7     		b	.L13
+ 223              	.LVL21:
+ 224              	.L19:
+  43:fw-lib-stm32-CocktailOS/kernel/core/mutex.c ****         next = lock->caller->publisher;
+ 225              		.loc 1 43 9 is_stmt 1 discriminator 1 view .LVU66
+ 226 0024 03F10802 		add	r2, r3, #8
+ 227 0028 DA60     		str	r2, [r3, #12]
+ 228 002a F0E7     		b	.L16
+ 229              		.cfi_endproc
+ 230              	.LFE146:
+ARM GAS  /tmp/cc7PMFui.s 			page 6
+
+
+ 232              		.section	.text.Cocktail_mutex_init,"ax",%progbits
+ 233              		.align	1
+ 234              		.global	Cocktail_mutex_init
+ 235              		.syntax unified
+ 236              		.thumb
+ 237              		.thumb_func
+ 239              	Cocktail_mutex_init:
+ 240              	.LFB147:
+  50:fw-lib-stm32-CocktailOS/kernel/core/mutex.c **** 
+  51:fw-lib-stm32-CocktailOS/kernel/core/mutex.c **** Cocktail_MutexTypeDef *
+  52:fw-lib-stm32-CocktailOS/kernel/core/mutex.c **** Cocktail_mutex_init()
+  53:fw-lib-stm32-CocktailOS/kernel/core/mutex.c **** {
+ 241              		.loc 1 53 1 view -0
+ 242              		.cfi_startproc
+ 243              		@ args = 0, pretend = 0, frame = 0
+ 244              		@ frame_needed = 0, uses_anonymous_args = 0
+ 245 0000 08B5     		push	{r3, lr}
+ 246              	.LCFI4:
+ 247              		.cfi_def_cfa_offset 8
+ 248              		.cfi_offset 3, -8
+ 249              		.cfi_offset 14, -4
+  54:fw-lib-stm32-CocktailOS/kernel/core/mutex.c ****     return Cocktail_sema_init(1);
+ 250              		.loc 1 54 5 view .LVU68
+ 251              		.loc 1 54 12 is_stmt 0 view .LVU69
+ 252 0002 0120     		movs	r0, #1
+ 253 0004 FFF7FEFF 		bl	Cocktail_sema_init
+ 254              	.LVL22:
+  55:fw-lib-stm32-CocktailOS/kernel/core/mutex.c **** }
+ 255              		.loc 1 55 1 view .LVU70
+ 256 0008 08BD     		pop	{r3, pc}
+ 257              		.cfi_endproc
+ 258              	.LFE147:
+ 260              		.section	.text.Cocktail_mutex_lock,"ax",%progbits
+ 261              		.align	1
+ 262              		.global	Cocktail_mutex_lock
+ 263              		.syntax unified
+ 264              		.thumb
+ 265              		.thumb_func
+ 267              	Cocktail_mutex_lock:
+ 268              	.LVL23:
+ 269              	.LFB148:
+  56:fw-lib-stm32-CocktailOS/kernel/core/mutex.c **** 
+  57:fw-lib-stm32-CocktailOS/kernel/core/mutex.c **** void
+  58:fw-lib-stm32-CocktailOS/kernel/core/mutex.c **** Cocktail_mutex_lock(Cocktail_MutexTypeDef *mutex, Cocktail_PcbTypeDef *caller)
+  59:fw-lib-stm32-CocktailOS/kernel/core/mutex.c **** {
+ 270              		.loc 1 59 1 is_stmt 1 view -0
+ 271              		.cfi_startproc
+ 272              		@ args = 0, pretend = 0, frame = 0
+ 273              		@ frame_needed = 0, uses_anonymous_args = 0
+ 274              		.loc 1 59 1 is_stmt 0 view .LVU72
+ 275 0000 38B5     		push	{r3, r4, r5, lr}
+ 276              	.LCFI5:
+ 277              		.cfi_def_cfa_offset 16
+ 278              		.cfi_offset 3, -16
+ 279              		.cfi_offset 4, -12
+ 280              		.cfi_offset 5, -8
+ 281              		.cfi_offset 14, -4
+ARM GAS  /tmp/cc7PMFui.s 			page 7
+
+
+ 282 0002 0446     		mov	r4, r0
+ 283 0004 0D46     		mov	r5, r1
+  60:fw-lib-stm32-CocktailOS/kernel/core/mutex.c ****     if(!Cocktail_sema_acquire(mutex, caller)) mutex->caller = caller;
+ 284              		.loc 1 60 5 is_stmt 1 view .LVU73
+ 285              		.loc 1 60 9 is_stmt 0 view .LVU74
+ 286 0006 FFF7FEFF 		bl	Cocktail_sema_acquire
+ 287              	.LVL24:
+ 288              		.loc 1 60 7 view .LVU75
+ 289 000a 00B1     		cbz	r0, .L25
+ 290              	.L22:
+  61:fw-lib-stm32-CocktailOS/kernel/core/mutex.c **** }
+ 291              		.loc 1 61 1 view .LVU76
+ 292 000c 38BD     		pop	{r3, r4, r5, pc}
+ 293              	.LVL25:
+ 294              	.L25:
+  60:fw-lib-stm32-CocktailOS/kernel/core/mutex.c ****     if(!Cocktail_sema_acquire(mutex, caller)) mutex->caller = caller;
+ 295              		.loc 1 60 47 is_stmt 1 discriminator 1 view .LVU77
+  60:fw-lib-stm32-CocktailOS/kernel/core/mutex.c ****     if(!Cocktail_sema_acquire(mutex, caller)) mutex->caller = caller;
+ 296              		.loc 1 60 61 is_stmt 0 discriminator 1 view .LVU78
+ 297 000e 2560     		str	r5, [r4]
+ 298              		.loc 1 61 1 discriminator 1 view .LVU79
+ 299 0010 FCE7     		b	.L22
+ 300              		.cfi_endproc
+ 301              	.LFE148:
+ 303              		.section	.text.Cocktail_mutex_unlock,"ax",%progbits
+ 304              		.align	1
+ 305              		.global	Cocktail_mutex_unlock
+ 306              		.syntax unified
+ 307              		.thumb
+ 308              		.thumb_func
+ 310              	Cocktail_mutex_unlock:
+ 311              	.LVL26:
+ 312              	.LFB149:
+  62:fw-lib-stm32-CocktailOS/kernel/core/mutex.c **** 
+  63:fw-lib-stm32-CocktailOS/kernel/core/mutex.c **** void
+  64:fw-lib-stm32-CocktailOS/kernel/core/mutex.c **** Cocktail_mutex_unlock(Cocktail_MutexTypeDef *mutex, Cocktail_PcbTypeDef *caller)
+  65:fw-lib-stm32-CocktailOS/kernel/core/mutex.c **** {
+ 313              		.loc 1 65 1 is_stmt 1 view -0
+ 314              		.cfi_startproc
+ 315              		@ args = 0, pretend = 0, frame = 0
+ 316              		@ frame_needed = 0, uses_anonymous_args = 0
+  66:fw-lib-stm32-CocktailOS/kernel/core/mutex.c ****     if(mutex->caller == caller) mutex->caller = Cocktail_sema_release(mutex);
+ 317              		.loc 1 66 5 view .LVU81
+ 318              		.loc 1 66 13 is_stmt 0 view .LVU82
+ 319 0000 0368     		ldr	r3, [r0]
+ 320              		.loc 1 66 7 view .LVU83
+ 321 0002 8B42     		cmp	r3, r1
+ 322 0004 00D0     		beq	.L32
+ 323 0006 7047     		bx	lr
+ 324              	.L32:
+  65:fw-lib-stm32-CocktailOS/kernel/core/mutex.c ****     if(mutex->caller == caller) mutex->caller = Cocktail_sema_release(mutex);
+ 325              		.loc 1 65 1 discriminator 1 view .LVU84
+ 326 0008 10B5     		push	{r4, lr}
+ 327              	.LCFI6:
+ 328              		.cfi_def_cfa_offset 8
+ 329              		.cfi_offset 4, -8
+ 330              		.cfi_offset 14, -4
+ARM GAS  /tmp/cc7PMFui.s 			page 8
+
+
+ 331 000a 0446     		mov	r4, r0
+ 332              		.loc 1 66 33 is_stmt 1 discriminator 1 view .LVU85
+ 333              		.loc 1 66 49 is_stmt 0 discriminator 1 view .LVU86
+ 334 000c FFF7FEFF 		bl	Cocktail_sema_release
+ 335              	.LVL27:
+ 336              		.loc 1 66 47 discriminator 1 view .LVU87
+ 337 0010 2060     		str	r0, [r4]
+  67:fw-lib-stm32-CocktailOS/kernel/core/mutex.c **** }
+ 338              		.loc 1 67 1 discriminator 1 view .LVU88
+ 339 0012 10BD     		pop	{r4, pc}
+ 340              		.loc 1 67 1 discriminator 1 view .LVU89
+ 341              		.cfi_endproc
+ 342              	.LFE149:
+ 344              		.text
+ 345              	.Letext0:
+ 346              		.file 2 "/usr/share/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/_default_types.h"
+ 347              		.file 3 "/usr/share/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_stdint.h"
+ 348              		.file 4 "fw-lib-stm32-CocktailOS/kernel/core/task.h"
+ 349              		.file 5 "fw-lib-stm32-CocktailOS/kernel/core/pcb.h"
+ 350              		.file 6 "fw-lib-stm32-CocktailOS/kernel/core/event.h"
+ 351              		.file 7 "fw-lib-stm32-CocktailOS/kernel/core/mutex.h"
+ 352              		.file 8 "/usr/share/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/stdlib.h"
+ARM GAS  /tmp/cc7PMFui.s 			page 9
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 mutex.c
+     /tmp/cc7PMFui.s:20     .text.Cocktail_sema_init:0000000000000000 $t
+     /tmp/cc7PMFui.s:26     .text.Cocktail_sema_init:0000000000000000 Cocktail_sema_init
+     /tmp/cc7PMFui.s:88     .text.Cocktail_sema_acquire:0000000000000000 $t
+     /tmp/cc7PMFui.s:94     .text.Cocktail_sema_acquire:0000000000000000 Cocktail_sema_acquire
+     /tmp/cc7PMFui.s:157    .text.Cocktail_sema_release:0000000000000000 $t
+     /tmp/cc7PMFui.s:163    .text.Cocktail_sema_release:0000000000000000 Cocktail_sema_release
+     /tmp/cc7PMFui.s:233    .text.Cocktail_mutex_init:0000000000000000 $t
+     /tmp/cc7PMFui.s:239    .text.Cocktail_mutex_init:0000000000000000 Cocktail_mutex_init
+     /tmp/cc7PMFui.s:261    .text.Cocktail_mutex_lock:0000000000000000 $t
+     /tmp/cc7PMFui.s:267    .text.Cocktail_mutex_lock:0000000000000000 Cocktail_mutex_lock
+     /tmp/cc7PMFui.s:304    .text.Cocktail_mutex_unlock:0000000000000000 $t
+     /tmp/cc7PMFui.s:310    .text.Cocktail_mutex_unlock:0000000000000000 Cocktail_mutex_unlock
+
+UNDEFINED SYMBOLS
+malloc
+Cocktail_lock
+Cocktail_unlock_unsafe

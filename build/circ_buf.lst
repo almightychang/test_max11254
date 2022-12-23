@@ -1,0 +1,879 @@
+ARM GAS  /tmp/cczCSTg2.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"circ_buf.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.CircBuf_Init,"ax",%progbits
+  20              		.align	1
+  21              		.global	CircBuf_Init
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	CircBuf_Init:
+  27              	.LVL0:
+  28              	.LFB2:
+  29              		.file 1 "fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c"
+   1:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** #include "circ_buf.h"
+   2:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** #include <stdlib.h>
+   3:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** #include <string.h>
+   4:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** 
+   5:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** bool
+   6:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** CircBuf_is_full(CircBuf_TypeDef *circ_buf)
+   7:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** {
+   8:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     return CircBuf_get_writeable_size(circ_buf) == 0;
+   9:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** }
+  10:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** 
+  11:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** bool
+  12:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** CircBuf_is_empty(CircBuf_TypeDef *circ_buf)
+  13:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** {
+  14:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     return CircBuf_get_readable_size(circ_buf) == 0;
+  15:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** }
+  16:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** 
+  17:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** CircBuf_TypeDef *
+  18:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** CircBuf_Init(uint32_t size)
+  19:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** {
+  30              		.loc 1 19 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		.loc 1 19 1 is_stmt 0 view .LVU1
+  35 0000 70B5     		push	{r4, r5, r6, lr}
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 16
+  38              		.cfi_offset 4, -16
+  39              		.cfi_offset 5, -12
+ARM GAS  /tmp/cczCSTg2.s 			page 2
+
+
+  40              		.cfi_offset 6, -8
+  41              		.cfi_offset 14, -4
+  42 0002 0546     		mov	r5, r0
+  20:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     CircBuf_TypeDef *circ_buf;
+  43              		.loc 1 20 5 is_stmt 1 view .LVU2
+  21:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     uint8_t         *tmp;
+  44              		.loc 1 21 5 view .LVU3
+  22:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** 
+  23:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     circ_buf = (CircBuf_TypeDef *)malloc(sizeof(CircBuf_TypeDef));
+  45              		.loc 1 23 5 view .LVU4
+  46              		.loc 1 23 35 is_stmt 0 view .LVU5
+  47 0004 1020     		movs	r0, #16
+  48              	.LVL1:
+  49              		.loc 1 23 35 view .LVU6
+  50 0006 FFF7FEFF 		bl	malloc
+  51              	.LVL2:
+  52 000a 0446     		mov	r4, r0
+  53              	.LVL3:
+  24:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     tmp      = (uint8_t *)malloc(size);
+  54              		.loc 1 24 5 is_stmt 1 view .LVU7
+  55              		.loc 1 24 27 is_stmt 0 view .LVU8
+  56 000c 2846     		mov	r0, r5
+  57              	.LVL4:
+  58              		.loc 1 24 27 view .LVU9
+  59 000e FFF7FEFF 		bl	malloc
+  60              	.LVL5:
+  25:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** 
+  26:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     if(!circ_buf || !tmp)
+  61              		.loc 1 26 5 is_stmt 1 view .LVU10
+  62              		.loc 1 26 21 is_stmt 0 view .LVU11
+  63 0012 0646     		mov	r6, r0
+  64              		.loc 1 26 7 view .LVU12
+  65 0014 0028     		cmp	r0, #0
+  66 0016 18BF     		it	ne
+  67 0018 002C     		cmpne	r4, #0
+  68 001a 06D0     		beq	.L5
+  27:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     {
+  28:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****         free(circ_buf);
+  29:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****         free(tmp);
+  30:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****         return NULL;
+  31:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     }
+  32:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** 
+  33:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     circ_buf->buf  = tmp;
+  69              		.loc 1 33 5 is_stmt 1 view .LVU13
+  70              		.loc 1 33 20 is_stmt 0 view .LVU14
+  71 001c 2060     		str	r0, [r4]
+  34:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     circ_buf->size = size;
+  72              		.loc 1 34 5 is_stmt 1 view .LVU15
+  73              		.loc 1 34 20 is_stmt 0 view .LVU16
+  74 001e 6560     		str	r5, [r4, #4]
+  35:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     circ_buf->head = 0;
+  75              		.loc 1 35 5 is_stmt 1 view .LVU17
+  76              		.loc 1 35 20 is_stmt 0 view .LVU18
+  77 0020 0023     		movs	r3, #0
+  78 0022 A360     		str	r3, [r4, #8]
+  36:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     circ_buf->tail = 0;
+  79              		.loc 1 36 5 is_stmt 1 view .LVU19
+ARM GAS  /tmp/cczCSTg2.s 			page 3
+
+
+  80              		.loc 1 36 20 is_stmt 0 view .LVU20
+  81 0024 E360     		str	r3, [r4, #12]
+  37:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** 
+  38:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     return circ_buf;
+  82              		.loc 1 38 5 is_stmt 1 view .LVU21
+  83              	.LVL6:
+  84              	.L1:
+  39:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** }
+  85              		.loc 1 39 1 is_stmt 0 view .LVU22
+  86 0026 2046     		mov	r0, r4
+  87 0028 70BD     		pop	{r4, r5, r6, pc}
+  88              	.LVL7:
+  89              	.L5:
+  28:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****         free(tmp);
+  90              		.loc 1 28 9 is_stmt 1 view .LVU23
+  91 002a 2046     		mov	r0, r4
+  92              	.LVL8:
+  28:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****         free(tmp);
+  93              		.loc 1 28 9 is_stmt 0 view .LVU24
+  94 002c FFF7FEFF 		bl	free
+  95              	.LVL9:
+  29:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****         return NULL;
+  96              		.loc 1 29 9 is_stmt 1 view .LVU25
+  97 0030 3046     		mov	r0, r6
+  98 0032 FFF7FEFF 		bl	free
+  99              	.LVL10:
+  30:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     }
+ 100              		.loc 1 30 9 view .LVU26
+  30:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     }
+ 101              		.loc 1 30 16 is_stmt 0 view .LVU27
+ 102 0036 0024     		movs	r4, #0
+ 103              	.LVL11:
+  30:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     }
+ 104              		.loc 1 30 16 view .LVU28
+ 105 0038 F5E7     		b	.L1
+ 106              		.cfi_endproc
+ 107              	.LFE2:
+ 109              		.section	.text.CircBuf_get_readable_size,"ax",%progbits
+ 110              		.align	1
+ 111              		.global	CircBuf_get_readable_size
+ 112              		.syntax unified
+ 113              		.thumb
+ 114              		.thumb_func
+ 116              	CircBuf_get_readable_size:
+ 117              	.LVL12:
+ 118              	.LFB3:
+  40:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** 
+  41:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** uint32_t
+  42:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** CircBuf_get_readable_size(CircBuf_TypeDef *circ_buf)
+  43:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** {
+ 119              		.loc 1 43 1 is_stmt 1 view -0
+ 120              		.cfi_startproc
+ 121              		@ args = 0, pretend = 0, frame = 0
+ 122              		@ frame_needed = 0, uses_anonymous_args = 0
+ 123              		@ link register save eliminated.
+  44:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     return (circ_buf->size + circ_buf->head - circ_buf->tail) % circ_buf->size;
+ 124              		.loc 1 44 5 view .LVU30
+ARM GAS  /tmp/cczCSTg2.s 			page 4
+
+
+ 125              		.loc 1 44 21 is_stmt 0 view .LVU31
+ 126 0000 4268     		ldr	r2, [r0, #4]
+ 127              		.loc 1 44 38 view .LVU32
+ 128 0002 8368     		ldr	r3, [r0, #8]
+ 129              		.loc 1 44 28 view .LVU33
+ 130 0004 1344     		add	r3, r3, r2
+ 131              		.loc 1 44 55 view .LVU34
+ 132 0006 C068     		ldr	r0, [r0, #12]
+ 133              	.LVL13:
+ 134              		.loc 1 44 45 view .LVU35
+ 135 0008 1B1A     		subs	r3, r3, r0
+ 136              		.loc 1 44 63 view .LVU36
+ 137 000a B3FBF2F0 		udiv	r0, r3, r2
+  45:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** }
+ 138              		.loc 1 45 1 view .LVU37
+ 139 000e 02FB1030 		mls	r0, r2, r0, r3
+ 140 0012 7047     		bx	lr
+ 141              		.cfi_endproc
+ 142              	.LFE3:
+ 144              		.section	.text.CircBuf_is_empty,"ax",%progbits
+ 145              		.align	1
+ 146              		.global	CircBuf_is_empty
+ 147              		.syntax unified
+ 148              		.thumb
+ 149              		.thumb_func
+ 151              	CircBuf_is_empty:
+ 152              	.LVL14:
+ 153              	.LFB1:
+  13:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     return CircBuf_get_readable_size(circ_buf) == 0;
+ 154              		.loc 1 13 1 is_stmt 1 view -0
+ 155              		.cfi_startproc
+ 156              		@ args = 0, pretend = 0, frame = 0
+ 157              		@ frame_needed = 0, uses_anonymous_args = 0
+  13:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     return CircBuf_get_readable_size(circ_buf) == 0;
+ 158              		.loc 1 13 1 is_stmt 0 view .LVU39
+ 159 0000 08B5     		push	{r3, lr}
+ 160              	.LCFI1:
+ 161              		.cfi_def_cfa_offset 8
+ 162              		.cfi_offset 3, -8
+ 163              		.cfi_offset 14, -4
+  14:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** }
+ 164              		.loc 1 14 5 is_stmt 1 view .LVU40
+  14:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** }
+ 165              		.loc 1 14 12 is_stmt 0 view .LVU41
+ 166 0002 FFF7FEFF 		bl	CircBuf_get_readable_size
+ 167              	.LVL15:
+  15:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** 
+ 168              		.loc 1 15 1 view .LVU42
+ 169 0006 B0FA80F0 		clz	r0, r0
+ 170 000a 4009     		lsrs	r0, r0, #5
+ 171 000c 08BD     		pop	{r3, pc}
+ 172              		.cfi_endproc
+ 173              	.LFE1:
+ 175              		.section	.text.CircBuf_get_writeable_size,"ax",%progbits
+ 176              		.align	1
+ 177              		.global	CircBuf_get_writeable_size
+ 178              		.syntax unified
+ARM GAS  /tmp/cczCSTg2.s 			page 5
+
+
+ 179              		.thumb
+ 180              		.thumb_func
+ 182              	CircBuf_get_writeable_size:
+ 183              	.LVL16:
+ 184              	.LFB4:
+  46:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** 
+  47:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** uint32_t
+  48:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** CircBuf_get_writeable_size(CircBuf_TypeDef *circ_buf)
+  49:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** {
+ 185              		.loc 1 49 1 is_stmt 1 view -0
+ 186              		.cfi_startproc
+ 187              		@ args = 0, pretend = 0, frame = 0
+ 188              		@ frame_needed = 0, uses_anonymous_args = 0
+ 189              		@ link register save eliminated.
+  50:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     return (circ_buf->size + circ_buf->tail - circ_buf->head - 1) %
+ 190              		.loc 1 50 5 view .LVU44
+ 191              		.loc 1 50 21 is_stmt 0 view .LVU45
+ 192 0000 4268     		ldr	r2, [r0, #4]
+ 193              		.loc 1 50 38 view .LVU46
+ 194 0002 C368     		ldr	r3, [r0, #12]
+ 195              		.loc 1 50 28 view .LVU47
+ 196 0004 1344     		add	r3, r3, r2
+ 197              		.loc 1 50 55 view .LVU48
+ 198 0006 8068     		ldr	r0, [r0, #8]
+ 199              	.LVL17:
+ 200              		.loc 1 50 45 view .LVU49
+ 201 0008 1B1A     		subs	r3, r3, r0
+ 202              		.loc 1 50 62 view .LVU50
+ 203 000a 013B     		subs	r3, r3, #1
+ 204              		.loc 1 50 67 view .LVU51
+ 205 000c B3FBF2F0 		udiv	r0, r3, r2
+  51:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****            circ_buf->size;
+  52:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** }
+ 206              		.loc 1 52 1 view .LVU52
+ 207 0010 02FB1030 		mls	r0, r2, r0, r3
+ 208 0014 7047     		bx	lr
+ 209              		.cfi_endproc
+ 210              	.LFE4:
+ 212              		.section	.text.CircBuf_is_full,"ax",%progbits
+ 213              		.align	1
+ 214              		.global	CircBuf_is_full
+ 215              		.syntax unified
+ 216              		.thumb
+ 217              		.thumb_func
+ 219              	CircBuf_is_full:
+ 220              	.LVL18:
+ 221              	.LFB0:
+   7:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     return CircBuf_get_writeable_size(circ_buf) == 0;
+ 222              		.loc 1 7 1 is_stmt 1 view -0
+ 223              		.cfi_startproc
+ 224              		@ args = 0, pretend = 0, frame = 0
+ 225              		@ frame_needed = 0, uses_anonymous_args = 0
+   7:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     return CircBuf_get_writeable_size(circ_buf) == 0;
+ 226              		.loc 1 7 1 is_stmt 0 view .LVU54
+ 227 0000 08B5     		push	{r3, lr}
+ 228              	.LCFI2:
+ 229              		.cfi_def_cfa_offset 8
+ARM GAS  /tmp/cczCSTg2.s 			page 6
+
+
+ 230              		.cfi_offset 3, -8
+ 231              		.cfi_offset 14, -4
+   8:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** }
+ 232              		.loc 1 8 5 is_stmt 1 view .LVU55
+   8:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** }
+ 233              		.loc 1 8 12 is_stmt 0 view .LVU56
+ 234 0002 FFF7FEFF 		bl	CircBuf_get_writeable_size
+ 235              	.LVL19:
+   9:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** 
+ 236              		.loc 1 9 1 view .LVU57
+ 237 0006 B0FA80F0 		clz	r0, r0
+ 238 000a 4009     		lsrs	r0, r0, #5
+ 239 000c 08BD     		pop	{r3, pc}
+ 240              		.cfi_endproc
+ 241              	.LFE0:
+ 243              		.section	.text.CircBuf_get_data,"ax",%progbits
+ 244              		.align	1
+ 245              		.global	CircBuf_get_data
+ 246              		.syntax unified
+ 247              		.thumb
+ 248              		.thumb_func
+ 250              	CircBuf_get_data:
+ 251              	.LVL20:
+ 252              	.LFB6:
+  53:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** 
+  54:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** /*
+  55:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****  * @brief Write data on circular buffer if available. If remaing size of the
+  56:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****  * circular buffer is less than data_len, return CIRC_BUF_TAIL_OVERFLOW error.
+  57:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****  */
+  58:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** CircBuf_StatusTypeDef
+  59:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** CircBuf_write(CircBuf_TypeDef *circ_buf, uint8_t *data, uint32_t data_len)
+  60:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** {
+  61:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     uint32_t seg_size, prev_head;
+  62:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     prev_head = circ_buf->head;
+  63:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** 
+  64:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     if(CircBuf_get_writeable_size(circ_buf) < data_len)
+  65:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****         return CIRC_BUF_HEAD_OVERFLOW;
+  66:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** 
+  67:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     if(prev_head + data_len < circ_buf->size)
+  68:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****         memcpy(&circ_buf->buf[prev_head], data, data_len);
+  69:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     else
+  70:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     {
+  71:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****         seg_size = circ_buf->size - prev_head;
+  72:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****         memcpy(&circ_buf->buf[prev_head], data, seg_size);
+  73:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****         memcpy(&circ_buf->buf[0], &data[seg_size], data_len - seg_size);
+  74:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     }
+  75:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** 
+  76:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     return CircBuf_produce(circ_buf, data_len);
+  77:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** }
+  78:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** 
+  79:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** /*
+  80:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****  * @brief Copy the contents of circular buffer to data.
+  81:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****  * @retval size of copied data
+  82:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****  */
+  83:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** uint32_t
+  84:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** CircBuf_get_data(CircBuf_TypeDef *circ_buf, uint8_t *data, uint32_t data_len)
+  85:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** {
+ARM GAS  /tmp/cczCSTg2.s 			page 7
+
+
+ 253              		.loc 1 85 1 is_stmt 1 view -0
+ 254              		.cfi_startproc
+ 255              		@ args = 0, pretend = 0, frame = 0
+ 256              		@ frame_needed = 0, uses_anonymous_args = 0
+ 257              		.loc 1 85 1 is_stmt 0 view .LVU59
+ 258 0000 2DE9F843 		push	{r3, r4, r5, r6, r7, r8, r9, lr}
+ 259              	.LCFI3:
+ 260              		.cfi_def_cfa_offset 32
+ 261              		.cfi_offset 3, -32
+ 262              		.cfi_offset 4, -28
+ 263              		.cfi_offset 5, -24
+ 264              		.cfi_offset 6, -20
+ 265              		.cfi_offset 7, -16
+ 266              		.cfi_offset 8, -12
+ 267              		.cfi_offset 9, -8
+ 268              		.cfi_offset 14, -4
+ 269 0004 0546     		mov	r5, r0
+ 270 0006 0E46     		mov	r6, r1
+ 271 0008 1446     		mov	r4, r2
+  86:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     uint32_t read_size, seg_size;
+ 272              		.loc 1 86 5 is_stmt 1 view .LVU60
+  87:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** 
+  88:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     read_size = CircBuf_get_readable_size(circ_buf);
+ 273              		.loc 1 88 5 view .LVU61
+ 274              		.loc 1 88 17 is_stmt 0 view .LVU62
+ 275 000a FFF7FEFF 		bl	CircBuf_get_readable_size
+ 276              	.LVL21:
+  89:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     read_size = (read_size > data_len) ? data_len : read_size;
+ 277              		.loc 1 89 5 is_stmt 1 view .LVU63
+ 278              		.loc 1 89 15 is_stmt 0 view .LVU64
+ 279 000e 8442     		cmp	r4, r0
+ 280 0010 28BF     		it	cs
+ 281 0012 0446     		movcs	r4, r0
+ 282              	.LVL22:
+  90:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** 
+  91:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     if(read_size == 0) return 0;
+ 283              		.loc 1 91 5 is_stmt 1 view .LVU65
+ 284              		.loc 1 91 7 is_stmt 0 view .LVU66
+ 285 0014 5CB1     		cbz	r4, .L12
+  92:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** 
+  93:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     if(circ_buf->tail + read_size < circ_buf->size)
+ 286              		.loc 1 93 5 is_stmt 1 view .LVU67
+ 287              		.loc 1 93 16 is_stmt 0 view .LVU68
+ 288 0016 EB68     		ldr	r3, [r5, #12]
+ 289              		.loc 1 93 23 view .LVU69
+ 290 0018 2344     		add	r3, r3, r4
+ 291              		.loc 1 93 45 view .LVU70
+ 292 001a 6F68     		ldr	r7, [r5, #4]
+ 293              		.loc 1 93 7 view .LVU71
+ 294 001c BB42     		cmp	r3, r7
+ 295 001e 09D2     		bcs	.L14
+  94:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****         memcpy(data, &circ_buf->buf[circ_buf->tail], read_size);
+ 296              		.loc 1 94 9 is_stmt 1 view .LVU72
+ 297              		.loc 1 94 31 is_stmt 0 view .LVU73
+ 298 0020 2968     		ldr	r1, [r5]
+ 299              		.loc 1 94 45 view .LVU74
+ 300 0022 EB68     		ldr	r3, [r5, #12]
+ARM GAS  /tmp/cczCSTg2.s 			page 8
+
+
+ 301              		.loc 1 94 9 view .LVU75
+ 302 0024 2246     		mov	r2, r4
+ 303 0026 1944     		add	r1, r1, r3
+ 304 0028 3046     		mov	r0, r6
+ 305 002a FFF7FEFF 		bl	memcpy
+ 306              	.LVL23:
+ 307              	.L12:
+  95:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     else
+  96:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     {
+  97:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****         seg_size = circ_buf->size - circ_buf->tail;
+  98:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****         memcpy(&data[0], &circ_buf->buf[circ_buf->tail], seg_size);
+  99:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****         memcpy(&data[seg_size], &circ_buf->buf[0], read_size - seg_size);
+ 100:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     }
+ 101:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** 
+ 102:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     return read_size;
+ 103:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** }
+ 308              		.loc 1 103 1 view .LVU76
+ 309 002e 2046     		mov	r0, r4
+ 310 0030 BDE8F883 		pop	{r3, r4, r5, r6, r7, r8, r9, pc}
+ 311              	.LVL24:
+ 312              	.L14:
+  97:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****         memcpy(&data[0], &circ_buf->buf[circ_buf->tail], seg_size);
+ 313              		.loc 1 97 9 is_stmt 1 view .LVU77
+  97:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****         memcpy(&data[0], &circ_buf->buf[circ_buf->tail], seg_size);
+ 314              		.loc 1 97 45 is_stmt 0 view .LVU78
+ 315 0034 D5F80C80 		ldr	r8, [r5, #12]
+  97:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****         memcpy(&data[0], &circ_buf->buf[circ_buf->tail], seg_size);
+ 316              		.loc 1 97 18 view .LVU79
+ 317 0038 A7EB0809 		sub	r9, r7, r8
+ 318              	.LVL25:
+  98:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****         memcpy(&data[seg_size], &circ_buf->buf[0], read_size - seg_size);
+ 319              		.loc 1 98 9 is_stmt 1 view .LVU80
+  98:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****         memcpy(&data[seg_size], &circ_buf->buf[0], read_size - seg_size);
+ 320              		.loc 1 98 35 is_stmt 0 view .LVU81
+ 321 003c 2968     		ldr	r1, [r5]
+  98:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****         memcpy(&data[seg_size], &circ_buf->buf[0], read_size - seg_size);
+ 322              		.loc 1 98 49 view .LVU82
+ 323 003e EB68     		ldr	r3, [r5, #12]
+  98:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****         memcpy(&data[seg_size], &circ_buf->buf[0], read_size - seg_size);
+ 324              		.loc 1 98 9 view .LVU83
+ 325 0040 4A46     		mov	r2, r9
+ 326 0042 1944     		add	r1, r1, r3
+ 327 0044 3046     		mov	r0, r6
+ 328 0046 FFF7FEFF 		bl	memcpy
+ 329              	.LVL26:
+  99:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     }
+ 330              		.loc 1 99 9 is_stmt 1 view .LVU84
+  99:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     }
+ 331              		.loc 1 99 62 is_stmt 0 view .LVU85
+ 332 004a A8EB0702 		sub	r2, r8, r7
+  99:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     }
+ 333              		.loc 1 99 9 view .LVU86
+ 334 004e 2244     		add	r2, r2, r4
+ 335 0050 2968     		ldr	r1, [r5]
+ 336 0052 06EB0900 		add	r0, r6, r9
+ 337 0056 FFF7FEFF 		bl	memcpy
+ 338              	.LVL27:
+ARM GAS  /tmp/cczCSTg2.s 			page 9
+
+
+ 339 005a E8E7     		b	.L12
+ 340              		.cfi_endproc
+ 341              	.LFE6:
+ 343              		.section	.text.CircBuf_produce,"ax",%progbits
+ 344              		.align	1
+ 345              		.global	CircBuf_produce
+ 346              		.syntax unified
+ 347              		.thumb
+ 348              		.thumb_func
+ 350              	CircBuf_produce:
+ 351              	.LVL28:
+ 352              	.LFB8:
+ 104:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** 
+ 105:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** /*
+ 106:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****  * @brief Copy the contents up to data_len and consume it.
+ 107:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****  * Use this function if you don't want to care partial consumption.
+ 108:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****  */
+ 109:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** uint32_t
+ 110:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** CircBuf_read(CircBuf_TypeDef *circ_buf, uint8_t *data, uint32_t data_len)
+ 111:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** {
+ 112:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     uint32_t size;
+ 113:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** 
+ 114:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     size = CircBuf_get_data(circ_buf, data, data_len);
+ 115:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     CircBuf_consume(circ_buf, size);
+ 116:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** 
+ 117:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     return size;
+ 118:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** }
+ 119:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** 
+ 120:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** /*
+ 121:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****  * @brief Assign bytes of given size from circular buffer.
+ 122:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****  */
+ 123:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** CircBuf_StatusTypeDef
+ 124:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** CircBuf_produce(CircBuf_TypeDef *circ_buf, uint32_t size)
+ 125:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** {
+ 353              		.loc 1 125 1 is_stmt 1 view -0
+ 354              		.cfi_startproc
+ 355              		@ args = 0, pretend = 0, frame = 0
+ 356              		@ frame_needed = 0, uses_anonymous_args = 0
+ 357              		.loc 1 125 1 is_stmt 0 view .LVU88
+ 358 0000 38B5     		push	{r3, r4, r5, lr}
+ 359              	.LCFI4:
+ 360              		.cfi_def_cfa_offset 16
+ 361              		.cfi_offset 3, -16
+ 362              		.cfi_offset 4, -12
+ 363              		.cfi_offset 5, -8
+ 364              		.cfi_offset 14, -4
+ 365 0002 0446     		mov	r4, r0
+ 366 0004 0D46     		mov	r5, r1
+ 126:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     if(CircBuf_get_writeable_size(circ_buf) < size)
+ 367              		.loc 1 126 5 is_stmt 1 view .LVU89
+ 368              		.loc 1 126 8 is_stmt 0 view .LVU90
+ 369 0006 FFF7FEFF 		bl	CircBuf_get_writeable_size
+ 370              	.LVL29:
+ 371              		.loc 1 126 7 view .LVU91
+ 372 000a A842     		cmp	r0, r5
+ 373 000c 09D3     		bcc	.L18
+ 127:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****         return CIRC_BUF_HEAD_OVERFLOW;
+ARM GAS  /tmp/cczCSTg2.s 			page 10
+
+
+ 128:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** 
+ 129:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     circ_buf->head = (circ_buf->head + size) % circ_buf->size;
+ 374              		.loc 1 129 5 is_stmt 1 view .LVU92
+ 375              		.loc 1 129 31 is_stmt 0 view .LVU93
+ 376 000e A168     		ldr	r1, [r4, #8]
+ 377              		.loc 1 129 38 view .LVU94
+ 378 0010 0D44     		add	r5, r5, r1
+ 379              	.LVL30:
+ 380              		.loc 1 129 56 view .LVU95
+ 381 0012 6168     		ldr	r1, [r4, #4]
+ 382              		.loc 1 129 46 view .LVU96
+ 383 0014 B5FBF1F3 		udiv	r3, r5, r1
+ 384 0018 01FB1355 		mls	r5, r1, r3, r5
+ 385              		.loc 1 129 20 view .LVU97
+ 386 001c A560     		str	r5, [r4, #8]
+ 130:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** 
+ 131:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     return CIRC_BUF_OK;
+ 387              		.loc 1 131 5 is_stmt 1 view .LVU98
+ 388              		.loc 1 131 12 is_stmt 0 view .LVU99
+ 389 001e 0020     		movs	r0, #0
+ 390              	.L17:
+ 132:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** }
+ 391              		.loc 1 132 1 view .LVU100
+ 392 0020 38BD     		pop	{r3, r4, r5, pc}
+ 393              	.LVL31:
+ 394              	.L18:
+ 127:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****         return CIRC_BUF_HEAD_OVERFLOW;
+ 395              		.loc 1 127 16 view .LVU101
+ 396 0022 0120     		movs	r0, #1
+ 397 0024 FCE7     		b	.L17
+ 398              		.cfi_endproc
+ 399              	.LFE8:
+ 401              		.section	.text.CircBuf_write,"ax",%progbits
+ 402              		.align	1
+ 403              		.global	CircBuf_write
+ 404              		.syntax unified
+ 405              		.thumb
+ 406              		.thumb_func
+ 408              	CircBuf_write:
+ 409              	.LVL32:
+ 410              	.LFB5:
+  60:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     uint32_t seg_size, prev_head;
+ 411              		.loc 1 60 1 is_stmt 1 view -0
+ 412              		.cfi_startproc
+ 413              		@ args = 0, pretend = 0, frame = 0
+ 414              		@ frame_needed = 0, uses_anonymous_args = 0
+  60:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     uint32_t seg_size, prev_head;
+ 415              		.loc 1 60 1 is_stmt 0 view .LVU103
+ 416 0000 2DE9F843 		push	{r3, r4, r5, r6, r7, r8, r9, lr}
+ 417              	.LCFI5:
+ 418              		.cfi_def_cfa_offset 32
+ 419              		.cfi_offset 3, -32
+ 420              		.cfi_offset 4, -28
+ 421              		.cfi_offset 5, -24
+ 422              		.cfi_offset 6, -20
+ 423              		.cfi_offset 7, -16
+ 424              		.cfi_offset 8, -12
+ARM GAS  /tmp/cczCSTg2.s 			page 11
+
+
+ 425              		.cfi_offset 9, -8
+ 426              		.cfi_offset 14, -4
+ 427 0004 0446     		mov	r4, r0
+ 428 0006 0E46     		mov	r6, r1
+ 429 0008 1546     		mov	r5, r2
+  61:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     prev_head = circ_buf->head;
+ 430              		.loc 1 61 5 is_stmt 1 view .LVU104
+  62:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** 
+ 431              		.loc 1 62 5 view .LVU105
+  62:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** 
+ 432              		.loc 1 62 15 is_stmt 0 view .LVU106
+ 433 000a 8768     		ldr	r7, [r0, #8]
+ 434              	.LVL33:
+  64:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****         return CIRC_BUF_HEAD_OVERFLOW;
+ 435              		.loc 1 64 5 is_stmt 1 view .LVU107
+  64:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****         return CIRC_BUF_HEAD_OVERFLOW;
+ 436              		.loc 1 64 8 is_stmt 0 view .LVU108
+ 437 000c FFF7FEFF 		bl	CircBuf_get_writeable_size
+ 438              	.LVL34:
+  64:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****         return CIRC_BUF_HEAD_OVERFLOW;
+ 439              		.loc 1 64 7 view .LVU109
+ 440 0010 A842     		cmp	r0, r5
+ 441 0012 21D3     		bcc	.L24
+  67:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****         memcpy(&circ_buf->buf[prev_head], data, data_len);
+ 442              		.loc 1 67 5 is_stmt 1 view .LVU110
+  67:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****         memcpy(&circ_buf->buf[prev_head], data, data_len);
+ 443              		.loc 1 67 18 is_stmt 0 view .LVU111
+ 444 0014 7B19     		adds	r3, r7, r5
+  67:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****         memcpy(&circ_buf->buf[prev_head], data, data_len);
+ 445              		.loc 1 67 39 view .LVU112
+ 446 0016 D4F80480 		ldr	r8, [r4, #4]
+  67:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****         memcpy(&circ_buf->buf[prev_head], data, data_len);
+ 447              		.loc 1 67 7 view .LVU113
+ 448 001a 4345     		cmp	r3, r8
+ 449 001c 0BD2     		bcs	.L22
+  68:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     else
+ 450              		.loc 1 68 9 is_stmt 1 view .LVU114
+  68:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     else
+ 451              		.loc 1 68 25 is_stmt 0 view .LVU115
+ 452 001e 2068     		ldr	r0, [r4]
+  68:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     else
+ 453              		.loc 1 68 9 view .LVU116
+ 454 0020 2A46     		mov	r2, r5
+ 455 0022 3146     		mov	r1, r6
+ 456 0024 3844     		add	r0, r0, r7
+ 457 0026 FFF7FEFF 		bl	memcpy
+ 458              	.LVL35:
+ 459              	.L23:
+  76:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** }
+ 460              		.loc 1 76 5 is_stmt 1 view .LVU117
+  76:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** }
+ 461              		.loc 1 76 12 is_stmt 0 view .LVU118
+ 462 002a 2946     		mov	r1, r5
+ 463 002c 2046     		mov	r0, r4
+ 464 002e FFF7FEFF 		bl	CircBuf_produce
+ 465              	.LVL36:
+ 466              	.L21:
+ARM GAS  /tmp/cczCSTg2.s 			page 12
+
+
+  77:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** 
+ 467              		.loc 1 77 1 view .LVU119
+ 468 0032 BDE8F883 		pop	{r3, r4, r5, r6, r7, r8, r9, pc}
+ 469              	.LVL37:
+ 470              	.L22:
+  71:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****         memcpy(&circ_buf->buf[prev_head], data, seg_size);
+ 471              		.loc 1 71 9 is_stmt 1 view .LVU120
+  71:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****         memcpy(&circ_buf->buf[prev_head], data, seg_size);
+ 472              		.loc 1 71 18 is_stmt 0 view .LVU121
+ 473 0036 A8EB0709 		sub	r9, r8, r7
+ 474              	.LVL38:
+  72:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****         memcpy(&circ_buf->buf[0], &data[seg_size], data_len - seg_size);
+ 475              		.loc 1 72 9 is_stmt 1 view .LVU122
+  72:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****         memcpy(&circ_buf->buf[0], &data[seg_size], data_len - seg_size);
+ 476              		.loc 1 72 25 is_stmt 0 view .LVU123
+ 477 003a 2068     		ldr	r0, [r4]
+  72:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****         memcpy(&circ_buf->buf[0], &data[seg_size], data_len - seg_size);
+ 478              		.loc 1 72 9 view .LVU124
+ 479 003c 4A46     		mov	r2, r9
+ 480 003e 3146     		mov	r1, r6
+ 481 0040 3844     		add	r0, r0, r7
+ 482 0042 FFF7FEFF 		bl	memcpy
+ 483              	.LVL39:
+  73:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     }
+ 484              		.loc 1 73 9 is_stmt 1 view .LVU125
+  73:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     }
+ 485              		.loc 1 73 61 is_stmt 0 view .LVU126
+ 486 0046 A7EB0802 		sub	r2, r7, r8
+  73:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     }
+ 487              		.loc 1 73 9 view .LVU127
+ 488 004a 2A44     		add	r2, r2, r5
+ 489 004c 06EB0901 		add	r1, r6, r9
+ 490 0050 2068     		ldr	r0, [r4]
+ 491 0052 FFF7FEFF 		bl	memcpy
+ 492              	.LVL40:
+ 493 0056 E8E7     		b	.L23
+ 494              	.LVL41:
+ 495              	.L24:
+  65:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** 
+ 496              		.loc 1 65 16 view .LVU128
+ 497 0058 0120     		movs	r0, #1
+ 498 005a EAE7     		b	.L21
+ 499              		.cfi_endproc
+ 500              	.LFE5:
+ 502              		.section	.text.CircBuf_consume,"ax",%progbits
+ 503              		.align	1
+ 504              		.global	CircBuf_consume
+ 505              		.syntax unified
+ 506              		.thumb
+ 507              		.thumb_func
+ 509              	CircBuf_consume:
+ 510              	.LVL42:
+ 511              	.LFB9:
+ 133:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** 
+ 134:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** /*
+ 135:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****  *  @brief Release bytes of given size from circular buffer.
+ 136:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****  *  @attention Call this function on consumer side to relese handled buffers.
+ARM GAS  /tmp/cczCSTg2.s 			page 13
+
+
+ 137:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****  */
+ 138:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** CircBuf_StatusTypeDef
+ 139:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** CircBuf_consume(CircBuf_TypeDef *circ_buf, uint32_t size)
+ 140:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** {
+ 512              		.loc 1 140 1 is_stmt 1 view -0
+ 513              		.cfi_startproc
+ 514              		@ args = 0, pretend = 0, frame = 0
+ 515              		@ frame_needed = 0, uses_anonymous_args = 0
+ 516              		.loc 1 140 1 is_stmt 0 view .LVU130
+ 517 0000 38B5     		push	{r3, r4, r5, lr}
+ 518              	.LCFI6:
+ 519              		.cfi_def_cfa_offset 16
+ 520              		.cfi_offset 3, -16
+ 521              		.cfi_offset 4, -12
+ 522              		.cfi_offset 5, -8
+ 523              		.cfi_offset 14, -4
+ 524 0002 0446     		mov	r4, r0
+ 525 0004 0D46     		mov	r5, r1
+ 141:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     if(CircBuf_get_readable_size(circ_buf) < size)
+ 526              		.loc 1 141 5 is_stmt 1 view .LVU131
+ 527              		.loc 1 141 8 is_stmt 0 view .LVU132
+ 528 0006 FFF7FEFF 		bl	CircBuf_get_readable_size
+ 529              	.LVL43:
+ 530              		.loc 1 141 7 view .LVU133
+ 531 000a A842     		cmp	r0, r5
+ 532 000c 09D3     		bcc	.L28
+ 142:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****         return CIRC_BUF_TAIL_OVERFLOW;
+ 143:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** 
+ 144:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     circ_buf->tail = (circ_buf->tail + size) % circ_buf->size;
+ 533              		.loc 1 144 5 is_stmt 1 view .LVU134
+ 534              		.loc 1 144 31 is_stmt 0 view .LVU135
+ 535 000e E168     		ldr	r1, [r4, #12]
+ 536              		.loc 1 144 38 view .LVU136
+ 537 0010 2944     		add	r1, r1, r5
+ 538              		.loc 1 144 56 view .LVU137
+ 539 0012 6368     		ldr	r3, [r4, #4]
+ 540              		.loc 1 144 46 view .LVU138
+ 541 0014 B1FBF3F2 		udiv	r2, r1, r3
+ 542 0018 03FB1211 		mls	r1, r3, r2, r1
+ 543              		.loc 1 144 20 view .LVU139
+ 544 001c E160     		str	r1, [r4, #12]
+ 145:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** 
+ 146:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     return CIRC_BUF_OK;
+ 545              		.loc 1 146 5 is_stmt 1 view .LVU140
+ 546              		.loc 1 146 12 is_stmt 0 view .LVU141
+ 547 001e 0020     		movs	r0, #0
+ 548              	.L27:
+ 147:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** }
+ 549              		.loc 1 147 1 view .LVU142
+ 550 0020 38BD     		pop	{r3, r4, r5, pc}
+ 551              	.LVL44:
+ 552              	.L28:
+ 142:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****         return CIRC_BUF_TAIL_OVERFLOW;
+ 553              		.loc 1 142 16 view .LVU143
+ 554 0022 0220     		movs	r0, #2
+ 555 0024 FCE7     		b	.L27
+ 556              		.cfi_endproc
+ARM GAS  /tmp/cczCSTg2.s 			page 14
+
+
+ 557              	.LFE9:
+ 559              		.section	.text.CircBuf_read,"ax",%progbits
+ 560              		.align	1
+ 561              		.global	CircBuf_read
+ 562              		.syntax unified
+ 563              		.thumb
+ 564              		.thumb_func
+ 566              	CircBuf_read:
+ 567              	.LVL45:
+ 568              	.LFB7:
+ 111:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     uint32_t size;
+ 569              		.loc 1 111 1 is_stmt 1 view -0
+ 570              		.cfi_startproc
+ 571              		@ args = 0, pretend = 0, frame = 0
+ 572              		@ frame_needed = 0, uses_anonymous_args = 0
+ 111:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     uint32_t size;
+ 573              		.loc 1 111 1 is_stmt 0 view .LVU145
+ 574 0000 38B5     		push	{r3, r4, r5, lr}
+ 575              	.LCFI7:
+ 576              		.cfi_def_cfa_offset 16
+ 577              		.cfi_offset 3, -16
+ 578              		.cfi_offset 4, -12
+ 579              		.cfi_offset 5, -8
+ 580              		.cfi_offset 14, -4
+ 581 0002 0546     		mov	r5, r0
+ 112:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** 
+ 582              		.loc 1 112 5 is_stmt 1 view .LVU146
+ 114:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     CircBuf_consume(circ_buf, size);
+ 583              		.loc 1 114 5 view .LVU147
+ 114:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     CircBuf_consume(circ_buf, size);
+ 584              		.loc 1 114 12 is_stmt 0 view .LVU148
+ 585 0004 FFF7FEFF 		bl	CircBuf_get_data
+ 586              	.LVL46:
+ 114:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c ****     CircBuf_consume(circ_buf, size);
+ 587              		.loc 1 114 12 view .LVU149
+ 588 0008 0446     		mov	r4, r0
+ 589              	.LVL47:
+ 115:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** 
+ 590              		.loc 1 115 5 is_stmt 1 view .LVU150
+ 591 000a 0146     		mov	r1, r0
+ 592 000c 2846     		mov	r0, r5
+ 593              	.LVL48:
+ 115:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** 
+ 594              		.loc 1 115 5 is_stmt 0 view .LVU151
+ 595 000e FFF7FEFF 		bl	CircBuf_consume
+ 596              	.LVL49:
+ 117:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** }
+ 597              		.loc 1 117 5 is_stmt 1 view .LVU152
+ 118:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** 
+ 598              		.loc 1 118 1 is_stmt 0 view .LVU153
+ 599 0012 2046     		mov	r0, r4
+ 600 0014 38BD     		pop	{r3, r4, r5, pc}
+ 118:fw-lib-stm32-CocktailOS/kernel/core/circ_buf.c **** 
+ 601              		.loc 1 118 1 view .LVU154
+ 602              		.cfi_endproc
+ 603              	.LFE7:
+ 605              		.text
+ARM GAS  /tmp/cczCSTg2.s 			page 15
+
+
+ 606              	.Letext0:
+ 607              		.file 2 "/usr/share/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/_default_types.h"
+ 608              		.file 3 "/usr/share/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_stdint.h"
+ 609              		.file 4 "fw-lib-stm32-CocktailOS/kernel/core/circ_buf.h"
+ 610              		.file 5 "/usr/share/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/stdlib.h"
+ 611              		.file 6 "<built-in>"
+ARM GAS  /tmp/cczCSTg2.s 			page 16
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 circ_buf.c
+     /tmp/cczCSTg2.s:20     .text.CircBuf_Init:0000000000000000 $t
+     /tmp/cczCSTg2.s:26     .text.CircBuf_Init:0000000000000000 CircBuf_Init
+     /tmp/cczCSTg2.s:110    .text.CircBuf_get_readable_size:0000000000000000 $t
+     /tmp/cczCSTg2.s:116    .text.CircBuf_get_readable_size:0000000000000000 CircBuf_get_readable_size
+     /tmp/cczCSTg2.s:145    .text.CircBuf_is_empty:0000000000000000 $t
+     /tmp/cczCSTg2.s:151    .text.CircBuf_is_empty:0000000000000000 CircBuf_is_empty
+     /tmp/cczCSTg2.s:176    .text.CircBuf_get_writeable_size:0000000000000000 $t
+     /tmp/cczCSTg2.s:182    .text.CircBuf_get_writeable_size:0000000000000000 CircBuf_get_writeable_size
+     /tmp/cczCSTg2.s:213    .text.CircBuf_is_full:0000000000000000 $t
+     /tmp/cczCSTg2.s:219    .text.CircBuf_is_full:0000000000000000 CircBuf_is_full
+     /tmp/cczCSTg2.s:244    .text.CircBuf_get_data:0000000000000000 $t
+     /tmp/cczCSTg2.s:250    .text.CircBuf_get_data:0000000000000000 CircBuf_get_data
+     /tmp/cczCSTg2.s:344    .text.CircBuf_produce:0000000000000000 $t
+     /tmp/cczCSTg2.s:350    .text.CircBuf_produce:0000000000000000 CircBuf_produce
+     /tmp/cczCSTg2.s:402    .text.CircBuf_write:0000000000000000 $t
+     /tmp/cczCSTg2.s:408    .text.CircBuf_write:0000000000000000 CircBuf_write
+     /tmp/cczCSTg2.s:503    .text.CircBuf_consume:0000000000000000 $t
+     /tmp/cczCSTg2.s:509    .text.CircBuf_consume:0000000000000000 CircBuf_consume
+     /tmp/cczCSTg2.s:560    .text.CircBuf_read:0000000000000000 $t
+     /tmp/cczCSTg2.s:566    .text.CircBuf_read:0000000000000000 CircBuf_read
+
+UNDEFINED SYMBOLS
+malloc
+free
+memcpy

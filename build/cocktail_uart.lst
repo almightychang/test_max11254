@@ -1,0 +1,891 @@
+ARM GAS  /tmp/ccQooaQA.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"cocktail_uart.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.HAL_UART_TxHalfCpltCallback,"ax",%progbits
+  20              		.align	1
+  21              		.global	HAL_UART_TxHalfCpltCallback
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	HAL_UART_TxHalfCpltCallback:
+  27              	.LVL0:
+  28              	.LFB144:
+  29              		.file 1 "fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c"
+   1:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #include "peripheral/cocktail_uart.h"
+   2:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #include "cocktail_core.h"
+   3:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+   4:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #ifdef HAL_UART_MODULE_ENABLED
+   5:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** __weak void COCKTAIL_UART_TxHalfCpltCallback(UART_HandleTypeDef *huart);
+   6:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** __weak void COCKTAIL_UART_TxCpltCallback(UART_HandleTypeDef *huart);
+   7:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** __weak void COCKTAIL_UART_RxHalfCpltCallback(UART_HandleTypeDef *huart);
+   8:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** __weak void COCKTAIL_UART_RxCpltCallback(UART_HandleTypeDef *huart);
+   9:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** __weak void COCKTAIL_UART_ErrorCallback(UART_HandleTypeDef *huart);
+  10:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** __weak void COCKTAIL_UART_AbortCpltCallback(UART_HandleTypeDef *huart);
+  11:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** __weak void COCKTAIL_UART_AbortTransmitCpltCallback(UART_HandleTypeDef *huart);
+  12:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** __weak void COCKTAIL_UART_AbortReceiveCpltCallback(UART_HandleTypeDef *huart);
+  13:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+  14:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** void
+  15:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** HAL_UART_TxHalfCpltCallback(UART_HandleTypeDef *huart)
+  16:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** {
+  30              		.loc 1 16 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		.loc 1 16 1 is_stmt 0 view .LVU1
+  35 0000 08B5     		push	{r3, lr}
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 8
+  38              		.cfi_offset 3, -8
+  39              		.cfi_offset 14, -4
+  17:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_TxHalfCpltCallback(huart);
+  40              		.loc 1 17 5 is_stmt 1 view .LVU2
+  41 0002 FFF7FEFF 		bl	COCKTAIL_UART_TxHalfCpltCallback
+ARM GAS  /tmp/ccQooaQA.s 			page 2
+
+
+  42              	.LVL1:
+  18:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+  19:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_TX_HALFCOMPLETE(UART1)
+  20:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_TX_HALFCOMPLETE_FN(UART1);
+  21:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+  22:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+  23:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_TX_HALFCOMPLETE(UART2)
+  24:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_TX_HALFCOMPLETE_FN(UART2);
+  25:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+  26:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+  27:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_TX_HALFCOMPLETE(UART3)
+  28:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_TX_HALFCOMPLETE_FN(UART3);
+  29:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+  30:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+  31:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_TX_HALFCOMPLETE(UART4)
+  32:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_TX_HALFCOMPLETE_FN(UART4);
+  33:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+  34:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+  35:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_TX_HALFCOMPLETE(UART5)
+  36:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_TX_HALFCOMPLETE_FN(UART5);
+  37:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+  38:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+  39:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_TX_HALFCOMPLETE(UART6)
+  40:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_TX_HALFCOMPLETE_FN(UART6);
+  41:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+  42:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+  43:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_TX_HALFCOMPLETE(UART7)
+  44:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_TX_HALFCOMPLETE_FN(UART7);
+  45:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+  46:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+  47:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_TX_HALFCOMPLETE(UART8)
+  48:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_TX_HALFCOMPLETE_FN(UART8);
+  49:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+  50:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+  51:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_TX_HALFCOMPLETE(USART1)
+  52:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_TX_HALFCOMPLETE_FN(USART1);
+  53:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+  54:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+  55:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_TX_HALFCOMPLETE(USART2)
+  56:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_TX_HALFCOMPLETE_FN(USART2);
+  57:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+  58:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+  59:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_TX_HALFCOMPLETE(USART3)
+  60:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_TX_HALFCOMPLETE_FN(USART3);
+  61:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+  62:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+  63:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_TX_HALFCOMPLETE(USART4)
+  64:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_TX_HALFCOMPLETE_FN(USART4);
+  65:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+  66:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+  67:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_TX_HALFCOMPLETE(USART5)
+  68:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_TX_HALFCOMPLETE_FN(USART5);
+  69:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+  70:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+  71:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_TX_HALFCOMPLETE(USART6)
+  72:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_TX_HALFCOMPLETE_FN(USART6);
+  73:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ARM GAS  /tmp/ccQooaQA.s 			page 3
+
+
+  74:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+  75:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_TX_HALFCOMPLETE(USART7)
+  76:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_TX_HALFCOMPLETE_FN(USART7);
+  77:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+  78:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+  79:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_TX_HALFCOMPLETE(USART8)
+  80:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_TX_HALFCOMPLETE_FN(USART8);
+  81:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+  82:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** }
+  43              		.loc 1 82 1 is_stmt 0 view .LVU3
+  44 0006 08BD     		pop	{r3, pc}
+  45              		.cfi_endproc
+  46              	.LFE144:
+  48              		.section	.text.HAL_UART_TxCpltCallback,"ax",%progbits
+  49              		.align	1
+  50              		.global	HAL_UART_TxCpltCallback
+  51              		.syntax unified
+  52              		.thumb
+  53              		.thumb_func
+  55              	HAL_UART_TxCpltCallback:
+  56              	.LVL2:
+  57              	.LFB145:
+  83:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+  84:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** void
+  85:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
+  86:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** {
+  58              		.loc 1 86 1 is_stmt 1 view -0
+  59              		.cfi_startproc
+  60              		@ args = 0, pretend = 0, frame = 0
+  61              		@ frame_needed = 0, uses_anonymous_args = 0
+  62              		.loc 1 86 1 is_stmt 0 view .LVU5
+  63 0000 08B5     		push	{r3, lr}
+  64              	.LCFI1:
+  65              		.cfi_def_cfa_offset 8
+  66              		.cfi_offset 3, -8
+  67              		.cfi_offset 14, -4
+  87:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_TxCpltCallback(huart);
+  68              		.loc 1 87 5 is_stmt 1 view .LVU6
+  69 0002 FFF7FEFF 		bl	COCKTAIL_UART_TxCpltCallback
+  70              	.LVL3:
+  88:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+  89:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_TX_COMPLETE(UART1)
+  90:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_TX_COMPLETE_FN(UART1);
+  91:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+  92:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+  93:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_TX_COMPLETE(UART2)
+  94:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_TX_COMPLETE_FN(UART2);
+  95:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+  96:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+  97:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_TX_COMPLETE(UART3)
+  98:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_TX_COMPLETE_FN(UART3);
+  99:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 100:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 101:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_TX_COMPLETE(UART4)
+ 102:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_TX_COMPLETE_FN(UART4);
+ 103:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 104:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ARM GAS  /tmp/ccQooaQA.s 			page 4
+
+
+ 105:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_TX_COMPLETE(UART5)
+ 106:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_TX_COMPLETE_FN(UART5);
+ 107:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 108:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 109:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_TX_COMPLETE(UART6)
+ 110:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_TX_COMPLETE_FN(UART6);
+ 111:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 112:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 113:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_TX_COMPLETE(UART7)
+ 114:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_TX_COMPLETE_FN(UART7);
+ 115:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 116:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 117:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_TX_COMPLETE(UART8)
+ 118:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_TX_COMPLETE_FN(UART8);
+ 119:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 120:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 121:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_TX_COMPLETE(USART1)
+ 122:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_TX_COMPLETE_FN(USART1);
+ 123:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 124:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 125:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_TX_COMPLETE(USART2)
+ 126:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_TX_COMPLETE_FN(USART2);
+ 127:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 128:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 129:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_TX_COMPLETE(USART3)
+ 130:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_TX_COMPLETE_FN(USART3);
+ 131:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 132:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 133:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_TX_COMPLETE(USART4)
+ 134:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_TX_COMPLETE_FN(USART4);
+ 135:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 136:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 137:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_TX_COMPLETE(USART5)
+ 138:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_TX_COMPLETE_FN(USART5);
+ 139:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 140:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 141:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_TX_COMPLETE(USART6)
+ 142:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_TX_COMPLETE_FN(USART6);
+ 143:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 144:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 145:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_TX_COMPLETE(USART7)
+ 146:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_TX_COMPLETE_FN(USART7);
+ 147:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 148:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 149:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_TX_COMPLETE(USART8)
+ 150:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_TX_COMPLETE_FN(USART8);
+ 151:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 152:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** }
+  71              		.loc 1 152 1 is_stmt 0 view .LVU7
+  72 0006 08BD     		pop	{r3, pc}
+  73              		.cfi_endproc
+  74              	.LFE145:
+  76              		.section	.text.HAL_UART_RxHalfCpltCallback,"ax",%progbits
+  77              		.align	1
+  78              		.global	HAL_UART_RxHalfCpltCallback
+  79              		.syntax unified
+  80              		.thumb
+ARM GAS  /tmp/ccQooaQA.s 			page 5
+
+
+  81              		.thumb_func
+  83              	HAL_UART_RxHalfCpltCallback:
+  84              	.LVL4:
+  85              	.LFB146:
+ 153:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 154:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** void
+ 155:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** HAL_UART_RxHalfCpltCallback(UART_HandleTypeDef *huart)
+ 156:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** {
+  86              		.loc 1 156 1 is_stmt 1 view -0
+  87              		.cfi_startproc
+  88              		@ args = 0, pretend = 0, frame = 0
+  89              		@ frame_needed = 0, uses_anonymous_args = 0
+  90              		.loc 1 156 1 is_stmt 0 view .LVU9
+  91 0000 08B5     		push	{r3, lr}
+  92              	.LCFI2:
+  93              		.cfi_def_cfa_offset 8
+  94              		.cfi_offset 3, -8
+  95              		.cfi_offset 14, -4
+ 157:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_RxHalfCpltCallback(huart);
+  96              		.loc 1 157 5 is_stmt 1 view .LVU10
+  97 0002 FFF7FEFF 		bl	COCKTAIL_UART_RxHalfCpltCallback
+  98              	.LVL5:
+ 158:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 159:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_RX_HALFCOMPLETE(UART1)
+ 160:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_RX_HALFCOMPLETE_FN(UART1);
+ 161:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 162:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 163:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_RX_HALFCOMPLETE(UART2)
+ 164:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_RX_HALFCOMPLETE_FN(UART2);
+ 165:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 166:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 167:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_RX_HALFCOMPLETE(UART3)
+ 168:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_RX_HALFCOMPLETE_FN(UART3);
+ 169:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 170:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 171:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_RX_HALFCOMPLETE(UART4)
+ 172:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_RX_HALFCOMPLETE_FN(UART4);
+ 173:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 174:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 175:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_RX_HALFCOMPLETE(UART5)
+ 176:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_RX_HALFCOMPLETE_FN(UART5);
+ 177:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 178:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 179:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_RX_HALFCOMPLETE(UART6)
+ 180:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_RX_HALFCOMPLETE_FN(UART6);
+ 181:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 182:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 183:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_RX_HALFCOMPLETE(UART7)
+ 184:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_RX_HALFCOMPLETE_FN(UART7);
+ 185:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 186:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 187:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_RX_HALFCOMPLETE(UART8)
+ 188:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_RX_HALFCOMPLETE_FN(UART8);
+ 189:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 190:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 191:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_RX_HALFCOMPLETE(USART1)
+ 192:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_RX_HALFCOMPLETE_FN(USART1);
+ARM GAS  /tmp/ccQooaQA.s 			page 6
+
+
+ 193:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 194:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 195:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_RX_HALFCOMPLETE(USART2)
+ 196:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_RX_HALFCOMPLETE_FN(USART2);
+ 197:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 198:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 199:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_RX_HALFCOMPLETE(USART3)
+ 200:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_RX_HALFCOMPLETE_FN(USART3);
+ 201:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 202:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 203:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_RX_HALFCOMPLETE(USART4)
+ 204:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_RX_HALFCOMPLETE_FN(USART4);
+ 205:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 206:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 207:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_RX_HALFCOMPLETE(USART5)
+ 208:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_RX_HALFCOMPLETE_FN(USART5);
+ 209:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 210:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 211:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_RX_HALFCOMPLETE(USART6)
+ 212:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_RX_HALFCOMPLETE_FN(USART6);
+ 213:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 214:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 215:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_RX_HALFCOMPLETE(USART7)
+ 216:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_RX_HALFCOMPLETE_FN(USART7);
+ 217:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 218:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 219:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_RX_HALFCOMPLETE(USART8)
+ 220:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_RX_HALFCOMPLETE_FN(USART8);
+ 221:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 222:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** }
+  99              		.loc 1 222 1 is_stmt 0 view .LVU11
+ 100 0006 08BD     		pop	{r3, pc}
+ 101              		.cfi_endproc
+ 102              	.LFE146:
+ 104              		.section	.text.HAL_UART_RxCpltCallback,"ax",%progbits
+ 105              		.align	1
+ 106              		.global	HAL_UART_RxCpltCallback
+ 107              		.syntax unified
+ 108              		.thumb
+ 109              		.thumb_func
+ 111              	HAL_UART_RxCpltCallback:
+ 112              	.LVL6:
+ 113              	.LFB147:
+ 223:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 224:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** void
+ 225:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+ 226:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** {
+ 114              		.loc 1 226 1 is_stmt 1 view -0
+ 115              		.cfi_startproc
+ 116              		@ args = 0, pretend = 0, frame = 0
+ 117              		@ frame_needed = 0, uses_anonymous_args = 0
+ 118              		.loc 1 226 1 is_stmt 0 view .LVU13
+ 119 0000 08B5     		push	{r3, lr}
+ 120              	.LCFI3:
+ 121              		.cfi_def_cfa_offset 8
+ 122              		.cfi_offset 3, -8
+ 123              		.cfi_offset 14, -4
+ARM GAS  /tmp/ccQooaQA.s 			page 7
+
+
+ 227:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_RxCpltCallback(huart);
+ 124              		.loc 1 227 5 is_stmt 1 view .LVU14
+ 125 0002 FFF7FEFF 		bl	COCKTAIL_UART_RxCpltCallback
+ 126              	.LVL7:
+ 228:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 229:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_RX_COMPLETE(UART1)
+ 230:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_RX_COMPLETE_FN(UART1);
+ 231:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 232:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 233:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_RX_COMPLETE(UART2)
+ 234:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_RX_COMPLETE_FN(UART2);
+ 235:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 236:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 237:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_RX_COMPLETE(UART3)
+ 238:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_RX_COMPLETE_FN(UART3);
+ 239:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 240:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 241:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_RX_COMPLETE(UART4)
+ 242:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_RX_COMPLETE_FN(UART4);
+ 243:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 244:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 245:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_RX_COMPLETE(UART5)
+ 246:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_RX_COMPLETE_FN(UART5);
+ 247:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 248:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 249:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_RX_COMPLETE(UART6)
+ 250:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_RX_COMPLETE_FN(UART6);
+ 251:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 252:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 253:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_RX_COMPLETE(UART7)
+ 254:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_RX_COMPLETE_FN(UART7);
+ 255:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 256:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 257:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_RX_COMPLETE(UART8)
+ 258:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_RX_COMPLETE_FN(UART8);
+ 259:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 260:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 261:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_RX_COMPLETE(USART1)
+ 262:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_RX_COMPLETE_FN(USART1);
+ 263:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 264:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 265:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_RX_COMPLETE(USART2)
+ 266:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_RX_COMPLETE_FN(USART2);
+ 267:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 268:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 269:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_RX_COMPLETE(USART3)
+ 270:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_RX_COMPLETE_FN(USART3);
+ 271:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 272:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 273:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_RX_COMPLETE(USART4)
+ 274:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_RX_COMPLETE_FN(USART4);
+ 275:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 276:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 277:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_RX_COMPLETE(USART5)
+ 278:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_RX_COMPLETE_FN(USART5);
+ 279:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 280:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ARM GAS  /tmp/ccQooaQA.s 			page 8
+
+
+ 281:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_RX_COMPLETE(USART6)
+ 282:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_RX_COMPLETE_FN(USART6);
+ 283:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 284:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 285:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_RX_COMPLETE(USART7)
+ 286:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_RX_COMPLETE_FN(USART7);
+ 287:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 288:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 289:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_RX_COMPLETE(USART8)
+ 290:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_RX_COMPLETE_FN(USART8);
+ 291:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 292:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** }
+ 127              		.loc 1 292 1 is_stmt 0 view .LVU15
+ 128 0006 08BD     		pop	{r3, pc}
+ 129              		.cfi_endproc
+ 130              	.LFE147:
+ 132              		.section	.text.HAL_UART_ErrorCallback,"ax",%progbits
+ 133              		.align	1
+ 134              		.global	HAL_UART_ErrorCallback
+ 135              		.syntax unified
+ 136              		.thumb
+ 137              		.thumb_func
+ 139              	HAL_UART_ErrorCallback:
+ 140              	.LVL8:
+ 141              	.LFB148:
+ 293:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 294:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** void
+ 295:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
+ 296:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** {
+ 142              		.loc 1 296 1 is_stmt 1 view -0
+ 143              		.cfi_startproc
+ 144              		@ args = 0, pretend = 0, frame = 0
+ 145              		@ frame_needed = 0, uses_anonymous_args = 0
+ 146              		.loc 1 296 1 is_stmt 0 view .LVU17
+ 147 0000 08B5     		push	{r3, lr}
+ 148              	.LCFI4:
+ 149              		.cfi_def_cfa_offset 8
+ 150              		.cfi_offset 3, -8
+ 151              		.cfi_offset 14, -4
+ 297:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ErrorCallback(huart);
+ 152              		.loc 1 297 5 is_stmt 1 view .LVU18
+ 153 0002 FFF7FEFF 		bl	COCKTAIL_UART_ErrorCallback
+ 154              	.LVL9:
+ 298:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 299:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ERROR(UART1)
+ 300:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ERROR_FN(UART1);
+ 301:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 302:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 303:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ERROR(UART2)
+ 304:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ERROR_FN(UART2);
+ 305:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 306:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 307:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ERROR(UART3)
+ 308:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ERROR_FN(UART3);
+ 309:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 310:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 311:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ERROR(UART4)
+ARM GAS  /tmp/ccQooaQA.s 			page 9
+
+
+ 312:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ERROR_FN(UART4);
+ 313:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 314:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 315:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ERROR(UART5)
+ 316:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ERROR_FN(UART5);
+ 317:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 318:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 319:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ERROR(UART6)
+ 320:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ERROR_FN(UART6);
+ 321:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 322:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 323:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ERROR(UART7)
+ 324:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ERROR_FN(UART7);
+ 325:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 326:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 327:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ERROR(UART8)
+ 328:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ERROR_FN(UART8);
+ 329:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 330:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 331:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ERROR(USART1)
+ 332:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ERROR_FN(USART1);
+ 333:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 334:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 335:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ERROR(USART2)
+ 336:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ERROR_FN(USART2);
+ 337:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 338:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 339:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ERROR(USART3)
+ 340:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ERROR_FN(USART3);
+ 341:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 342:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 343:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ERROR(USART4)
+ 344:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ERROR_FN(USART4);
+ 345:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 346:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 347:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ERROR(USART5)
+ 348:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ERROR_FN(USART5);
+ 349:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 350:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 351:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ERROR(USART6)
+ 352:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ERROR_FN(USART6);
+ 353:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 354:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 355:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ERROR(USART7)
+ 356:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ERROR_FN(USART7);
+ 357:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 358:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 359:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ERROR(USART8)
+ 360:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ERROR_FN(USART8);
+ 361:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 362:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** }
+ 155              		.loc 1 362 1 is_stmt 0 view .LVU19
+ 156 0006 08BD     		pop	{r3, pc}
+ 157              		.cfi_endproc
+ 158              	.LFE148:
+ 160              		.section	.text.HAL_UART_AbortCpltCallback,"ax",%progbits
+ 161              		.align	1
+ARM GAS  /tmp/ccQooaQA.s 			page 10
+
+
+ 162              		.global	HAL_UART_AbortCpltCallback
+ 163              		.syntax unified
+ 164              		.thumb
+ 165              		.thumb_func
+ 167              	HAL_UART_AbortCpltCallback:
+ 168              	.LVL10:
+ 169              	.LFB149:
+ 363:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 364:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** void
+ 365:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** HAL_UART_AbortCpltCallback(UART_HandleTypeDef *huart)
+ 366:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** {
+ 170              		.loc 1 366 1 is_stmt 1 view -0
+ 171              		.cfi_startproc
+ 172              		@ args = 0, pretend = 0, frame = 0
+ 173              		@ frame_needed = 0, uses_anonymous_args = 0
+ 174              		.loc 1 366 1 is_stmt 0 view .LVU21
+ 175 0000 08B5     		push	{r3, lr}
+ 176              	.LCFI5:
+ 177              		.cfi_def_cfa_offset 8
+ 178              		.cfi_offset 3, -8
+ 179              		.cfi_offset 14, -4
+ 367:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_AbortCpltCallback(huart);
+ 180              		.loc 1 367 5 is_stmt 1 view .LVU22
+ 181 0002 FFF7FEFF 		bl	COCKTAIL_UART_AbortCpltCallback
+ 182              	.LVL11:
+ 368:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 369:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ABORT_COMPLETE(UART1)
+ 370:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ABORT_COMPLETE_FN(UART1);
+ 371:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 372:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 373:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ABORT_COMPLETE(UART2)
+ 374:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ABORT_COMPLETE_FN(UART2);
+ 375:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 376:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 377:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ABORT_COMPLETE(UART3)
+ 378:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ABORT_COMPLETE_FN(UART3);
+ 379:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 380:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 381:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ABORT_COMPLETE(UART4)
+ 382:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ABORT_COMPLETE_FN(UART4);
+ 383:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 384:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 385:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ABORT_COMPLETE(UART5)
+ 386:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ABORT_COMPLETE_FN(UART5);
+ 387:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 388:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 389:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ABORT_COMPLETE(UART6)
+ 390:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ABORT_COMPLETE_FN(UART6);
+ 391:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 392:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 393:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ABORT_COMPLETE(UART7)
+ 394:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ABORT_COMPLETE_FN(UART7);
+ 395:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 396:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 397:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ABORT_COMPLETE(UART8)
+ 398:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ABORT_COMPLETE_FN(UART8);
+ 399:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ARM GAS  /tmp/ccQooaQA.s 			page 11
+
+
+ 400:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 401:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ABORT_COMPLETE(USART1)
+ 402:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ABORT_COMPLETE_FN(USART1);
+ 403:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 404:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 405:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ABORT_COMPLETE(USART2)
+ 406:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ABORT_COMPLETE_FN(USART2);
+ 407:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 408:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 409:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ABORT_COMPLETE(USART3)
+ 410:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ABORT_COMPLETE_FN(USART3);
+ 411:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 412:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 413:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ABORT_COMPLETE(USART4)
+ 414:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ABORT_COMPLETE_FN(USART4);
+ 415:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 416:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 417:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ABORT_COMPLETE(USART5)
+ 418:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ABORT_COMPLETE_FN(USART5);
+ 419:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 420:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 421:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ABORT_COMPLETE(USART6)
+ 422:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ABORT_COMPLETE_FN(USART6);
+ 423:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 424:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 425:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ABORT_COMPLETE(USART7)
+ 426:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ABORT_COMPLETE_FN(USART7);
+ 427:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 428:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 429:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ABORT_COMPLETE(USART8)
+ 430:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ABORT_COMPLETE_FN(USART8);
+ 431:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 432:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** }
+ 183              		.loc 1 432 1 is_stmt 0 view .LVU23
+ 184 0006 08BD     		pop	{r3, pc}
+ 185              		.cfi_endproc
+ 186              	.LFE149:
+ 188              		.section	.text.HAL_UART_AbortTransmitCpltCallback,"ax",%progbits
+ 189              		.align	1
+ 190              		.global	HAL_UART_AbortTransmitCpltCallback
+ 191              		.syntax unified
+ 192              		.thumb
+ 193              		.thumb_func
+ 195              	HAL_UART_AbortTransmitCpltCallback:
+ 196              	.LVL12:
+ 197              	.LFB150:
+ 433:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 434:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** void
+ 435:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** HAL_UART_AbortTransmitCpltCallback(UART_HandleTypeDef *huart)
+ 436:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** {
+ 198              		.loc 1 436 1 is_stmt 1 view -0
+ 199              		.cfi_startproc
+ 200              		@ args = 0, pretend = 0, frame = 0
+ 201              		@ frame_needed = 0, uses_anonymous_args = 0
+ 202              		.loc 1 436 1 is_stmt 0 view .LVU25
+ 203 0000 08B5     		push	{r3, lr}
+ 204              	.LCFI6:
+ARM GAS  /tmp/ccQooaQA.s 			page 12
+
+
+ 205              		.cfi_def_cfa_offset 8
+ 206              		.cfi_offset 3, -8
+ 207              		.cfi_offset 14, -4
+ 437:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_AbortTransmitCpltCallback(huart);
+ 208              		.loc 1 437 5 is_stmt 1 view .LVU26
+ 209 0002 FFF7FEFF 		bl	COCKTAIL_UART_AbortTransmitCpltCallback
+ 210              	.LVL13:
+ 438:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 439:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ABORT_TRANSMIT_COMPLETE(UART1)
+ 440:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ABORT_TRANSMIT_COMPLETE_FN(UART1);
+ 441:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 442:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 443:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ABORT_TRANSMIT_COMPLETE(UART2)
+ 444:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ABORT_TRANSMIT_COMPLETE_FN(UART2);
+ 445:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 446:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 447:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ABORT_TRANSMIT_COMPLETE(UART3)
+ 448:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ABORT_TRANSMIT_COMPLETE_FN(UART3);
+ 449:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 450:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 451:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ABORT_TRANSMIT_COMPLETE(UART4)
+ 452:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ABORT_TRANSMIT_COMPLETE_FN(UART4);
+ 453:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 454:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 455:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ABORT_TRANSMIT_COMPLETE(UART5)
+ 456:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ABORT_TRANSMIT_COMPLETE_FN(UART5);
+ 457:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 458:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 459:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ABORT_TRANSMIT_COMPLETE(UART6)
+ 460:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ABORT_TRANSMIT_COMPLETE_FN(UART6);
+ 461:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 462:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 463:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ABORT_TRANSMIT_COMPLETE(UART7)
+ 464:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ABORT_TRANSMIT_COMPLETE_FN(UART7);
+ 465:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 466:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 467:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ABORT_TRANSMIT_COMPLETE(UART8)
+ 468:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ABORT_TRANSMIT_COMPLETE_FN(UART8);
+ 469:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 470:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 471:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ABORT_TRANSMIT_COMPLETE(USART1)
+ 472:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ABORT_TRANSMIT_COMPLETE_FN(USART1);
+ 473:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 474:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 475:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ABORT_TRANSMIT_COMPLETE(USART2)
+ 476:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ABORT_TRANSMIT_COMPLETE_FN(USART2);
+ 477:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 478:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 479:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ABORT_TRANSMIT_COMPLETE(USART3)
+ 480:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ABORT_TRANSMIT_COMPLETE_FN(USART3);
+ 481:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 482:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 483:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ABORT_TRANSMIT_COMPLETE(USART4)
+ 484:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ABORT_TRANSMIT_COMPLETE_FN(USART4);
+ 485:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 486:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 487:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ABORT_TRANSMIT_COMPLETE(USART5)
+ARM GAS  /tmp/ccQooaQA.s 			page 13
+
+
+ 488:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ABORT_TRANSMIT_COMPLETE_FN(USART5);
+ 489:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 490:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 491:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ABORT_TRANSMIT_COMPLETE(USART6)
+ 492:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ABORT_TRANSMIT_COMPLETE_FN(USART6);
+ 493:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 494:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 495:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ABORT_TRANSMIT_COMPLETE(USART7)
+ 496:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ABORT_TRANSMIT_COMPLETE_FN(USART7);
+ 497:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 498:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 499:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ABORT_TRANSMIT_COMPLETE(USART8)
+ 500:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ABORT_TRANSMIT_COMPLETE_FN(USART8);
+ 501:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 502:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** }
+ 211              		.loc 1 502 1 is_stmt 0 view .LVU27
+ 212 0006 08BD     		pop	{r3, pc}
+ 213              		.cfi_endproc
+ 214              	.LFE150:
+ 216              		.section	.text.HAL_UART_AbortReceiveCpltCallback,"ax",%progbits
+ 217              		.align	1
+ 218              		.global	HAL_UART_AbortReceiveCpltCallback
+ 219              		.syntax unified
+ 220              		.thumb
+ 221              		.thumb_func
+ 223              	HAL_UART_AbortReceiveCpltCallback:
+ 224              	.LVL14:
+ 225              	.LFB151:
+ 503:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 504:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** void
+ 505:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** HAL_UART_AbortReceiveCpltCallback(UART_HandleTypeDef *huart)
+ 506:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** {
+ 226              		.loc 1 506 1 is_stmt 1 view -0
+ 227              		.cfi_startproc
+ 228              		@ args = 0, pretend = 0, frame = 0
+ 229              		@ frame_needed = 0, uses_anonymous_args = 0
+ 230              		.loc 1 506 1 is_stmt 0 view .LVU29
+ 231 0000 08B5     		push	{r3, lr}
+ 232              	.LCFI7:
+ 233              		.cfi_def_cfa_offset 8
+ 234              		.cfi_offset 3, -8
+ 235              		.cfi_offset 14, -4
+ 507:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_AbortReceiveCpltCallback(huart);
+ 236              		.loc 1 507 5 is_stmt 1 view .LVU30
+ 237 0002 FFF7FEFF 		bl	COCKTAIL_UART_AbortReceiveCpltCallback
+ 238              	.LVL15:
+ 508:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 509:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ABORT_RECEIVE_COMPLETE(UART1)
+ 510:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ABORT_RECEIVE_COMPLETE_FN(UART1);
+ 511:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 512:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 513:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ABORT_RECEIVE_COMPLETE(UART2)
+ 514:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ABORT_RECEIVE_COMPLETE_FN(UART2);
+ 515:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 516:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 517:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ABORT_RECEIVE_COMPLETE(UART3)
+ 518:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ABORT_RECEIVE_COMPLETE_FN(UART3);
+ARM GAS  /tmp/ccQooaQA.s 			page 14
+
+
+ 519:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 520:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 521:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ABORT_RECEIVE_COMPLETE(UART4)
+ 522:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ABORT_RECEIVE_COMPLETE_FN(UART4);
+ 523:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 524:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 525:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ABORT_RECEIVE_COMPLETE(UART5)
+ 526:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ABORT_RECEIVE_COMPLETE_FN(UART5);
+ 527:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 528:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 529:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ABORT_RECEIVE_COMPLETE(UART6)
+ 530:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ABORT_RECEIVE_COMPLETE_FN(UART6);
+ 531:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 532:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 533:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ABORT_RECEIVE_COMPLETE(UART7)
+ 534:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ABORT_RECEIVE_COMPLETE_FN(UART7);
+ 535:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 536:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 537:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ABORT_RECEIVE_COMPLETE(UART8)
+ 538:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ABORT_RECEIVE_COMPLETE_FN(UART8);
+ 539:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 540:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 541:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ABORT_RECEIVE_COMPLETE(USART1)
+ 542:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ABORT_RECEIVE_COMPLETE_FN(USART1);
+ 543:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 544:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 545:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ABORT_RECEIVE_COMPLETE(USART2)
+ 546:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ABORT_RECEIVE_COMPLETE_FN(USART2);
+ 547:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 548:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 549:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ABORT_RECEIVE_COMPLETE(USART3)
+ 550:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ABORT_RECEIVE_COMPLETE_FN(USART3);
+ 551:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 552:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 553:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ABORT_RECEIVE_COMPLETE(USART4)
+ 554:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ABORT_RECEIVE_COMPLETE_FN(USART4);
+ 555:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 556:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 557:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ABORT_RECEIVE_COMPLETE(USART5)
+ 558:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ABORT_RECEIVE_COMPLETE_FN(USART5);
+ 559:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 560:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 561:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ABORT_RECEIVE_COMPLETE(USART6)
+ 562:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ABORT_RECEIVE_COMPLETE_FN(USART6);
+ 563:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 564:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 565:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ABORT_RECEIVE_COMPLETE(USART7)
+ 566:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ABORT_RECEIVE_COMPLETE_FN(USART7);
+ 567:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 568:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** 
+ 569:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #if USE_COCKTAIL_UART_ABORT_RECEIVE_COMPLETE(USART8)
+ 570:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c ****     COCKTAIL_UART_ABORT_RECEIVE_COMPLETE_FN(USART8);
+ 571:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** #endif
+ 572:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_uart.c **** }
+ 239              		.loc 1 572 1 is_stmt 0 view .LVU31
+ 240 0006 08BD     		pop	{r3, pc}
+ 241              		.cfi_endproc
+ARM GAS  /tmp/ccQooaQA.s 			page 15
+
+
+ 242              	.LFE151:
+ 244              		.weak	COCKTAIL_UART_AbortReceiveCpltCallback
+ 245              		.weak	COCKTAIL_UART_AbortTransmitCpltCallback
+ 246              		.weak	COCKTAIL_UART_AbortCpltCallback
+ 247              		.weak	COCKTAIL_UART_ErrorCallback
+ 248              		.weak	COCKTAIL_UART_RxCpltCallback
+ 249              		.weak	COCKTAIL_UART_RxHalfCpltCallback
+ 250              		.weak	COCKTAIL_UART_TxCpltCallback
+ 251              		.weak	COCKTAIL_UART_TxHalfCpltCallback
+ 252              		.text
+ 253              	.Letext0:
+ 254              		.file 2 "/usr/share/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/_default_types.h"
+ 255              		.file 3 "/usr/share/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_stdint.h"
+ 256              		.file 4 "Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f746xx.h"
+ 257              		.file 5 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h"
+ 258              		.file 6 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_dma.h"
+ 259              		.file 7 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h"
+ARM GAS  /tmp/ccQooaQA.s 			page 16
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 cocktail_uart.c
+     /tmp/ccQooaQA.s:20     .text.HAL_UART_TxHalfCpltCallback:0000000000000000 $t
+     /tmp/ccQooaQA.s:26     .text.HAL_UART_TxHalfCpltCallback:0000000000000000 HAL_UART_TxHalfCpltCallback
+     /tmp/ccQooaQA.s:49     .text.HAL_UART_TxCpltCallback:0000000000000000 $t
+     /tmp/ccQooaQA.s:55     .text.HAL_UART_TxCpltCallback:0000000000000000 HAL_UART_TxCpltCallback
+     /tmp/ccQooaQA.s:77     .text.HAL_UART_RxHalfCpltCallback:0000000000000000 $t
+     /tmp/ccQooaQA.s:83     .text.HAL_UART_RxHalfCpltCallback:0000000000000000 HAL_UART_RxHalfCpltCallback
+     /tmp/ccQooaQA.s:105    .text.HAL_UART_RxCpltCallback:0000000000000000 $t
+     /tmp/ccQooaQA.s:111    .text.HAL_UART_RxCpltCallback:0000000000000000 HAL_UART_RxCpltCallback
+     /tmp/ccQooaQA.s:133    .text.HAL_UART_ErrorCallback:0000000000000000 $t
+     /tmp/ccQooaQA.s:139    .text.HAL_UART_ErrorCallback:0000000000000000 HAL_UART_ErrorCallback
+     /tmp/ccQooaQA.s:161    .text.HAL_UART_AbortCpltCallback:0000000000000000 $t
+     /tmp/ccQooaQA.s:167    .text.HAL_UART_AbortCpltCallback:0000000000000000 HAL_UART_AbortCpltCallback
+     /tmp/ccQooaQA.s:189    .text.HAL_UART_AbortTransmitCpltCallback:0000000000000000 $t
+     /tmp/ccQooaQA.s:195    .text.HAL_UART_AbortTransmitCpltCallback:0000000000000000 HAL_UART_AbortTransmitCpltCallback
+     /tmp/ccQooaQA.s:217    .text.HAL_UART_AbortReceiveCpltCallback:0000000000000000 $t
+     /tmp/ccQooaQA.s:223    .text.HAL_UART_AbortReceiveCpltCallback:0000000000000000 HAL_UART_AbortReceiveCpltCallback
+
+UNDEFINED SYMBOLS
+COCKTAIL_UART_TxHalfCpltCallback
+COCKTAIL_UART_TxCpltCallback
+COCKTAIL_UART_RxHalfCpltCallback
+COCKTAIL_UART_RxCpltCallback
+COCKTAIL_UART_ErrorCallback
+COCKTAIL_UART_AbortCpltCallback
+COCKTAIL_UART_AbortTransmitCpltCallback
+COCKTAIL_UART_AbortReceiveCpltCallback

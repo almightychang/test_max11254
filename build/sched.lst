@@ -1,0 +1,518 @@
+ARM GAS  /tmp/cc95BDN9.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"sched.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.Cocktail_Schedule,"ax",%progbits
+  20              		.align	1
+  21              		.global	Cocktail_Schedule
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	Cocktail_Schedule:
+  27              	.LVL0:
+  28              	.LFB144:
+  29              		.file 1 "fw-lib-stm32-CocktailOS/kernel/core/sched.c"
+   1:fw-lib-stm32-CocktailOS/kernel/core/sched.c **** #include "core/sched.h"
+   2:fw-lib-stm32-CocktailOS/kernel/core/sched.c **** #include "core/event.h"
+   3:fw-lib-stm32-CocktailOS/kernel/core/sched.c **** 
+   4:fw-lib-stm32-CocktailOS/kernel/core/sched.c **** #include <stdlib.h>
+   5:fw-lib-stm32-CocktailOS/kernel/core/sched.c **** 
+   6:fw-lib-stm32-CocktailOS/kernel/core/sched.c **** Cocktail_SchedQueueDef        prioq;
+   7:fw-lib-stm32-CocktailOS/kernel/core/sched.c **** extern Cocktail_SchedTypeDef *_sched[];
+   8:fw-lib-stm32-CocktailOS/kernel/core/sched.c **** /*
+   9:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****  * WARN: Do not append process directly. Use schedule
+  10:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****  * Set process pointer to NULL after calling this function. pcb may not exist
+  11:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****  * after SCHEDULE()
+  12:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****  */
+  13:fw-lib-stm32-CocktailOS/kernel/core/sched.c **** void
+  14:fw-lib-stm32-CocktailOS/kernel/core/sched.c **** Cocktail_Schedule(Cocktail_PcbTypeDef *pcb)
+  15:fw-lib-stm32-CocktailOS/kernel/core/sched.c **** {
+  30              		.loc 1 15 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  16:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     SchedIdTypeDef sid;
+  34              		.loc 1 16 5 view .LVU1
+  17:fw-lib-stm32-CocktailOS/kernel/core/sched.c **** 
+  18:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     if(pcb == NULL) return;
+  35              		.loc 1 18 5 view .LVU2
+  36              		.loc 1 18 7 is_stmt 0 view .LVU3
+  37 0000 0028     		cmp	r0, #0
+  38 0002 3CD0     		beq	.L8
+  15:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     SchedIdTypeDef sid;
+  39              		.loc 1 15 1 view .LVU4
+ARM GAS  /tmp/cc95BDN9.s 			page 2
+
+
+  40 0004 38B5     		push	{r3, r4, r5, lr}
+  41              	.LCFI0:
+  42              		.cfi_def_cfa_offset 16
+  43              		.cfi_offset 3, -16
+  44              		.cfi_offset 4, -12
+  45              		.cfi_offset 5, -8
+  46              		.cfi_offset 14, -4
+  47 0006 0446     		mov	r4, r0
+  19:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     if(pcb->dummy)
+  48              		.loc 1 19 5 is_stmt 1 view .LVU5
+  20:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****         TRACE(LOG_DEBUG, "EVNT | release key(%p) called by p(%p)", pcb,
+  49              		.loc 1 20 9 view .LVU6
+  21:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****               pcb->caller->publisher);
+  22:fw-lib-stm32-CocktailOS/kernel/core/sched.c **** 
+  23:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     // PCB is not handled if it waits for an event.
+  24:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     if(Cocktail_hasEvent(pcb)) return;
+  50              		.loc 1 24 5 view .LVU7
+  51              		.loc 1 24 8 is_stmt 0 view .LVU8
+  52 0008 FFF7FEFF 		bl	Cocktail_hasEvent
+  53              	.LVL1:
+  54              		.loc 1 24 7 view .LVU9
+  55 000c 90B9     		cbnz	r0, .L1
+  25:fw-lib-stm32-CocktailOS/kernel/core/sched.c **** 
+  26:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     if(NO_ENTRY(&pcb->task_queue)) _FREE_PROCESS(pcb);
+  56              		.loc 1 26 5 is_stmt 1 view .LVU10
+  57              		.loc 1 26 8 is_stmt 0 view .LVU11
+  58 000e E368     		ldr	r3, [r4, #12]
+  59              		.loc 1 26 7 view .LVU12
+  60 0010 8BB1     		cbz	r3, .L11
+  27:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     else
+  28:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     {
+  29:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****         sid = FIRST_TASK(pcb)->sid;
+  61              		.loc 1 29 9 is_stmt 1 view .LVU13
+  62              		.loc 1 29 13 is_stmt 0 view .LVU14
+  63 0012 1A89     		ldrh	r2, [r3, #8]
+  64              	.LVL2:
+  30:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****         _sched[sid]->pcb_cnt++;
+  65              		.loc 1 30 9 is_stmt 1 view .LVU15
+  66              		.loc 1 30 15 is_stmt 0 view .LVU16
+  67 0014 1A4B     		ldr	r3, .L15
+  68 0016 53F82200 		ldr	r0, [r3, r2, lsl #2]
+  69              		.loc 1 30 20 view .LVU17
+  70 001a 8169     		ldr	r1, [r0, #24]
+  71              		.loc 1 30 29 view .LVU18
+  72 001c 0131     		adds	r1, r1, #1
+  73 001e 8161     		str	r1, [r0, #24]
+  31:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****         PUT_PROCESS(_sched[sid], pcb);
+  74              		.loc 1 31 9 is_stmt 1 view .LVU19
+  75              	.LBB2:
+  76              		.loc 1 31 9 view .LVU20
+  77              	.LVL3:
+  78              		.loc 1 31 9 view .LVU21
+  79              		.loc 1 31 9 view .LVU22
+  80 0020 0021     		movs	r1, #0
+  81 0022 6161     		str	r1, [r4, #20]
+  82              		.loc 1 31 9 view .LVU23
+  83 0024 53F82210 		ldr	r1, [r3, r2, lsl #2]
+ARM GAS  /tmp/cc95BDN9.s 			page 3
+
+
+  84 0028 4968     		ldr	r1, [r1, #4]
+  85 002a 0C60     		str	r4, [r1]
+  86              		.loc 1 31 9 view .LVU24
+  87 002c 53F82230 		ldr	r3, [r3, r2, lsl #2]
+  88 0030 1434     		adds	r4, r4, #20
+  89              	.LVL4:
+  90              		.loc 1 31 9 is_stmt 0 view .LVU25
+  91 0032 5C60     		str	r4, [r3, #4]
+  92              	.LVL5:
+  93              		.loc 1 31 9 is_stmt 1 view .LVU26
+  94              	.LBE2:
+  95              		.loc 1 31 9 view .LVU27
+  96              	.L1:
+  32:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     }
+  33:fw-lib-stm32-CocktailOS/kernel/core/sched.c **** }
+  97              		.loc 1 33 1 is_stmt 0 view .LVU28
+  98 0034 38BD     		pop	{r3, r4, r5, pc}
+  99              	.LVL6:
+ 100              	.L11:
+  26:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     else
+ 101              		.loc 1 26 36 is_stmt 1 discriminator 1 view .LVU29
+  26:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     else
+ 102              		.loc 1 26 36 discriminator 1 view .LVU30
+ 103 0036 E569     		ldr	r5, [r4, #28]
+ 104 0038 5DB1     		cbz	r5, .L4
+  26:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     else
+ 105              		.loc 1 26 36 discriminator 2 view .LVU31
+ 106              	.LBB3:
+  26:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     else
+ 107              		.loc 1 26 36 discriminator 2 view .LVU32
+ 108              	.LVL7:
+  26:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     else
+ 109              		.loc 1 26 36 discriminator 2 view .LVU33
+  26:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     else
+ 110              		.loc 1 26 36 discriminator 2 view .LVU34
+  26:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     else
+ 111              		.loc 1 26 36 discriminator 2 view .LVU35
+ 112 003a 6B68     		ldr	r3, [r5, #4]
+ 113 003c 9C42     		cmp	r4, r3
+ 114 003e 0CD0     		beq	.L12
+ 115              	.L5:
+ 116              	.LVL8:
+ 117              	.LBB4:
+  26:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     else
+ 118              		.loc 1 26 36 discriminator 9 view .LVU36
+ 119 0040 1A46     		mov	r2, r3
+ 120 0042 9B69     		ldr	r3, [r3, #24]
+ 121              	.LVL9:
+  26:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     else
+ 122              		.loc 1 26 36 is_stmt 0 discriminator 9 view .LVU37
+ 123 0044 9C42     		cmp	r4, r3
+ 124 0046 FBD1     		bne	.L5
+  26:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     else
+ 125              		.loc 1 26 36 is_stmt 1 discriminator 12 view .LVU38
+  26:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     else
+ 126              		.loc 1 26 36 discriminator 12 view .LVU39
+ 127 0048 9B69     		ldr	r3, [r3, #24]
+ARM GAS  /tmp/cc95BDN9.s 			page 4
+
+
+ 128 004a 9361     		str	r3, [r2, #24]
+ 129 004c 63B1     		cbz	r3, .L13
+ 130              	.LVL10:
+ 131              	.L6:
+  26:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     else
+ 132              		.loc 1 26 36 discriminator 15 view .LVU40
+ 133              	.LBE4:
+  26:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     else
+ 134              		.loc 1 26 36 discriminator 15 view .LVU41
+  26:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     else
+ 135              		.loc 1 26 36 discriminator 15 view .LVU42
+  26:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     else
+ 136              		.loc 1 26 36 discriminator 15 view .LVU43
+ 137 004e 6B68     		ldr	r3, [r5, #4]
+ 138 0050 6BB1     		cbz	r3, .L14
+ 139              	.LVL11:
+ 140              	.L4:
+  26:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     else
+ 141              		.loc 1 26 36 discriminator 18 view .LVU44
+ 142              	.LBE3:
+  26:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     else
+ 143              		.loc 1 26 36 discriminator 18 view .LVU45
+  26:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     else
+ 144              		.loc 1 26 36 discriminator 18 view .LVU46
+ 145 0052 2046     		mov	r0, r4
+ 146 0054 FFF7FEFF 		bl	free
+ 147              	.LVL12:
+  26:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     else
+ 148              		.loc 1 26 36 discriminator 18 view .LVU47
+ 149 0058 ECE7     		b	.L1
+ 150              	.LVL13:
+ 151              	.L12:
+ 152              	.LBB7:
+  26:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     else
+ 153              		.loc 1 26 36 discriminator 4 view .LVU48
+  26:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     else
+ 154              		.loc 1 26 36 discriminator 4 view .LVU49
+ 155 005a 9B69     		ldr	r3, [r3, #24]
+ 156 005c 6B60     		str	r3, [r5, #4]
+ 157 005e 002B     		cmp	r3, #0
+ 158 0060 F5D1     		bne	.L6
+  26:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     else
+ 159              		.loc 1 26 36 discriminator 6 view .LVU50
+ 160 0062 2B1D     		adds	r3, r5, #4
+ 161 0064 AB60     		str	r3, [r5, #8]
+ 162 0066 F2E7     		b	.L6
+ 163              	.LVL14:
+ 164              	.L13:
+ 165              	.LBB5:
+  26:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     else
+ 166              		.loc 1 26 36 discriminator 13 view .LVU51
+ 167 0068 1832     		adds	r2, r2, #24
+ 168              	.LVL15:
+  26:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     else
+ 169              		.loc 1 26 36 is_stmt 0 discriminator 13 view .LVU52
+ 170 006a AA60     		str	r2, [r5, #8]
+ 171 006c EFE7     		b	.L6
+ARM GAS  /tmp/cc95BDN9.s 			page 5
+
+
+ 172              	.LVL16:
+ 173              	.L14:
+  26:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     else
+ 174              		.loc 1 26 36 discriminator 13 view .LVU53
+ 175              	.LBE5:
+  26:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     else
+ 176              		.loc 1 26 36 is_stmt 1 discriminator 16 view .LVU54
+ 177              	.LBB6:
+  26:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     else
+ 178              		.loc 1 26 36 discriminator 16 view .LVU55
+ 179 006e 2868     		ldr	r0, [r5]
+ 180              	.LVL17:
+  26:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     else
+ 181              		.loc 1 26 36 discriminator 16 view .LVU56
+ 182 0070 0362     		str	r3, [r0, #32]
+  26:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     else
+ 183              		.loc 1 26 36 discriminator 16 view .LVU57
+ 184 0072 FFF7FEFF 		bl	Cocktail_Schedule
+ 185              	.LVL18:
+  26:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     else
+ 186              		.loc 1 26 36 discriminator 16 view .LVU58
+ 187 0076 2846     		mov	r0, r5
+ 188 0078 FFF7FEFF 		bl	free
+ 189              	.LVL19:
+ 190 007c E9E7     		b	.L4
+ 191              	.LVL20:
+ 192              	.L8:
+ 193              	.LCFI1:
+ 194              		.cfi_def_cfa_offset 0
+ 195              		.cfi_restore 3
+ 196              		.cfi_restore 4
+ 197              		.cfi_restore 5
+ 198              		.cfi_restore 14
+  26:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     else
+ 199              		.loc 1 26 36 is_stmt 0 discriminator 16 view .LVU59
+ 200 007e 7047     		bx	lr
+ 201              	.L16:
+ 202              		.align	2
+ 203              	.L15:
+ 204 0080 00000000 		.word	_sched
+ 205              	.LBE6:
+ 206              	.LBE7:
+ 207              		.cfi_endproc
+ 208              	.LFE144:
+ 210              		.section	.text.Cocktail_addScheduler,"ax",%progbits
+ 211              		.align	1
+ 212              		.global	Cocktail_addScheduler
+ 213              		.syntax unified
+ 214              		.thumb
+ 215              		.thumb_func
+ 217              	Cocktail_addScheduler:
+ 218              	.LVL21:
+ 219              	.LFB145:
+  34:fw-lib-stm32-CocktailOS/kernel/core/sched.c **** 
+  35:fw-lib-stm32-CocktailOS/kernel/core/sched.c **** Cocktail_SchedTypeDef *
+  36:fw-lib-stm32-CocktailOS/kernel/core/sched.c **** Cocktail_addScheduler(SchedIdTypeDef id, uint8_t prio)
+  37:fw-lib-stm32-CocktailOS/kernel/core/sched.c **** {
+ARM GAS  /tmp/cc95BDN9.s 			page 6
+
+
+ 220              		.loc 1 37 1 is_stmt 1 view -0
+ 221              		.cfi_startproc
+ 222              		@ args = 0, pretend = 0, frame = 0
+ 223              		@ frame_needed = 0, uses_anonymous_args = 0
+ 224              		.loc 1 37 1 is_stmt 0 view .LVU61
+ 225 0000 38B5     		push	{r3, r4, r5, lr}
+ 226              	.LCFI2:
+ 227              		.cfi_def_cfa_offset 16
+ 228              		.cfi_offset 3, -16
+ 229              		.cfi_offset 4, -12
+ 230              		.cfi_offset 5, -8
+ 231              		.cfi_offset 14, -4
+ 232 0002 0546     		mov	r5, r0
+ 233 0004 0C46     		mov	r4, r1
+  38:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     Cocktail_SchedTypeDef *sched;
+ 234              		.loc 1 38 5 is_stmt 1 view .LVU62
+  39:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     sched = (Cocktail_SchedTypeDef *)malloc(sizeof(Cocktail_SchedTypeDef));
+ 235              		.loc 1 39 5 view .LVU63
+ 236              		.loc 1 39 38 is_stmt 0 view .LVU64
+ 237 0006 1C20     		movs	r0, #28
+ 238              	.LVL22:
+ 239              		.loc 1 39 38 view .LVU65
+ 240 0008 FFF7FEFF 		bl	malloc
+ 241              	.LVL23:
+  40:fw-lib-stm32-CocktailOS/kernel/core/sched.c **** 
+  41:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     _INIT_PCBQ(&sched->pcb_queue);
+ 242              		.loc 1 41 5 is_stmt 1 view .LVU66
+ 243              		.loc 1 41 5 view .LVU67
+ 244 000c 0023     		movs	r3, #0
+ 245 000e 0360     		str	r3, [r0]
+ 246              		.loc 1 41 5 view .LVU68
+ 247 0010 4060     		str	r0, [r0, #4]
+ 248              		.loc 1 41 5 view .LVU69
+  42:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     sched->prio    = prio;
+ 249              		.loc 1 42 5 view .LVU70
+ 250              		.loc 1 42 20 is_stmt 0 view .LVU71
+ 251 0012 0474     		strb	r4, [r0, #16]
+  43:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     sched->id      = id;
+ 252              		.loc 1 43 5 is_stmt 1 view .LVU72
+ 253              		.loc 1 43 20 is_stmt 0 view .LVU73
+ 254 0014 0581     		strh	r5, [r0, #8]	@ movhi
+  44:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     sched->trg_cnt = 0;
+ 255              		.loc 1 44 5 is_stmt 1 view .LVU74
+ 256              		.loc 1 44 20 is_stmt 0 view .LVU75
+ 257 0016 4361     		str	r3, [r0, #20]
+  45:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     sched->pcb_cnt = 0;
+ 258              		.loc 1 45 5 is_stmt 1 view .LVU76
+ 259              		.loc 1 45 20 is_stmt 0 view .LVU77
+ 260 0018 8361     		str	r3, [r0, #24]
+  46:fw-lib-stm32-CocktailOS/kernel/core/sched.c **** 
+  47:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     if(prioq.stqh_last == NULL) _INIT_ENTRY(&prioq);
+ 261              		.loc 1 47 5 is_stmt 1 view .LVU78
+ 262              		.loc 1 47 13 is_stmt 0 view .LVU79
+ 263 001a 144B     		ldr	r3, .L30
+ 264 001c 5B68     		ldr	r3, [r3, #4]
+ 265              		.loc 1 47 7 view .LVU80
+ 266 001e 53B1     		cbz	r3, .L27
+ARM GAS  /tmp/cc95BDN9.s 			page 7
+
+
+ 267              	.L18:
+ 268              		.loc 1 47 33 is_stmt 1 discriminator 3 view .LVU81
+  48:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     _PUT_ENTRY_SORTED(&prioq, __Cocktail_SchedulerTypeDef, sched, prio_entries,
+ 269              		.loc 1 48 5 discriminator 3 view .LVU82
+ 270              	.LBB8:
+ 271              		.loc 1 48 5 discriminator 3 view .LVU83
+ 272              	.LVL24:
+ 273              		.loc 1 48 5 discriminator 3 view .LVU84
+ 274              		.loc 1 48 5 discriminator 3 view .LVU85
+ 275 0020 124B     		ldr	r3, .L30
+ 276 0022 1B68     		ldr	r3, [r3]
+ 277 0024 13B1     		cbz	r3, .L19
+ 278              		.loc 1 48 5 is_stmt 0 discriminator 2 view .LVU86
+ 279 0026 1A7C     		ldrb	r2, [r3, #16]	@ zero_extendqisi2
+ 280 0028 A242     		cmp	r2, r4
+ 281 002a 0ED9     		bls	.L20
+ 282              	.L19:
+ 283              		.loc 1 48 5 is_stmt 1 discriminator 3 view .LVU87
+ 284              		.loc 1 48 5 discriminator 3 view .LVU88
+ 285 002c C360     		str	r3, [r0, #12]
+ 286 002e 3BB1     		cbz	r3, .L28
+ 287              	.L21:
+ 288              		.loc 1 48 5 discriminator 7 view .LVU89
+ 289 0030 0E4B     		ldr	r3, .L30
+ 290 0032 1860     		str	r0, [r3]
+ 291              		.loc 1 48 5 discriminator 7 view .LVU90
+ 292              	.L17:
+ 293              		.loc 1 48 5 is_stmt 0 discriminator 7 view .LVU91
+ 294              	.LBE8:
+  49:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****                       prio);
+  50:fw-lib-stm32-CocktailOS/kernel/core/sched.c **** 
+  51:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     return sched;
+  52:fw-lib-stm32-CocktailOS/kernel/core/sched.c **** }
+ 295              		.loc 1 52 1 view .LVU92
+ 296 0034 38BD     		pop	{r3, r4, r5, pc}
+ 297              	.LVL25:
+ 298              	.L27:
+  47:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     _PUT_ENTRY_SORTED(&prioq, __Cocktail_SchedulerTypeDef, sched, prio_entries,
+ 299              		.loc 1 47 33 is_stmt 1 discriminator 1 view .LVU93
+  47:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     _PUT_ENTRY_SORTED(&prioq, __Cocktail_SchedulerTypeDef, sched, prio_entries,
+ 300              		.loc 1 47 33 discriminator 1 view .LVU94
+ 301 0036 0D4B     		ldr	r3, .L30
+ 302 0038 0022     		movs	r2, #0
+ 303 003a 1A60     		str	r2, [r3]
+  47:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     _PUT_ENTRY_SORTED(&prioq, __Cocktail_SchedulerTypeDef, sched, prio_entries,
+ 304              		.loc 1 47 33 discriminator 1 view .LVU95
+ 305 003c 5B60     		str	r3, [r3, #4]
+ 306 003e EFE7     		b	.L18
+ 307              	.LVL26:
+ 308              	.L28:
+ 309              	.LBB9:
+  48:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     _PUT_ENTRY_SORTED(&prioq, __Cocktail_SchedulerTypeDef, sched, prio_entries,
+ 310              		.loc 1 48 5 discriminator 5 view .LVU96
+ 311 0040 00F10C03 		add	r3, r0, #12
+ 312 0044 094A     		ldr	r2, .L30
+ 313 0046 5360     		str	r3, [r2, #4]
+ 314 0048 F2E7     		b	.L21
+ARM GAS  /tmp/cc95BDN9.s 			page 8
+
+
+ 315              	.L20:
+ 316              	.LVL27:
+  48:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     _PUT_ENTRY_SORTED(&prioq, __Cocktail_SchedulerTypeDef, sched, prio_entries,
+ 317              		.loc 1 48 5 discriminator 12 view .LVU97
+ 318 004a 2BB1     		cbz	r3, .L23
+  48:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     _PUT_ENTRY_SORTED(&prioq, __Cocktail_SchedulerTypeDef, sched, prio_entries,
+ 319              		.loc 1 48 5 discriminator 13 view .LVU98
+ 320 004c DA68     		ldr	r2, [r3, #12]
+ 321 004e 117C     		ldrb	r1, [r2, #16]	@ zero_extendqisi2
+ 322 0050 A142     		cmp	r1, r4
+ 323 0052 01D8     		bhi	.L23
+  48:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     _PUT_ENTRY_SORTED(&prioq, __Cocktail_SchedulerTypeDef, sched, prio_entries,
+ 324              		.loc 1 48 5 is_stmt 0 view .LVU99
+ 325 0054 1346     		mov	r3, r2
+ 326              	.LVL28:
+  48:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     _PUT_ENTRY_SORTED(&prioq, __Cocktail_SchedulerTypeDef, sched, prio_entries,
+ 327              		.loc 1 48 5 view .LVU100
+ 328 0056 F8E7     		b	.L20
+ 329              	.LVL29:
+ 330              	.L23:
+  48:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     _PUT_ENTRY_SORTED(&prioq, __Cocktail_SchedulerTypeDef, sched, prio_entries,
+ 331              		.loc 1 48 5 is_stmt 1 discriminator 14 view .LVU101
+  48:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     _PUT_ENTRY_SORTED(&prioq, __Cocktail_SchedulerTypeDef, sched, prio_entries,
+ 332              		.loc 1 48 5 discriminator 14 view .LVU102
+ 333 0058 DA68     		ldr	r2, [r3, #12]
+ 334 005a C260     		str	r2, [r0, #12]
+ 335 005c 0AB1     		cbz	r2, .L29
+ 336              	.L25:
+  48:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     _PUT_ENTRY_SORTED(&prioq, __Cocktail_SchedulerTypeDef, sched, prio_entries,
+ 337              		.loc 1 48 5 discriminator 17 view .LVU103
+ 338 005e D860     		str	r0, [r3, #12]
+  48:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     _PUT_ENTRY_SORTED(&prioq, __Cocktail_SchedulerTypeDef, sched, prio_entries,
+ 339              		.loc 1 48 5 discriminator 17 view .LVU104
+ 340              	.LBE9:
+  48:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****     _PUT_ENTRY_SORTED(&prioq, __Cocktail_SchedulerTypeDef, sched, prio_entries,
+ 341              		.loc 1 48 5 discriminator 17 view .LVU105
+  51:fw-lib-stm32-CocktailOS/kernel/core/sched.c **** }
+ 342              		.loc 1 51 5 discriminator 17 view .LVU106
+  51:fw-lib-stm32-CocktailOS/kernel/core/sched.c **** }
+ 343              		.loc 1 51 12 is_stmt 0 discriminator 17 view .LVU107
+ 344 0060 E8E7     		b	.L17
+ 345              	.L29:
+ 346              	.LBB10:
+  48:fw-lib-stm32-CocktailOS/kernel/core/sched.c ****                       prio);
+ 347              		.loc 1 48 5 is_stmt 1 discriminator 15 view .LVU108
+ 348 0062 00F10C02 		add	r2, r0, #12
+ 349 0066 0149     		ldr	r1, .L30
+ 350 0068 4A60     		str	r2, [r1, #4]
+ 351 006a F8E7     		b	.L25
+ 352              	.L31:
+ 353              		.align	2
+ 354              	.L30:
+ 355 006c 00000000 		.word	.LANCHOR0
+ 356              	.LBE10:
+ 357              		.cfi_endproc
+ 358              	.LFE145:
+ 360              		.global	prioq
+ARM GAS  /tmp/cc95BDN9.s 			page 9
+
+
+ 361              		.section	.bss.prioq,"aw",%nobits
+ 362              		.align	2
+ 363              		.set	.LANCHOR0,. + 0
+ 366              	prioq:
+ 367 0000 00000000 		.space	8
+ 367      00000000 
+ 368              		.text
+ 369              	.Letext0:
+ 370              		.file 2 "/usr/share/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/_default_types.h"
+ 371              		.file 3 "/usr/share/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_stdint.h"
+ 372              		.file 4 "fw-lib-stm32-CocktailOS/kernel/core/task.h"
+ 373              		.file 5 "fw-lib-stm32-CocktailOS/kernel/core/pcb.h"
+ 374              		.file 6 "fw-lib-stm32-CocktailOS/kernel/core/event.h"
+ 375              		.file 7 "fw-lib-stm32-CocktailOS/kernel/core/sched.h"
+ 376              		.file 8 "/usr/share/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/stdlib.h"
+ 377              		.file 9 "fw-lib-stm32-CocktailOS/kernel/core/debug.h"
+ARM GAS  /tmp/cc95BDN9.s 			page 10
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 sched.c
+     /tmp/cc95BDN9.s:20     .text.Cocktail_Schedule:0000000000000000 $t
+     /tmp/cc95BDN9.s:26     .text.Cocktail_Schedule:0000000000000000 Cocktail_Schedule
+     /tmp/cc95BDN9.s:204    .text.Cocktail_Schedule:0000000000000080 $d
+     /tmp/cc95BDN9.s:211    .text.Cocktail_addScheduler:0000000000000000 $t
+     /tmp/cc95BDN9.s:217    .text.Cocktail_addScheduler:0000000000000000 Cocktail_addScheduler
+     /tmp/cc95BDN9.s:355    .text.Cocktail_addScheduler:000000000000006c $d
+     /tmp/cc95BDN9.s:366    .bss.prioq:0000000000000000 prioq
+     /tmp/cc95BDN9.s:362    .bss.prioq:0000000000000000 $d
+
+UNDEFINED SYMBOLS
+Cocktail_hasEvent
+free
+_sched
+malloc

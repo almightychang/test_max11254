@@ -1,0 +1,1827 @@
+ARM GAS  /tmp/ccTuWbqy.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"max11254_register.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.MAX11254_decode_stat,"ax",%progbits
+  20              		.align	1
+  21              		.global	MAX11254_decode_stat
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	MAX11254_decode_stat:
+  27              	.LVL0:
+  28              	.LFB146:
+  29              		.file 1 "fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c"
+   1:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** #include "max11254.h"
+   2:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** #include "max11254_register.h"
+   3:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+   4:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** /*
+   5:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****  * @brief   Decode STAT register.
+   6:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****  * @param   bytes 32bit data received.
+   7:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****  * @retval  MAX11254_Reg_stat structure.
+   8:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****  */
+   9:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** MAX11254_Reg_stat
+  10:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** MAX11254_decode_stat(uint32_t bytes)
+  11:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** {
+  30              		.loc 1 11 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 8
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		@ link register save eliminated.
+  35              		.loc 1 11 1 is_stmt 0 view .LVU1
+  36 0000 82B0     		sub	sp, sp, #8
+  37              	.LCFI0:
+  38              		.cfi_def_cfa_offset 8
+  12:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_Reg_stat stat;
+  39              		.loc 1 12 5 is_stmt 1 view .LVU2
+  13:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+  14:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     stat.inreset = MAX11254_GET(STAT_INRESET, bytes);
+  40              		.loc 1 14 5 view .LVU3
+  41              		.loc 1 14 20 is_stmt 0 view .LVU4
+  42 0002 C0F38032 		ubfx	r2, r0, #14, #1
+  43              		.loc 1 14 18 view .LVU5
+  44 0006 9DF80030 		ldrb	r3, [sp]	@ zero_extendqisi2
+ARM GAS  /tmp/ccTuWbqy.s 			page 2
+
+
+  45 000a 62F30003 		bfi	r3, r2, #0, #1
+  46 000e 8DF80030 		strb	r3, [sp]
+  15:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     stat.srdy    = MAX11254_GET(STAT_SRDY, bytes);
+  47              		.loc 1 15 5 is_stmt 1 view .LVU6
+  48              		.loc 1 15 20 is_stmt 0 view .LVU7
+  49 0012 C0F30522 		ubfx	r2, r0, #8, #6
+  50              		.loc 1 15 18 view .LVU8
+  51 0016 DBB2     		uxtb	r3, r3
+  52 0018 62F34603 		bfi	r3, r2, #1, #6
+  53 001c 8DF80030 		strb	r3, [sp]
+  16:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+  17:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     stat.scanerr = MAX11254_GET(STAT_SCANERR, bytes);
+  54              		.loc 1 17 5 is_stmt 1 view .LVU9
+  55              		.loc 1 17 20 is_stmt 0 view .LVU10
+  56 0020 C0F3C052 		ubfx	r2, r0, #23, #1
+  57              		.loc 1 17 18 view .LVU11
+  58 0024 DBB2     		uxtb	r3, r3
+  59 0026 62F3C713 		bfi	r3, r2, #7, #1
+  60 002a 8DF80030 		strb	r3, [sp]
+  18:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     stat.refdet  = MAX11254_GET(STAT_REFDET, bytes);
+  61              		.loc 1 18 5 is_stmt 1 view .LVU12
+  62              		.loc 1 18 20 is_stmt 0 view .LVU13
+  63 002e C0F38052 		ubfx	r2, r0, #22, #1
+  64              		.loc 1 18 18 view .LVU14
+  65 0032 9DF80130 		ldrb	r3, [sp, #1]	@ zero_extendqisi2
+  66 0036 62F30003 		bfi	r3, r2, #0, #1
+  67 003a 8DF80130 		strb	r3, [sp, #1]
+  19:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     stat.orderr  = MAX11254_GET(STAT_ORDERR, bytes);
+  68              		.loc 1 19 5 is_stmt 1 view .LVU15
+  69              		.loc 1 19 20 is_stmt 0 view .LVU16
+  70 003e C0F34052 		ubfx	r2, r0, #21, #1
+  71              		.loc 1 19 18 view .LVU17
+  72 0042 DBB2     		uxtb	r3, r3
+  73 0044 62F34103 		bfi	r3, r2, #1, #1
+  74 0048 8DF80130 		strb	r3, [sp, #1]
+  20:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     stat.gpoerr  = MAX11254_GET(STAT_GPOERR, bytes);
+  75              		.loc 1 20 5 is_stmt 1 view .LVU18
+  76              		.loc 1 20 20 is_stmt 0 view .LVU19
+  77 004c C0F30052 		ubfx	r2, r0, #20, #1
+  78              		.loc 1 20 18 view .LVU20
+  79 0050 DBB2     		uxtb	r3, r3
+  80 0052 62F38203 		bfi	r3, r2, #2, #1
+  81 0056 8DF80130 		strb	r3, [sp, #1]
+  21:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     stat.error   = MAX11254_GET(STAT_ERROR, bytes);
+  82              		.loc 1 21 5 is_stmt 1 view .LVU21
+  83              		.loc 1 21 20 is_stmt 0 view .LVU22
+  84 005a C0F3C042 		ubfx	r2, r0, #19, #1
+  85              		.loc 1 21 18 view .LVU23
+  86 005e DBB2     		uxtb	r3, r3
+  87 0060 62F3C303 		bfi	r3, r2, #3, #1
+  88 0064 8DF80130 		strb	r3, [sp, #1]
+  22:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     stat.sysgor  = MAX11254_GET(STAT_SYSGOR, bytes);
+  89              		.loc 1 22 5 is_stmt 1 view .LVU24
+  90              		.loc 1 22 20 is_stmt 0 view .LVU25
+  91 0068 C0F38042 		ubfx	r2, r0, #18, #1
+  92              		.loc 1 22 18 view .LVU26
+  93 006c DBB2     		uxtb	r3, r3
+ARM GAS  /tmp/ccTuWbqy.s 			page 3
+
+
+  94 006e 62F30413 		bfi	r3, r2, #4, #1
+  95 0072 8DF80130 		strb	r3, [sp, #1]
+  23:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     stat.dor     = MAX11254_GET(STAT_DOR, bytes);
+  96              		.loc 1 23 5 is_stmt 1 view .LVU27
+  97              		.loc 1 23 20 is_stmt 0 view .LVU28
+  98 0076 C0F34042 		ubfx	r2, r0, #17, #1
+  99              		.loc 1 23 18 view .LVU29
+ 100 007a DBB2     		uxtb	r3, r3
+ 101 007c 62F34513 		bfi	r3, r2, #5, #1
+ 102 0080 8DF80130 		strb	r3, [sp, #1]
+  24:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     stat.aor     = MAX11254_GET(STAT_AOR, bytes);
+ 103              		.loc 1 24 5 is_stmt 1 view .LVU30
+ 104              		.loc 1 24 20 is_stmt 0 view .LVU31
+ 105 0084 C0F30042 		ubfx	r2, r0, #16, #1
+ 106              		.loc 1 24 18 view .LVU32
+ 107 0088 DBB2     		uxtb	r3, r3
+ 108 008a 62F38613 		bfi	r3, r2, #6, #1
+ 109 008e 8DF80130 		strb	r3, [sp, #1]
+  25:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+  26:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     stat.rate    = MAX11254_GET(STAT_RATE, bytes);
+ 110              		.loc 1 26 5 is_stmt 1 view .LVU33
+ 111              		.loc 1 26 20 is_stmt 0 view .LVU34
+ 112 0092 020F     		lsrs	r2, r0, #28
+ 113              		.loc 1 26 18 view .LVU35
+ 114 0094 9DF80230 		ldrb	r3, [sp, #2]	@ zero_extendqisi2
+ 115 0098 62F30303 		bfi	r3, r2, #0, #4
+ 116 009c 8DF80230 		strb	r3, [sp, #2]
+  27:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     stat.pdstat  = MAX11254_GET(STAT_PDSTAT, bytes);
+ 117              		.loc 1 27 5 is_stmt 1 view .LVU36
+ 118              		.loc 1 27 20 is_stmt 0 view .LVU37
+ 119 00a0 C0F38162 		ubfx	r2, r0, #26, #2
+ 120              		.loc 1 27 18 view .LVU38
+ 121 00a4 DBB2     		uxtb	r3, r3
+ 122 00a6 62F30513 		bfi	r3, r2, #4, #2
+ 123 00aa 8DF80230 		strb	r3, [sp, #2]
+  28:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     stat.mstat   = MAX11254_GET(STAT_MSTAT, bytes);
+ 124              		.loc 1 28 5 is_stmt 1 view .LVU39
+ 125              		.loc 1 28 20 is_stmt 0 view .LVU40
+ 126 00ae C0F34062 		ubfx	r2, r0, #25, #1
+ 127              		.loc 1 28 18 view .LVU41
+ 128 00b2 DBB2     		uxtb	r3, r3
+ 129 00b4 62F38613 		bfi	r3, r2, #6, #1
+ 130 00b8 8DF80230 		strb	r3, [sp, #2]
+  29:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     stat.rdy     = MAX11254_GET(STAT_RDY, bytes);
+ 131              		.loc 1 29 5 is_stmt 1 view .LVU42
+ 132              		.loc 1 29 20 is_stmt 0 view .LVU43
+ 133 00bc C0F30060 		ubfx	r0, r0, #24, #1
+ 134              	.LVL1:
+ 135              		.loc 1 29 18 view .LVU44
+ 136 00c0 DBB2     		uxtb	r3, r3
+ 137 00c2 60F3C713 		bfi	r3, r0, #7, #1
+ 138 00c6 8DF80230 		strb	r3, [sp, #2]
+  30:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+  31:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     return stat;
+ 139              		.loc 1 31 5 is_stmt 1 view .LVU45
+ 140              		.loc 1 31 12 is_stmt 0 view .LVU46
+ 141 00ca 009B     		ldr	r3, [sp]
+ARM GAS  /tmp/ccTuWbqy.s 			page 4
+
+
+ 142 00cc ADF80430 		strh	r3, [sp, #4]	@ movhi
+ 143 00d0 1B0C     		lsrs	r3, r3, #16
+ 144 00d2 8DF80630 		strb	r3, [sp, #6]
+ 145 00d6 0020     		movs	r0, #0
+ 146 00d8 9DF80430 		ldrb	r3, [sp, #4]	@ zero_extendqisi2
+ 147 00dc 63F30700 		bfi	r0, r3, #0, #8
+ 148 00e0 9DF80530 		ldrb	r3, [sp, #5]	@ zero_extendqisi2
+ 149 00e4 63F30F20 		bfi	r0, r3, #8, #8
+ 150 00e8 9DF80630 		ldrb	r3, [sp, #6]	@ zero_extendqisi2
+ 151 00ec 63F31740 		bfi	r0, r3, #16, #8
+  32:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** }
+ 152              		.loc 1 32 1 view .LVU47
+ 153 00f0 02B0     		add	sp, sp, #8
+ 154              	.LCFI1:
+ 155              		.cfi_def_cfa_offset 0
+ 156              		@ sp needed
+ 157 00f2 7047     		bx	lr
+ 158              		.cfi_endproc
+ 159              	.LFE146:
+ 161              		.section	.text.MAX11254_decode_ctrl1,"ax",%progbits
+ 162              		.align	1
+ 163              		.global	MAX11254_decode_ctrl1
+ 164              		.syntax unified
+ 165              		.thumb
+ 166              		.thumb_func
+ 168              	MAX11254_decode_ctrl1:
+ 169              	.LVL2:
+ 170              	.LFB147:
+  33:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+  34:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** /*
+  35:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****  * @brief   Decode CTRL1 register.
+  36:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****  * @param   bytes 32bit data received.
+  37:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****  * @retval  MAX11254_Reg_ctrl1 structure.
+  38:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****  */
+  39:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** MAX11254_Reg_ctrl1
+  40:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** MAX11254_decode_ctrl1(uint32_t bytes)
+  41:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** {
+ 171              		.loc 1 41 1 is_stmt 1 view -0
+ 172              		.cfi_startproc
+ 173              		@ args = 0, pretend = 0, frame = 0
+ 174              		@ frame_needed = 0, uses_anonymous_args = 0
+ 175              		@ link register save eliminated.
+ 176              		.loc 1 41 1 is_stmt 0 view .LVU49
+ 177 0000 0346     		mov	r3, r0
+  42:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_Reg_ctrl1 reg;
+ 178              		.loc 1 42 5 is_stmt 1 view .LVU50
+  43:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+  44:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.cal    = MAX11254_GET(CTRL1_CAL, bytes);
+ 179              		.loc 1 44 5 view .LVU51
+ 180              		.loc 1 44 18 is_stmt 0 view .LVU52
+ 181 0002 C0F38132 		ubfx	r2, r0, #14, #2
+ 182              		.loc 1 44 16 view .LVU53
+ 183 0006 4FF00000 		mov	r0, #0
+ 184              	.LVL3:
+ 185              		.loc 1 44 16 view .LVU54
+ 186 000a 62F30100 		bfi	r0, r2, #0, #2
+ 187              	.LVL4:
+ARM GAS  /tmp/ccTuWbqy.s 			page 5
+
+
+  45:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.pd     = MAX11254_GET(CTRL1_PD, bytes);
+ 188              		.loc 1 45 5 is_stmt 1 view .LVU55
+ 189              		.loc 1 45 18 is_stmt 0 view .LVU56
+ 190 000e C3F30132 		ubfx	r2, r3, #12, #2
+ 191              		.loc 1 45 16 view .LVU57
+ 192 0012 62F38300 		bfi	r0, r2, #2, #2
+  46:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.ub     = MAX11254_GET(CTRL1_UB, bytes);
+ 193              		.loc 1 46 5 is_stmt 1 view .LVU58
+ 194              		.loc 1 46 18 is_stmt 0 view .LVU59
+ 195 0016 C3F3C022 		ubfx	r2, r3, #11, #1
+ 196              		.loc 1 46 16 view .LVU60
+ 197 001a 62F30410 		bfi	r0, r2, #4, #1
+  47:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.format = MAX11254_GET(CTRL1_FORMAT, bytes);
+ 198              		.loc 1 47 5 is_stmt 1 view .LVU61
+ 199              		.loc 1 47 18 is_stmt 0 view .LVU62
+ 200 001e C3F38022 		ubfx	r2, r3, #10, #1
+ 201              		.loc 1 47 16 view .LVU63
+ 202 0022 62F34510 		bfi	r0, r2, #5, #1
+  48:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.scycle = MAX11254_GET(CTRL1_SCYCLE, bytes);
+ 203              		.loc 1 48 5 is_stmt 1 view .LVU64
+ 204              		.loc 1 48 18 is_stmt 0 view .LVU65
+ 205 0026 C3F34022 		ubfx	r2, r3, #9, #1
+ 206              		.loc 1 48 16 view .LVU66
+ 207 002a 62F38610 		bfi	r0, r2, #6, #1
+  49:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.contsc = MAX11254_GET(CTRL1_CONTSC, bytes);
+ 208              		.loc 1 49 5 is_stmt 1 view .LVU67
+ 209              		.loc 1 49 18 is_stmt 0 view .LVU68
+ 210 002e C3F30023 		ubfx	r3, r3, #8, #1
+ 211              	.LVL5:
+ 212              		.loc 1 49 16 view .LVU69
+ 213 0032 63F3C710 		bfi	r0, r3, #7, #1
+  50:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+  51:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     return reg;
+ 214              		.loc 1 51 5 is_stmt 1 view .LVU70
+ 215              	.LVL6:
+  52:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** }
+ 216              		.loc 1 52 1 is_stmt 0 view .LVU71
+ 217 0036 7047     		bx	lr
+ 218              		.cfi_endproc
+ 219              	.LFE147:
+ 221              		.section	.text.MAX11254_encode_ctrl1,"ax",%progbits
+ 222              		.align	1
+ 223              		.global	MAX11254_encode_ctrl1
+ 224              		.syntax unified
+ 225              		.thumb
+ 226              		.thumb_func
+ 228              	MAX11254_encode_ctrl1:
+ 229              	.LVL7:
+ 230              	.LFB148:
+  53:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+  54:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** uint32_t
+  55:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** MAX11254_encode_ctrl1(MAX11254_Reg_ctrl1 reg)
+  56:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** {
+ 231              		.loc 1 56 1 is_stmt 1 view -0
+ 232              		.cfi_startproc
+ 233              		@ args = 0, pretend = 0, frame = 0
+ 234              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  /tmp/ccTuWbqy.s 			page 6
+
+
+ 235              		@ link register save eliminated.
+  57:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     uint32_t bytes = 0;
+ 236              		.loc 1 57 5 view .LVU73
+  58:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+  59:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(CTRL1_CAL, bytes, reg.cal);
+ 237              		.loc 1 59 5 view .LVU74
+ 238 0000 00F00302 		and	r2, r0, #3
+ 239              	.LVL8:
+  60:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(CTRL1_PD, bytes, reg.pd);
+ 240              		.loc 1 60 5 view .LVU75
+ 241 0004 C0F38103 		ubfx	r3, r0, #2, #2
+ 242 0008 1B03     		lsls	r3, r3, #12
+ 243 000a 43EA8233 		orr	r3, r3, r2, lsl #14
+ 244              	.LVL9:
+  61:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(CTRL1_UB, bytes, reg.ub);
+ 245              		.loc 1 61 5 view .LVU76
+ 246 000e C0F30012 		ubfx	r2, r0, #4, #1
+ 247 0012 43EAC223 		orr	r3, r3, r2, lsl #11
+ 248              	.LVL10:
+  62:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(CTRL1_FORMAT, bytes, reg.format);
+ 249              		.loc 1 62 5 view .LVU77
+ 250 0016 C0F34012 		ubfx	r2, r0, #5, #1
+ 251 001a 43EA8223 		orr	r3, r3, r2, lsl #10
+ 252              	.LVL11:
+  63:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(CTRL1_SCYCLE, bytes, reg.scycle);
+ 253              		.loc 1 63 5 view .LVU78
+ 254 001e C0F38012 		ubfx	r2, r0, #6, #1
+ 255 0022 43EA4223 		orr	r3, r3, r2, lsl #9
+ 256              	.LVL12:
+  64:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(CTRL1_CONTSC, bytes, reg.contsc);
+ 257              		.loc 1 64 5 view .LVU79
+ 258 0026 C0F3C010 		ubfx	r0, r0, #7, #1
+ 259              	.LVL13:
+  65:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+  66:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     return bytes;
+ 260              		.loc 1 66 5 view .LVU80
+  67:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** }
+ 261              		.loc 1 67 1 is_stmt 0 view .LVU81
+ 262 002a 43EA0020 		orr	r0, r3, r0, lsl #8
+ 263              	.LVL14:
+ 264              		.loc 1 67 1 view .LVU82
+ 265 002e 7047     		bx	lr
+ 266              		.cfi_endproc
+ 267              	.LFE148:
+ 269              		.section	.text.MAX11254_decode_ctrl2,"ax",%progbits
+ 270              		.align	1
+ 271              		.global	MAX11254_decode_ctrl2
+ 272              		.syntax unified
+ 273              		.thumb
+ 274              		.thumb_func
+ 276              	MAX11254_decode_ctrl2:
+ 277              	.LVL15:
+ 278              	.LFB149:
+  68:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+  69:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** MAX11254_Reg_ctrl2
+  70:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** MAX11254_decode_ctrl2(uint32_t bytes)
+  71:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** {
+ARM GAS  /tmp/ccTuWbqy.s 			page 7
+
+
+ 279              		.loc 1 71 1 is_stmt 1 view -0
+ 280              		.cfi_startproc
+ 281              		@ args = 0, pretend = 0, frame = 0
+ 282              		@ frame_needed = 0, uses_anonymous_args = 0
+ 283              		@ link register save eliminated.
+ 284              		.loc 1 71 1 is_stmt 0 view .LVU84
+ 285 0000 0346     		mov	r3, r0
+  72:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_Reg_ctrl2 reg;
+ 286              		.loc 1 72 5 is_stmt 1 view .LVU85
+  73:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+  74:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.extclk = MAX11254_GET(CTRL2_EXTCLK, bytes);
+ 287              		.loc 1 74 5 view .LVU86
+ 288              		.loc 1 74 18 is_stmt 0 view .LVU87
+ 289 0002 C0F3C032 		ubfx	r2, r0, #15, #1
+ 290              		.loc 1 74 16 view .LVU88
+ 291 0006 4FF00000 		mov	r0, #0
+ 292              	.LVL16:
+ 293              		.loc 1 74 16 view .LVU89
+ 294 000a 62F30000 		bfi	r0, r2, #0, #1
+ 295              	.LVL17:
+  75:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.cssen  = MAX11254_GET(CTRL2_CSSEN, bytes);
+ 296              		.loc 1 75 5 is_stmt 1 view .LVU90
+ 297              		.loc 1 75 18 is_stmt 0 view .LVU91
+ 298 000e C3F38032 		ubfx	r2, r3, #14, #1
+ 299              		.loc 1 75 16 view .LVU92
+ 300 0012 62F34100 		bfi	r0, r2, #1, #1
+  76:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.ldoen  = MAX11254_GET(CTRL2_LDOEN, bytes);
+ 301              		.loc 1 76 5 is_stmt 1 view .LVU93
+ 302              		.loc 1 76 18 is_stmt 0 view .LVU94
+ 303 0016 C3F34032 		ubfx	r2, r3, #13, #1
+ 304              		.loc 1 76 16 view .LVU95
+ 305 001a 62F38200 		bfi	r0, r2, #2, #1
+  77:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.lpmode = MAX11254_GET(CTRL2_LPMODE, bytes);
+ 306              		.loc 1 77 5 is_stmt 1 view .LVU96
+ 307              		.loc 1 77 18 is_stmt 0 view .LVU97
+ 308 001e C3F30032 		ubfx	r2, r3, #12, #1
+ 309              		.loc 1 77 16 view .LVU98
+ 310 0022 62F3C300 		bfi	r0, r2, #3, #1
+  78:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.pgaen  = MAX11254_GET(CTRL2_PGAEN, bytes);
+ 311              		.loc 1 78 5 is_stmt 1 view .LVU99
+ 312              		.loc 1 78 18 is_stmt 0 view .LVU100
+ 313 0026 C3F3C022 		ubfx	r2, r3, #11, #1
+ 314              		.loc 1 78 16 view .LVU101
+ 315 002a 62F30410 		bfi	r0, r2, #4, #1
+  79:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.pgag   = MAX11254_GET(CTRL2_PGAG, bytes);
+ 316              		.loc 1 79 5 is_stmt 1 view .LVU102
+ 317              		.loc 1 79 18 is_stmt 0 view .LVU103
+ 318 002e C3F30223 		ubfx	r3, r3, #8, #3
+ 319              	.LVL18:
+ 320              		.loc 1 79 16 view .LVU104
+ 321 0032 63F34710 		bfi	r0, r3, #5, #3
+  80:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+  81:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     return reg;
+ 322              		.loc 1 81 5 is_stmt 1 view .LVU105
+ 323              	.LVL19:
+  82:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** }
+ 324              		.loc 1 82 1 is_stmt 0 view .LVU106
+ARM GAS  /tmp/ccTuWbqy.s 			page 8
+
+
+ 325 0036 7047     		bx	lr
+ 326              		.cfi_endproc
+ 327              	.LFE149:
+ 329              		.section	.text.MAX11254_encode_ctrl2,"ax",%progbits
+ 330              		.align	1
+ 331              		.global	MAX11254_encode_ctrl2
+ 332              		.syntax unified
+ 333              		.thumb
+ 334              		.thumb_func
+ 336              	MAX11254_encode_ctrl2:
+ 337              	.LVL20:
+ 338              	.LFB150:
+  83:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+  84:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** uint32_t
+  85:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** MAX11254_encode_ctrl2(MAX11254_Reg_ctrl2 reg)
+  86:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** {
+ 339              		.loc 1 86 1 is_stmt 1 view -0
+ 340              		.cfi_startproc
+ 341              		@ args = 0, pretend = 0, frame = 0
+ 342              		@ frame_needed = 0, uses_anonymous_args = 0
+ 343              		@ link register save eliminated.
+  87:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     uint32_t bytes = 0;
+ 344              		.loc 1 87 5 view .LVU108
+  88:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+  89:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(CTRL2_EXTCLK, bytes, reg.extclk);
+ 345              		.loc 1 89 5 view .LVU109
+ 346 0000 00F00102 		and	r2, r0, #1
+ 347              	.LVL21:
+  90:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(CTRL2_CSSEN, bytes, reg.cssen);
+ 348              		.loc 1 90 5 view .LVU110
+ 349 0004 C0F34003 		ubfx	r3, r0, #1, #1
+ 350 0008 9B03     		lsls	r3, r3, #14
+ 351 000a 43EAC233 		orr	r3, r3, r2, lsl #15
+ 352              	.LVL22:
+  91:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(CTRL2_LDOEN, bytes, reg.ldoen);
+ 353              		.loc 1 91 5 view .LVU111
+ 354 000e C0F38002 		ubfx	r2, r0, #2, #1
+ 355 0012 43EA4233 		orr	r3, r3, r2, lsl #13
+ 356              	.LVL23:
+  92:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(CTRL2_LPMODE, bytes, reg.lpmode);
+ 357              		.loc 1 92 5 view .LVU112
+ 358 0016 C0F3C002 		ubfx	r2, r0, #3, #1
+ 359 001a 43EA0233 		orr	r3, r3, r2, lsl #12
+ 360              	.LVL24:
+  93:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(CTRL2_PGAEN, bytes, reg.pgaen);
+ 361              		.loc 1 93 5 view .LVU113
+ 362 001e C0F30012 		ubfx	r2, r0, #4, #1
+ 363 0022 43EAC223 		orr	r3, r3, r2, lsl #11
+ 364              	.LVL25:
+  94:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(CTRL2_PGAG, bytes, reg.pgag);
+ 365              		.loc 1 94 5 view .LVU114
+ 366 0026 C0F34210 		ubfx	r0, r0, #5, #3
+ 367              	.LVL26:
+  95:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+  96:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     return bytes;
+ 368              		.loc 1 96 5 view .LVU115
+  97:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** }
+ARM GAS  /tmp/ccTuWbqy.s 			page 9
+
+
+ 369              		.loc 1 97 1 is_stmt 0 view .LVU116
+ 370 002a 43EA0020 		orr	r0, r3, r0, lsl #8
+ 371              	.LVL27:
+ 372              		.loc 1 97 1 view .LVU117
+ 373 002e 7047     		bx	lr
+ 374              		.cfi_endproc
+ 375              	.LFE150:
+ 377              		.section	.text.MAX11254_decode_ctrl3,"ax",%progbits
+ 378              		.align	1
+ 379              		.global	MAX11254_decode_ctrl3
+ 380              		.syntax unified
+ 381              		.thumb
+ 382              		.thumb_func
+ 384              	MAX11254_decode_ctrl3:
+ 385              	.LVL28:
+ 386              	.LFB151:
+  98:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+  99:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** MAX11254_Reg_ctrl3
+ 100:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** MAX11254_decode_ctrl3(uint32_t bytes)
+ 101:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** {
+ 387              		.loc 1 101 1 is_stmt 1 view -0
+ 388              		.cfi_startproc
+ 389              		@ args = 0, pretend = 0, frame = 0
+ 390              		@ frame_needed = 0, uses_anonymous_args = 0
+ 391              		@ link register save eliminated.
+ 392              		.loc 1 101 1 is_stmt 0 view .LVU119
+ 393 0000 0346     		mov	r3, r0
+ 102:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_Reg_ctrl3 reg;
+ 394              		.loc 1 102 5 is_stmt 1 view .LVU120
+ 103:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 104:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.gpo_mode  = MAX11254_GET(CTRL3_GPO_MODE, bytes);
+ 395              		.loc 1 104 5 view .LVU121
+ 396              		.loc 1 104 21 is_stmt 0 view .LVU122
+ 397 0002 C0F38032 		ubfx	r2, r0, #14, #1
+ 398              		.loc 1 104 19 view .LVU123
+ 399 0006 4FF00000 		mov	r0, #0
+ 400              	.LVL29:
+ 401              		.loc 1 104 19 view .LVU124
+ 402 000a 62F30000 		bfi	r0, r2, #0, #1
+ 403              	.LVL30:
+ 105:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.sync_mode = MAX11254_GET(CTRL3_SYNC_MODE, bytes);
+ 404              		.loc 1 105 5 is_stmt 1 view .LVU125
+ 405              		.loc 1 105 21 is_stmt 0 view .LVU126
+ 406 000e C3F34032 		ubfx	r2, r3, #13, #1
+ 407              		.loc 1 105 19 view .LVU127
+ 408 0012 62F34100 		bfi	r0, r2, #1, #1
+ 106:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.calregsel = MAX11254_GET(CTRL3_CALREGSEL, bytes);
+ 409              		.loc 1 106 5 is_stmt 1 view .LVU128
+ 410              		.loc 1 106 21 is_stmt 0 view .LVU129
+ 411 0016 C3F30032 		ubfx	r2, r3, #12, #1
+ 412              		.loc 1 106 19 view .LVU130
+ 413 001a 62F38200 		bfi	r0, r2, #2, #1
+ 107:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.nosysg    = MAX11254_GET(CTRL3_NOSYSG, bytes);
+ 414              		.loc 1 107 5 is_stmt 1 view .LVU131
+ 415              		.loc 1 107 21 is_stmt 0 view .LVU132
+ 416 001e C3F3C022 		ubfx	r2, r3, #11, #1
+ 417              		.loc 1 107 19 view .LVU133
+ARM GAS  /tmp/ccTuWbqy.s 			page 10
+
+
+ 418 0022 62F3C300 		bfi	r0, r2, #3, #1
+ 108:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.nosyso    = MAX11254_GET(CTRL3_NOSYSO, bytes);
+ 419              		.loc 1 108 5 is_stmt 1 view .LVU134
+ 420              		.loc 1 108 21 is_stmt 0 view .LVU135
+ 421 0026 C3F38022 		ubfx	r2, r3, #10, #1
+ 422              		.loc 1 108 19 view .LVU136
+ 423 002a 62F30410 		bfi	r0, r2, #4, #1
+ 109:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.noscg     = MAX11254_GET(CTRL3_NOSCG, bytes);
+ 424              		.loc 1 109 5 is_stmt 1 view .LVU137
+ 425              		.loc 1 109 21 is_stmt 0 view .LVU138
+ 426 002e C3F34022 		ubfx	r2, r3, #9, #1
+ 427              		.loc 1 109 19 view .LVU139
+ 428 0032 62F34510 		bfi	r0, r2, #5, #1
+ 110:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.nosco     = MAX11254_GET(CTRL3_NOSCO, bytes);
+ 429              		.loc 1 110 5 is_stmt 1 view .LVU140
+ 430              		.loc 1 110 21 is_stmt 0 view .LVU141
+ 431 0036 C3F30023 		ubfx	r3, r3, #8, #1
+ 432              	.LVL31:
+ 433              		.loc 1 110 19 view .LVU142
+ 434 003a 63F38610 		bfi	r0, r3, #6, #1
+ 111:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 112:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     return reg;
+ 435              		.loc 1 112 5 is_stmt 1 view .LVU143
+ 436              	.LVL32:
+ 113:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** }
+ 437              		.loc 1 113 1 is_stmt 0 view .LVU144
+ 438 003e 7047     		bx	lr
+ 439              		.cfi_endproc
+ 440              	.LFE151:
+ 442              		.section	.text.MAX11254_encode_ctrl3,"ax",%progbits
+ 443              		.align	1
+ 444              		.global	MAX11254_encode_ctrl3
+ 445              		.syntax unified
+ 446              		.thumb
+ 447              		.thumb_func
+ 449              	MAX11254_encode_ctrl3:
+ 450              	.LVL33:
+ 451              	.LFB152:
+ 114:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 115:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** uint32_t
+ 116:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** MAX11254_encode_ctrl3(MAX11254_Reg_ctrl3 reg)
+ 117:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** {
+ 452              		.loc 1 117 1 is_stmt 1 view -0
+ 453              		.cfi_startproc
+ 454              		@ args = 0, pretend = 0, frame = 0
+ 455              		@ frame_needed = 0, uses_anonymous_args = 0
+ 456              		@ link register save eliminated.
+ 118:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     uint32_t bytes = 0;
+ 457              		.loc 1 118 5 view .LVU146
+ 119:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 120:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(CTRL3_GPO_MODE, bytes, reg.gpo_mode);
+ 458              		.loc 1 120 5 view .LVU147
+ 459 0000 00F00102 		and	r2, r0, #1
+ 460              	.LVL34:
+ 121:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(CTRL3_SYNC_MODE, bytes, reg.sync_mode);
+ 461              		.loc 1 121 5 view .LVU148
+ 462 0004 C0F34003 		ubfx	r3, r0, #1, #1
+ARM GAS  /tmp/ccTuWbqy.s 			page 11
+
+
+ 463 0008 5B03     		lsls	r3, r3, #13
+ 464 000a 43EA8233 		orr	r3, r3, r2, lsl #14
+ 465              	.LVL35:
+ 122:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(CTRL3_CALREGSEL, bytes, reg.calregsel);
+ 466              		.loc 1 122 5 view .LVU149
+ 467 000e C0F38002 		ubfx	r2, r0, #2, #1
+ 468 0012 43EA0233 		orr	r3, r3, r2, lsl #12
+ 469              	.LVL36:
+ 123:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(CTRL3_NOSYSG, bytes, reg.nosysg);
+ 470              		.loc 1 123 5 view .LVU150
+ 471 0016 C0F3C002 		ubfx	r2, r0, #3, #1
+ 472 001a 43EAC223 		orr	r3, r3, r2, lsl #11
+ 473              	.LVL37:
+ 124:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(CTRL3_NOSYSO, bytes, reg.nosyso);
+ 474              		.loc 1 124 5 view .LVU151
+ 475 001e C0F30012 		ubfx	r2, r0, #4, #1
+ 476 0022 43EA8223 		orr	r3, r3, r2, lsl #10
+ 477              	.LVL38:
+ 125:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(CTRL3_NOSCG, bytes, reg.noscg);
+ 478              		.loc 1 125 5 view .LVU152
+ 479 0026 C0F34012 		ubfx	r2, r0, #5, #1
+ 480 002a 43EA4223 		orr	r3, r3, r2, lsl #9
+ 481              	.LVL39:
+ 126:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(CTRL3_NOSCO, bytes, reg.nosco);
+ 482              		.loc 1 126 5 view .LVU153
+ 483 002e C0F38010 		ubfx	r0, r0, #6, #1
+ 484              	.LVL40:
+ 127:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 128:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     return bytes;
+ 485              		.loc 1 128 5 view .LVU154
+ 129:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** }
+ 486              		.loc 1 129 1 is_stmt 0 view .LVU155
+ 487 0032 43EA0020 		orr	r0, r3, r0, lsl #8
+ 488              	.LVL41:
+ 489              		.loc 1 129 1 view .LVU156
+ 490 0036 7047     		bx	lr
+ 491              		.cfi_endproc
+ 492              	.LFE152:
+ 494              		.section	.text.MAX11254_decode_gpio_ctrl,"ax",%progbits
+ 495              		.align	1
+ 496              		.global	MAX11254_decode_gpio_ctrl
+ 497              		.syntax unified
+ 498              		.thumb
+ 499              		.thumb_func
+ 501              	MAX11254_decode_gpio_ctrl:
+ 502              	.LVL42:
+ 503              	.LFB153:
+ 130:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 131:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** MAX11254_Reg_gpio_ctrl
+ 132:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** MAX11254_decode_gpio_ctrl(uint32_t bytes)
+ 133:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** {
+ 504              		.loc 1 133 1 is_stmt 1 view -0
+ 505              		.cfi_startproc
+ 506              		@ args = 0, pretend = 0, frame = 0
+ 507              		@ frame_needed = 0, uses_anonymous_args = 0
+ 508              		@ link register save eliminated.
+ 509              		.loc 1 133 1 is_stmt 0 view .LVU158
+ARM GAS  /tmp/ccTuWbqy.s 			page 12
+
+
+ 510 0000 0346     		mov	r3, r0
+ 134:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_Reg_gpio_ctrl reg;
+ 511              		.loc 1 134 5 is_stmt 1 view .LVU159
+ 135:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 136:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.gpio1_en = MAX11254_GET(GPIO_CTRL_GPIO1_EN, bytes);
+ 512              		.loc 1 136 5 view .LVU160
+ 513              		.loc 1 136 20 is_stmt 0 view .LVU161
+ 514 0002 C0F3C032 		ubfx	r2, r0, #15, #1
+ 515              		.loc 1 136 18 view .LVU162
+ 516 0006 4FF00000 		mov	r0, #0
+ 517              	.LVL43:
+ 518              		.loc 1 136 18 view .LVU163
+ 519 000a 62F30000 		bfi	r0, r2, #0, #1
+ 520              	.LVL44:
+ 137:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.gpio0_en = MAX11254_GET(GPIO_CTRL_GPIO0_EN, bytes);
+ 521              		.loc 1 137 5 is_stmt 1 view .LVU164
+ 522              		.loc 1 137 20 is_stmt 0 view .LVU165
+ 523 000e C3F38032 		ubfx	r2, r3, #14, #1
+ 524              		.loc 1 137 18 view .LVU166
+ 525 0012 62F34100 		bfi	r0, r2, #1, #1
+ 138:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.dir      = MAX11254_GET(GPIO_CTRL_DIR, bytes);
+ 526              		.loc 1 138 5 is_stmt 1 view .LVU167
+ 527              		.loc 1 138 20 is_stmt 0 view .LVU168
+ 528 0016 C3F3C122 		ubfx	r2, r3, #11, #2
+ 529              		.loc 1 138 18 view .LVU169
+ 530 001a 62F38300 		bfi	r0, r2, #2, #2
+ 139:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.dio      = MAX11254_GET(GPIO_CTRL_DIO, bytes);
+ 531              		.loc 1 139 5 is_stmt 1 view .LVU170
+ 532              		.loc 1 139 20 is_stmt 0 view .LVU171
+ 533 001e C3F30123 		ubfx	r3, r3, #8, #2
+ 534              	.LVL45:
+ 535              		.loc 1 139 18 view .LVU172
+ 536 0022 63F30510 		bfi	r0, r3, #4, #2
+ 140:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 141:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     return reg;
+ 537              		.loc 1 141 5 is_stmt 1 view .LVU173
+ 538              	.LVL46:
+ 142:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** }
+ 539              		.loc 1 142 1 is_stmt 0 view .LVU174
+ 540 0026 7047     		bx	lr
+ 541              		.cfi_endproc
+ 542              	.LFE153:
+ 544              		.section	.text.MAX11254_encode_gpio_ctrl,"ax",%progbits
+ 545              		.align	1
+ 546              		.global	MAX11254_encode_gpio_ctrl
+ 547              		.syntax unified
+ 548              		.thumb
+ 549              		.thumb_func
+ 551              	MAX11254_encode_gpio_ctrl:
+ 552              	.LVL47:
+ 553              	.LFB154:
+ 143:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 144:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** uint32_t
+ 145:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** MAX11254_encode_gpio_ctrl(MAX11254_Reg_gpio_ctrl reg)
+ 146:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** {
+ 554              		.loc 1 146 1 is_stmt 1 view -0
+ 555              		.cfi_startproc
+ARM GAS  /tmp/ccTuWbqy.s 			page 13
+
+
+ 556              		@ args = 0, pretend = 0, frame = 0
+ 557              		@ frame_needed = 0, uses_anonymous_args = 0
+ 558              		@ link register save eliminated.
+ 147:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     uint32_t bytes = 0;
+ 559              		.loc 1 147 5 view .LVU176
+ 148:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 149:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(GPIO_CTRL_GPIO1_EN, bytes, reg.gpio1_en);
+ 560              		.loc 1 149 5 view .LVU177
+ 561 0000 00F00102 		and	r2, r0, #1
+ 562              	.LVL48:
+ 150:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(GPIO_CTRL_GPIO0_EN, bytes, reg.gpio0_en);
+ 563              		.loc 1 150 5 view .LVU178
+ 564 0004 C0F34003 		ubfx	r3, r0, #1, #1
+ 565 0008 9B03     		lsls	r3, r3, #14
+ 566 000a 43EAC233 		orr	r3, r3, r2, lsl #15
+ 567              	.LVL49:
+ 151:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(GPIO_CTRL_DIR, bytes, reg.dir);
+ 568              		.loc 1 151 5 view .LVU179
+ 569 000e C0F38102 		ubfx	r2, r0, #2, #2
+ 570 0012 43EAC223 		orr	r3, r3, r2, lsl #11
+ 571              	.LVL50:
+ 152:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(GPIO_CTRL_DIO, bytes, reg.dio);
+ 572              		.loc 1 152 5 view .LVU180
+ 573 0016 C0F30110 		ubfx	r0, r0, #4, #2
+ 574              	.LVL51:
+ 153:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 154:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     return bytes;
+ 575              		.loc 1 154 5 view .LVU181
+ 155:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** }
+ 576              		.loc 1 155 1 is_stmt 0 view .LVU182
+ 577 001a 43EA0020 		orr	r0, r3, r0, lsl #8
+ 578              	.LVL52:
+ 579              		.loc 1 155 1 view .LVU183
+ 580 001e 7047     		bx	lr
+ 581              		.cfi_endproc
+ 582              	.LFE154:
+ 584              		.section	.text.MAX11254_decode_delay,"ax",%progbits
+ 585              		.align	1
+ 586              		.global	MAX11254_decode_delay
+ 587              		.syntax unified
+ 588              		.thumb
+ 589              		.thumb_func
+ 591              	MAX11254_decode_delay:
+ 592              	.LVL53:
+ 593              	.LFB155:
+ 156:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 157:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** MAX11254_Reg_delay
+ 158:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** MAX11254_decode_delay(uint32_t bytes)
+ 159:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** {
+ 594              		.loc 1 159 1 is_stmt 1 view -0
+ 595              		.cfi_startproc
+ 596              		@ args = 0, pretend = 0, frame = 8
+ 597              		@ frame_needed = 0, uses_anonymous_args = 0
+ 598              		@ link register save eliminated.
+ 599              		.loc 1 159 1 is_stmt 0 view .LVU185
+ 600 0000 82B0     		sub	sp, sp, #8
+ 601              	.LCFI2:
+ARM GAS  /tmp/ccTuWbqy.s 			page 14
+
+
+ 602              		.cfi_def_cfa_offset 8
+ 160:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_Reg_delay reg;
+ 603              		.loc 1 160 5 is_stmt 1 view .LVU186
+ 161:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 162:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.mux = MAX11254_GET(DELAY_MUX, bytes);
+ 604              		.loc 1 162 5 view .LVU187
+ 605              		.loc 1 162 15 is_stmt 0 view .LVU188
+ 606 0002 030A     		lsrs	r3, r0, #8
+ 607              		.loc 1 162 13 view .LVU189
+ 608 0004 8DF80030 		strb	r3, [sp]
+ 163:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.gpo = MAX11254_GET(DELAY_GPO, bytes);
+ 609              		.loc 1 163 5 is_stmt 1 view .LVU190
+ 610              		.loc 1 163 15 is_stmt 0 view .LVU191
+ 611 0008 000C     		lsrs	r0, r0, #16
+ 612              	.LVL54:
+ 613              		.loc 1 163 13 view .LVU192
+ 614 000a 8DF80100 		strb	r0, [sp, #1]
+ 164:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 165:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     return reg;
+ 615              		.loc 1 165 5 is_stmt 1 view .LVU193
+ 616              		.loc 1 165 12 is_stmt 0 view .LVU194
+ 617 000e BDF80030 		ldrh	r3, [sp]
+ 618 0012 ADF80430 		strh	r3, [sp, #4]	@ movhi
+ 619 0016 0020     		movs	r0, #0
+ 620 0018 9DF80430 		ldrb	r3, [sp, #4]	@ zero_extendqisi2
+ 621 001c 63F30700 		bfi	r0, r3, #0, #8
+ 622 0020 9DF80530 		ldrb	r3, [sp, #5]	@ zero_extendqisi2
+ 623 0024 63F30F20 		bfi	r0, r3, #8, #8
+ 166:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** }
+ 624              		.loc 1 166 1 view .LVU195
+ 625 0028 02B0     		add	sp, sp, #8
+ 626              	.LCFI3:
+ 627              		.cfi_def_cfa_offset 0
+ 628              		@ sp needed
+ 629 002a 7047     		bx	lr
+ 630              		.cfi_endproc
+ 631              	.LFE155:
+ 633              		.section	.text.MAX11254_encode_delay,"ax",%progbits
+ 634              		.align	1
+ 635              		.global	MAX11254_encode_delay
+ 636              		.syntax unified
+ 637              		.thumb
+ 638              		.thumb_func
+ 640              	MAX11254_encode_delay:
+ 641              	.LFB156:
+ 167:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 168:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** uint32_t
+ 169:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** MAX11254_encode_delay(MAX11254_Reg_delay reg)
+ 170:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** {
+ 642              		.loc 1 170 1 is_stmt 1 view -0
+ 643              		.cfi_startproc
+ 644              		@ args = 0, pretend = 0, frame = 8
+ 645              		@ frame_needed = 0, uses_anonymous_args = 0
+ 646              		@ link register save eliminated.
+ 647 0000 82B0     		sub	sp, sp, #8
+ 648              	.LCFI4:
+ 649              		.cfi_def_cfa_offset 8
+ARM GAS  /tmp/ccTuWbqy.s 			page 15
+
+
+ 650 0002 ADF80400 		strh	r0, [sp, #4]	@ movhi
+ 171:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     uint32_t bytes = 0;
+ 651              		.loc 1 171 5 view .LVU197
+ 652              	.LVL55:
+ 172:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 173:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(DELAY_MUX, bytes, reg.mux);
+ 653              		.loc 1 173 5 view .LVU198
+ 654 0006 9DF80400 		ldrb	r0, [sp, #4]	@ zero_extendqisi2
+ 655              	.LVL56:
+ 174:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(DELAY_GPO, bytes, reg.gpo);
+ 656              		.loc 1 174 5 view .LVU199
+ 657 000a 9DF80530 		ldrb	r3, [sp, #5]	@ zero_extendqisi2
+ 658 000e 1B04     		lsls	r3, r3, #16
+ 659              	.LVL57:
+ 175:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 176:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     return bytes;
+ 660              		.loc 1 176 5 view .LVU200
+ 177:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** }
+ 661              		.loc 1 177 1 is_stmt 0 view .LVU201
+ 662 0010 43EA0020 		orr	r0, r3, r0, lsl #8
+ 663              	.LVL58:
+ 664              		.loc 1 177 1 view .LVU202
+ 665 0014 02B0     		add	sp, sp, #8
+ 666              	.LCFI5:
+ 667              		.cfi_def_cfa_offset 0
+ 668              		@ sp needed
+ 669 0016 7047     		bx	lr
+ 670              		.cfi_endproc
+ 671              	.LFE156:
+ 673              		.section	.text.MAX11254_decode_chmap1,"ax",%progbits
+ 674              		.align	1
+ 675              		.global	MAX11254_decode_chmap1
+ 676              		.syntax unified
+ 677              		.thumb
+ 678              		.thumb_func
+ 680              	MAX11254_decode_chmap1:
+ 681              	.LVL59:
+ 682              	.LFB157:
+ 178:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 179:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** MAX11254_Reg_chmap1
+ 180:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** MAX11254_decode_chmap1(uint32_t bytes)
+ 181:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** {
+ 683              		.loc 1 181 1 is_stmt 1 view -0
+ 684              		.cfi_startproc
+ 685              		@ args = 0, pretend = 0, frame = 8
+ 686              		@ frame_needed = 0, uses_anonymous_args = 0
+ 687              		@ link register save eliminated.
+ 688              		.loc 1 181 1 is_stmt 0 view .LVU204
+ 689 0000 82B0     		sub	sp, sp, #8
+ 690              	.LCFI6:
+ 691              		.cfi_def_cfa_offset 8
+ 182:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_Reg_chmap1 reg;
+ 692              		.loc 1 182 5 is_stmt 1 view .LVU205
+ 183:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 184:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.ch5_gpo   = MAX11254_GET(CHMAP1_CH5_GPO, bytes);
+ 693              		.loc 1 184 5 view .LVU206
+ 694              		.loc 1 184 21 is_stmt 0 view .LVU207
+ARM GAS  /tmp/ccTuWbqy.s 			page 16
+
+
+ 695 0002 C0F34132 		ubfx	r2, r0, #13, #2
+ 696              		.loc 1 184 19 view .LVU208
+ 697 0006 9DF80030 		ldrb	r3, [sp]	@ zero_extendqisi2
+ 698 000a 62F30103 		bfi	r3, r2, #0, #2
+ 699 000e 8DF80030 		strb	r3, [sp]
+ 185:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.ch5_ord   = MAX11254_GET(CHMAP1_CH5_ORD, bytes);
+ 700              		.loc 1 185 5 is_stmt 1 view .LVU209
+ 701              		.loc 1 185 21 is_stmt 0 view .LVU210
+ 702 0012 C0F38222 		ubfx	r2, r0, #10, #3
+ 703              		.loc 1 185 19 view .LVU211
+ 704 0016 DBB2     		uxtb	r3, r3
+ 705 0018 62F38403 		bfi	r3, r2, #2, #3
+ 706 001c 8DF80030 		strb	r3, [sp]
+ 186:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.ch5_en    = MAX11254_GET(CHMAP1_CH5_EN, bytes);
+ 707              		.loc 1 186 5 is_stmt 1 view .LVU212
+ 708              		.loc 1 186 21 is_stmt 0 view .LVU213
+ 709 0020 C0F34022 		ubfx	r2, r0, #9, #1
+ 710              		.loc 1 186 19 view .LVU214
+ 711 0024 DBB2     		uxtb	r3, r3
+ 712 0026 62F34513 		bfi	r3, r2, #5, #1
+ 713 002a 8DF80030 		strb	r3, [sp]
+ 187:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.ch5_gpoen = MAX11254_GET(CHMAP1_CH5_GPOEN, bytes);
+ 714              		.loc 1 187 5 is_stmt 1 view .LVU215
+ 715              		.loc 1 187 21 is_stmt 0 view .LVU216
+ 716 002e C0F30022 		ubfx	r2, r0, #8, #1
+ 717              		.loc 1 187 19 view .LVU217
+ 718 0032 DBB2     		uxtb	r3, r3
+ 719 0034 62F38613 		bfi	r3, r2, #6, #1
+ 720 0038 8DF80030 		strb	r3, [sp]
+ 188:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 189:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.ch4_gpo   = MAX11254_GET(CHMAP1_CH4_GPO, bytes);
+ 721              		.loc 1 189 5 is_stmt 1 view .LVU218
+ 722              		.loc 1 189 21 is_stmt 0 view .LVU219
+ 723 003c C0F34152 		ubfx	r2, r0, #21, #2
+ 724              		.loc 1 189 19 view .LVU220
+ 725 0040 9DF80130 		ldrb	r3, [sp, #1]	@ zero_extendqisi2
+ 726 0044 62F30103 		bfi	r3, r2, #0, #2
+ 727 0048 8DF80130 		strb	r3, [sp, #1]
+ 190:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.ch4_ord   = MAX11254_GET(CHMAP1_CH4_ORD, bytes);
+ 728              		.loc 1 190 5 is_stmt 1 view .LVU221
+ 729              		.loc 1 190 21 is_stmt 0 view .LVU222
+ 730 004c C0F38242 		ubfx	r2, r0, #18, #3
+ 731              		.loc 1 190 19 view .LVU223
+ 732 0050 DBB2     		uxtb	r3, r3
+ 733 0052 62F38403 		bfi	r3, r2, #2, #3
+ 734 0056 8DF80130 		strb	r3, [sp, #1]
+ 191:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.ch4_en    = MAX11254_GET(CHMAP1_CH4_EN, bytes);
+ 735              		.loc 1 191 5 is_stmt 1 view .LVU224
+ 736              		.loc 1 191 21 is_stmt 0 view .LVU225
+ 737 005a C0F34042 		ubfx	r2, r0, #17, #1
+ 738              		.loc 1 191 19 view .LVU226
+ 739 005e DBB2     		uxtb	r3, r3
+ 740 0060 62F34513 		bfi	r3, r2, #5, #1
+ 741 0064 8DF80130 		strb	r3, [sp, #1]
+ 192:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.ch4_gpoen = MAX11254_GET(CHMAP1_CH4_GPOEN, bytes);
+ 742              		.loc 1 192 5 is_stmt 1 view .LVU227
+ 743              		.loc 1 192 21 is_stmt 0 view .LVU228
+ARM GAS  /tmp/ccTuWbqy.s 			page 17
+
+
+ 744 0068 C0F30042 		ubfx	r2, r0, #16, #1
+ 745              		.loc 1 192 19 view .LVU229
+ 746 006c DBB2     		uxtb	r3, r3
+ 747 006e 62F38613 		bfi	r3, r2, #6, #1
+ 748 0072 8DF80130 		strb	r3, [sp, #1]
+ 193:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 194:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.ch3_gpo   = MAX11254_GET(CHMAP1_CH3_GPO, bytes);
+ 749              		.loc 1 194 5 is_stmt 1 view .LVU230
+ 750              		.loc 1 194 21 is_stmt 0 view .LVU231
+ 751 0076 C0F34172 		ubfx	r2, r0, #29, #2
+ 752              		.loc 1 194 19 view .LVU232
+ 753 007a 9DF80230 		ldrb	r3, [sp, #2]	@ zero_extendqisi2
+ 754 007e 62F30103 		bfi	r3, r2, #0, #2
+ 755 0082 8DF80230 		strb	r3, [sp, #2]
+ 195:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.ch3_ord   = MAX11254_GET(CHMAP1_CH3_ORD, bytes);
+ 756              		.loc 1 195 5 is_stmt 1 view .LVU233
+ 757              		.loc 1 195 21 is_stmt 0 view .LVU234
+ 758 0086 C0F38262 		ubfx	r2, r0, #26, #3
+ 759              		.loc 1 195 19 view .LVU235
+ 760 008a DBB2     		uxtb	r3, r3
+ 761 008c 62F38403 		bfi	r3, r2, #2, #3
+ 762 0090 8DF80230 		strb	r3, [sp, #2]
+ 196:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.ch3_en    = MAX11254_GET(CHMAP1_CH3_EN, bytes);
+ 763              		.loc 1 196 5 is_stmt 1 view .LVU236
+ 764              		.loc 1 196 21 is_stmt 0 view .LVU237
+ 765 0094 C0F34062 		ubfx	r2, r0, #25, #1
+ 766              		.loc 1 196 19 view .LVU238
+ 767 0098 DBB2     		uxtb	r3, r3
+ 768 009a 62F34513 		bfi	r3, r2, #5, #1
+ 769 009e 8DF80230 		strb	r3, [sp, #2]
+ 197:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.ch3_gpoen = MAX11254_GET(CHMAP1_CH3_GPOEN, bytes);
+ 770              		.loc 1 197 5 is_stmt 1 view .LVU239
+ 771              		.loc 1 197 21 is_stmt 0 view .LVU240
+ 772 00a2 C0F30060 		ubfx	r0, r0, #24, #1
+ 773              	.LVL60:
+ 774              		.loc 1 197 19 view .LVU241
+ 775 00a6 DBB2     		uxtb	r3, r3
+ 776 00a8 60F38613 		bfi	r3, r0, #6, #1
+ 777 00ac 8DF80230 		strb	r3, [sp, #2]
+ 198:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 199:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     return reg;
+ 778              		.loc 1 199 5 is_stmt 1 view .LVU242
+ 779              		.loc 1 199 12 is_stmt 0 view .LVU243
+ 780 00b0 009B     		ldr	r3, [sp]
+ 781 00b2 ADF80430 		strh	r3, [sp, #4]	@ movhi
+ 782 00b6 1B0C     		lsrs	r3, r3, #16
+ 783 00b8 8DF80630 		strb	r3, [sp, #6]
+ 784 00bc 0020     		movs	r0, #0
+ 785 00be 9DF80430 		ldrb	r3, [sp, #4]	@ zero_extendqisi2
+ 786 00c2 63F30700 		bfi	r0, r3, #0, #8
+ 787 00c6 9DF80530 		ldrb	r3, [sp, #5]	@ zero_extendqisi2
+ 788 00ca 63F30F20 		bfi	r0, r3, #8, #8
+ 789 00ce 9DF80630 		ldrb	r3, [sp, #6]	@ zero_extendqisi2
+ 790 00d2 63F31740 		bfi	r0, r3, #16, #8
+ 200:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** }
+ 791              		.loc 1 200 1 view .LVU244
+ 792 00d6 02B0     		add	sp, sp, #8
+ARM GAS  /tmp/ccTuWbqy.s 			page 18
+
+
+ 793              	.LCFI7:
+ 794              		.cfi_def_cfa_offset 0
+ 795              		@ sp needed
+ 796 00d8 7047     		bx	lr
+ 797              		.cfi_endproc
+ 798              	.LFE157:
+ 800              		.section	.text.MAX11254_encode_chmap1,"ax",%progbits
+ 801              		.align	1
+ 802              		.global	MAX11254_encode_chmap1
+ 803              		.syntax unified
+ 804              		.thumb
+ 805              		.thumb_func
+ 807              	MAX11254_encode_chmap1:
+ 808              	.LFB158:
+ 201:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 202:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** uint32_t
+ 203:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** MAX11254_encode_chmap1(MAX11254_Reg_chmap1 reg)
+ 204:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** {
+ 809              		.loc 1 204 1 is_stmt 1 view -0
+ 810              		.cfi_startproc
+ 811              		@ args = 0, pretend = 0, frame = 8
+ 812              		@ frame_needed = 0, uses_anonymous_args = 0
+ 813              		@ link register save eliminated.
+ 814 0000 82B0     		sub	sp, sp, #8
+ 815              	.LCFI8:
+ 816              		.cfi_def_cfa_offset 8
+ 817 0002 0190     		str	r0, [sp, #4]
+ 205:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     uint32_t bytes = 0;
+ 818              		.loc 1 205 5 view .LVU246
+ 819              	.LVL61:
+ 206:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 207:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(CHMAP1_CH5_GPO, bytes, reg.ch5_gpo);
+ 820              		.loc 1 207 5 view .LVU247
+ 821 0004 9DF80420 		ldrb	r2, [sp, #4]	@ zero_extendqisi2
+ 822 0008 02F00301 		and	r1, r2, #3
+ 823              	.LVL62:
+ 208:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(CHMAP1_CH5_ORD, bytes, reg.ch5_ord);
+ 824              		.loc 1 208 5 view .LVU248
+ 825 000c C2F38203 		ubfx	r3, r2, #2, #3
+ 826 0010 9B02     		lsls	r3, r3, #10
+ 827 0012 43EA4133 		orr	r3, r3, r1, lsl #13
+ 828              	.LVL63:
+ 209:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(CHMAP1_CH5_EN, bytes, reg.ch5_en);
+ 829              		.loc 1 209 5 view .LVU249
+ 830 0016 C2F34011 		ubfx	r1, r2, #5, #1
+ 831 001a 43EA4123 		orr	r3, r3, r1, lsl #9
+ 832              	.LVL64:
+ 210:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(CHMAP1_CH5_GPOEN, bytes, reg.ch5_gpoen);
+ 833              		.loc 1 210 5 view .LVU250
+ 834 001e C2F38012 		ubfx	r2, r2, #6, #1
+ 835 0022 43EA0223 		orr	r3, r3, r2, lsl #8
+ 836              	.LVL65:
+ 211:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 212:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(CHMAP1_CH4_GPO, bytes, reg.ch4_gpo);
+ 837              		.loc 1 212 5 view .LVU251
+ 838 0026 9DF80520 		ldrb	r2, [sp, #5]	@ zero_extendqisi2
+ 839 002a 02F00301 		and	r1, r2, #3
+ARM GAS  /tmp/ccTuWbqy.s 			page 19
+
+
+ 840 002e 43EA4153 		orr	r3, r3, r1, lsl #21
+ 841              	.LVL66:
+ 213:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(CHMAP1_CH4_ORD, bytes, reg.ch4_ord);
+ 842              		.loc 1 213 5 view .LVU252
+ 843 0032 C2F38201 		ubfx	r1, r2, #2, #3
+ 844 0036 43EA8143 		orr	r3, r3, r1, lsl #18
+ 845              	.LVL67:
+ 214:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(CHMAP1_CH4_EN, bytes, reg.ch4_en);
+ 846              		.loc 1 214 5 view .LVU253
+ 847 003a C2F34011 		ubfx	r1, r2, #5, #1
+ 848 003e 43EA4143 		orr	r3, r3, r1, lsl #17
+ 849              	.LVL68:
+ 215:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(CHMAP1_CH4_GPOEN, bytes, reg.ch4_gpoen);
+ 850              		.loc 1 215 5 view .LVU254
+ 851 0042 C2F38012 		ubfx	r2, r2, #6, #1
+ 852 0046 43EA0243 		orr	r3, r3, r2, lsl #16
+ 853              	.LVL69:
+ 216:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 217:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(CHMAP1_CH3_GPO, bytes, reg.ch3_gpo);
+ 854              		.loc 1 217 5 view .LVU255
+ 855 004a 9DF80600 		ldrb	r0, [sp, #6]	@ zero_extendqisi2
+ 856 004e 00F00302 		and	r2, r0, #3
+ 857 0052 43EA4273 		orr	r3, r3, r2, lsl #29
+ 858              	.LVL70:
+ 218:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(CHMAP1_CH3_ORD, bytes, reg.ch3_ord);
+ 859              		.loc 1 218 5 view .LVU256
+ 860 0056 C0F38202 		ubfx	r2, r0, #2, #3
+ 861 005a 43EA8263 		orr	r3, r3, r2, lsl #26
+ 862              	.LVL71:
+ 219:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(CHMAP1_CH3_EN, bytes, reg.ch3_en);
+ 863              		.loc 1 219 5 view .LVU257
+ 864 005e C0F34012 		ubfx	r2, r0, #5, #1
+ 865 0062 43EA4263 		orr	r3, r3, r2, lsl #25
+ 866              	.LVL72:
+ 220:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(CHMAP1_CH3_GPOEN, bytes, reg.ch3_gpoen);
+ 867              		.loc 1 220 5 view .LVU258
+ 868 0066 C0F38010 		ubfx	r0, r0, #6, #1
+ 869              	.LVL73:
+ 221:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 222:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     return bytes;
+ 870              		.loc 1 222 5 view .LVU259
+ 223:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** }
+ 871              		.loc 1 223 1 is_stmt 0 view .LVU260
+ 872 006a 43EA0060 		orr	r0, r3, r0, lsl #24
+ 873              	.LVL74:
+ 874              		.loc 1 223 1 view .LVU261
+ 875 006e 02B0     		add	sp, sp, #8
+ 876              	.LCFI9:
+ 877              		.cfi_def_cfa_offset 0
+ 878              		@ sp needed
+ 879 0070 7047     		bx	lr
+ 880              		.cfi_endproc
+ 881              	.LFE158:
+ 883              		.section	.text.MAX11254_decode_chmap0,"ax",%progbits
+ 884              		.align	1
+ 885              		.global	MAX11254_decode_chmap0
+ 886              		.syntax unified
+ARM GAS  /tmp/ccTuWbqy.s 			page 20
+
+
+ 887              		.thumb
+ 888              		.thumb_func
+ 890              	MAX11254_decode_chmap0:
+ 891              	.LVL75:
+ 892              	.LFB159:
+ 224:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 225:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** MAX11254_Reg_chmap0
+ 226:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** MAX11254_decode_chmap0(uint32_t bytes)
+ 227:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** {
+ 893              		.loc 1 227 1 is_stmt 1 view -0
+ 894              		.cfi_startproc
+ 895              		@ args = 0, pretend = 0, frame = 8
+ 896              		@ frame_needed = 0, uses_anonymous_args = 0
+ 897              		@ link register save eliminated.
+ 898              		.loc 1 227 1 is_stmt 0 view .LVU263
+ 899 0000 82B0     		sub	sp, sp, #8
+ 900              	.LCFI10:
+ 901              		.cfi_def_cfa_offset 8
+ 228:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_Reg_chmap0 reg;
+ 902              		.loc 1 228 5 is_stmt 1 view .LVU264
+ 229:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 230:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.ch2_gpo   = MAX11254_GET(CHMAP0_CH2_GPO, bytes);
+ 903              		.loc 1 230 5 view .LVU265
+ 904              		.loc 1 230 21 is_stmt 0 view .LVU266
+ 905 0002 C0F34132 		ubfx	r2, r0, #13, #2
+ 906              		.loc 1 230 19 view .LVU267
+ 907 0006 9DF80030 		ldrb	r3, [sp]	@ zero_extendqisi2
+ 908 000a 62F30103 		bfi	r3, r2, #0, #2
+ 909 000e 8DF80030 		strb	r3, [sp]
+ 231:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.ch2_ord   = MAX11254_GET(CHMAP0_CH2_ORD, bytes);
+ 910              		.loc 1 231 5 is_stmt 1 view .LVU268
+ 911              		.loc 1 231 21 is_stmt 0 view .LVU269
+ 912 0012 C0F38222 		ubfx	r2, r0, #10, #3
+ 913              		.loc 1 231 19 view .LVU270
+ 914 0016 DBB2     		uxtb	r3, r3
+ 915 0018 62F38403 		bfi	r3, r2, #2, #3
+ 916 001c 8DF80030 		strb	r3, [sp]
+ 232:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.ch2_en    = MAX11254_GET(CHMAP0_CH2_EN, bytes);
+ 917              		.loc 1 232 5 is_stmt 1 view .LVU271
+ 918              		.loc 1 232 21 is_stmt 0 view .LVU272
+ 919 0020 C0F34022 		ubfx	r2, r0, #9, #1
+ 920              		.loc 1 232 19 view .LVU273
+ 921 0024 DBB2     		uxtb	r3, r3
+ 922 0026 62F34513 		bfi	r3, r2, #5, #1
+ 923 002a 8DF80030 		strb	r3, [sp]
+ 233:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.ch2_gpoen = MAX11254_GET(CHMAP0_CH2_GPOEN, bytes);
+ 924              		.loc 1 233 5 is_stmt 1 view .LVU274
+ 925              		.loc 1 233 21 is_stmt 0 view .LVU275
+ 926 002e C0F30022 		ubfx	r2, r0, #8, #1
+ 927              		.loc 1 233 19 view .LVU276
+ 928 0032 DBB2     		uxtb	r3, r3
+ 929 0034 62F38613 		bfi	r3, r2, #6, #1
+ 930 0038 8DF80030 		strb	r3, [sp]
+ 234:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 235:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.ch1_gpo   = MAX11254_GET(CHMAP0_CH1_GPO, bytes);
+ 931              		.loc 1 235 5 is_stmt 1 view .LVU277
+ 932              		.loc 1 235 21 is_stmt 0 view .LVU278
+ARM GAS  /tmp/ccTuWbqy.s 			page 21
+
+
+ 933 003c C0F34152 		ubfx	r2, r0, #21, #2
+ 934              		.loc 1 235 19 view .LVU279
+ 935 0040 9DF80130 		ldrb	r3, [sp, #1]	@ zero_extendqisi2
+ 936 0044 62F30103 		bfi	r3, r2, #0, #2
+ 937 0048 8DF80130 		strb	r3, [sp, #1]
+ 236:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.ch1_ord   = MAX11254_GET(CHMAP0_CH1_ORD, bytes);
+ 938              		.loc 1 236 5 is_stmt 1 view .LVU280
+ 939              		.loc 1 236 21 is_stmt 0 view .LVU281
+ 940 004c C0F38242 		ubfx	r2, r0, #18, #3
+ 941              		.loc 1 236 19 view .LVU282
+ 942 0050 DBB2     		uxtb	r3, r3
+ 943 0052 62F38403 		bfi	r3, r2, #2, #3
+ 944 0056 8DF80130 		strb	r3, [sp, #1]
+ 237:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.ch1_en    = MAX11254_GET(CHMAP0_CH1_EN, bytes);
+ 945              		.loc 1 237 5 is_stmt 1 view .LVU283
+ 946              		.loc 1 237 21 is_stmt 0 view .LVU284
+ 947 005a C0F34042 		ubfx	r2, r0, #17, #1
+ 948              		.loc 1 237 19 view .LVU285
+ 949 005e DBB2     		uxtb	r3, r3
+ 950 0060 62F34513 		bfi	r3, r2, #5, #1
+ 951 0064 8DF80130 		strb	r3, [sp, #1]
+ 238:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.ch1_gpoen = MAX11254_GET(CHMAP0_CH1_GPOEN, bytes);
+ 952              		.loc 1 238 5 is_stmt 1 view .LVU286
+ 953              		.loc 1 238 21 is_stmt 0 view .LVU287
+ 954 0068 C0F30042 		ubfx	r2, r0, #16, #1
+ 955              		.loc 1 238 19 view .LVU288
+ 956 006c DBB2     		uxtb	r3, r3
+ 957 006e 62F38613 		bfi	r3, r2, #6, #1
+ 958 0072 8DF80130 		strb	r3, [sp, #1]
+ 239:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 240:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.ch0_gpo   = MAX11254_GET(CHMAP0_CH0_GPO, bytes);
+ 959              		.loc 1 240 5 is_stmt 1 view .LVU289
+ 960              		.loc 1 240 21 is_stmt 0 view .LVU290
+ 961 0076 C0F34172 		ubfx	r2, r0, #29, #2
+ 962              		.loc 1 240 19 view .LVU291
+ 963 007a 9DF80230 		ldrb	r3, [sp, #2]	@ zero_extendqisi2
+ 964 007e 62F30103 		bfi	r3, r2, #0, #2
+ 965 0082 8DF80230 		strb	r3, [sp, #2]
+ 241:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.ch0_ord   = MAX11254_GET(CHMAP0_CH0_ORD, bytes);
+ 966              		.loc 1 241 5 is_stmt 1 view .LVU292
+ 967              		.loc 1 241 21 is_stmt 0 view .LVU293
+ 968 0086 C0F38262 		ubfx	r2, r0, #26, #3
+ 969              		.loc 1 241 19 view .LVU294
+ 970 008a DBB2     		uxtb	r3, r3
+ 971 008c 62F38403 		bfi	r3, r2, #2, #3
+ 972 0090 8DF80230 		strb	r3, [sp, #2]
+ 242:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.ch0_en    = MAX11254_GET(CHMAP0_CH0_EN, bytes);
+ 973              		.loc 1 242 5 is_stmt 1 view .LVU295
+ 974              		.loc 1 242 21 is_stmt 0 view .LVU296
+ 975 0094 C0F34062 		ubfx	r2, r0, #25, #1
+ 976              		.loc 1 242 19 view .LVU297
+ 977 0098 DBB2     		uxtb	r3, r3
+ 978 009a 62F34513 		bfi	r3, r2, #5, #1
+ 979 009e 8DF80230 		strb	r3, [sp, #2]
+ 243:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.ch0_gpoen = MAX11254_GET(CHMAP0_CH0_GPOEN, bytes);
+ 980              		.loc 1 243 5 is_stmt 1 view .LVU298
+ 981              		.loc 1 243 21 is_stmt 0 view .LVU299
+ARM GAS  /tmp/ccTuWbqy.s 			page 22
+
+
+ 982 00a2 C0F30060 		ubfx	r0, r0, #24, #1
+ 983              	.LVL76:
+ 984              		.loc 1 243 19 view .LVU300
+ 985 00a6 DBB2     		uxtb	r3, r3
+ 986 00a8 60F38613 		bfi	r3, r0, #6, #1
+ 987 00ac 8DF80230 		strb	r3, [sp, #2]
+ 244:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 245:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     return reg;
+ 988              		.loc 1 245 5 is_stmt 1 view .LVU301
+ 989              		.loc 1 245 12 is_stmt 0 view .LVU302
+ 990 00b0 009B     		ldr	r3, [sp]
+ 991 00b2 ADF80430 		strh	r3, [sp, #4]	@ movhi
+ 992 00b6 1B0C     		lsrs	r3, r3, #16
+ 993 00b8 8DF80630 		strb	r3, [sp, #6]
+ 994 00bc 0020     		movs	r0, #0
+ 995 00be 9DF80430 		ldrb	r3, [sp, #4]	@ zero_extendqisi2
+ 996 00c2 63F30700 		bfi	r0, r3, #0, #8
+ 997 00c6 9DF80530 		ldrb	r3, [sp, #5]	@ zero_extendqisi2
+ 998 00ca 63F30F20 		bfi	r0, r3, #8, #8
+ 999 00ce 9DF80630 		ldrb	r3, [sp, #6]	@ zero_extendqisi2
+ 1000 00d2 63F31740 		bfi	r0, r3, #16, #8
+ 246:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** }
+ 1001              		.loc 1 246 1 view .LVU303
+ 1002 00d6 02B0     		add	sp, sp, #8
+ 1003              	.LCFI11:
+ 1004              		.cfi_def_cfa_offset 0
+ 1005              		@ sp needed
+ 1006 00d8 7047     		bx	lr
+ 1007              		.cfi_endproc
+ 1008              	.LFE159:
+ 1010              		.section	.text.MAX11254_encode_chmap0,"ax",%progbits
+ 1011              		.align	1
+ 1012              		.global	MAX11254_encode_chmap0
+ 1013              		.syntax unified
+ 1014              		.thumb
+ 1015              		.thumb_func
+ 1017              	MAX11254_encode_chmap0:
+ 1018              	.LFB160:
+ 247:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 248:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** uint32_t
+ 249:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** MAX11254_encode_chmap0(MAX11254_Reg_chmap0 reg)
+ 250:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** {
+ 1019              		.loc 1 250 1 is_stmt 1 view -0
+ 1020              		.cfi_startproc
+ 1021              		@ args = 0, pretend = 0, frame = 8
+ 1022              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1023              		@ link register save eliminated.
+ 1024 0000 82B0     		sub	sp, sp, #8
+ 1025              	.LCFI12:
+ 1026              		.cfi_def_cfa_offset 8
+ 1027 0002 0190     		str	r0, [sp, #4]
+ 251:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     uint32_t bytes = 0;
+ 1028              		.loc 1 251 5 view .LVU305
+ 1029              	.LVL77:
+ 252:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 253:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(CHMAP0_CH2_GPO, bytes, reg.ch2_gpo);
+ 1030              		.loc 1 253 5 view .LVU306
+ARM GAS  /tmp/ccTuWbqy.s 			page 23
+
+
+ 1031 0004 9DF80420 		ldrb	r2, [sp, #4]	@ zero_extendqisi2
+ 1032 0008 02F00301 		and	r1, r2, #3
+ 1033              	.LVL78:
+ 254:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(CHMAP0_CH2_ORD, bytes, reg.ch2_ord);
+ 1034              		.loc 1 254 5 view .LVU307
+ 1035 000c C2F38203 		ubfx	r3, r2, #2, #3
+ 1036 0010 9B02     		lsls	r3, r3, #10
+ 1037 0012 43EA4133 		orr	r3, r3, r1, lsl #13
+ 1038              	.LVL79:
+ 255:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(CHMAP0_CH2_EN, bytes, reg.ch2_en);
+ 1039              		.loc 1 255 5 view .LVU308
+ 1040 0016 C2F34011 		ubfx	r1, r2, #5, #1
+ 1041 001a 43EA4123 		orr	r3, r3, r1, lsl #9
+ 1042              	.LVL80:
+ 256:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(CHMAP0_CH2_GPOEN, bytes, reg.ch2_gpoen);
+ 1043              		.loc 1 256 5 view .LVU309
+ 1044 001e C2F38012 		ubfx	r2, r2, #6, #1
+ 1045 0022 43EA0223 		orr	r3, r3, r2, lsl #8
+ 1046              	.LVL81:
+ 257:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 258:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(CHMAP0_CH1_GPO, bytes, reg.ch1_gpo);
+ 1047              		.loc 1 258 5 view .LVU310
+ 1048 0026 9DF80520 		ldrb	r2, [sp, #5]	@ zero_extendqisi2
+ 1049 002a 02F00301 		and	r1, r2, #3
+ 1050 002e 43EA4153 		orr	r3, r3, r1, lsl #21
+ 1051              	.LVL82:
+ 259:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(CHMAP0_CH1_ORD, bytes, reg.ch1_ord);
+ 1052              		.loc 1 259 5 view .LVU311
+ 1053 0032 C2F38201 		ubfx	r1, r2, #2, #3
+ 1054 0036 43EA8143 		orr	r3, r3, r1, lsl #18
+ 1055              	.LVL83:
+ 260:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(CHMAP0_CH1_EN, bytes, reg.ch1_en);
+ 1056              		.loc 1 260 5 view .LVU312
+ 1057 003a C2F34011 		ubfx	r1, r2, #5, #1
+ 1058 003e 43EA4143 		orr	r3, r3, r1, lsl #17
+ 1059              	.LVL84:
+ 261:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(CHMAP0_CH1_GPOEN, bytes, reg.ch1_gpoen);
+ 1060              		.loc 1 261 5 view .LVU313
+ 1061 0042 C2F38012 		ubfx	r2, r2, #6, #1
+ 1062 0046 43EA0243 		orr	r3, r3, r2, lsl #16
+ 1063              	.LVL85:
+ 262:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 263:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(CHMAP0_CH0_GPO, bytes, reg.ch0_gpo);
+ 1064              		.loc 1 263 5 view .LVU314
+ 1065 004a 9DF80600 		ldrb	r0, [sp, #6]	@ zero_extendqisi2
+ 1066 004e 00F00302 		and	r2, r0, #3
+ 1067 0052 43EA4273 		orr	r3, r3, r2, lsl #29
+ 1068              	.LVL86:
+ 264:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(CHMAP0_CH0_ORD, bytes, reg.ch0_ord);
+ 1069              		.loc 1 264 5 view .LVU315
+ 1070 0056 C0F38202 		ubfx	r2, r0, #2, #3
+ 1071 005a 43EA8263 		orr	r3, r3, r2, lsl #26
+ 1072              	.LVL87:
+ 265:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(CHMAP0_CH0_EN, bytes, reg.ch0_en);
+ 1073              		.loc 1 265 5 view .LVU316
+ 1074 005e C0F34012 		ubfx	r2, r0, #5, #1
+ 1075 0062 43EA4263 		orr	r3, r3, r2, lsl #25
+ARM GAS  /tmp/ccTuWbqy.s 			page 24
+
+
+ 1076              	.LVL88:
+ 266:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(CHMAP0_CH0_GPOEN, bytes, reg.ch0_gpoen);
+ 1077              		.loc 1 266 5 view .LVU317
+ 1078 0066 C0F38010 		ubfx	r0, r0, #6, #1
+ 1079              	.LVL89:
+ 267:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 268:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     return bytes;
+ 1080              		.loc 1 268 5 view .LVU318
+ 269:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** }
+ 1081              		.loc 1 269 1 is_stmt 0 view .LVU319
+ 1082 006a 43EA0060 		orr	r0, r3, r0, lsl #24
+ 1083              	.LVL90:
+ 1084              		.loc 1 269 1 view .LVU320
+ 1085 006e 02B0     		add	sp, sp, #8
+ 1086              	.LCFI13:
+ 1087              		.cfi_def_cfa_offset 0
+ 1088              		@ sp needed
+ 1089 0070 7047     		bx	lr
+ 1090              		.cfi_endproc
+ 1091              	.LFE160:
+ 1093              		.section	.text.MAX11254_decode_seq,"ax",%progbits
+ 1094              		.align	1
+ 1095              		.global	MAX11254_decode_seq
+ 1096              		.syntax unified
+ 1097              		.thumb
+ 1098              		.thumb_func
+ 1100              	MAX11254_decode_seq:
+ 1101              	.LVL91:
+ 1102              	.LFB161:
+ 270:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 271:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** MAX11254_Reg_seq
+ 272:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** MAX11254_decode_seq(uint32_t bytes)
+ 273:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** {
+ 1103              		.loc 1 273 1 is_stmt 1 view -0
+ 1104              		.cfi_startproc
+ 1105              		@ args = 0, pretend = 0, frame = 0
+ 1106              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1107              		@ link register save eliminated.
+ 1108              		.loc 1 273 1 is_stmt 0 view .LVU322
+ 1109 0000 0346     		mov	r3, r0
+ 274:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_Reg_seq reg;
+ 1110              		.loc 1 274 5 is_stmt 1 view .LVU323
+ 275:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 276:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.mux     = MAX11254_GET(SEQ_MUX, bytes);
+ 1111              		.loc 1 276 5 view .LVU324
+ 1112              		.loc 1 276 19 is_stmt 0 view .LVU325
+ 1113 0002 C0F34232 		ubfx	r2, r0, #13, #3
+ 1114              		.loc 1 276 17 view .LVU326
+ 1115 0006 4FF00000 		mov	r0, #0
+ 1116              	.LVL92:
+ 1117              		.loc 1 276 17 view .LVU327
+ 1118 000a 62F30200 		bfi	r0, r2, #0, #3
+ 1119              	.LVL93:
+ 277:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.mode    = MAX11254_GET(SEQ_MODE, bytes);
+ 1120              		.loc 1 277 5 is_stmt 1 view .LVU328
+ 1121              		.loc 1 277 19 is_stmt 0 view .LVU329
+ 1122 000e C3F3C122 		ubfx	r2, r3, #11, #2
+ARM GAS  /tmp/ccTuWbqy.s 			page 25
+
+
+ 1123              		.loc 1 277 17 view .LVU330
+ 1124 0012 62F3C400 		bfi	r0, r2, #3, #2
+ 278:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.gpodren = MAX11254_GET(SEQ_GPODREN, bytes);
+ 1125              		.loc 1 278 5 is_stmt 1 view .LVU331
+ 1126              		.loc 1 278 19 is_stmt 0 view .LVU332
+ 1127 0016 C3F38022 		ubfx	r2, r3, #10, #1
+ 1128              		.loc 1 278 17 view .LVU333
+ 1129 001a 62F34510 		bfi	r0, r2, #5, #1
+ 279:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.mdren   = MAX11254_GET(SEQ_MDREN, bytes);
+ 1130              		.loc 1 279 5 is_stmt 1 view .LVU334
+ 1131              		.loc 1 279 19 is_stmt 0 view .LVU335
+ 1132 001e C3F34022 		ubfx	r2, r3, #9, #1
+ 1133              		.loc 1 279 17 view .LVU336
+ 1134 0022 62F38610 		bfi	r0, r2, #6, #1
+ 280:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.rdyben  = MAX11254_GET(SEQ_RDYBEN, bytes);
+ 1135              		.loc 1 280 5 is_stmt 1 view .LVU337
+ 1136              		.loc 1 280 19 is_stmt 0 view .LVU338
+ 1137 0026 C3F30023 		ubfx	r3, r3, #8, #1
+ 1138              	.LVL94:
+ 1139              		.loc 1 280 17 view .LVU339
+ 1140 002a 63F3C710 		bfi	r0, r3, #7, #1
+ 281:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 282:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     return reg;
+ 1141              		.loc 1 282 5 is_stmt 1 view .LVU340
+ 1142              	.LVL95:
+ 283:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** }
+ 1143              		.loc 1 283 1 is_stmt 0 view .LVU341
+ 1144 002e 7047     		bx	lr
+ 1145              		.cfi_endproc
+ 1146              	.LFE161:
+ 1148              		.section	.text.MAX11254_encode_seq,"ax",%progbits
+ 1149              		.align	1
+ 1150              		.global	MAX11254_encode_seq
+ 1151              		.syntax unified
+ 1152              		.thumb
+ 1153              		.thumb_func
+ 1155              	MAX11254_encode_seq:
+ 1156              	.LVL96:
+ 1157              	.LFB162:
+ 284:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 285:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** uint32_t
+ 286:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** MAX11254_encode_seq(MAX11254_Reg_seq reg)
+ 287:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** {
+ 1158              		.loc 1 287 1 is_stmt 1 view -0
+ 1159              		.cfi_startproc
+ 1160              		@ args = 0, pretend = 0, frame = 0
+ 1161              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1162              		@ link register save eliminated.
+ 288:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     uint32_t bytes = 0;
+ 1163              		.loc 1 288 5 view .LVU343
+ 289:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 290:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(SEQ_MUX, bytes, reg.mux);
+ 1164              		.loc 1 290 5 view .LVU344
+ 1165 0000 00F00702 		and	r2, r0, #7
+ 1166              	.LVL97:
+ 291:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(SEQ_MODE, bytes, reg.mode);
+ 1167              		.loc 1 291 5 view .LVU345
+ARM GAS  /tmp/ccTuWbqy.s 			page 26
+
+
+ 1168 0004 C0F3C103 		ubfx	r3, r0, #3, #2
+ 1169 0008 DB02     		lsls	r3, r3, #11
+ 1170 000a 43EA4233 		orr	r3, r3, r2, lsl #13
+ 1171              	.LVL98:
+ 292:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(SEQ_GPODREN, bytes, reg.gpodren);
+ 1172              		.loc 1 292 5 view .LVU346
+ 1173 000e C0F34012 		ubfx	r2, r0, #5, #1
+ 1174 0012 43EA8223 		orr	r3, r3, r2, lsl #10
+ 1175              	.LVL99:
+ 293:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(SEQ_MDREN, bytes, reg.mdren);
+ 1176              		.loc 1 293 5 view .LVU347
+ 1177 0016 C0F38012 		ubfx	r2, r0, #6, #1
+ 1178 001a 43EA4223 		orr	r3, r3, r2, lsl #9
+ 1179              	.LVL100:
+ 294:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(SEQ_RDYBEN, bytes, reg.rdyben);
+ 1180              		.loc 1 294 5 view .LVU348
+ 1181 001e C0F3C010 		ubfx	r0, r0, #7, #1
+ 1182              	.LVL101:
+ 295:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 296:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     return bytes;
+ 1183              		.loc 1 296 5 view .LVU349
+ 297:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** }
+ 1184              		.loc 1 297 1 is_stmt 0 view .LVU350
+ 1185 0022 43EA0020 		orr	r0, r3, r0, lsl #8
+ 1186              	.LVL102:
+ 1187              		.loc 1 297 1 view .LVU351
+ 1188 0026 7047     		bx	lr
+ 1189              		.cfi_endproc
+ 1190              	.LFE162:
+ 1192              		.section	.text.MAX11254_decode_gpo_dir,"ax",%progbits
+ 1193              		.align	1
+ 1194              		.global	MAX11254_decode_gpo_dir
+ 1195              		.syntax unified
+ 1196              		.thumb
+ 1197              		.thumb_func
+ 1199              	MAX11254_decode_gpo_dir:
+ 1200              	.LVL103:
+ 1201              	.LFB163:
+ 298:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 299:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** MAX11254_Reg_gpo_dir
+ 300:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** MAX11254_decode_gpo_dir(uint32_t bytes)
+ 301:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** {
+ 1202              		.loc 1 301 1 is_stmt 1 view -0
+ 1203              		.cfi_startproc
+ 1204              		@ args = 0, pretend = 0, frame = 0
+ 1205              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1206              		@ link register save eliminated.
+ 302:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_Reg_gpo_dir reg;
+ 1207              		.loc 1 302 5 view .LVU353
+ 303:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 304:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     reg.gpo = MAX11254_GET(GPO_DIR_GPO, bytes);
+ 1208              		.loc 1 304 5 view .LVU354
+ 305:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 306:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     return reg;
+ 1209              		.loc 1 306 5 view .LVU355
+ 307:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** }
+ 1210              		.loc 1 307 1 is_stmt 0 view .LVU356
+ARM GAS  /tmp/ccTuWbqy.s 			page 27
+
+
+ 1211 0000 C0F30120 		ubfx	r0, r0, #8, #2
+ 1212              	.LVL104:
+ 1213              		.loc 1 307 1 view .LVU357
+ 1214 0004 7047     		bx	lr
+ 1215              		.cfi_endproc
+ 1216              	.LFE163:
+ 1218              		.section	.text.MAX11254_encode_gpo_dir,"ax",%progbits
+ 1219              		.align	1
+ 1220              		.global	MAX11254_encode_gpo_dir
+ 1221              		.syntax unified
+ 1222              		.thumb
+ 1223              		.thumb_func
+ 1225              	MAX11254_encode_gpo_dir:
+ 1226              	.LVL105:
+ 1227              	.LFB164:
+ 308:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 309:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** uint32_t
+ 310:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** MAX11254_encode_gpo_dir(MAX11254_Reg_gpo_dir reg)
+ 311:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** {
+ 1228              		.loc 1 311 1 is_stmt 1 view -0
+ 1229              		.cfi_startproc
+ 1230              		@ args = 0, pretend = 0, frame = 0
+ 1231              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1232              		@ link register save eliminated.
+ 312:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     uint32_t bytes = 0;
+ 1233              		.loc 1 312 5 view .LVU359
+ 313:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 314:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     MAX11254_SET(GPO_DIR_GPO, bytes, reg.gpo);
+ 1234              		.loc 1 314 5 view .LVU360
+ 1235 0000 00F00300 		and	r0, r0, #3
+ 1236              	.LVL106:
+ 315:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 316:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     return bytes;
+ 1237              		.loc 1 316 5 view .LVU361
+ 317:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** }
+ 1238              		.loc 1 317 1 is_stmt 0 view .LVU362
+ 1239 0004 0002     		lsls	r0, r0, #8
+ 1240              	.LVL107:
+ 1241              		.loc 1 317 1 view .LVU363
+ 1242 0006 7047     		bx	lr
+ 1243              		.cfi_endproc
+ 1244              	.LFE164:
+ 1246              		.section	.text.MAX11254_in_conversion,"ax",%progbits
+ 1247              		.align	1
+ 1248              		.global	MAX11254_in_conversion
+ 1249              		.syntax unified
+ 1250              		.thumb
+ 1251              		.thumb_func
+ 1253              	MAX11254_in_conversion:
+ 1254              	.LFB165:
+ 318:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 319:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** bool
+ 320:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** MAX11254_in_conversion(MAX11254_Reg_stat stat)
+ 321:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** {
+ 1255              		.loc 1 321 1 is_stmt 1 view -0
+ 1256              		.cfi_startproc
+ 1257              		@ args = 0, pretend = 0, frame = 8
+ARM GAS  /tmp/ccTuWbqy.s 			page 28
+
+
+ 1258              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1259              		@ link register save eliminated.
+ 1260 0000 82B0     		sub	sp, sp, #8
+ 1261              	.LCFI14:
+ 1262              		.cfi_def_cfa_offset 8
+ 1263 0002 0190     		str	r0, [sp, #4]
+ 322:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     return stat.pdstat == MAX11254_PDSTAT_CONVERSION;
+ 1264              		.loc 1 322 5 view .LVU365
+ 1265              		.loc 1 322 24 is_stmt 0 view .LVU366
+ 1266 0004 9DF80630 		ldrb	r3, [sp, #6]	@ zero_extendqisi2
+ 1267 0008 13F0300F 		tst	r3, #48
+ 323:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** }
+ 1268              		.loc 1 323 1 view .LVU367
+ 1269 000c 0CBF     		ite	eq
+ 1270 000e 0120     		moveq	r0, #1
+ 1271 0010 0020     		movne	r0, #0
+ 1272 0012 02B0     		add	sp, sp, #8
+ 1273              	.LCFI15:
+ 1274              		.cfi_def_cfa_offset 0
+ 1275              		@ sp needed
+ 1276 0014 7047     		bx	lr
+ 1277              		.cfi_endproc
+ 1278              	.LFE165:
+ 1280              		.section	.text.MAX11254_in_sleep,"ax",%progbits
+ 1281              		.align	1
+ 1282              		.global	MAX11254_in_sleep
+ 1283              		.syntax unified
+ 1284              		.thumb
+ 1285              		.thumb_func
+ 1287              	MAX11254_in_sleep:
+ 1288              	.LFB166:
+ 324:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 325:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** bool
+ 326:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** MAX11254_in_sleep(MAX11254_Reg_stat stat)
+ 327:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** {
+ 1289              		.loc 1 327 1 is_stmt 1 view -0
+ 1290              		.cfi_startproc
+ 1291              		@ args = 0, pretend = 0, frame = 8
+ 1292              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1293              		@ link register save eliminated.
+ 1294 0000 82B0     		sub	sp, sp, #8
+ 1295              	.LCFI16:
+ 1296              		.cfi_def_cfa_offset 8
+ 1297 0002 0190     		str	r0, [sp, #4]
+ 328:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     return stat.pdstat == MAX11254_PDSTAT_SLEEP;
+ 1298              		.loc 1 328 5 view .LVU369
+ 1299              		.loc 1 328 24 is_stmt 0 view .LVU370
+ 1300 0004 9DF80600 		ldrb	r0, [sp, #6]	@ zero_extendqisi2
+ 1301 0008 00F03000 		and	r0, r0, #48
+ 329:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** }
+ 1302              		.loc 1 329 1 view .LVU371
+ 1303 000c 1028     		cmp	r0, #16
+ 1304 000e 14BF     		ite	ne
+ 1305 0010 0020     		movne	r0, #0
+ 1306 0012 0120     		moveq	r0, #1
+ 1307 0014 02B0     		add	sp, sp, #8
+ 1308              	.LCFI17:
+ARM GAS  /tmp/ccTuWbqy.s 			page 29
+
+
+ 1309              		.cfi_def_cfa_offset 0
+ 1310              		@ sp needed
+ 1311 0016 7047     		bx	lr
+ 1312              		.cfi_endproc
+ 1313              	.LFE166:
+ 1315              		.section	.text.MAX11254_in_standby,"ax",%progbits
+ 1316              		.align	1
+ 1317              		.global	MAX11254_in_standby
+ 1318              		.syntax unified
+ 1319              		.thumb
+ 1320              		.thumb_func
+ 1322              	MAX11254_in_standby:
+ 1323              	.LFB167:
+ 330:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 331:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** bool
+ 332:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** MAX11254_in_standby(MAX11254_Reg_stat stat)
+ 333:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** {
+ 1324              		.loc 1 333 1 is_stmt 1 view -0
+ 1325              		.cfi_startproc
+ 1326              		@ args = 0, pretend = 0, frame = 8
+ 1327              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1328              		@ link register save eliminated.
+ 1329 0000 82B0     		sub	sp, sp, #8
+ 1330              	.LCFI18:
+ 1331              		.cfi_def_cfa_offset 8
+ 1332 0002 0190     		str	r0, [sp, #4]
+ 334:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     return stat.pdstat == MAX11254_PDSTAT_STANDBY;
+ 1333              		.loc 1 334 5 view .LVU373
+ 1334              		.loc 1 334 24 is_stmt 0 view .LVU374
+ 1335 0004 9DF80600 		ldrb	r0, [sp, #6]	@ zero_extendqisi2
+ 1336 0008 00F03000 		and	r0, r0, #48
+ 335:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** }
+ 1337              		.loc 1 335 1 view .LVU375
+ 1338 000c 2028     		cmp	r0, #32
+ 1339 000e 14BF     		ite	ne
+ 1340 0010 0020     		movne	r0, #0
+ 1341 0012 0120     		moveq	r0, #1
+ 1342 0014 02B0     		add	sp, sp, #8
+ 1343              	.LCFI19:
+ 1344              		.cfi_def_cfa_offset 0
+ 1345              		@ sp needed
+ 1346 0016 7047     		bx	lr
+ 1347              		.cfi_endproc
+ 1348              	.LFE167:
+ 1350              		.section	.text.MAX11254_in_reset,"ax",%progbits
+ 1351              		.align	1
+ 1352              		.global	MAX11254_in_reset
+ 1353              		.syntax unified
+ 1354              		.thumb
+ 1355              		.thumb_func
+ 1357              	MAX11254_in_reset:
+ 1358              	.LFB168:
+ 336:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** 
+ 337:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** bool
+ 338:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** MAX11254_in_reset(MAX11254_Reg_stat stat)
+ 339:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** {
+ 1359              		.loc 1 339 1 is_stmt 1 view -0
+ARM GAS  /tmp/ccTuWbqy.s 			page 30
+
+
+ 1360              		.cfi_startproc
+ 1361              		@ args = 0, pretend = 0, frame = 8
+ 1362              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1363              		@ link register save eliminated.
+ 1364 0000 82B0     		sub	sp, sp, #8
+ 1365              	.LCFI20:
+ 1366              		.cfi_def_cfa_offset 8
+ 1367 0002 0190     		str	r0, [sp, #4]
+ 340:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c ****     return stat.pdstat == MAX11254_PDSTAT_RESET;
+ 1368              		.loc 1 340 5 view .LVU377
+ 1369              		.loc 1 340 24 is_stmt 0 view .LVU378
+ 1370 0004 9DF80600 		ldrb	r0, [sp, #6]	@ zero_extendqisi2
+ 1371 0008 00F03000 		and	r0, r0, #48
+ 341:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.c **** }
+ 1372              		.loc 1 341 1 view .LVU379
+ 1373 000c 3028     		cmp	r0, #48
+ 1374 000e 14BF     		ite	ne
+ 1375 0010 0020     		movne	r0, #0
+ 1376 0012 0120     		moveq	r0, #1
+ 1377 0014 02B0     		add	sp, sp, #8
+ 1378              	.LCFI21:
+ 1379              		.cfi_def_cfa_offset 0
+ 1380              		@ sp needed
+ 1381 0016 7047     		bx	lr
+ 1382              		.cfi_endproc
+ 1383              	.LFE168:
+ 1385              		.text
+ 1386              	.Letext0:
+ 1387              		.file 2 "/usr/share/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/_default_types.h"
+ 1388              		.file 3 "/usr/share/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_stdint.h"
+ 1389              		.file 4 "fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.h"
+ARM GAS  /tmp/ccTuWbqy.s 			page 31
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 max11254_register.c
+     /tmp/ccTuWbqy.s:20     .text.MAX11254_decode_stat:0000000000000000 $t
+     /tmp/ccTuWbqy.s:26     .text.MAX11254_decode_stat:0000000000000000 MAX11254_decode_stat
+     /tmp/ccTuWbqy.s:162    .text.MAX11254_decode_ctrl1:0000000000000000 $t
+     /tmp/ccTuWbqy.s:168    .text.MAX11254_decode_ctrl1:0000000000000000 MAX11254_decode_ctrl1
+     /tmp/ccTuWbqy.s:222    .text.MAX11254_encode_ctrl1:0000000000000000 $t
+     /tmp/ccTuWbqy.s:228    .text.MAX11254_encode_ctrl1:0000000000000000 MAX11254_encode_ctrl1
+     /tmp/ccTuWbqy.s:270    .text.MAX11254_decode_ctrl2:0000000000000000 $t
+     /tmp/ccTuWbqy.s:276    .text.MAX11254_decode_ctrl2:0000000000000000 MAX11254_decode_ctrl2
+     /tmp/ccTuWbqy.s:330    .text.MAX11254_encode_ctrl2:0000000000000000 $t
+     /tmp/ccTuWbqy.s:336    .text.MAX11254_encode_ctrl2:0000000000000000 MAX11254_encode_ctrl2
+     /tmp/ccTuWbqy.s:378    .text.MAX11254_decode_ctrl3:0000000000000000 $t
+     /tmp/ccTuWbqy.s:384    .text.MAX11254_decode_ctrl3:0000000000000000 MAX11254_decode_ctrl3
+     /tmp/ccTuWbqy.s:443    .text.MAX11254_encode_ctrl3:0000000000000000 $t
+     /tmp/ccTuWbqy.s:449    .text.MAX11254_encode_ctrl3:0000000000000000 MAX11254_encode_ctrl3
+     /tmp/ccTuWbqy.s:495    .text.MAX11254_decode_gpio_ctrl:0000000000000000 $t
+     /tmp/ccTuWbqy.s:501    .text.MAX11254_decode_gpio_ctrl:0000000000000000 MAX11254_decode_gpio_ctrl
+     /tmp/ccTuWbqy.s:545    .text.MAX11254_encode_gpio_ctrl:0000000000000000 $t
+     /tmp/ccTuWbqy.s:551    .text.MAX11254_encode_gpio_ctrl:0000000000000000 MAX11254_encode_gpio_ctrl
+     /tmp/ccTuWbqy.s:585    .text.MAX11254_decode_delay:0000000000000000 $t
+     /tmp/ccTuWbqy.s:591    .text.MAX11254_decode_delay:0000000000000000 MAX11254_decode_delay
+     /tmp/ccTuWbqy.s:634    .text.MAX11254_encode_delay:0000000000000000 $t
+     /tmp/ccTuWbqy.s:640    .text.MAX11254_encode_delay:0000000000000000 MAX11254_encode_delay
+     /tmp/ccTuWbqy.s:674    .text.MAX11254_decode_chmap1:0000000000000000 $t
+     /tmp/ccTuWbqy.s:680    .text.MAX11254_decode_chmap1:0000000000000000 MAX11254_decode_chmap1
+     /tmp/ccTuWbqy.s:801    .text.MAX11254_encode_chmap1:0000000000000000 $t
+     /tmp/ccTuWbqy.s:807    .text.MAX11254_encode_chmap1:0000000000000000 MAX11254_encode_chmap1
+     /tmp/ccTuWbqy.s:884    .text.MAX11254_decode_chmap0:0000000000000000 $t
+     /tmp/ccTuWbqy.s:890    .text.MAX11254_decode_chmap0:0000000000000000 MAX11254_decode_chmap0
+     /tmp/ccTuWbqy.s:1011   .text.MAX11254_encode_chmap0:0000000000000000 $t
+     /tmp/ccTuWbqy.s:1017   .text.MAX11254_encode_chmap0:0000000000000000 MAX11254_encode_chmap0
+     /tmp/ccTuWbqy.s:1094   .text.MAX11254_decode_seq:0000000000000000 $t
+     /tmp/ccTuWbqy.s:1100   .text.MAX11254_decode_seq:0000000000000000 MAX11254_decode_seq
+     /tmp/ccTuWbqy.s:1149   .text.MAX11254_encode_seq:0000000000000000 $t
+     /tmp/ccTuWbqy.s:1155   .text.MAX11254_encode_seq:0000000000000000 MAX11254_encode_seq
+     /tmp/ccTuWbqy.s:1193   .text.MAX11254_decode_gpo_dir:0000000000000000 $t
+     /tmp/ccTuWbqy.s:1199   .text.MAX11254_decode_gpo_dir:0000000000000000 MAX11254_decode_gpo_dir
+     /tmp/ccTuWbqy.s:1219   .text.MAX11254_encode_gpo_dir:0000000000000000 $t
+     /tmp/ccTuWbqy.s:1225   .text.MAX11254_encode_gpo_dir:0000000000000000 MAX11254_encode_gpo_dir
+     /tmp/ccTuWbqy.s:1247   .text.MAX11254_in_conversion:0000000000000000 $t
+     /tmp/ccTuWbqy.s:1253   .text.MAX11254_in_conversion:0000000000000000 MAX11254_in_conversion
+     /tmp/ccTuWbqy.s:1281   .text.MAX11254_in_sleep:0000000000000000 $t
+     /tmp/ccTuWbqy.s:1287   .text.MAX11254_in_sleep:0000000000000000 MAX11254_in_sleep
+     /tmp/ccTuWbqy.s:1316   .text.MAX11254_in_standby:0000000000000000 $t
+     /tmp/ccTuWbqy.s:1322   .text.MAX11254_in_standby:0000000000000000 MAX11254_in_standby
+     /tmp/ccTuWbqy.s:1351   .text.MAX11254_in_reset:0000000000000000 $t
+     /tmp/ccTuWbqy.s:1357   .text.MAX11254_in_reset:0000000000000000 MAX11254_in_reset
+
+NO UNDEFINED SYMBOLS

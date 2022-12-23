@@ -1,0 +1,166 @@
+ARM GAS  /tmp/ccSqkyBX.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"cocktail_gpio.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.COCKTAIL_GPIO_EXTI_Callback,"ax",%progbits
+  20              		.align	1
+  21              		.weak	COCKTAIL_GPIO_EXTI_Callback
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	COCKTAIL_GPIO_EXTI_Callback:
+  27              	.LVL0:
+  28              	.LFB144:
+  29              		.file 1 "fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c"
+   1:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** #include "peripheral/cocktail_gpio.h"
+   2:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** #include "cocktail_core.h"
+   3:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** 
+   4:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** __weak void
+   5:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** COCKTAIL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+   6:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** {
+  30              		.loc 1 6 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		@ link register save eliminated.
+   7:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c ****     UNUSED(GPIO_Pin);
+  35              		.loc 1 7 5 view .LVU1
+   8:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** }
+  36              		.loc 1 8 1 is_stmt 0 view .LVU2
+  37 0000 7047     		bx	lr
+  38              		.cfi_endproc
+  39              	.LFE144:
+  41              		.section	.text.HAL_GPIO_EXTI_Callback,"ax",%progbits
+  42              		.align	1
+  43              		.global	HAL_GPIO_EXTI_Callback
+  44              		.syntax unified
+  45              		.thumb
+  46              		.thumb_func
+  48              	HAL_GPIO_EXTI_Callback:
+  49              	.LVL1:
+  50              	.LFB145:
+   9:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** 
+  10:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** void
+ARM GAS  /tmp/ccSqkyBX.s 			page 2
+
+
+  11:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+  12:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** {
+  51              		.loc 1 12 1 is_stmt 1 view -0
+  52              		.cfi_startproc
+  53              		@ args = 0, pretend = 0, frame = 0
+  54              		@ frame_needed = 0, uses_anonymous_args = 0
+  55              		.loc 1 12 1 is_stmt 0 view .LVU4
+  56 0000 08B5     		push	{r3, lr}
+  57              	.LCFI0:
+  58              		.cfi_def_cfa_offset 8
+  59              		.cfi_offset 3, -8
+  60              		.cfi_offset 14, -4
+  13:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c ****     COCKTAIL_GPIO_EXTI_Callback(GPIO_Pin);
+  61              		.loc 1 13 5 is_stmt 1 view .LVU5
+  62 0002 FFF7FEFF 		bl	COCKTAIL_GPIO_EXTI_Callback
+  63              	.LVL2:
+  14:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** 
+  15:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** #if USE_COCKTAIL_EXTI(GPIO_PIN_0)
+  16:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c ****     COCKTAIL_EXTI_FN(GPIO_PIN_0);
+  17:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** #endif
+  18:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** 
+  19:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** #if USE_COCKTAIL_EXTI(GPIO_PIN_1)
+  20:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c ****     COCKTAIL_EXTI_FN(GPIO_PIN_1);
+  21:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** #endif
+  22:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** 
+  23:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** #if USE_COCKTAIL_EXTI(GPIO_PIN_2)
+  24:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c ****     COCKTAIL_EXTI_FN(GPIO_PIN_2);
+  25:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** #endif
+  26:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** 
+  27:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** #if USE_COCKTAIL_EXTI(GPIO_PIN_3)
+  28:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c ****     COCKTAIL_EXTI_FN(GPIO_PIN_3);
+  29:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** #endif
+  30:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** 
+  31:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** #if USE_COCKTAIL_EXTI(GPIO_PIN_4)
+  32:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c ****     COCKTAIL_EXTI_FN(GPIO_PIN_4);
+  33:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** #endif
+  34:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** 
+  35:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** #if USE_COCKTAIL_EXTI(GPIO_PIN_5)
+  36:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c ****     COCKTAIL_EXTI_FN(GPIO_PIN_5);
+  37:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** #endif
+  38:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** 
+  39:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** #if USE_COCKTAIL_EXTI(GPIO_PIN_6)
+  40:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c ****     COCKTAIL_EXTI_FN(GPIO_PIN_6);
+  41:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** #endif
+  42:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** 
+  43:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** #if USE_COCKTAIL_EXTI(GPIO_PIN_7)
+  44:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c ****     COCKTAIL_EXTI_FN(GPIO_PIN_7);
+  45:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** #endif
+  46:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** 
+  47:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** #if USE_COCKTAIL_EXTI(GPIO_PIN_8)
+  48:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c ****     COCKTAIL_EXTI_FN(GPIO_PIN_8);
+  49:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** #endif
+  50:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** 
+  51:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** #if USE_COCKTAIL_EXTI(GPIO_PIN_9)
+  52:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c ****     COCKTAIL_EXTI_FN(GPIO_PIN_9);
+  53:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** #endif
+  54:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** 
+ARM GAS  /tmp/ccSqkyBX.s 			page 3
+
+
+  55:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** #if USE_COCKTAIL_EXTI(GPIO_PIN_10)
+  56:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c ****     COCKTAIL_EXTI_FN(GPIO_PIN_10);
+  57:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** #endif
+  58:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** 
+  59:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** #if USE_COCKTAIL_EXTI(GPIO_PIN_11)
+  60:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c ****     COCKTAIL_EXTI_FN(GPIO_PIN_11);
+  61:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** #endif
+  62:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** 
+  63:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** #if USE_COCKTAIL_EXTI(GPIO_PIN_12)
+  64:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c ****     COCKTAIL_EXTI_FN(GPIO_PIN_12);
+  65:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** #endif
+  66:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** 
+  67:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** #if USE_COCKTAIL_EXTI(GPIO_PIN_13)
+  68:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c ****     COCKTAIL_EXTI_FN(GPIO_PIN_13);
+  69:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** #endif
+  70:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** 
+  71:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** #if USE_COCKTAIL_EXTI(GPIO_PIN_14)
+  72:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c ****     COCKTAIL_EXTI_FN(GPIO_PIN_14);
+  73:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** #endif
+  74:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** 
+  75:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** #if USE_COCKTAIL_EXTI(GPIO_PIN_15)
+  76:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c ****     COCKTAIL_EXTI_FN(GPIO_PIN_15);
+  77:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** #endif
+  78:fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.c **** }
+  64              		.loc 1 78 1 is_stmt 0 view .LVU6
+  65 0006 08BD     		pop	{r3, pc}
+  66              		.cfi_endproc
+  67              	.LFE145:
+  69              		.text
+  70              	.Letext0:
+  71              		.file 2 "/usr/share/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/_default_types.h"
+  72              		.file 3 "/usr/share/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_stdint.h"
+ARM GAS  /tmp/ccSqkyBX.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 cocktail_gpio.c
+     /tmp/ccSqkyBX.s:20     .text.COCKTAIL_GPIO_EXTI_Callback:0000000000000000 $t
+     /tmp/ccSqkyBX.s:26     .text.COCKTAIL_GPIO_EXTI_Callback:0000000000000000 COCKTAIL_GPIO_EXTI_Callback
+     /tmp/ccSqkyBX.s:42     .text.HAL_GPIO_EXTI_Callback:0000000000000000 $t
+     /tmp/ccSqkyBX.s:48     .text.HAL_GPIO_EXTI_Callback:0000000000000000 HAL_GPIO_EXTI_Callback
+
+NO UNDEFINED SYMBOLS

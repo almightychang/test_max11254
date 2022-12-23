@@ -1,0 +1,710 @@
+ARM GAS  /tmp/cc2S4FN6.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"hashtable.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.HashTable_search,"ax",%progbits
+  20              		.align	1
+  21              		.global	HashTable_search
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	HashTable_search:
+  27              	.LVL0:
+  28              	.LFB2:
+  29              		.file 1 "fw-lib-stm32-CocktailOS/kernel/core/hashtable.c"
+   1:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c **** #include "hashtable.h"
+   2:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c **** 
+   3:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c **** QueueEx_NodeTypeDef *
+   4:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c **** HashTable_search(HashTable_TypeDef *hash, uint32_t key)
+   5:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c **** {
+  30              		.loc 1 5 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		.loc 1 5 1 is_stmt 0 view .LVU1
+  35 0000 08B5     		push	{r3, lr}
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 8
+  38              		.cfi_offset 3, -8
+  39              		.cfi_offset 14, -4
+   6:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****     if(!hash) return NULL;
+  40              		.loc 1 6 5 is_stmt 1 view .LVU2
+  41              		.loc 1 6 7 is_stmt 0 view .LVU3
+  42 0002 0346     		mov	r3, r0
+  43 0004 58B1     		cbz	r0, .L1
+   7:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c **** 
+   8:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****     return QueueEx_search(&hash->table[HASHTABLE_HASH(hash, key)], key);
+  44              		.loc 1 8 5 is_stmt 1 view .LVU4
+  45              		.loc 1 8 32 is_stmt 0 view .LVU5
+  46 0006 0068     		ldr	r0, [r0]
+  47              	.LVL1:
+  48              		.loc 1 8 40 view .LVU6
+  49 0008 1A79     		ldrb	r2, [r3, #4]	@ zero_extendqisi2
+  50              	.LVL2:
+ARM GAS  /tmp/cc2S4FN6.s 			page 2
+
+
+  51              	.LBB41:
+  52              	.LBI41:
+  53              		.file 2 "fw-lib-stm32-CocktailOS/kernel/core/hash.h"
+   1:fw-lib-stm32-CocktailOS/kernel/core/hash.h **** #ifndef __COCKTAIL_HASH_H
+   2:fw-lib-stm32-CocktailOS/kernel/core/hash.h **** #define __COCKTAIL_HASH_H
+   3:fw-lib-stm32-CocktailOS/kernel/core/hash.h **** 
+   4:fw-lib-stm32-CocktailOS/kernel/core/hash.h **** #include <stdint.h>
+   5:fw-lib-stm32-CocktailOS/kernel/core/hash.h **** 
+   6:fw-lib-stm32-CocktailOS/kernel/core/hash.h **** /* This value is imported from linux kernel */
+   7:fw-lib-stm32-CocktailOS/kernel/core/hash.h **** #define GOLDEN_RATIO_32 0x61C88647
+   8:fw-lib-stm32-CocktailOS/kernel/core/hash.h **** 
+   9:fw-lib-stm32-CocktailOS/kernel/core/hash.h **** static inline uint32_t
+  10:fw-lib-stm32-CocktailOS/kernel/core/hash.h **** __hash_32_generic(uint32_t val)
+  11:fw-lib-stm32-CocktailOS/kernel/core/hash.h **** {
+  12:fw-lib-stm32-CocktailOS/kernel/core/hash.h ****     return val * GOLDEN_RATIO_32;
+  13:fw-lib-stm32-CocktailOS/kernel/core/hash.h **** }
+  14:fw-lib-stm32-CocktailOS/kernel/core/hash.h **** 
+  15:fw-lib-stm32-CocktailOS/kernel/core/hash.h **** static inline uint32_t
+  16:fw-lib-stm32-CocktailOS/kernel/core/hash.h **** hash_32(uint32_t val, uint8_t bits)
+  54              		.loc 2 16 1 is_stmt 1 view .LVU7
+  55              	.LBB42:
+  17:fw-lib-stm32-CocktailOS/kernel/core/hash.h **** {
+  18:fw-lib-stm32-CocktailOS/kernel/core/hash.h ****     /* High bits are more random, so use them. */
+  19:fw-lib-stm32-CocktailOS/kernel/core/hash.h ****     return __hash_32_generic(val) >> (32 - bits);
+  56              		.loc 2 19 5 view .LVU8
+  57              	.LBB43:
+  58              	.LBI43:
+  10:fw-lib-stm32-CocktailOS/kernel/core/hash.h **** {
+  59              		.loc 2 10 1 view .LVU9
+  60              	.LBB44:
+  12:fw-lib-stm32-CocktailOS/kernel/core/hash.h **** }
+  61              		.loc 2 12 5 view .LVU10
+  12:fw-lib-stm32-CocktailOS/kernel/core/hash.h **** }
+  62              		.loc 2 12 16 is_stmt 0 view .LVU11
+  63 000a 054B     		ldr	r3, .L5
+  64              	.LVL3:
+  12:fw-lib-stm32-CocktailOS/kernel/core/hash.h **** }
+  65              		.loc 2 12 16 view .LVU12
+  66 000c 01FB03F3 		mul	r3, r1, r3
+  67              	.LVL4:
+  12:fw-lib-stm32-CocktailOS/kernel/core/hash.h **** }
+  68              		.loc 2 12 16 view .LVU13
+  69              	.LBE44:
+  70              	.LBE43:
+  71              		.loc 2 19 42 view .LVU14
+  72 0010 C2F12002 		rsb	r2, r2, #32
+  73              	.LVL5:
+  74              		.loc 2 19 35 view .LVU15
+  75 0014 D340     		lsrs	r3, r3, r2
+  76              	.LVL6:
+  77              		.loc 2 19 35 view .LVU16
+  78              	.LBE42:
+  79              	.LBE41:
+  80              		.loc 1 8 12 view .LVU17
+  81 0016 00EBC300 		add	r0, r0, r3, lsl #3
+  82 001a FFF7FEFF 		bl	QueueEx_search
+  83              	.LVL7:
+ARM GAS  /tmp/cc2S4FN6.s 			page 3
+
+
+  84              	.L1:
+   9:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c **** }
+  85              		.loc 1 9 1 view .LVU18
+  86 001e 08BD     		pop	{r3, pc}
+  87              	.L6:
+  88              		.align	2
+  89              	.L5:
+  90 0020 4786C861 		.word	1640531527
+  91              		.cfi_endproc
+  92              	.LFE2:
+  94              		.section	.text.HashTable_get,"ax",%progbits
+  95              		.align	1
+  96              		.global	HashTable_get
+  97              		.syntax unified
+  98              		.thumb
+  99              		.thumb_func
+ 101              	HashTable_get:
+ 102              	.LVL8:
+ 103              	.LFB3:
+  10:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c **** 
+  11:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c **** QueueEx_NodeTypeDef *
+  12:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c **** HashTable_get(HashTable_TypeDef *hash, uint32_t key)
+  13:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c **** {
+ 104              		.loc 1 13 1 is_stmt 1 view -0
+ 105              		.cfi_startproc
+ 106              		@ args = 0, pretend = 0, frame = 0
+ 107              		@ frame_needed = 0, uses_anonymous_args = 0
+ 108              		.loc 1 13 1 is_stmt 0 view .LVU20
+ 109 0000 38B5     		push	{r3, r4, r5, lr}
+ 110              	.LCFI1:
+ 111              		.cfi_def_cfa_offset 16
+ 112              		.cfi_offset 3, -16
+ 113              		.cfi_offset 4, -12
+ 114              		.cfi_offset 5, -8
+ 115              		.cfi_offset 14, -4
+ 116 0002 0446     		mov	r4, r0
+ 117 0004 0D46     		mov	r5, r1
+  14:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****     QueueEx_NodeTypeDef *entry;
+ 118              		.loc 1 14 5 is_stmt 1 view .LVU21
+  15:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c **** 
+  16:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****     entry = HashTable_search(hash, key);
+ 119              		.loc 1 16 5 view .LVU22
+ 120              		.loc 1 16 13 is_stmt 0 view .LVU23
+ 121 0006 FFF7FEFF 		bl	HashTable_search
+ 122              	.LVL9:
+  17:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****     if(!entry) return NULL;
+ 123              		.loc 1 17 5 is_stmt 1 view .LVU24
+ 124              		.loc 1 17 7 is_stmt 0 view .LVU25
+ 125 000a 0246     		mov	r2, r0
+ 126 000c 98B1     		cbz	r0, .L7
+  18:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c **** 
+  19:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****     STAILQ_REMOVE(&hash->table[HASHTABLE_HASH(hash, key)], entry,
+ 127              		.loc 1 19 5 is_stmt 1 view .LVU26
+ 128              		.loc 1 19 5 view .LVU27
+ 129              		.loc 1 19 5 view .LVU28
+ 130 000e 2068     		ldr	r0, [r4]
+ 131              	.LVL10:
+ARM GAS  /tmp/cc2S4FN6.s 			page 4
+
+
+ 132              		.loc 1 19 5 is_stmt 0 view .LVU29
+ 133 0010 2179     		ldrb	r1, [r4, #4]	@ zero_extendqisi2
+ 134              	.LVL11:
+ 135              	.LBB45:
+ 136              	.LBI45:
+  16:fw-lib-stm32-CocktailOS/kernel/core/hash.h **** {
+ 137              		.loc 2 16 1 is_stmt 1 view .LVU30
+ 138              	.LBB46:
+ 139              		.loc 2 19 5 view .LVU31
+ 140              	.LBB47:
+ 141              	.LBI47:
+  10:fw-lib-stm32-CocktailOS/kernel/core/hash.h **** {
+ 142              		.loc 2 10 1 view .LVU32
+ 143              	.LBB48:
+  12:fw-lib-stm32-CocktailOS/kernel/core/hash.h **** }
+ 144              		.loc 2 12 5 view .LVU33
+  12:fw-lib-stm32-CocktailOS/kernel/core/hash.h **** }
+ 145              		.loc 2 12 16 is_stmt 0 view .LVU34
+ 146 0012 174B     		ldr	r3, .L13
+ 147 0014 03FB05FC 		mul	ip, r3, r5
+ 148              	.LVL12:
+  12:fw-lib-stm32-CocktailOS/kernel/core/hash.h **** }
+ 149              		.loc 2 12 16 view .LVU35
+ 150              	.LBE48:
+ 151              	.LBE47:
+ 152              		.loc 2 19 42 view .LVU36
+ 153 0018 C1F12001 		rsb	r1, r1, #32
+ 154              	.LVL13:
+ 155              		.loc 2 19 35 view .LVU37
+ 156 001c 2CFA01F1 		lsr	r1, ip, r1
+ 157              	.LVL14:
+ 158              		.loc 2 19 35 view .LVU38
+ 159              	.LBE46:
+ 160              	.LBE45:
+ 161              		.loc 1 19 5 view .LVU39
+ 162 0020 50F83130 		ldr	r3, [r0, r1, lsl #3]
+ 163 0024 9342     		cmp	r3, r2
+ 164 0026 08D0     		beq	.L11
+ 165              	.L9:
+ 166              	.LVL15:
+ 167              	.LBB49:
+ 168              		.loc 1 19 5 is_stmt 1 discriminator 6 view .LVU40
+ 169 0028 1946     		mov	r1, r3
+ 170 002a DB68     		ldr	r3, [r3, #12]
+ 171              	.LVL16:
+ 172              		.loc 1 19 5 is_stmt 0 discriminator 6 view .LVU41
+ 173 002c 9342     		cmp	r3, r2
+ 174 002e FBD1     		bne	.L9
+ 175              		.loc 1 19 5 is_stmt 1 discriminator 9 view .LVU42
+ 176              		.loc 1 19 5 discriminator 9 view .LVU43
+ 177 0030 DB68     		ldr	r3, [r3, #12]
+ 178 0032 CB60     		str	r3, [r1, #12]
+ 179 0034 83B1     		cbz	r3, .L12
+ 180              	.LVL17:
+ 181              	.L7:
+ 182              		.loc 1 19 5 is_stmt 0 discriminator 9 view .LVU44
+ 183              	.LBE49:
+ARM GAS  /tmp/cc2S4FN6.s 			page 5
+
+
+  20:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****                   __QueueEx_NodeTypeDef, entries);
+  21:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c **** 
+  22:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****     return entry;
+  23:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c **** }
+ 184              		.loc 1 23 1 view .LVU45
+ 185 0036 1046     		mov	r0, r2
+ 186 0038 38BD     		pop	{r3, r4, r5, pc}
+ 187              	.LVL18:
+ 188              	.L11:
+  19:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****                   __QueueEx_NodeTypeDef, entries);
+ 189              		.loc 1 19 5 is_stmt 1 discriminator 1 view .LVU46
+  19:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****                   __QueueEx_NodeTypeDef, entries);
+ 190              		.loc 1 19 5 discriminator 1 view .LVU47
+ 191              		.loc 2 19 5 discriminator 1 view .LVU48
+  12:fw-lib-stm32-CocktailOS/kernel/core/hash.h **** }
+ 192              		.loc 2 12 5 discriminator 1 view .LVU49
+ 193              		.loc 2 19 5 discriminator 1 view .LVU50
+  12:fw-lib-stm32-CocktailOS/kernel/core/hash.h **** }
+ 194              		.loc 2 12 5 discriminator 1 view .LVU51
+  19:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****                   __QueueEx_NodeTypeDef, entries);
+ 195              		.loc 1 19 5 is_stmt 0 discriminator 1 view .LVU52
+ 196 003a DB68     		ldr	r3, [r3, #12]
+ 197 003c 40F83130 		str	r3, [r0, r1, lsl #3]
+ 198 0040 002B     		cmp	r3, #0
+ 199 0042 F8D1     		bne	.L7
+  19:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****                   __QueueEx_NodeTypeDef, entries);
+ 200              		.loc 1 19 5 is_stmt 1 discriminator 3 view .LVU53
+ 201 0044 2168     		ldr	r1, [r4]
+ 202 0046 2379     		ldrb	r3, [r4, #4]	@ zero_extendqisi2
+ 203              	.LVL19:
+ 204              	.LBB54:
+ 205              	.LBI54:
+  16:fw-lib-stm32-CocktailOS/kernel/core/hash.h **** {
+ 206              		.loc 2 16 1 discriminator 3 view .LVU54
+ 207              	.LBB55:
+ 208              		.loc 2 19 5 discriminator 3 view .LVU55
+ 209              		.loc 2 19 5 is_stmt 0 discriminator 3 view .LVU56
+ 210              	.LBE55:
+ 211              	.LBE54:
+  12:fw-lib-stm32-CocktailOS/kernel/core/hash.h **** }
+ 212              		.loc 2 12 5 is_stmt 1 discriminator 3 view .LVU57
+ 213              	.LBB57:
+ 214              	.LBB56:
+ 215              		.loc 2 19 42 is_stmt 0 discriminator 3 view .LVU58
+ 216 0048 C3F12003 		rsb	r3, r3, #32
+ 217              	.LVL20:
+ 218              		.loc 2 19 35 discriminator 3 view .LVU59
+ 219 004c 2CFA03FC 		lsr	ip, ip, r3
+ 220              	.LVL21:
+ 221              		.loc 2 19 35 discriminator 3 view .LVU60
+ 222              	.LBE56:
+ 223              	.LBE57:
+  19:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****                   __QueueEx_NodeTypeDef, entries);
+ 224              		.loc 1 19 5 discriminator 3 view .LVU61
+ 225 0050 01EBCC01 		add	r1, r1, ip, lsl #3
+ 226              	.LVL22:
+ 227              		.loc 2 19 5 is_stmt 1 discriminator 3 view .LVU62
+ARM GAS  /tmp/cc2S4FN6.s 			page 6
+
+
+  12:fw-lib-stm32-CocktailOS/kernel/core/hash.h **** }
+ 228              		.loc 2 12 5 discriminator 3 view .LVU63
+  19:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****                   __QueueEx_NodeTypeDef, entries);
+ 229              		.loc 1 19 5 is_stmt 0 discriminator 3 view .LVU64
+ 230 0054 4960     		str	r1, [r1, #4]
+ 231 0056 EEE7     		b	.L7
+ 232              	.LVL23:
+ 233              	.L12:
+ 234              	.LBB58:
+  19:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****                   __QueueEx_NodeTypeDef, entries);
+ 235              		.loc 1 19 5 is_stmt 1 discriminator 10 view .LVU65
+ 236 0058 2368     		ldr	r3, [r4]
+ 237 005a 2079     		ldrb	r0, [r4, #4]	@ zero_extendqisi2
+ 238              	.LVL24:
+ 239              	.LBB50:
+ 240              	.LBI50:
+  16:fw-lib-stm32-CocktailOS/kernel/core/hash.h **** {
+ 241              		.loc 2 16 1 discriminator 10 view .LVU66
+ 242              	.LBB51:
+ 243              		.loc 2 19 5 discriminator 10 view .LVU67
+ 244              		.loc 2 19 5 is_stmt 0 discriminator 10 view .LVU68
+ 245              	.LBE51:
+ 246              	.LBE50:
+ 247              	.LBE58:
+  12:fw-lib-stm32-CocktailOS/kernel/core/hash.h **** }
+ 248              		.loc 2 12 5 is_stmt 1 discriminator 10 view .LVU69
+ 249              	.LBB59:
+ 250              	.LBB53:
+ 251              	.LBB52:
+ 252              		.loc 2 19 42 is_stmt 0 discriminator 10 view .LVU70
+ 253 005c C0F12000 		rsb	r0, r0, #32
+ 254              	.LVL25:
+ 255              		.loc 2 19 35 discriminator 10 view .LVU71
+ 256 0060 2CFA00FC 		lsr	ip, ip, r0
+ 257              	.LVL26:
+ 258              		.loc 2 19 35 discriminator 10 view .LVU72
+ 259              	.LBE52:
+ 260              	.LBE53:
+  19:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****                   __QueueEx_NodeTypeDef, entries);
+ 261              		.loc 1 19 5 discriminator 10 view .LVU73
+ 262 0064 03EBCC0C 		add	ip, r3, ip, lsl #3
+ 263 0068 0C31     		adds	r1, r1, #12
+ 264              	.LVL27:
+  19:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****                   __QueueEx_NodeTypeDef, entries);
+ 265              		.loc 1 19 5 discriminator 10 view .LVU74
+ 266 006a CCF80410 		str	r1, [ip, #4]
+ 267 006e E2E7     		b	.L7
+ 268              	.L14:
+ 269              		.align	2
+ 270              	.L13:
+ 271 0070 4786C861 		.word	1640531527
+ 272              	.LBE59:
+ 273              		.cfi_endproc
+ 274              	.LFE3:
+ 276              		.section	.text.HashTable_put,"ax",%progbits
+ 277              		.align	1
+ 278              		.global	HashTable_put
+ARM GAS  /tmp/cc2S4FN6.s 			page 7
+
+
+ 279              		.syntax unified
+ 280              		.thumb
+ 281              		.thumb_func
+ 283              	HashTable_put:
+ 284              	.LVL28:
+ 285              	.LFB4:
+  24:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c **** 
+  25:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c **** HashTable_IndexTypeDef
+  26:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c **** HashTable_put(HashTable_TypeDef *hash, QueueEx_NodeTypeDef *node, uint32_t key)
+  27:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c **** {
+ 286              		.loc 1 27 1 is_stmt 1 view -0
+ 287              		.cfi_startproc
+ 288              		@ args = 0, pretend = 0, frame = 0
+ 289              		@ frame_needed = 0, uses_anonymous_args = 0
+ 290              		@ link register save eliminated.
+  28:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****     HashTable_IndexTypeDef index;
+ 291              		.loc 1 28 5 view .LVU76
+  29:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c **** 
+  30:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****     if(!node || !hash || !hash->table) return -1;
+ 292              		.loc 1 30 5 view .LVU77
+ 293              		.loc 1 30 7 is_stmt 0 view .LVU78
+ 294 0000 0028     		cmp	r0, #0
+ 295 0002 18BF     		it	ne
+ 296 0004 0029     		cmpne	r1, #0
+ 297 0006 1DD0     		beq	.L18
+  27:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****     HashTable_IndexTypeDef index;
+ 298              		.loc 1 27 1 discriminator 2 view .LVU79
+ 299 0008 30B4     		push	{r4, r5}
+ 300              	.LCFI2:
+ 301              		.cfi_def_cfa_offset 8
+ 302              		.cfi_offset 4, -8
+ 303              		.cfi_offset 5, -4
+ 304 000a 0C46     		mov	r4, r1
+ 305 000c 0346     		mov	r3, r0
+ 306              		.loc 1 30 31 discriminator 2 view .LVU80
+ 307 000e 0168     		ldr	r1, [r0]
+ 308              	.LVL29:
+ 309              		.loc 1 30 23 discriminator 2 view .LVU81
+ 310 0010 D9B1     		cbz	r1, .L19
+  31:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c **** 
+  32:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****     node->key = key;
+ 311              		.loc 1 32 5 is_stmt 1 view .LVU82
+ 312              		.loc 1 32 15 is_stmt 0 view .LVU83
+ 313 0012 2260     		str	r2, [r4]
+  33:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****     index     = HASHTABLE_HASH(hash, key);
+ 314              		.loc 1 33 5 is_stmt 1 view .LVU84
+ 315              		.loc 1 33 17 is_stmt 0 view .LVU85
+ 316 0014 0079     		ldrb	r0, [r0, #4]	@ zero_extendqisi2
+ 317              	.LVL30:
+ 318              	.LBB60:
+ 319              	.LBI60:
+  16:fw-lib-stm32-CocktailOS/kernel/core/hash.h **** {
+ 320              		.loc 2 16 1 is_stmt 1 view .LVU86
+ 321              	.LBB61:
+ 322              		.loc 2 19 5 view .LVU87
+ 323              	.LBB62:
+ 324              	.LBI62:
+ARM GAS  /tmp/cc2S4FN6.s 			page 8
+
+
+  10:fw-lib-stm32-CocktailOS/kernel/core/hash.h **** {
+ 325              		.loc 2 10 1 view .LVU88
+ 326              	.LBB63:
+  12:fw-lib-stm32-CocktailOS/kernel/core/hash.h **** }
+ 327              		.loc 2 12 5 view .LVU89
+  12:fw-lib-stm32-CocktailOS/kernel/core/hash.h **** }
+ 328              		.loc 2 12 16 is_stmt 0 view .LVU90
+ 329 0016 0E49     		ldr	r1, .L25
+ 330 0018 01FB02F2 		mul	r2, r1, r2
+ 331              	.LVL31:
+  12:fw-lib-stm32-CocktailOS/kernel/core/hash.h **** }
+ 332              		.loc 2 12 16 view .LVU91
+ 333              	.LBE63:
+ 334              	.LBE62:
+ 335              		.loc 2 19 42 view .LVU92
+ 336 001c C0F12000 		rsb	r0, r0, #32
+ 337              	.LVL32:
+ 338              		.loc 2 19 35 view .LVU93
+ 339 0020 22FA00F0 		lsr	r0, r2, r0
+ 340              	.LVL33:
+ 341              		.loc 2 19 35 view .LVU94
+ 342              	.LBE61:
+ 343              	.LBE60:
+  34:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****     STAILQ_INSERT_HEAD(&hash->table[index], node, entries);
+ 344              		.loc 1 34 5 is_stmt 1 view .LVU95
+ 345              		.loc 1 34 5 view .LVU96
+ 346 0024 1A68     		ldr	r2, [r3]
+ 347 0026 C100     		lsls	r1, r0, #3
+ 348 0028 52F83020 		ldr	r2, [r2, r0, lsl #3]
+ 349 002c E260     		str	r2, [r4, #12]
+ 350 002e 1AB1     		cbz	r2, .L24
+ 351              	.LVL34:
+ 352              	.L17:
+ 353              		.loc 1 34 5 discriminator 3 view .LVU97
+ 354 0030 1B68     		ldr	r3, [r3]
+ 355              	.LVL35:
+ 356              		.loc 1 34 5 is_stmt 0 discriminator 3 view .LVU98
+ 357 0032 5C50     		str	r4, [r3, r1]
+ 358              		.loc 1 34 5 is_stmt 1 discriminator 3 view .LVU99
+  35:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c **** 
+  36:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****     return index;
+ 359              		.loc 1 36 5 discriminator 3 view .LVU100
+ 360              	.LVL36:
+ 361              	.L15:
+  37:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c **** }
+ 362              		.loc 1 37 1 is_stmt 0 view .LVU101
+ 363 0034 30BC     		pop	{r4, r5}
+ 364              	.LCFI3:
+ 365              		.cfi_remember_state
+ 366              		.cfi_restore 5
+ 367              		.cfi_restore 4
+ 368              		.cfi_def_cfa_offset 0
+ 369              	.LVL37:
+ 370              		.loc 1 37 1 view .LVU102
+ 371 0036 7047     		bx	lr
+ 372              	.LVL38:
+ 373              	.L24:
+ARM GAS  /tmp/cc2S4FN6.s 			page 9
+
+
+ 374              	.LCFI4:
+ 375              		.cfi_restore_state
+  34:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****     STAILQ_INSERT_HEAD(&hash->table[index], node, entries);
+ 376              		.loc 1 34 5 is_stmt 1 discriminator 1 view .LVU103
+ 377 0038 1A68     		ldr	r2, [r3]
+ 378 003a 0A44     		add	r2, r2, r1
+ 379 003c 04F10C05 		add	r5, r4, #12
+ 380 0040 5560     		str	r5, [r2, #4]
+ 381              	.LVL39:
+  34:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****     STAILQ_INSERT_HEAD(&hash->table[index], node, entries);
+ 382              		.loc 1 34 5 is_stmt 0 discriminator 1 view .LVU104
+ 383 0042 F5E7     		b	.L17
+ 384              	.LVL40:
+ 385              	.L18:
+ 386              	.LCFI5:
+ 387              		.cfi_def_cfa_offset 0
+ 388              		.cfi_restore 4
+ 389              		.cfi_restore 5
+  30:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c **** 
+ 390              		.loc 1 30 47 view .LVU105
+ 391 0044 4FF0FF30 		mov	r0, #-1
+ 392              	.LVL41:
+ 393              		.loc 1 37 1 view .LVU106
+ 394 0048 7047     		bx	lr
+ 395              	.LVL42:
+ 396              	.L19:
+ 397              	.LCFI6:
+ 398              		.cfi_def_cfa_offset 8
+ 399              		.cfi_offset 4, -8
+ 400              		.cfi_offset 5, -4
+  30:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c **** 
+ 401              		.loc 1 30 47 view .LVU107
+ 402 004a 4FF0FF30 		mov	r0, #-1
+ 403              	.LVL43:
+  30:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c **** 
+ 404              		.loc 1 30 47 view .LVU108
+ 405 004e F1E7     		b	.L15
+ 406              	.L26:
+ 407              		.align	2
+ 408              	.L25:
+ 409 0050 4786C861 		.word	1640531527
+ 410              		.cfi_endproc
+ 411              	.LFE4:
+ 413              		.section	.text.HashTable_init,"ax",%progbits
+ 414              		.align	1
+ 415              		.global	HashTable_init
+ 416              		.syntax unified
+ 417              		.thumb
+ 418              		.thumb_func
+ 420              	HashTable_init:
+ 421              	.LVL44:
+ 422              	.LFB5:
+  38:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c **** 
+  39:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c **** HashTable_TypeDef *
+  40:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c **** HashTable_init(uint8_t bits)
+  41:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c **** {
+ 423              		.loc 1 41 1 is_stmt 1 view -0
+ARM GAS  /tmp/cc2S4FN6.s 			page 10
+
+
+ 424              		.cfi_startproc
+ 425              		@ args = 0, pretend = 0, frame = 0
+ 426              		@ frame_needed = 0, uses_anonymous_args = 0
+ 427              		.loc 1 41 1 is_stmt 0 view .LVU110
+ 428 0000 38B5     		push	{r3, r4, r5, lr}
+ 429              	.LCFI7:
+ 430              		.cfi_def_cfa_offset 16
+ 431              		.cfi_offset 3, -16
+ 432              		.cfi_offset 4, -12
+ 433              		.cfi_offset 5, -8
+ 434              		.cfi_offset 14, -4
+  42:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****     HashTable_TypeDef *hash;
+ 435              		.loc 1 42 5 is_stmt 1 view .LVU111
+  43:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c **** 
+  44:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****     if(bits > 32) return NULL;
+ 436              		.loc 1 44 5 view .LVU112
+ 437              		.loc 1 44 7 is_stmt 0 view .LVU113
+ 438 0002 2028     		cmp	r0, #32
+ 439 0004 24D8     		bhi	.L31
+ 440 0006 0546     		mov	r5, r0
+  45:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c **** 
+  46:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****     hash = (HashTable_TypeDef *)malloc(sizeof(HashTable_TypeDef));
+ 441              		.loc 1 46 5 is_stmt 1 view .LVU114
+ 442              		.loc 1 46 33 is_stmt 0 view .LVU115
+ 443 0008 0820     		movs	r0, #8
+ 444              	.LVL45:
+ 445              		.loc 1 46 33 view .LVU116
+ 446 000a FFF7FEFF 		bl	malloc
+ 447              	.LVL46:
+  47:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****     if(!hash) return NULL;
+ 448              		.loc 1 47 5 is_stmt 1 view .LVU117
+ 449              		.loc 1 47 7 is_stmt 0 view .LVU118
+ 450 000e 0446     		mov	r4, r0
+ 451 0010 E0B1     		cbz	r0, .L27
+  48:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c **** 
+  49:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****     hash->bits  = bits;
+ 452              		.loc 1 49 5 is_stmt 1 view .LVU119
+ 453              		.loc 1 49 17 is_stmt 0 view .LVU120
+ 454 0012 0571     		strb	r5, [r0, #4]
+  50:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****     hash->table = (QueueEx_HeadTypeDef *)malloc(sizeof(QueueEx_HeadTypeDef) *
+ 455              		.loc 1 50 5 is_stmt 1 view .LVU121
+ 456              		.loc 1 50 42 is_stmt 0 view .LVU122
+ 457 0014 0820     		movs	r0, #8
+ 458              	.LVL47:
+ 459              		.loc 1 50 42 view .LVU123
+ 460 0016 A840     		lsls	r0, r0, r5
+ 461 0018 FFF7FEFF 		bl	malloc
+ 462              	.LVL48:
+ 463 001c 0546     		mov	r5, r0
+ 464              		.loc 1 50 17 view .LVU124
+ 465 001e 2060     		str	r0, [r4]
+  51:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****                                                 HASHTABLE_SIZE(hash));
+  52:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****     if(!hash->table)
+ 466              		.loc 1 52 5 is_stmt 1 view .LVU125
+ 467              		.loc 1 52 7 is_stmt 0 view .LVU126
+ 468 0020 08B1     		cbz	r0, .L34
+ 469              	.LBB64:
+ARM GAS  /tmp/cc2S4FN6.s 			page 11
+
+
+  53:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****     {
+  54:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****         free(hash);
+  55:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****         return NULL;
+  56:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****     }
+  57:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c **** 
+  58:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****     for(HashTable_IndexTypeDef i = 0; i < HASHTABLE_SIZE(hash); i++)
+ 470              		.loc 1 58 32 view .LVU127
+ 471 0022 0023     		movs	r3, #0
+ 472 0024 0DE0     		b	.L29
+ 473              	.L34:
+ 474              	.LBE64:
+  54:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****         return NULL;
+ 475              		.loc 1 54 9 is_stmt 1 view .LVU128
+ 476 0026 2046     		mov	r0, r4
+ 477 0028 FFF7FEFF 		bl	free
+ 478              	.LVL49:
+  55:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****     }
+ 479              		.loc 1 55 9 view .LVU129
+  55:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****     }
+ 480              		.loc 1 55 16 is_stmt 0 view .LVU130
+ 481 002c 2C46     		mov	r4, r5
+ 482              	.LVL50:
+  55:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****     }
+ 483              		.loc 1 55 16 view .LVU131
+ 484 002e 0DE0     		b	.L27
+ 485              	.LVL51:
+ 486              	.L30:
+ 487              	.LBB65:
+  59:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****         STAILQ_INIT(&hash->table[i]);
+ 488              		.loc 1 59 9 is_stmt 1 discriminator 3 view .LVU132
+ 489              		.loc 1 59 9 discriminator 3 view .LVU133
+ 490 0030 2268     		ldr	r2, [r4]
+ 491 0032 0021     		movs	r1, #0
+ 492 0034 42F83310 		str	r1, [r2, r3, lsl #3]
+ 493              		.loc 1 59 9 discriminator 3 view .LVU134
+ 494 0038 2268     		ldr	r2, [r4]
+ 495 003a 02EBC302 		add	r2, r2, r3, lsl #3
+ 496 003e 5260     		str	r2, [r2, #4]
+ 497              		.loc 1 59 9 discriminator 3 view .LVU135
+  58:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****         STAILQ_INIT(&hash->table[i]);
+ 498              		.loc 1 58 65 discriminator 3 view .LVU136
+  58:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****         STAILQ_INIT(&hash->table[i]);
+ 499              		.loc 1 58 66 is_stmt 0 discriminator 3 view .LVU137
+ 500 0040 0133     		adds	r3, r3, #1
+ 501              	.LVL52:
+ 502              	.L29:
+  58:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****         STAILQ_INIT(&hash->table[i]);
+ 503              		.loc 1 58 39 is_stmt 1 discriminator 1 view .LVU138
+  58:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****         STAILQ_INIT(&hash->table[i]);
+ 504              		.loc 1 58 43 is_stmt 0 discriminator 1 view .LVU139
+ 505 0042 2179     		ldrb	r1, [r4, #4]	@ zero_extendqisi2
+ 506 0044 0122     		movs	r2, #1
+ 507 0046 8A40     		lsls	r2, r2, r1
+  58:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****         STAILQ_INIT(&hash->table[i]);
+ 508              		.loc 1 58 5 discriminator 1 view .LVU140
+ 509 0048 9A42     		cmp	r2, r3
+ 510 004a F1D8     		bhi	.L30
+ARM GAS  /tmp/cc2S4FN6.s 			page 12
+
+
+ 511              	.LVL53:
+ 512              	.L27:
+  58:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****         STAILQ_INIT(&hash->table[i]);
+ 513              		.loc 1 58 5 discriminator 1 view .LVU141
+ 514              	.LBE65:
+  60:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c **** 
+  61:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c ****     return hash;
+  62:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c **** }
+ 515              		.loc 1 62 1 view .LVU142
+ 516 004c 2046     		mov	r0, r4
+ 517 004e 38BD     		pop	{r3, r4, r5, pc}
+ 518              	.LVL54:
+ 519              	.L31:
+  44:fw-lib-stm32-CocktailOS/kernel/core/hashtable.c **** 
+ 520              		.loc 1 44 26 view .LVU143
+ 521 0050 0024     		movs	r4, #0
+ 522 0052 FBE7     		b	.L27
+ 523              		.cfi_endproc
+ 524              	.LFE5:
+ 526              		.text
+ 527              	.Letext0:
+ 528              		.file 3 "/usr/share/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/_default_types.h"
+ 529              		.file 4 "/usr/share/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_stdint.h"
+ 530              		.file 5 "fw-lib-stm32-CocktailOS/kernel/core/queue_ex.h"
+ 531              		.file 6 "fw-lib-stm32-CocktailOS/kernel/core/hashtable.h"
+ 532              		.file 7 "/usr/share/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/stdlib.h"
+ARM GAS  /tmp/cc2S4FN6.s 			page 13
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 hashtable.c
+     /tmp/cc2S4FN6.s:20     .text.HashTable_search:0000000000000000 $t
+     /tmp/cc2S4FN6.s:26     .text.HashTable_search:0000000000000000 HashTable_search
+     /tmp/cc2S4FN6.s:90     .text.HashTable_search:0000000000000020 $d
+     /tmp/cc2S4FN6.s:95     .text.HashTable_get:0000000000000000 $t
+     /tmp/cc2S4FN6.s:101    .text.HashTable_get:0000000000000000 HashTable_get
+     /tmp/cc2S4FN6.s:271    .text.HashTable_get:0000000000000070 $d
+     /tmp/cc2S4FN6.s:277    .text.HashTable_put:0000000000000000 $t
+     /tmp/cc2S4FN6.s:283    .text.HashTable_put:0000000000000000 HashTable_put
+     /tmp/cc2S4FN6.s:409    .text.HashTable_put:0000000000000050 $d
+     /tmp/cc2S4FN6.s:414    .text.HashTable_init:0000000000000000 $t
+     /tmp/cc2S4FN6.s:420    .text.HashTable_init:0000000000000000 HashTable_init
+
+UNDEFINED SYMBOLS
+QueueEx_search
+malloc
+free

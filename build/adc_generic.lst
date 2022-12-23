@@ -1,0 +1,504 @@
+ARM GAS  /tmp/cc09lQHv.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"adc_generic.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.generic_adc_task,"ax",%progbits
+  20              		.align	1
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	generic_adc_task:
+  26              	.LVL0:
+  27              	.LFB146:
+  28              		.file 1 "fw-lib-stm32-BuildKit/adc-essential/adc_generic.c"
+   1:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c **** #include "adc_generic.h"
+   2:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c **** 
+   3:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c **** static TASK_FN(generic_adc_task)
+   4:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c **** {
+  29              		.loc 1 4 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		.loc 1 4 1 is_stmt 0 view .LVU1
+  34 0000 38B5     		push	{r3, r4, r5, lr}
+  35              	.LCFI0:
+  36              		.cfi_def_cfa_offset 16
+  37              		.cfi_offset 3, -16
+  38              		.cfi_offset 4, -12
+  39              		.cfi_offset 5, -8
+  40              		.cfi_offset 14, -4
+  41 0002 0446     		mov	r4, r0
+   5:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c ****     GenericADC_TypeDef *adc_generic = TASK_CTX(GenericADC_TypeDef);
+  42              		.loc 1 5 5 is_stmt 1 view .LVU2
+  43              		.loc 1 5 25 is_stmt 0 view .LVU3
+  44 0004 4568     		ldr	r5, [r0, #4]
+  45              	.LVL1:
+   6:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c **** 
+   7:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c ****     SET_NEXT_TASK(NEW_TASK(COCKTAIL_POLLING_ID, generic_adc_task, adc_generic));
+  46              		.loc 1 7 5 is_stmt 1 view .LVU4
+  47              	.LBB2:
+  48              		.loc 1 7 5 view .LVU5
+  49 0006 2A46     		mov	r2, r5
+  50 0008 1349     		ldr	r1, .L7
+  51 000a 0020     		movs	r0, #0
+ARM GAS  /tmp/cc09lQHv.s 			page 2
+
+
+  52              	.LVL2:
+  53              		.loc 1 7 5 is_stmt 0 view .LVU6
+  54 000c FFF7FEFF 		bl	Cocktail_newTask
+  55              	.LVL3:
+  56              		.loc 1 7 5 is_stmt 1 view .LVU7
+  57              	.LBB3:
+  58              		.loc 1 7 5 view .LVU8
+  59              		.loc 1 7 5 view .LVU9
+  60              		.loc 1 7 5 view .LVU10
+  61 0010 E368     		ldr	r3, [r4, #12]
+  62 0012 DB68     		ldr	r3, [r3, #12]
+  63 0014 0361     		str	r3, [r0, #16]
+  64 0016 ABB1     		cbz	r3, .L5
+  65              	.L2:
+  66              		.loc 1 7 5 discriminator 3 view .LVU11
+  67 0018 E368     		ldr	r3, [r4, #12]
+  68 001a D860     		str	r0, [r3, #12]
+  69              		.loc 1 7 5 discriminator 3 view .LVU12
+  70              	.LBE3:
+  71              		.loc 1 7 5 discriminator 3 view .LVU13
+  72              		.loc 1 7 5 discriminator 3 view .LVU14
+  73 001c E368     		ldr	r3, [r4, #12]
+  74 001e C360     		str	r3, [r0, #12]
+  75              	.LBE2:
+  76              		.loc 1 7 5 discriminator 3 view .LVU15
+   8:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c ****     SET_NEXT_TASK(NEW_TASK(COCKTAIL_POLLING_ID, adc_generic->adc_task,
+  77              		.loc 1 8 5 discriminator 3 view .LVU16
+  78              	.LBB5:
+  79              		.loc 1 8 5 discriminator 3 view .LVU17
+  80 0020 EA68     		ldr	r2, [r5, #12]
+  81 0022 A968     		ldr	r1, [r5, #8]
+  82 0024 0020     		movs	r0, #0
+  83              	.LVL4:
+  84              		.loc 1 8 5 is_stmt 0 discriminator 3 view .LVU18
+  85 0026 FFF7FEFF 		bl	Cocktail_newTask
+  86              	.LVL5:
+  87 002a 0346     		mov	r3, r0
+  88              	.LVL6:
+  89              		.loc 1 8 5 is_stmt 1 discriminator 3 view .LVU19
+  90              	.LBB6:
+  91              		.loc 1 8 5 discriminator 3 view .LVU20
+  92              		.loc 1 8 5 discriminator 3 view .LVU21
+  93              		.loc 1 8 5 discriminator 3 view .LVU22
+  94 002c E268     		ldr	r2, [r4, #12]
+  95 002e D268     		ldr	r2, [r2, #12]
+  96 0030 0261     		str	r2, [r0, #16]
+  97 0032 62B1     		cbz	r2, .L6
+  98              	.L3:
+  99              		.loc 1 8 5 discriminator 3 view .LVU23
+ 100 0034 E268     		ldr	r2, [r4, #12]
+ 101 0036 D360     		str	r3, [r2, #12]
+ 102              		.loc 1 8 5 discriminator 3 view .LVU24
+ 103              	.LBE6:
+ 104              		.loc 1 8 5 discriminator 3 view .LVU25
+ 105              		.loc 1 8 5 discriminator 3 view .LVU26
+ 106 0038 E068     		ldr	r0, [r4, #12]
+ 107              	.LVL7:
+ARM GAS  /tmp/cc09lQHv.s 			page 3
+
+
+ 108              		.loc 1 8 5 is_stmt 0 discriminator 3 view .LVU27
+ 109 003a D860     		str	r0, [r3, #12]
+ 110              	.LBE5:
+ 111              		.loc 1 8 5 is_stmt 1 discriminator 3 view .LVU28
+   9:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c ****                            adc_generic->adc_ctx));
+  10:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c ****     SLEEP(adc_generic->interval);
+ 112              		.loc 1 10 5 discriminator 3 view .LVU29
+ 113 003c 6979     		ldrb	r1, [r5, #5]	@ zero_extendqisi2
+ 114 003e FFF7FEFF 		bl	sleep
+ 115              	.LVL8:
+  11:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c **** }
+ 116              		.loc 1 11 1 is_stmt 0 discriminator 3 view .LVU30
+ 117 0042 38BD     		pop	{r3, r4, r5, pc}
+ 118              	.LVL9:
+ 119              	.L5:
+ 120              	.LBB8:
+ 121              	.LBB4:
+   7:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c ****     SET_NEXT_TASK(NEW_TASK(COCKTAIL_POLLING_ID, adc_generic->adc_task,
+ 122              		.loc 1 7 5 is_stmt 1 discriminator 1 view .LVU31
+ 123 0044 E368     		ldr	r3, [r4, #12]
+ 124 0046 00F11002 		add	r2, r0, #16
+ 125 004a 1A61     		str	r2, [r3, #16]
+ 126 004c E4E7     		b	.L2
+ 127              	.LVL10:
+ 128              	.L6:
+   7:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c ****     SET_NEXT_TASK(NEW_TASK(COCKTAIL_POLLING_ID, adc_generic->adc_task,
+ 129              		.loc 1 7 5 is_stmt 0 discriminator 1 view .LVU32
+ 130              	.LBE4:
+ 131              	.LBE8:
+ 132              	.LBB9:
+ 133              	.LBB7:
+   8:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c ****                            adc_generic->adc_ctx));
+ 134              		.loc 1 8 5 is_stmt 1 discriminator 1 view .LVU33
+ 135 004e E268     		ldr	r2, [r4, #12]
+ 136 0050 00F11001 		add	r1, r0, #16
+ 137 0054 1161     		str	r1, [r2, #16]
+ 138 0056 EDE7     		b	.L3
+ 139              	.L8:
+ 140              		.align	2
+ 141              	.L7:
+ 142 0058 00000000 		.word	generic_adc_task
+ 143              	.LBE7:
+ 144              	.LBE9:
+ 145              		.cfi_endproc
+ 146              	.LFE146:
+ 148              		.section	.text.GenericADC_startSample,"ax",%progbits
+ 149              		.align	1
+ 150              		.global	GenericADC_startSample
+ 151              		.syntax unified
+ 152              		.thumb
+ 153              		.thumb_func
+ 155              	GenericADC_startSample:
+ 156              	.LVL11:
+ 157              	.LFB147:
+  12:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c **** 
+  13:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c **** Cocktail_PcbTypeDef *
+  14:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c **** GenericADC_startSample(GenericADC_TypeDef *adc_generic)
+ARM GAS  /tmp/cc09lQHv.s 			page 4
+
+
+  15:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c **** {
+ 158              		.loc 1 15 1 view -0
+ 159              		.cfi_startproc
+ 160              		@ args = 0, pretend = 0, frame = 0
+ 161              		@ frame_needed = 0, uses_anonymous_args = 0
+ 162              		.loc 1 15 1 is_stmt 0 view .LVU35
+ 163 0000 70B5     		push	{r4, r5, r6, lr}
+ 164              	.LCFI1:
+ 165              		.cfi_def_cfa_offset 16
+ 166              		.cfi_offset 4, -16
+ 167              		.cfi_offset 5, -12
+ 168              		.cfi_offset 6, -8
+ 169              		.cfi_offset 14, -4
+ 170 0002 0646     		mov	r6, r0
+  16:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c ****     Cocktail_PcbTypeDef *p;
+ 171              		.loc 1 16 5 is_stmt 1 view .LVU36
+  17:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c ****     INIT_PROCESS(p);
+ 172              		.loc 1 17 5 view .LVU37
+ 173              		.loc 1 17 5 view .LVU38
+ 174 0004 2820     		movs	r0, #40
+ 175              	.LVL12:
+ 176              		.loc 1 17 5 is_stmt 0 view .LVU39
+ 177 0006 FFF7FEFF 		bl	malloc
+ 178              	.LVL13:
+ 179 000a 0446     		mov	r4, r0
+ 180              	.LVL14:
+ 181              		.loc 1 17 5 is_stmt 1 view .LVU40
+ 182              		.loc 1 17 5 view .LVU41
+ 183 000c 0025     		movs	r5, #0
+ 184 000e 0346     		mov	r3, r0
+ 185 0010 43F80C5F 		str	r5, [r3, #12]!
+ 186              		.loc 1 17 5 view .LVU42
+ 187 0014 0361     		str	r3, [r0, #16]
+ 188              		.loc 1 17 5 view .LVU43
+ 189              		.loc 1 17 5 view .LVU44
+ 190 0016 C561     		str	r5, [r0, #28]
+ 191              		.loc 1 17 5 view .LVU45
+ 192 0018 0562     		str	r5, [r0, #32]
+ 193              		.loc 1 17 5 view .LVU46
+ 194 001a 80F82450 		strb	r5, [r0, #36]
+ 195              		.loc 1 17 5 view .LVU47
+  18:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c ****     PUT_TASK(p, NEW_TASK(COCKTAIL_POLLING_ID, generic_adc_task, adc_generic));
+ 196              		.loc 1 18 5 view .LVU48
+ 197              	.LBB10:
+ 198              		.loc 1 18 5 view .LVU49
+ 199 001e 3246     		mov	r2, r6
+ 200 0020 0749     		ldr	r1, .L11
+ 201 0022 2846     		mov	r0, r5
+ 202              	.LVL15:
+ 203              		.loc 1 18 5 is_stmt 0 view .LVU50
+ 204 0024 FFF7FEFF 		bl	Cocktail_newTask
+ 205              	.LVL16:
+ 206              		.loc 1 18 5 is_stmt 1 view .LVU51
+ 207              	.LBB11:
+ 208              		.loc 1 18 5 view .LVU52
+ 209              		.loc 1 18 5 view .LVU53
+ 210              		.loc 1 18 5 view .LVU54
+ARM GAS  /tmp/cc09lQHv.s 			page 5
+
+
+ 211 0028 0561     		str	r5, [r0, #16]
+ 212              		.loc 1 18 5 view .LVU55
+ 213 002a 2369     		ldr	r3, [r4, #16]
+ 214 002c 1860     		str	r0, [r3]
+ 215              		.loc 1 18 5 view .LVU56
+ 216 002e 00F11003 		add	r3, r0, #16
+ 217 0032 2361     		str	r3, [r4, #16]
+ 218              		.loc 1 18 5 view .LVU57
+ 219              	.LBE11:
+ 220              		.loc 1 18 5 view .LVU58
+ 221              		.loc 1 18 5 view .LVU59
+ 222 0034 C460     		str	r4, [r0, #12]
+ 223              	.LBE10:
+ 224              		.loc 1 18 5 view .LVU60
+  19:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c ****     // TODO: filtering backend comes here.
+  20:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c ****     SCHEDULE(p);
+ 225              		.loc 1 20 5 view .LVU61
+ 226 0036 2046     		mov	r0, r4
+ 227              	.LVL17:
+ 228              		.loc 1 20 5 is_stmt 0 view .LVU62
+ 229 0038 FFF7FEFF 		bl	Cocktail_Schedule
+ 230              	.LVL18:
+  21:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c **** 
+  22:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c ****     return p;
+ 231              		.loc 1 22 5 is_stmt 1 view .LVU63
+  23:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c **** }
+ 232              		.loc 1 23 1 is_stmt 0 view .LVU64
+ 233 003c 2046     		mov	r0, r4
+ 234 003e 70BD     		pop	{r4, r5, r6, pc}
+ 235              	.LVL19:
+ 236              	.L12:
+ 237              		.loc 1 23 1 view .LVU65
+ 238              		.align	2
+ 239              	.L11:
+ 240 0040 00000000 		.word	generic_adc_task
+ 241              		.cfi_endproc
+ 242              	.LFE147:
+ 244              		.section	.text.GenericADC_newADC,"ax",%progbits
+ 245              		.align	1
+ 246              		.global	GenericADC_newADC
+ 247              		.syntax unified
+ 248              		.thumb
+ 249              		.thumb_func
+ 251              	GenericADC_newADC:
+ 252              	.LFB148:
+  24:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c **** 
+  25:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c **** GenericADC_TypeDef *
+  26:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c **** GenericADC_newADC(GenericADC_InitTypeDef Init)
+  27:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c **** {
+ 253              		.loc 1 27 1 is_stmt 1 view -0
+ 254              		.cfi_startproc
+ 255              		@ args = 20, pretend = 16, frame = 0
+ 256              		@ frame_needed = 0, uses_anonymous_args = 0
+ 257 0000 84B0     		sub	sp, sp, #16
+ 258              	.LCFI2:
+ 259              		.cfi_def_cfa_offset 16
+ 260 0002 70B5     		push	{r4, r5, r6, lr}
+ARM GAS  /tmp/cc09lQHv.s 			page 6
+
+
+ 261              	.LCFI3:
+ 262              		.cfi_def_cfa_offset 32
+ 263              		.cfi_offset 4, -32
+ 264              		.cfi_offset 5, -28
+ 265              		.cfi_offset 6, -24
+ 266              		.cfi_offset 14, -20
+ 267 0004 04AC     		add	r4, sp, #16
+ 268 0006 84E80F00 		stm	r4, {r0, r1, r2, r3}
+  28:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c ****     GenericADC_TypeDef    *adc_generic;
+ 269              		.loc 1 28 5 view .LVU67
+  29:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c ****     GenericADC_ItfTypeDef *itf;
+ 270              		.loc 1 29 5 view .LVU68
+  30:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c ****     adc_generic = (GenericADC_TypeDef *)malloc(sizeof(GenericADC_TypeDef));
+ 271              		.loc 1 30 5 view .LVU69
+ 272              		.loc 1 30 41 is_stmt 0 view .LVU70
+ 273 000a 1020     		movs	r0, #16
+ 274 000c FFF7FEFF 		bl	malloc
+ 275              	.LVL20:
+  31:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c ****     if(adc_generic == NULL) return NULL;
+ 276              		.loc 1 31 5 is_stmt 1 view .LVU71
+ 277              		.loc 1 31 7 is_stmt 0 view .LVU72
+ 278 0010 0646     		mov	r6, r0
+ 279 0012 18B3     		cbz	r0, .L13
+  32:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c **** 
+  33:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c ****     itf = (GenericADC_ItfTypeDef *)malloc(sizeof(GenericADC_ItfTypeDef) *
+ 280              		.loc 1 33 5 is_stmt 1 view .LVU73
+  34:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c ****                                           Init.channel_len);
+ 281              		.loc 1 34 47 is_stmt 0 view .LVU74
+ 282 0014 9DF81040 		ldrb	r4, [sp, #16]	@ zero_extendqisi2
+  33:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c ****                                           Init.channel_len);
+ 283              		.loc 1 33 36 view .LVU75
+ 284 0018 04EB4400 		add	r0, r4, r4, lsl #1
+ 285              	.LVL21:
+  33:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c ****                                           Init.channel_len);
+ 286              		.loc 1 33 36 view .LVU76
+ 287 001c 8000     		lsls	r0, r0, #2
+ 288 001e FFF7FEFF 		bl	malloc
+ 289              	.LVL22:
+  35:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c ****     if(itf == NULL)
+ 290              		.loc 1 35 5 is_stmt 1 view .LVU77
+ 291              		.loc 1 35 7 is_stmt 0 view .LVU78
+ 292 0022 0546     		mov	r5, r0
+ 293 0024 10B1     		cbz	r0, .L19
+  36:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c ****     {
+  37:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c ****         free(adc_generic);
+  38:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c ****         return NULL;
+  39:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c ****     }
+  40:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c **** 
+  41:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c ****     adc_generic->interface = itf;
+ 294              		.loc 1 41 5 is_stmt 1 view .LVU79
+ 295              		.loc 1 41 28 is_stmt 0 view .LVU80
+ 296 0026 3060     		str	r0, [r6]
+  42:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c **** 
+  43:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c ****     for(uint8_t i = 0; i < Init.channel_len; i++)
+ 297              		.loc 1 43 5 is_stmt 1 view .LVU81
+ 298              	.LBB12:
+ 299              		.loc 1 43 9 view .LVU82
+ARM GAS  /tmp/cc09lQHv.s 			page 7
+
+
+ 300              	.LVL23:
+ 301              		.loc 1 43 17 is_stmt 0 view .LVU83
+ 302 0028 0023     		movs	r3, #0
+ 303              		.loc 1 43 5 view .LVU84
+ 304 002a 10E0     		b	.L16
+ 305              	.LVL24:
+ 306              	.L19:
+ 307              		.loc 1 43 5 view .LVU85
+ 308              	.LBE12:
+  37:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c ****         return NULL;
+ 309              		.loc 1 37 9 is_stmt 1 view .LVU86
+ 310 002c 3046     		mov	r0, r6
+ 311              	.LVL25:
+  37:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c ****         return NULL;
+ 312              		.loc 1 37 9 is_stmt 0 view .LVU87
+ 313 002e FFF7FEFF 		bl	free
+ 314              	.LVL26:
+  38:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c ****     }
+ 315              		.loc 1 38 9 is_stmt 1 view .LVU88
+  38:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c ****     }
+ 316              		.loc 1 38 16 is_stmt 0 view .LVU89
+ 317 0032 2E46     		mov	r6, r5
+ 318              	.LVL27:
+  38:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c ****     }
+ 319              		.loc 1 38 16 view .LVU90
+ 320 0034 12E0     		b	.L13
+ 321              	.LVL28:
+ 322              	.L17:
+ 323              	.LBB13:
+  44:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c ****     {
+  45:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c ****         itf[i].adc_max   = Init.adc_max;
+ 324              		.loc 1 45 9 is_stmt 1 discriminator 3 view .LVU91
+ 325              		.loc 1 45 12 is_stmt 0 discriminator 3 view .LVU92
+ 326 0036 03EB4302 		add	r2, r3, r3, lsl #1
+ 327 003a 05EB8202 		add	r2, r5, r2, lsl #2
+ 328              		.loc 1 45 32 discriminator 3 view .LVU93
+ 329 003e 0599     		ldr	r1, [sp, #20]	@ float
+ 330              		.loc 1 45 26 discriminator 3 view .LVU94
+ 331 0040 1160     		str	r1, [r2]	@ float
+  46:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c ****         itf[i].adc_value = 0;
+ 332              		.loc 1 46 9 is_stmt 1 discriminator 3 view .LVU95
+ 333              		.loc 1 46 26 is_stmt 0 discriminator 3 view .LVU96
+ 334 0042 0021     		movs	r1, #0
+ 335 0044 5160     		str	r1, [r2, #4]	@ float
+  47:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c ****         itf[i].gain      = Init.gain;
+ 336              		.loc 1 47 9 is_stmt 1 discriminator 3 view .LVU97
+ 337              		.loc 1 47 32 is_stmt 0 discriminator 3 view .LVU98
+ 338 0046 0699     		ldr	r1, [sp, #24]	@ float
+ 339              		.loc 1 47 26 discriminator 3 view .LVU99
+ 340 0048 9160     		str	r1, [r2, #8]	@ float
+  43:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c ****     {
+ 341              		.loc 1 43 46 is_stmt 1 discriminator 3 view .LVU100
+  43:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c ****     {
+ 342              		.loc 1 43 47 is_stmt 0 discriminator 3 view .LVU101
+ 343 004a 0133     		adds	r3, r3, #1
+ 344              	.LVL29:
+  43:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c ****     {
+ARM GAS  /tmp/cc09lQHv.s 			page 8
+
+
+ 345              		.loc 1 43 47 discriminator 3 view .LVU102
+ 346 004c DBB2     		uxtb	r3, r3
+ 347              	.LVL30:
+ 348              	.L16:
+  43:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c ****     {
+ 349              		.loc 1 43 24 is_stmt 1 discriminator 1 view .LVU103
+  43:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c ****     {
+ 350              		.loc 1 43 5 is_stmt 0 discriminator 1 view .LVU104
+ 351 004e 9C42     		cmp	r4, r3
+ 352 0050 F1D8     		bhi	.L17
+ 353              	.LBE13:
+  48:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c ****     }
+  49:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c ****     adc_generic->sample_size = Init.sample_size;
+ 354              		.loc 1 49 5 is_stmt 1 view .LVU105
+ 355              		.loc 1 49 36 is_stmt 0 view .LVU106
+ 356 0052 9DF81C30 		ldrb	r3, [sp, #28]	@ zero_extendqisi2
+ 357              	.LVL31:
+ 358              		.loc 1 49 30 view .LVU107
+ 359 0056 3371     		strb	r3, [r6, #4]
+  50:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c ****     adc_generic->interval    = Init.interval;
+ 360              		.loc 1 50 5 is_stmt 1 view .LVU108
+ 361              		.loc 1 50 36 is_stmt 0 view .LVU109
+ 362 0058 089B     		ldr	r3, [sp, #32]
+ 363              		.loc 1 50 30 view .LVU110
+ 364 005a 7371     		strb	r3, [r6, #5]
+  51:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c **** 
+  52:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c ****     return adc_generic;
+ 365              		.loc 1 52 5 is_stmt 1 view .LVU111
+ 366              	.LVL32:
+ 367              	.L13:
+  53:fw-lib-stm32-BuildKit/adc-essential/adc_generic.c **** }
+ 368              		.loc 1 53 1 is_stmt 0 view .LVU112
+ 369 005c 3046     		mov	r0, r6
+ 370 005e BDE87040 		pop	{r4, r5, r6, lr}
+ 371              	.LCFI4:
+ 372              		.cfi_restore 14
+ 373              		.cfi_restore 6
+ 374              		.cfi_restore 5
+ 375              		.cfi_restore 4
+ 376              		.cfi_def_cfa_offset 16
+ 377 0062 04B0     		add	sp, sp, #16
+ 378              	.LCFI5:
+ 379              		.cfi_def_cfa_offset 0
+ 380 0064 7047     		bx	lr
+ 381              		.cfi_endproc
+ 382              	.LFE148:
+ 384              		.text
+ 385              	.Letext0:
+ 386              		.file 2 "/usr/share/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/_default_types.h"
+ 387              		.file 3 "/usr/share/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_stdint.h"
+ 388              		.file 4 "fw-lib-stm32-CocktailOS/kernel/core/task.h"
+ 389              		.file 5 "fw-lib-stm32-CocktailOS/kernel/core/pcb.h"
+ 390              		.file 6 "fw-lib-stm32-CocktailOS/kernel/core/event.h"
+ 391              		.file 7 "fw-lib-stm32-BuildKit/adc-essential/adc_generic.h"
+ 392              		.file 8 "/usr/share/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/stdlib.h"
+ 393              		.file 9 "fw-lib-stm32-CocktailOS/kernel/core/sched.h"
+ 394              		.file 10 "fw-lib-stm32-CocktailOS/kernel/core/sleep.h"
+ARM GAS  /tmp/cc09lQHv.s 			page 9
+
+
+ 395              		.file 11 "fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_periph.h"
+ARM GAS  /tmp/cc09lQHv.s 			page 10
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 adc_generic.c
+     /tmp/cc09lQHv.s:20     .text.generic_adc_task:0000000000000000 $t
+     /tmp/cc09lQHv.s:25     .text.generic_adc_task:0000000000000000 generic_adc_task
+     /tmp/cc09lQHv.s:142    .text.generic_adc_task:0000000000000058 $d
+     /tmp/cc09lQHv.s:149    .text.GenericADC_startSample:0000000000000000 $t
+     /tmp/cc09lQHv.s:155    .text.GenericADC_startSample:0000000000000000 GenericADC_startSample
+     /tmp/cc09lQHv.s:240    .text.GenericADC_startSample:0000000000000040 $d
+     /tmp/cc09lQHv.s:245    .text.GenericADC_newADC:0000000000000000 $t
+     /tmp/cc09lQHv.s:251    .text.GenericADC_newADC:0000000000000000 GenericADC_newADC
+
+UNDEFINED SYMBOLS
+Cocktail_newTask
+sleep
+malloc
+Cocktail_Schedule
+free

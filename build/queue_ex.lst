@@ -1,0 +1,521 @@
+ARM GAS  /tmp/cc25IaDa.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"queue_ex.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.QueueEx_init_node,"ax",%progbits
+  20              		.align	1
+  21              		.global	QueueEx_init_node
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	QueueEx_init_node:
+  27              	.LVL0:
+  28              	.LFB0:
+  29              		.file 1 "fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c"
+   1:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** #include "queue_ex.h"
+   2:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** #include <string.h>
+   3:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** #include <stdlib.h>
+   4:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** 
+   5:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** QueueEx_NodeTypeDef *
+   6:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** QueueEx_init_node(void *data, uint32_t size)
+   7:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** {
+  30              		.loc 1 7 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		.loc 1 7 1 is_stmt 0 view .LVU1
+  35 0000 38B5     		push	{r3, r4, r5, lr}
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 16
+  38              		.cfi_offset 3, -16
+  39              		.cfi_offset 4, -12
+  40              		.cfi_offset 5, -8
+  41              		.cfi_offset 14, -4
+  42 0002 0446     		mov	r4, r0
+  43 0004 0D46     		mov	r5, r1
+   8:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c ****     QueueEx_NodeTypeDef *node;
+  44              		.loc 1 8 5 is_stmt 1 view .LVU2
+   9:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** 
+  10:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c ****     node = (QueueEx_NodeTypeDef *)malloc(sizeof(QueueEx_NodeTypeDef));
+  45              		.loc 1 10 5 view .LVU3
+  46              		.loc 1 10 35 is_stmt 0 view .LVU4
+  47 0006 1020     		movs	r0, #16
+  48              	.LVL1:
+ARM GAS  /tmp/cc25IaDa.s 			page 2
+
+
+  49              		.loc 1 10 35 view .LVU5
+  50 0008 FFF7FEFF 		bl	malloc
+  51              	.LVL2:
+  11:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c ****     if(!node) return NULL;
+  52              		.loc 1 11 5 is_stmt 1 view .LVU6
+  53              		.loc 1 11 7 is_stmt 0 view .LVU7
+  54 000c 0346     		mov	r3, r0
+  55 000e 20B1     		cbz	r0, .L1
+  12:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** 
+  13:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c ****     node->key  = -1;
+  56              		.loc 1 13 5 is_stmt 1 view .LVU8
+  57              		.loc 1 13 16 is_stmt 0 view .LVU9
+  58 0010 4FF0FF32 		mov	r2, #-1
+  59 0014 0260     		str	r2, [r0]
+  14:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c ****     node->size = size;
+  60              		.loc 1 14 5 is_stmt 1 view .LVU10
+  61              		.loc 1 14 16 is_stmt 0 view .LVU11
+  62 0016 8560     		str	r5, [r0, #8]
+  15:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c ****     node->data = data;
+  63              		.loc 1 15 5 is_stmt 1 view .LVU12
+  64              		.loc 1 15 16 is_stmt 0 view .LVU13
+  65 0018 4460     		str	r4, [r0, #4]
+  16:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** 
+  17:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c ****     return node;
+  66              		.loc 1 17 5 is_stmt 1 view .LVU14
+  67              	.L1:
+  18:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** }
+  68              		.loc 1 18 1 is_stmt 0 view .LVU15
+  69 001a 1846     		mov	r0, r3
+  70              	.LVL3:
+  71              		.loc 1 18 1 view .LVU16
+  72 001c 38BD     		pop	{r3, r4, r5, pc}
+  73              		.loc 1 18 1 view .LVU17
+  74              		.cfi_endproc
+  75              	.LFE0:
+  77              		.section	.text.QueueEx_search,"ax",%progbits
+  78              		.align	1
+  79              		.global	QueueEx_search
+  80              		.syntax unified
+  81              		.thumb
+  82              		.thumb_func
+  84              	QueueEx_search:
+  85              	.LVL4:
+  86              	.LFB1:
+  19:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** 
+  20:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** QueueEx_NodeTypeDef *
+  21:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** QueueEx_search(QueueEx_HeadTypeDef *head, uint32_t key)
+  22:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** {
+  87              		.loc 1 22 1 is_stmt 1 view -0
+  88              		.cfi_startproc
+  89              		@ args = 0, pretend = 0, frame = 0
+  90              		@ frame_needed = 0, uses_anonymous_args = 0
+  91              		@ link register save eliminated.
+  23:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c ****     QueueEx_NodeTypeDef *node;
+  92              		.loc 1 23 5 view .LVU19
+  24:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** 
+  25:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c ****     STAILQ_FOREACH(node, head, entries)
+ARM GAS  /tmp/cc25IaDa.s 			page 3
+
+
+  93              		.loc 1 25 5 view .LVU20
+  94 0000 0068     		ldr	r0, [r0]
+  95              	.LVL5:
+  96              		.loc 1 25 5 is_stmt 0 view .LVU21
+  97 0002 00E0     		b	.L5
+  98              	.L8:
+  99              		.loc 1 25 5 is_stmt 1 discriminator 2 view .LVU22
+ 100 0004 C068     		ldr	r0, [r0, #12]
+ 101              	.LVL6:
+ 102              	.L5:
+ 103              		.loc 1 25 5 discriminator 1 view .LVU23
+ 104 0006 10B1     		cbz	r0, .L4
+  26:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c ****     if(node->key == key) break;
+ 105              		.loc 1 26 5 view .LVU24
+ 106              		.loc 1 26 12 is_stmt 0 view .LVU25
+ 107 0008 0368     		ldr	r3, [r0]
+ 108              		.loc 1 26 7 view .LVU26
+ 109 000a 8B42     		cmp	r3, r1
+ 110 000c FAD1     		bne	.L8
+ 111              	.L4:
+  27:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** 
+  28:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c ****     return node;
+  29:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** }
+ 112              		.loc 1 29 1 view .LVU27
+ 113 000e 7047     		bx	lr
+ 114              		.cfi_endproc
+ 115              	.LFE1:
+ 117              		.section	.text.QueueEx_put,"ax",%progbits
+ 118              		.align	1
+ 119              		.global	QueueEx_put
+ 120              		.syntax unified
+ 121              		.thumb
+ 122              		.thumb_func
+ 124              	QueueEx_put:
+ 125              	.LVL7:
+ 126              	.LFB2:
+  30:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** 
+  31:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** QueueEx_StatusTypeDef
+  32:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** QueueEx_put(QueueEx_HeadTypeDef *head, QueueEx_NodeTypeDef *node, uint32_t key)
+  33:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** {
+ 127              		.loc 1 33 1 is_stmt 1 view -0
+ 128              		.cfi_startproc
+ 129              		@ args = 0, pretend = 0, frame = 0
+ 130              		@ frame_needed = 0, uses_anonymous_args = 0
+ 131              		@ link register save eliminated.
+  34:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c ****     if(!head || !node) return QUEUE_EX_EINVAL;
+ 132              		.loc 1 34 5 view .LVU29
+ 133              		.loc 1 34 8 is_stmt 0 view .LVU30
+ 134 0000 8446     		mov	ip, r0
+ 135              		.loc 1 34 17 view .LVU31
+ 136 0002 0B46     		mov	r3, r1
+ 137              		.loc 1 34 7 view .LVU32
+ 138 0004 0029     		cmp	r1, #0
+ 139 0006 18BF     		it	ne
+ 140 0008 0028     		cmpne	r0, #0
+ 141 000a 09D0     		beq	.L11
+  35:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** 
+ARM GAS  /tmp/cc25IaDa.s 			page 4
+
+
+  36:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c ****     node->key = key;
+ 142              		.loc 1 36 5 is_stmt 1 view .LVU33
+ 143              		.loc 1 36 15 is_stmt 0 view .LVU34
+ 144 000c 0A60     		str	r2, [r1]
+  37:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c ****     STAILQ_INSERT_TAIL(head, node, entries);
+ 145              		.loc 1 37 5 is_stmt 1 view .LVU35
+ 146              		.loc 1 37 5 view .LVU36
+ 147 000e 0020     		movs	r0, #0
+ 148              	.LVL8:
+ 149              		.loc 1 37 5 is_stmt 0 view .LVU37
+ 150 0010 C860     		str	r0, [r1, #12]
+ 151              		.loc 1 37 5 is_stmt 1 view .LVU38
+ 152 0012 DCF80420 		ldr	r2, [ip, #4]
+ 153              	.LVL9:
+ 154              		.loc 1 37 5 is_stmt 0 view .LVU39
+ 155 0016 1160     		str	r1, [r2]
+ 156              	.LVL10:
+ 157              		.loc 1 37 5 is_stmt 1 view .LVU40
+ 158 0018 0C33     		adds	r3, r3, #12
+ 159 001a CCF80430 		str	r3, [ip, #4]
+ 160              		.loc 1 37 5 view .LVU41
+  38:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** 
+  39:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c ****     return QUEUE_EX_OK;
+ 161              		.loc 1 39 5 view .LVU42
+ 162              		.loc 1 39 12 is_stmt 0 view .LVU43
+ 163 001e 7047     		bx	lr
+ 164              	.LVL11:
+ 165              	.L11:
+  34:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** 
+ 166              		.loc 1 34 31 view .LVU44
+ 167 0020 0420     		movs	r0, #4
+ 168              	.LVL12:
+  40:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** }
+ 169              		.loc 1 40 1 view .LVU45
+ 170 0022 7047     		bx	lr
+ 171              		.cfi_endproc
+ 172              	.LFE2:
+ 174              		.section	.text.SizedQ_put,"ax",%progbits
+ 175              		.align	1
+ 176              		.global	SizedQ_put
+ 177              		.syntax unified
+ 178              		.thumb
+ 179              		.thumb_func
+ 181              	SizedQ_put:
+ 182              	.LVL13:
+ 183              	.LFB3:
+  41:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** 
+  42:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** QueueEx_StatusTypeDef
+  43:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** SizedQ_put(SizedQ_TypeDef *sq, QueueEx_NodeTypeDef *node)
+  44:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** {
+ 184              		.loc 1 44 1 is_stmt 1 view -0
+ 185              		.cfi_startproc
+ 186              		@ args = 0, pretend = 0, frame = 0
+ 187              		@ frame_needed = 0, uses_anonymous_args = 0
+ 188              		.loc 1 44 1 is_stmt 0 view .LVU47
+ 189 0000 08B5     		push	{r3, lr}
+ 190              	.LCFI1:
+ARM GAS  /tmp/cc25IaDa.s 			page 5
+
+
+ 191              		.cfi_def_cfa_offset 8
+ 192              		.cfi_offset 3, -8
+ 193              		.cfi_offset 14, -4
+  45:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c ****     if(sq->cnt == sq->size - 1) return QUEUE_EX_FULL_ERROR;
+ 194              		.loc 1 45 5 is_stmt 1 view .LVU48
+ 195              		.loc 1 45 10 is_stmt 0 view .LVU49
+ 196 0002 8268     		ldr	r2, [r0, #8]
+ 197              		.loc 1 45 21 view .LVU50
+ 198 0004 C368     		ldr	r3, [r0, #12]
+ 199              		.loc 1 45 28 view .LVU51
+ 200 0006 013B     		subs	r3, r3, #1
+ 201              		.loc 1 45 7 view .LVU52
+ 202 0008 9A42     		cmp	r2, r3
+ 203 000a 07D0     		beq	.L14
+  46:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** 
+  47:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c ****     sq->cnt++;
+ 204              		.loc 1 47 5 is_stmt 1 view .LVU53
+ 205              		.loc 1 47 7 is_stmt 0 view .LVU54
+ 206 000c 8368     		ldr	r3, [r0, #8]
+ 207              		.loc 1 47 12 view .LVU55
+ 208 000e 0133     		adds	r3, r3, #1
+ 209 0010 8360     		str	r3, [r0, #8]
+  48:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** 
+  49:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c ****     return QueueEx_put(&sq->head, node, -1);
+ 210              		.loc 1 49 5 is_stmt 1 view .LVU56
+ 211              		.loc 1 49 12 is_stmt 0 view .LVU57
+ 212 0012 4FF0FF32 		mov	r2, #-1
+ 213 0016 FFF7FEFF 		bl	QueueEx_put
+ 214              	.LVL14:
+ 215              	.L13:
+  50:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** }
+ 216              		.loc 1 50 1 view .LVU58
+ 217 001a 08BD     		pop	{r3, pc}
+ 218              	.LVL15:
+ 219              	.L14:
+  45:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** 
+ 220              		.loc 1 45 40 view .LVU59
+ 221 001c 0220     		movs	r0, #2
+ 222              	.LVL16:
+  45:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** 
+ 223              		.loc 1 45 40 view .LVU60
+ 224 001e FCE7     		b	.L13
+ 225              		.cfi_endproc
+ 226              	.LFE3:
+ 228              		.section	.text.SizedQ_get,"ax",%progbits
+ 229              		.align	1
+ 230              		.global	SizedQ_get
+ 231              		.syntax unified
+ 232              		.thumb
+ 233              		.thumb_func
+ 235              	SizedQ_get:
+ 236              	.LVL17:
+ 237              	.LFB4:
+  51:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** 
+  52:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** QueueEx_StatusTypeDef
+  53:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** SizedQ_get(SizedQ_TypeDef *sq, QueueEx_NodeTypeDef **node)
+  54:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** {
+ARM GAS  /tmp/cc25IaDa.s 			page 6
+
+
+ 238              		.loc 1 54 1 is_stmt 1 view -0
+ 239              		.cfi_startproc
+ 240              		@ args = 0, pretend = 0, frame = 0
+ 241              		@ frame_needed = 0, uses_anonymous_args = 0
+ 242              		@ link register save eliminated.
+  55:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c ****     if(sq->cnt == 0) return QUEUE_EX_EMPTY_ERROR;
+ 243              		.loc 1 55 5 view .LVU62
+ 244              		.loc 1 55 10 is_stmt 0 view .LVU63
+ 245 0000 8368     		ldr	r3, [r0, #8]
+ 246              		.loc 1 55 7 view .LVU64
+ 247 0002 6BB1     		cbz	r3, .L18
+  56:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** 
+  57:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c ****     sq->cnt--;
+ 248              		.loc 1 57 5 is_stmt 1 view .LVU65
+ 249              		.loc 1 57 7 is_stmt 0 view .LVU66
+ 250 0004 8368     		ldr	r3, [r0, #8]
+ 251              		.loc 1 57 12 view .LVU67
+ 252 0006 013B     		subs	r3, r3, #1
+ 253 0008 8360     		str	r3, [r0, #8]
+  58:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c ****     _GET_ENTRY(&sq->head, *node, entries);
+ 254              		.loc 1 58 5 is_stmt 1 view .LVU68
+ 255              		.loc 1 58 5 view .LVU69
+ 256 000a 0368     		ldr	r3, [r0]
+ 257 000c 0B60     		str	r3, [r1]
+ 258              		.loc 1 58 5 view .LVU70
+ 259              		.loc 1 58 5 view .LVU71
+ 260 000e 0368     		ldr	r3, [r0]
+ 261 0010 DB68     		ldr	r3, [r3, #12]
+ 262 0012 0360     		str	r3, [r0]
+ 263 0014 0BB1     		cbz	r3, .L20
+  59:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** 
+  60:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c ****     return QUEUE_EX_OK;
+ 264              		.loc 1 60 12 is_stmt 0 view .LVU72
+ 265 0016 0020     		movs	r0, #0
+ 266              	.LVL18:
+  61:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** }
+ 267              		.loc 1 61 1 view .LVU73
+ 268 0018 7047     		bx	lr
+ 269              	.LVL19:
+ 270              	.L20:
+  58:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c ****     _GET_ENTRY(&sq->head, *node, entries);
+ 271              		.loc 1 58 5 is_stmt 1 discriminator 1 view .LVU74
+ 272 001a 4060     		str	r0, [r0, #4]
+  60:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** }
+ 273              		.loc 1 60 12 is_stmt 0 discriminator 1 view .LVU75
+ 274 001c 0020     		movs	r0, #0
+ 275              	.LVL20:
+  60:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** }
+ 276              		.loc 1 60 12 discriminator 1 view .LVU76
+ 277 001e 7047     		bx	lr
+ 278              	.LVL21:
+ 279              	.L18:
+  55:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** 
+ 280              		.loc 1 55 29 view .LVU77
+ 281 0020 0120     		movs	r0, #1
+ 282              	.LVL22:
+  55:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** 
+ARM GAS  /tmp/cc25IaDa.s 			page 7
+
+
+ 283              		.loc 1 55 29 view .LVU78
+ 284 0022 7047     		bx	lr
+ 285              		.cfi_endproc
+ 286              	.LFE4:
+ 288              		.section	.text.SizedQ_fetch,"ax",%progbits
+ 289              		.align	1
+ 290              		.global	SizedQ_fetch
+ 291              		.syntax unified
+ 292              		.thumb
+ 293              		.thumb_func
+ 295              	SizedQ_fetch:
+ 296              	.LVL23:
+ 297              	.LFB5:
+  62:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** 
+  63:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** QueueEx_StatusTypeDef
+  64:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** SizedQ_fetch(SizedQ_TypeDef *sq, QueueEx_NodeTypeDef **node)
+  65:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** {
+ 298              		.loc 1 65 1 is_stmt 1 view -0
+ 299              		.cfi_startproc
+ 300              		@ args = 0, pretend = 0, frame = 0
+ 301              		@ frame_needed = 0, uses_anonymous_args = 0
+ 302              		@ link register save eliminated.
+  66:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c ****     if(sq->cnt == 0) return QUEUE_EX_EMPTY_ERROR;
+ 303              		.loc 1 66 5 view .LVU80
+ 304              		.loc 1 66 10 is_stmt 0 view .LVU81
+ 305 0000 8368     		ldr	r3, [r0, #8]
+ 306              		.loc 1 66 7 view .LVU82
+ 307 0002 1BB1     		cbz	r3, .L23
+  67:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** 
+  68:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c ****     *node = STAILQ_FIRST(&sq->head);
+ 308              		.loc 1 68 5 is_stmt 1 view .LVU83
+ 309              		.loc 1 68 13 is_stmt 0 view .LVU84
+ 310 0004 0368     		ldr	r3, [r0]
+ 311              		.loc 1 68 11 view .LVU85
+ 312 0006 0B60     		str	r3, [r1]
+  69:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** 
+  70:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c ****     return QUEUE_EX_OK;
+ 313              		.loc 1 70 5 is_stmt 1 view .LVU86
+ 314              		.loc 1 70 12 is_stmt 0 view .LVU87
+ 315 0008 0020     		movs	r0, #0
+ 316              	.LVL24:
+ 317              		.loc 1 70 12 view .LVU88
+ 318 000a 7047     		bx	lr
+ 319              	.LVL25:
+ 320              	.L23:
+  66:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** 
+ 321              		.loc 1 66 29 view .LVU89
+ 322 000c 0120     		movs	r0, #1
+ 323              	.LVL26:
+  71:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** }
+ 324              		.loc 1 71 1 view .LVU90
+ 325 000e 7047     		bx	lr
+ 326              		.cfi_endproc
+ 327              	.LFE5:
+ 329              		.section	.text.SizedQ_init,"ax",%progbits
+ 330              		.align	1
+ 331              		.global	SizedQ_init
+ARM GAS  /tmp/cc25IaDa.s 			page 8
+
+
+ 332              		.syntax unified
+ 333              		.thumb
+ 334              		.thumb_func
+ 336              	SizedQ_init:
+ 337              	.LVL27:
+ 338              	.LFB6:
+  72:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** 
+  73:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** SizedQ_TypeDef *
+  74:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** SizedQ_init(uint32_t size)
+  75:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** {
+ 339              		.loc 1 75 1 is_stmt 1 view -0
+ 340              		.cfi_startproc
+ 341              		@ args = 0, pretend = 0, frame = 0
+ 342              		@ frame_needed = 0, uses_anonymous_args = 0
+ 343              		.loc 1 75 1 is_stmt 0 view .LVU92
+ 344 0000 10B5     		push	{r4, lr}
+ 345              	.LCFI2:
+ 346              		.cfi_def_cfa_offset 8
+ 347              		.cfi_offset 4, -8
+ 348              		.cfi_offset 14, -4
+ 349 0002 0446     		mov	r4, r0
+  76:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c ****     SizedQ_TypeDef *sq;
+ 350              		.loc 1 76 5 is_stmt 1 view .LVU93
+  77:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** 
+  78:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c ****     sq = (SizedQ_TypeDef *)malloc(sizeof(SizedQ_TypeDef));
+ 351              		.loc 1 78 5 view .LVU94
+ 352              		.loc 1 78 28 is_stmt 0 view .LVU95
+ 353 0004 1020     		movs	r0, #16
+ 354              	.LVL28:
+ 355              		.loc 1 78 28 view .LVU96
+ 356 0006 FFF7FEFF 		bl	malloc
+ 357              	.LVL29:
+  79:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c ****     if(!sq) return NULL;
+ 358              		.loc 1 79 5 is_stmt 1 view .LVU97
+ 359              		.loc 1 79 7 is_stmt 0 view .LVU98
+ 360 000a 0346     		mov	r3, r0
+ 361 000c 20B1     		cbz	r0, .L24
+  80:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** 
+  81:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c ****     sq->cnt  = 0;
+ 362              		.loc 1 81 5 is_stmt 1 view .LVU99
+ 363              		.loc 1 81 14 is_stmt 0 view .LVU100
+ 364 000e 0022     		movs	r2, #0
+ 365 0010 8260     		str	r2, [r0, #8]
+  82:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c ****     sq->size = size;
+ 366              		.loc 1 82 5 is_stmt 1 view .LVU101
+ 367              		.loc 1 82 14 is_stmt 0 view .LVU102
+ 368 0012 C460     		str	r4, [r0, #12]
+  83:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c ****     _INIT_ENTRY(&sq->head);
+ 369              		.loc 1 83 5 is_stmt 1 view .LVU103
+ 370              		.loc 1 83 5 view .LVU104
+ 371 0014 0260     		str	r2, [r0]
+ 372              		.loc 1 83 5 view .LVU105
+ 373 0016 5860     		str	r0, [r3, #4]
+ 374              		.loc 1 83 5 view .LVU106
+  84:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** 
+  85:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c ****     return sq;
+ 375              		.loc 1 85 5 view .LVU107
+ARM GAS  /tmp/cc25IaDa.s 			page 9
+
+
+ 376              	.L24:
+  86:fw-lib-stm32-CocktailOS/kernel/core/queue_ex.c **** }
+ 377              		.loc 1 86 1 is_stmt 0 view .LVU108
+ 378 0018 1846     		mov	r0, r3
+ 379              	.LVL30:
+ 380              		.loc 1 86 1 view .LVU109
+ 381 001a 10BD     		pop	{r4, pc}
+ 382              		.loc 1 86 1 view .LVU110
+ 383              		.cfi_endproc
+ 384              	.LFE6:
+ 386              		.text
+ 387              	.Letext0:
+ 388              		.file 2 "/usr/share/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/_default_types.h"
+ 389              		.file 3 "/usr/share/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_stdint.h"
+ 390              		.file 4 "fw-lib-stm32-CocktailOS/kernel/core/queue_ex.h"
+ 391              		.file 5 "/usr/share/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/stdlib.h"
+ARM GAS  /tmp/cc25IaDa.s 			page 10
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 queue_ex.c
+     /tmp/cc25IaDa.s:20     .text.QueueEx_init_node:0000000000000000 $t
+     /tmp/cc25IaDa.s:26     .text.QueueEx_init_node:0000000000000000 QueueEx_init_node
+     /tmp/cc25IaDa.s:78     .text.QueueEx_search:0000000000000000 $t
+     /tmp/cc25IaDa.s:84     .text.QueueEx_search:0000000000000000 QueueEx_search
+     /tmp/cc25IaDa.s:118    .text.QueueEx_put:0000000000000000 $t
+     /tmp/cc25IaDa.s:124    .text.QueueEx_put:0000000000000000 QueueEx_put
+     /tmp/cc25IaDa.s:175    .text.SizedQ_put:0000000000000000 $t
+     /tmp/cc25IaDa.s:181    .text.SizedQ_put:0000000000000000 SizedQ_put
+     /tmp/cc25IaDa.s:229    .text.SizedQ_get:0000000000000000 $t
+     /tmp/cc25IaDa.s:235    .text.SizedQ_get:0000000000000000 SizedQ_get
+     /tmp/cc25IaDa.s:289    .text.SizedQ_fetch:0000000000000000 $t
+     /tmp/cc25IaDa.s:295    .text.SizedQ_fetch:0000000000000000 SizedQ_fetch
+     /tmp/cc25IaDa.s:330    .text.SizedQ_init:0000000000000000 $t
+     /tmp/cc25IaDa.s:336    .text.SizedQ_init:0000000000000000 SizedQ_init
+
+UNDEFINED SYMBOLS
+malloc

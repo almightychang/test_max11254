@@ -1,0 +1,536 @@
+ARM GAS  /tmp/ccJw4dIy.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"sleep.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.sleep_init_fn,"ax",%progbits
+  20              		.align	1
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	sleep_init_fn:
+  26              	.LVL0:
+  27              	.LFB144:
+  28              		.file 1 "fw-lib-stm32-CocktailOS/kernel/core/sleep.c"
+   1:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** #include "core/sleep.h"
+   2:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** #include "core/watcher.h"
+   3:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** 
+   4:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** static Cocktail_SleepQueueDef   sleep_queue;
+   5:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** static Cocktail_WatcherTypeDef *watcher;
+   6:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** 
+   7:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** static void
+   8:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** sleep_init_fn(void *ctx)
+   9:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** {
+  29              		.loc 1 9 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+  10:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****     Cocktail_SleepQueueDef *sleep_queue = (Cocktail_SleepQueueDef *)ctx;
+  34              		.loc 1 10 5 view .LVU1
+  11:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****     _INIT_ENTRY(sleep_queue);
+  35              		.loc 1 11 5 view .LVU2
+  36              		.loc 1 11 5 view .LVU3
+  37 0000 0023     		movs	r3, #0
+  38 0002 0360     		str	r3, [r0]
+  39              		.loc 1 11 5 view .LVU4
+  40 0004 4060     		str	r0, [r0, #4]
+  41              		.loc 1 11 5 view .LVU5
+  12:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** }
+  42              		.loc 1 12 1 is_stmt 0 view .LVU6
+  43 0006 7047     		bx	lr
+  44              		.cfi_endproc
+  45              	.LFE144:
+  47              		.section	.text.sleep_cond_fn,"ax",%progbits
+ARM GAS  /tmp/ccJw4dIy.s 			page 2
+
+
+  48              		.align	1
+  49              		.syntax unified
+  50              		.thumb
+  51              		.thumb_func
+  53              	sleep_cond_fn:
+  54              	.LVL1:
+  55              	.LFB146:
+  13:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** 
+  14:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** static void
+  15:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** sleep_job_fn(void *ctx)
+  16:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** {
+  17:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****     Cocktail_SleepQueueDef *sleep_queue = (Cocktail_SleepQueueDef *)ctx;
+  18:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****     uint32_t                now, delta;
+  19:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** 
+  20:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****     now = HAL_GetTick();
+  21:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** 
+  22:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****     do {
+  23:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****         delta = now - _FIRST_ENTRY(sleep_queue)->timeout + 1;
+  24:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****         if(!TIME_TO_WAKE(delta)) break;
+  25:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** 
+  26:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****         _WAKE_FIRST(sleep_queue);
+  27:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****     }
+  28:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****     while(!NO_ENTRY(sleep_queue));
+  29:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** }
+  30:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** 
+  31:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** static bool
+  32:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** sleep_cond_fn(void *ctx)
+  33:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** {
+  56              		.loc 1 33 1 is_stmt 1 view -0
+  57              		.cfi_startproc
+  58              		@ args = 0, pretend = 0, frame = 0
+  59              		@ frame_needed = 0, uses_anonymous_args = 0
+  60              		@ link register save eliminated.
+  34:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****     Cocktail_SleepQueueDef *sleep_queue = (Cocktail_SleepQueueDef *)ctx;
+  61              		.loc 1 34 5 view .LVU8
+  35:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****     return !NO_ENTRY(sleep_queue);
+  62              		.loc 1 35 5 view .LVU9
+  63              		.loc 1 35 13 is_stmt 0 view .LVU10
+  64 0000 0068     		ldr	r0, [r0]
+  65              	.LVL2:
+  36:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** }
+  66              		.loc 1 36 1 view .LVU11
+  67 0002 0038     		subs	r0, r0, #0
+  68 0004 18BF     		it	ne
+  69 0006 0120     		movne	r0, #1
+  70 0008 7047     		bx	lr
+  71              		.cfi_endproc
+  72              	.LFE146:
+  74              		.section	.text.sleep_job_fn,"ax",%progbits
+  75              		.align	1
+  76              		.syntax unified
+  77              		.thumb
+  78              		.thumb_func
+  80              	sleep_job_fn:
+  81              	.LVL3:
+  82              	.LFB145:
+  16:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****     Cocktail_SleepQueueDef *sleep_queue = (Cocktail_SleepQueueDef *)ctx;
+ARM GAS  /tmp/ccJw4dIy.s 			page 3
+
+
+  83              		.loc 1 16 1 is_stmt 1 view -0
+  84              		.cfi_startproc
+  85              		@ args = 0, pretend = 0, frame = 0
+  86              		@ frame_needed = 0, uses_anonymous_args = 0
+  16:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****     Cocktail_SleepQueueDef *sleep_queue = (Cocktail_SleepQueueDef *)ctx;
+  87              		.loc 1 16 1 is_stmt 0 view .LVU13
+  88 0000 70B5     		push	{r4, r5, r6, lr}
+  89              	.LCFI0:
+  90              		.cfi_def_cfa_offset 16
+  91              		.cfi_offset 4, -16
+  92              		.cfi_offset 5, -12
+  93              		.cfi_offset 6, -8
+  94              		.cfi_offset 14, -4
+  95 0002 0546     		mov	r5, r0
+  17:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****     uint32_t                now, delta;
+  96              		.loc 1 17 5 is_stmt 1 view .LVU14
+  97              	.LVL4:
+  18:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** 
+  98              		.loc 1 18 5 view .LVU15
+  20:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** 
+  99              		.loc 1 20 5 view .LVU16
+  20:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** 
+ 100              		.loc 1 20 11 is_stmt 0 view .LVU17
+ 101 0004 FFF7FEFF 		bl	HAL_GetTick
+ 102              	.LVL5:
+  20:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** 
+ 103              		.loc 1 20 11 view .LVU18
+ 104 0008 0646     		mov	r6, r0
+ 105              	.LVL6:
+  20:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** 
+ 106              		.loc 1 20 11 view .LVU19
+ 107 000a 07E0     		b	.L6
+ 108              	.LVL7:
+ 109              	.L5:
+ 110              	.LBB2:
+  26:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****     }
+ 111              		.loc 1 26 9 is_stmt 1 discriminator 3 view .LVU20
+  26:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****     }
+ 112              		.loc 1 26 9 discriminator 3 view .LVU21
+  26:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****     }
+ 113              		.loc 1 26 9 discriminator 3 view .LVU22
+ 114 000c 6068     		ldr	r0, [r4, #4]
+ 115 000e FFF7FEFF 		bl	Cocktail_unlock_unsafe
+ 116              	.LVL8:
+  26:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****     }
+ 117              		.loc 1 26 9 discriminator 3 view .LVU23
+ 118 0012 2046     		mov	r0, r4
+ 119 0014 FFF7FEFF 		bl	free
+ 120              	.LVL9:
+ 121              	.LBE2:
+  26:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****     }
+ 122              		.loc 1 26 9 discriminator 3 view .LVU24
+  28:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** }
+ 123              		.loc 1 28 10 discriminator 3 view .LVU25
+  28:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** }
+ 124              		.loc 1 28 12 is_stmt 0 discriminator 3 view .LVU26
+ 125 0018 2B68     		ldr	r3, [r5]
+ARM GAS  /tmp/ccJw4dIy.s 			page 4
+
+
+  28:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** }
+ 126              		.loc 1 28 5 discriminator 3 view .LVU27
+ 127 001a 6BB1     		cbz	r3, .L3
+ 128              	.LVL10:
+ 129              	.L6:
+  22:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****         delta = now - _FIRST_ENTRY(sleep_queue)->timeout + 1;
+ 130              		.loc 1 22 5 is_stmt 1 view .LVU28
+  23:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****         if(!TIME_TO_WAKE(delta)) break;
+ 131              		.loc 1 23 9 view .LVU29
+  23:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****         if(!TIME_TO_WAKE(delta)) break;
+ 132              		.loc 1 23 23 is_stmt 0 view .LVU30
+ 133 001c 2C68     		ldr	r4, [r5]
+  23:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****         if(!TIME_TO_WAKE(delta)) break;
+ 134              		.loc 1 23 48 view .LVU31
+ 135 001e 2368     		ldr	r3, [r4]
+  23:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****         if(!TIME_TO_WAKE(delta)) break;
+ 136              		.loc 1 23 21 view .LVU32
+ 137 0020 F31A     		subs	r3, r6, r3
+  23:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****         if(!TIME_TO_WAKE(delta)) break;
+ 138              		.loc 1 23 15 view .LVU33
+ 139 0022 0133     		adds	r3, r3, #1
+ 140              	.LVL11:
+  24:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** 
+ 141              		.loc 1 24 9 is_stmt 1 view .LVU34
+  24:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** 
+ 142              		.loc 1 24 11 is_stmt 0 view .LVU35
+ 143 0024 6FF00042 		mvn	r2, #-2147483648
+ 144 0028 9342     		cmp	r3, r2
+ 145 002a 05D2     		bcs	.L3
+  26:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****     }
+ 146              		.loc 1 26 9 is_stmt 1 view .LVU36
+ 147              	.LBB3:
+  26:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****     }
+ 148              		.loc 1 26 9 view .LVU37
+  26:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****     }
+ 149              		.loc 1 26 9 view .LVU38
+  26:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****     }
+ 150              		.loc 1 26 9 view .LVU39
+ 151              	.LVL12:
+  26:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****     }
+ 152              		.loc 1 26 9 view .LVU40
+  26:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****     }
+ 153              		.loc 1 26 9 view .LVU41
+ 154 002c A368     		ldr	r3, [r4, #8]
+ 155              	.LVL13:
+  26:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****     }
+ 156              		.loc 1 26 9 is_stmt 0 view .LVU42
+ 157 002e 2B60     		str	r3, [r5]
+ 158              	.LVL14:
+  26:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****     }
+ 159              		.loc 1 26 9 view .LVU43
+ 160 0030 002B     		cmp	r3, #0
+ 161 0032 EBD1     		bne	.L5
+  26:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****     }
+ 162              		.loc 1 26 9 is_stmt 1 discriminator 1 view .LVU44
+ 163 0034 6D60     		str	r5, [r5, #4]
+ 164 0036 E9E7     		b	.L5
+ARM GAS  /tmp/ccJw4dIy.s 			page 5
+
+
+ 165              	.LVL15:
+ 166              	.L3:
+  26:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****     }
+ 167              		.loc 1 26 9 is_stmt 0 discriminator 1 view .LVU45
+ 168              	.LBE3:
+  29:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** 
+ 169              		.loc 1 29 1 view .LVU46
+ 170 0038 70BD     		pop	{r4, r5, r6, pc}
+  29:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** 
+ 171              		.loc 1 29 1 view .LVU47
+ 172              		.cfi_endproc
+ 173              	.LFE145:
+ 175              		.section	.text.sleep,"ax",%progbits
+ 176              		.align	1
+ 177              		.global	sleep
+ 178              		.syntax unified
+ 179              		.thumb
+ 180              		.thumb_func
+ 182              	sleep:
+ 183              	.LVL16:
+ 184              	.LFB147:
+  37:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** 
+  38:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** Cocktail_SleepTypeDef *
+  39:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** sleep(Cocktail_PcbTypeDef *pcb, uint32_t duration)
+  40:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** {
+ 185              		.loc 1 40 1 is_stmt 1 view -0
+ 186              		.cfi_startproc
+ 187              		@ args = 0, pretend = 0, frame = 0
+ 188              		@ frame_needed = 0, uses_anonymous_args = 0
+ 189              		.loc 1 40 1 is_stmt 0 view .LVU49
+ 190 0000 70B5     		push	{r4, r5, r6, lr}
+ 191              	.LCFI1:
+ 192              		.cfi_def_cfa_offset 16
+ 193              		.cfi_offset 4, -16
+ 194              		.cfi_offset 5, -12
+ 195              		.cfi_offset 6, -8
+ 196              		.cfi_offset 14, -4
+ 197 0002 0546     		mov	r5, r0
+ 198 0004 0E46     		mov	r6, r1
+  41:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****     Cocktail_SleepTypeDef *cradle;
+ 199              		.loc 1 41 5 is_stmt 1 view .LVU50
+  42:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** 
+  43:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****     cradle = (Cocktail_SleepTypeDef *)malloc(sizeof(Cocktail_SleepTypeDef));
+ 200              		.loc 1 43 5 view .LVU51
+ 201              		.loc 1 43 39 is_stmt 0 view .LVU52
+ 202 0006 0C20     		movs	r0, #12
+ 203              	.LVL17:
+ 204              		.loc 1 43 39 view .LVU53
+ 205 0008 FFF7FEFF 		bl	malloc
+ 206              	.LVL18:
+  44:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****     if(!cradle) return NULL;
+ 207              		.loc 1 44 5 is_stmt 1 view .LVU54
+ 208              		.loc 1 44 7 is_stmt 0 view .LVU55
+ 209 000c 0446     		mov	r4, r0
+ 210 000e C8B1     		cbz	r0, .L8
+  45:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****     cradle->timeout = HAL_GetTick() + duration;
+ 211              		.loc 1 45 5 is_stmt 1 view .LVU56
+ARM GAS  /tmp/ccJw4dIy.s 			page 6
+
+
+ 212              		.loc 1 45 23 is_stmt 0 view .LVU57
+ 213 0010 FFF7FEFF 		bl	HAL_GetTick
+ 214              	.LVL19:
+ 215              		.loc 1 45 37 view .LVU58
+ 216 0014 3044     		add	r0, r0, r6
+ 217              		.loc 1 45 21 view .LVU59
+ 218 0016 2060     		str	r0, [r4]
+  46:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****     cradle->lock    = Cocktail_lock(pcb);
+ 219              		.loc 1 46 5 is_stmt 1 view .LVU60
+ 220              		.loc 1 46 23 is_stmt 0 view .LVU61
+ 221 0018 2846     		mov	r0, r5
+ 222 001a FFF7FEFF 		bl	Cocktail_lock
+ 223              	.LVL20:
+ 224              		.loc 1 46 21 view .LVU62
+ 225 001e 6060     		str	r0, [r4, #4]
+  47:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** 
+  48:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****     if(!watcher)
+ 226              		.loc 1 48 5 is_stmt 1 view .LVU63
+ 227              		.loc 1 48 8 is_stmt 0 view .LVU64
+ 228 0020 1E4B     		ldr	r3, .L21
+ 229 0022 1B68     		ldr	r3, [r3]
+ 230              		.loc 1 48 7 view .LVU65
+ 231 0024 83B1     		cbz	r3, .L18
+ 232              	.LVL21:
+ 233              	.L10:
+  49:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****     {
+  50:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****         watcher = Cocktail_getWatcher(&sleep_queue);
+  51:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****         Cocktail_set_watcher_init_fn(watcher, sleep_init_fn);
+  52:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****         Cocktail_set_watcher_job_fn(watcher, sleep_job_fn);
+  53:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****         Cocktail_set_watcher_cond_fn(watcher, sleep_cond_fn);
+  54:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****         Cocktail_startWatcher(watcher);
+  55:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****     }
+  56:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****     Cocktail_invokeWatcher(watcher);
+ 234              		.loc 1 56 5 is_stmt 1 view .LVU66
+ 235 0026 1D4B     		ldr	r3, .L21
+ 236 0028 1868     		ldr	r0, [r3]
+ 237 002a FFF7FEFF 		bl	Cocktail_invokeWatcher
+ 238              	.LVL22:
+  57:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** 
+  58:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****     _ADD_SLEEP(&sleep_queue, cradle);
+ 239              		.loc 1 58 5 view .LVU67
+ 240              	.LBB4:
+ 241              		.loc 1 58 5 view .LVU68
+ 242              		.loc 1 58 5 view .LVU69
+ 243              		.loc 1 58 5 view .LVU70
+ 244 002e 1C4B     		ldr	r3, .L21+4
+ 245 0030 1B68     		ldr	r3, [r3]
+ 246 0032 1BB1     		cbz	r3, .L11
+ 247              		.loc 1 58 5 is_stmt 0 discriminator 2 view .LVU71
+ 248 0034 2068     		ldr	r0, [r4]
+ 249 0036 1A68     		ldr	r2, [r3]
+ 250 0038 9042     		cmp	r0, r2
+ 251 003a 1ED2     		bcs	.L12
+ 252              	.L11:
+ 253              		.loc 1 58 5 is_stmt 1 discriminator 3 view .LVU72
+ 254              		.loc 1 58 5 discriminator 3 view .LVU73
+ 255 003c A360     		str	r3, [r4, #8]
+ARM GAS  /tmp/ccJw4dIy.s 			page 7
+
+
+ 256 003e BBB1     		cbz	r3, .L19
+ 257              	.L13:
+ 258              		.loc 1 58 5 discriminator 7 view .LVU74
+ 259 0040 174B     		ldr	r3, .L21+4
+ 260 0042 1C60     		str	r4, [r3]
+ 261              		.loc 1 58 5 discriminator 7 view .LVU75
+ 262              	.LVL23:
+ 263              	.L8:
+ 264              		.loc 1 58 5 is_stmt 0 discriminator 7 view .LVU76
+ 265              	.LBE4:
+  59:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** 
+  60:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****     return cradle;
+  61:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** }
+ 266              		.loc 1 61 1 view .LVU77
+ 267 0044 2046     		mov	r0, r4
+ 268 0046 70BD     		pop	{r4, r5, r6, pc}
+ 269              	.LVL24:
+ 270              	.L18:
+  50:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****         Cocktail_set_watcher_init_fn(watcher, sleep_init_fn);
+ 271              		.loc 1 50 9 is_stmt 1 view .LVU78
+  50:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****         Cocktail_set_watcher_init_fn(watcher, sleep_init_fn);
+ 272              		.loc 1 50 19 is_stmt 0 view .LVU79
+ 273 0048 1548     		ldr	r0, .L21+4
+ 274 004a FFF7FEFF 		bl	Cocktail_getWatcher
+ 275              	.LVL25:
+  50:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****         Cocktail_set_watcher_init_fn(watcher, sleep_init_fn);
+ 276              		.loc 1 50 17 view .LVU80
+ 277 004e 134D     		ldr	r5, .L21
+ 278              	.LVL26:
+  50:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****         Cocktail_set_watcher_init_fn(watcher, sleep_init_fn);
+ 279              		.loc 1 50 17 view .LVU81
+ 280 0050 2860     		str	r0, [r5]
+  51:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****         Cocktail_set_watcher_job_fn(watcher, sleep_job_fn);
+ 281              		.loc 1 51 9 is_stmt 1 view .LVU82
+ 282 0052 1449     		ldr	r1, .L21+8
+ 283 0054 FFF7FEFF 		bl	Cocktail_set_watcher_init_fn
+ 284              	.LVL27:
+  52:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****         Cocktail_set_watcher_cond_fn(watcher, sleep_cond_fn);
+ 285              		.loc 1 52 9 view .LVU83
+ 286 0058 1349     		ldr	r1, .L21+12
+ 287 005a 2868     		ldr	r0, [r5]
+ 288 005c FFF7FEFF 		bl	Cocktail_set_watcher_job_fn
+ 289              	.LVL28:
+  53:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****         Cocktail_startWatcher(watcher);
+ 290              		.loc 1 53 9 view .LVU84
+ 291 0060 1249     		ldr	r1, .L21+16
+ 292 0062 2868     		ldr	r0, [r5]
+ 293 0064 FFF7FEFF 		bl	Cocktail_set_watcher_cond_fn
+ 294              	.LVL29:
+  54:fw-lib-stm32-CocktailOS/kernel/core/sleep.c ****     }
+ 295              		.loc 1 54 9 view .LVU85
+ 296 0068 2868     		ldr	r0, [r5]
+ 297 006a FFF7FEFF 		bl	Cocktail_startWatcher
+ 298              	.LVL30:
+ 299 006e DAE7     		b	.L10
+ 300              	.LVL31:
+ 301              	.L19:
+ARM GAS  /tmp/ccJw4dIy.s 			page 8
+
+
+ 302              	.LBB5:
+  58:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** 
+ 303              		.loc 1 58 5 discriminator 5 view .LVU86
+ 304 0070 04F10803 		add	r3, r4, #8
+ 305 0074 0A4A     		ldr	r2, .L21+4
+ 306 0076 5360     		str	r3, [r2, #4]
+ 307 0078 E2E7     		b	.L13
+ 308              	.L12:
+ 309              	.LVL32:
+  58:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** 
+ 310              		.loc 1 58 5 discriminator 12 view .LVU87
+ 311 007a 2BB1     		cbz	r3, .L14
+  58:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** 
+ 312              		.loc 1 58 5 discriminator 13 view .LVU88
+ 313 007c 9A68     		ldr	r2, [r3, #8]
+ 314 007e 1168     		ldr	r1, [r2]
+ 315 0080 8842     		cmp	r0, r1
+ 316 0082 01D3     		bcc	.L14
+  58:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** 
+ 317              		.loc 1 58 5 is_stmt 0 view .LVU89
+ 318 0084 1346     		mov	r3, r2
+ 319              	.LVL33:
+  58:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** 
+ 320              		.loc 1 58 5 view .LVU90
+ 321 0086 F8E7     		b	.L12
+ 322              	.LVL34:
+ 323              	.L14:
+  58:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** 
+ 324              		.loc 1 58 5 is_stmt 1 discriminator 14 view .LVU91
+  58:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** 
+ 325              		.loc 1 58 5 discriminator 14 view .LVU92
+ 326 0088 9A68     		ldr	r2, [r3, #8]
+ 327 008a A260     		str	r2, [r4, #8]
+ 328 008c 0AB1     		cbz	r2, .L20
+ 329              	.L16:
+  58:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** 
+ 330              		.loc 1 58 5 discriminator 17 view .LVU93
+ 331 008e 9C60     		str	r4, [r3, #8]
+ 332 0090 D8E7     		b	.L8
+ 333              	.L20:
+  58:fw-lib-stm32-CocktailOS/kernel/core/sleep.c **** 
+ 334              		.loc 1 58 5 discriminator 15 view .LVU94
+ 335 0092 04F10802 		add	r2, r4, #8
+ 336 0096 0249     		ldr	r1, .L21+4
+ 337 0098 4A60     		str	r2, [r1, #4]
+ 338 009a F8E7     		b	.L16
+ 339              	.L22:
+ 340              		.align	2
+ 341              	.L21:
+ 342 009c 00000000 		.word	.LANCHOR0
+ 343 00a0 00000000 		.word	.LANCHOR1
+ 344 00a4 00000000 		.word	sleep_init_fn
+ 345 00a8 00000000 		.word	sleep_job_fn
+ 346 00ac 00000000 		.word	sleep_cond_fn
+ 347              	.LBE5:
+ 348              		.cfi_endproc
+ 349              	.LFE147:
+ARM GAS  /tmp/ccJw4dIy.s 			page 9
+
+
+ 351              		.section	.bss.sleep_queue,"aw",%nobits
+ 352              		.align	2
+ 353              		.set	.LANCHOR1,. + 0
+ 356              	sleep_queue:
+ 357 0000 00000000 		.space	8
+ 357      00000000 
+ 358              		.section	.bss.watcher,"aw",%nobits
+ 359              		.align	2
+ 360              		.set	.LANCHOR0,. + 0
+ 363              	watcher:
+ 364 0000 00000000 		.space	4
+ 365              		.text
+ 366              	.Letext0:
+ 367              		.file 2 "/usr/share/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/_default_types.h"
+ 368              		.file 3 "/usr/share/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_stdint.h"
+ 369              		.file 4 "fw-lib-stm32-CocktailOS/kernel/core/task.h"
+ 370              		.file 5 "fw-lib-stm32-CocktailOS/kernel/core/pcb.h"
+ 371              		.file 6 "fw-lib-stm32-CocktailOS/kernel/core/event.h"
+ 372              		.file 7 "fw-lib-stm32-CocktailOS/kernel/core/sleep.h"
+ 373              		.file 8 "fw-lib-stm32-CocktailOS/kernel/core/watcher.h"
+ 374              		.file 9 "/usr/share/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/stdlib.h"
+ 375              		.file 10 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h"
+ARM GAS  /tmp/ccJw4dIy.s 			page 10
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 sleep.c
+     /tmp/ccJw4dIy.s:20     .text.sleep_init_fn:0000000000000000 $t
+     /tmp/ccJw4dIy.s:25     .text.sleep_init_fn:0000000000000000 sleep_init_fn
+     /tmp/ccJw4dIy.s:48     .text.sleep_cond_fn:0000000000000000 $t
+     /tmp/ccJw4dIy.s:53     .text.sleep_cond_fn:0000000000000000 sleep_cond_fn
+     /tmp/ccJw4dIy.s:75     .text.sleep_job_fn:0000000000000000 $t
+     /tmp/ccJw4dIy.s:80     .text.sleep_job_fn:0000000000000000 sleep_job_fn
+     /tmp/ccJw4dIy.s:176    .text.sleep:0000000000000000 $t
+     /tmp/ccJw4dIy.s:182    .text.sleep:0000000000000000 sleep
+     /tmp/ccJw4dIy.s:342    .text.sleep:000000000000009c $d
+     /tmp/ccJw4dIy.s:352    .bss.sleep_queue:0000000000000000 $d
+     /tmp/ccJw4dIy.s:356    .bss.sleep_queue:0000000000000000 sleep_queue
+     /tmp/ccJw4dIy.s:359    .bss.watcher:0000000000000000 $d
+     /tmp/ccJw4dIy.s:363    .bss.watcher:0000000000000000 watcher
+
+UNDEFINED SYMBOLS
+HAL_GetTick
+Cocktail_unlock_unsafe
+free
+malloc
+Cocktail_lock
+Cocktail_invokeWatcher
+Cocktail_getWatcher
+Cocktail_set_watcher_init_fn
+Cocktail_set_watcher_job_fn
+Cocktail_set_watcher_cond_fn
+Cocktail_startWatcher

@@ -1,0 +1,552 @@
+ARM GAS  /tmp/ccEmsbBj.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"watcher.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.watcher_task,"ax",%progbits
+  20              		.align	1
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	watcher_task:
+  26              	.LVL0:
+  27              	.LFB144:
+  28              		.file 1 "fw-lib-stm32-CocktailOS/kernel/core/watcher.c"
+   1:fw-lib-stm32-CocktailOS/kernel/core/watcher.c **** #include "core/watcher.h"
+   2:fw-lib-stm32-CocktailOS/kernel/core/watcher.c **** #include "core/sched.h"
+   3:fw-lib-stm32-CocktailOS/kernel/core/watcher.c **** 
+   4:fw-lib-stm32-CocktailOS/kernel/core/watcher.c **** static TASK_FN(watcher_task)
+   5:fw-lib-stm32-CocktailOS/kernel/core/watcher.c **** {
+  29              		.loc 1 5 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		.loc 1 5 1 is_stmt 0 view .LVU1
+  34 0000 38B5     		push	{r3, r4, r5, lr}
+  35              	.LCFI0:
+  36              		.cfi_def_cfa_offset 16
+  37              		.cfi_offset 3, -16
+  38              		.cfi_offset 4, -12
+  39              		.cfi_offset 5, -8
+  40              		.cfi_offset 14, -4
+  41 0002 0446     		mov	r4, r0
+   6:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****     Cocktail_WatcherTypeDef *watcher = TASK_CTX(Cocktail_WatcherTypeDef);
+  42              		.loc 1 6 5 is_stmt 1 view .LVU2
+  43              		.loc 1 6 30 is_stmt 0 view .LVU3
+  44 0004 4568     		ldr	r5, [r0, #4]
+  45              	.LVL1:
+   7:fw-lib-stm32-CocktailOS/kernel/core/watcher.c **** 
+   8:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****     _WATCHER_FN(watcher);
+  46              		.loc 1 8 5 is_stmt 1 view .LVU4
+  47 0006 EB68     		ldr	r3, [r5, #12]
+  48 0008 6869     		ldr	r0, [r5, #20]
+  49              	.LVL2:
+  50              		.loc 1 8 5 is_stmt 0 view .LVU5
+ARM GAS  /tmp/ccEmsbBj.s 			page 2
+
+
+  51 000a 9847     		blx	r3
+  52              	.LVL3:
+   9:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****     ADD_NEXT_TASK(_SCHED_ID_POLLING, watcher_task, watcher);
+  53              		.loc 1 9 5 is_stmt 1 view .LVU6
+  54              	.LBB2:
+  55              		.loc 1 9 5 view .LVU7
+  56 000c 2A46     		mov	r2, r5
+  57 000e 0D49     		ldr	r1, .L7
+  58 0010 0020     		movs	r0, #0
+  59 0012 FFF7FEFF 		bl	Cocktail_newTask
+  60              	.LVL4:
+  61              		.loc 1 9 5 view .LVU8
+  62              	.LBB3:
+  63              		.loc 1 9 5 view .LVU9
+  64              		.loc 1 9 5 view .LVU10
+  65              		.loc 1 9 5 view .LVU11
+  66 0016 E368     		ldr	r3, [r4, #12]
+  67 0018 DB68     		ldr	r3, [r3, #12]
+  68 001a 0361     		str	r3, [r0, #16]
+  69 001c 43B1     		cbz	r3, .L5
+  70              	.L2:
+  71              		.loc 1 9 5 discriminator 3 view .LVU12
+  72 001e E368     		ldr	r3, [r4, #12]
+  73 0020 D860     		str	r0, [r3, #12]
+  74              		.loc 1 9 5 discriminator 3 view .LVU13
+  75              	.LBE3:
+  76              		.loc 1 9 5 discriminator 3 view .LVU14
+  77              		.loc 1 9 5 discriminator 3 view .LVU15
+  78 0022 E368     		ldr	r3, [r4, #12]
+  79 0024 C360     		str	r3, [r0, #12]
+  80              	.LBE2:
+  81              		.loc 1 9 5 discriminator 3 view .LVU16
+  10:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****     if(!_WATCHER_COND(watcher)) watcher->lock = Cocktail_lock(_task->_pcb);
+  82              		.loc 1 10 5 discriminator 3 view .LVU17
+  83              		.loc 1 10 9 is_stmt 0 discriminator 3 view .LVU18
+  84 0026 2B69     		ldr	r3, [r5, #16]
+  85 0028 6869     		ldr	r0, [r5, #20]
+  86              	.LVL5:
+  87              		.loc 1 10 9 discriminator 3 view .LVU19
+  88 002a 9847     		blx	r3
+  89              	.LVL6:
+  90              		.loc 1 10 7 discriminator 3 view .LVU20
+  91 002c 28B1     		cbz	r0, .L6
+  92              	.L1:
+  11:fw-lib-stm32-CocktailOS/kernel/core/watcher.c **** }
+  93              		.loc 1 11 1 view .LVU21
+  94 002e 38BD     		pop	{r3, r4, r5, pc}
+  95              	.LVL7:
+  96              	.L5:
+  97              	.LBB5:
+  98              	.LBB4:
+   9:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****     ADD_NEXT_TASK(_SCHED_ID_POLLING, watcher_task, watcher);
+  99              		.loc 1 9 5 is_stmt 1 discriminator 1 view .LVU22
+ 100 0030 E368     		ldr	r3, [r4, #12]
+ 101 0032 00F11002 		add	r2, r0, #16
+ 102 0036 1A61     		str	r2, [r3, #16]
+ 103 0038 F1E7     		b	.L2
+ARM GAS  /tmp/ccEmsbBj.s 			page 3
+
+
+ 104              	.LVL8:
+ 105              	.L6:
+   9:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****     ADD_NEXT_TASK(_SCHED_ID_POLLING, watcher_task, watcher);
+ 106              		.loc 1 9 5 is_stmt 0 discriminator 1 view .LVU23
+ 107              	.LBE4:
+ 108              	.LBE5:
+  10:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****     if(!_WATCHER_COND(watcher)) watcher->lock = Cocktail_lock(_task->_pcb);
+ 109              		.loc 1 10 33 is_stmt 1 discriminator 1 view .LVU24
+  10:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****     if(!_WATCHER_COND(watcher)) watcher->lock = Cocktail_lock(_task->_pcb);
+ 110              		.loc 1 10 49 is_stmt 0 discriminator 1 view .LVU25
+ 111 003a E068     		ldr	r0, [r4, #12]
+ 112 003c FFF7FEFF 		bl	Cocktail_lock
+ 113              	.LVL9:
+  10:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****     if(!_WATCHER_COND(watcher)) watcher->lock = Cocktail_lock(_task->_pcb);
+ 114              		.loc 1 10 47 discriminator 1 view .LVU26
+ 115 0040 6860     		str	r0, [r5, #4]
+ 116              		.loc 1 11 1 discriminator 1 view .LVU27
+ 117 0042 F4E7     		b	.L1
+ 118              	.L8:
+ 119              		.align	2
+ 120              	.L7:
+ 121 0044 00000000 		.word	watcher_task
+ 122              		.cfi_endproc
+ 123              	.LFE144:
+ 125              		.section	.text.Cocktail_invokeWatcher,"ax",%progbits
+ 126              		.align	1
+ 127              		.global	Cocktail_invokeWatcher
+ 128              		.syntax unified
+ 129              		.thumb
+ 130              		.thumb_func
+ 132              	Cocktail_invokeWatcher:
+ 133              	.LVL10:
+ 134              	.LFB145:
+  12:fw-lib-stm32-CocktailOS/kernel/core/watcher.c **** 
+  13:fw-lib-stm32-CocktailOS/kernel/core/watcher.c **** void
+  14:fw-lib-stm32-CocktailOS/kernel/core/watcher.c **** Cocktail_invokeWatcher(Cocktail_WatcherTypeDef *watcher)
+  15:fw-lib-stm32-CocktailOS/kernel/core/watcher.c **** {
+ 135              		.loc 1 15 1 is_stmt 1 view -0
+ 136              		.cfi_startproc
+ 137              		@ args = 0, pretend = 0, frame = 0
+ 138              		@ frame_needed = 0, uses_anonymous_args = 0
+ 139              		.loc 1 15 1 is_stmt 0 view .LVU29
+ 140 0000 10B5     		push	{r4, lr}
+ 141              	.LCFI1:
+ 142              		.cfi_def_cfa_offset 8
+ 143              		.cfi_offset 4, -8
+ 144              		.cfi_offset 14, -4
+ 145 0002 0446     		mov	r4, r0
+  16:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****     if(!watcher->lock) return;
+ 146              		.loc 1 16 5 is_stmt 1 view .LVU30
+ 147              		.loc 1 16 16 is_stmt 0 view .LVU31
+ 148 0004 4068     		ldr	r0, [r0, #4]
+ 149              	.LVL11:
+ 150              		.loc 1 16 7 view .LVU32
+ 151 0006 18B1     		cbz	r0, .L9
+  17:fw-lib-stm32-CocktailOS/kernel/core/watcher.c **** 
+  18:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****     Cocktail_unlock_unsafe(watcher->lock);
+ARM GAS  /tmp/ccEmsbBj.s 			page 4
+
+
+ 152              		.loc 1 18 5 is_stmt 1 view .LVU33
+ 153 0008 FFF7FEFF 		bl	Cocktail_unlock_unsafe
+ 154              	.LVL12:
+  19:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****     watcher->lock = NULL;
+ 155              		.loc 1 19 5 view .LVU34
+ 156              		.loc 1 19 19 is_stmt 0 view .LVU35
+ 157 000c 0023     		movs	r3, #0
+ 158 000e 6360     		str	r3, [r4, #4]
+ 159              	.L9:
+  20:fw-lib-stm32-CocktailOS/kernel/core/watcher.c **** }
+ 160              		.loc 1 20 1 view .LVU36
+ 161 0010 10BD     		pop	{r4, pc}
+ 162              		.loc 1 20 1 view .LVU37
+ 163              		.cfi_endproc
+ 164              	.LFE145:
+ 166              		.section	.text.Cocktail_getWatcher,"ax",%progbits
+ 167              		.align	1
+ 168              		.global	Cocktail_getWatcher
+ 169              		.syntax unified
+ 170              		.thumb
+ 171              		.thumb_func
+ 173              	Cocktail_getWatcher:
+ 174              	.LVL13:
+ 175              	.LFB146:
+  21:fw-lib-stm32-CocktailOS/kernel/core/watcher.c **** 
+  22:fw-lib-stm32-CocktailOS/kernel/core/watcher.c **** Cocktail_WatcherTypeDef *
+  23:fw-lib-stm32-CocktailOS/kernel/core/watcher.c **** Cocktail_getWatcher(void *ctx)
+  24:fw-lib-stm32-CocktailOS/kernel/core/watcher.c **** {
+ 176              		.loc 1 24 1 is_stmt 1 view -0
+ 177              		.cfi_startproc
+ 178              		@ args = 0, pretend = 0, frame = 0
+ 179              		@ frame_needed = 0, uses_anonymous_args = 0
+ 180              		.loc 1 24 1 is_stmt 0 view .LVU39
+ 181 0000 10B5     		push	{r4, lr}
+ 182              	.LCFI2:
+ 183              		.cfi_def_cfa_offset 8
+ 184              		.cfi_offset 4, -8
+ 185              		.cfi_offset 14, -4
+ 186 0002 0446     		mov	r4, r0
+  25:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****     Cocktail_WatcherTypeDef *watcher;
+ 187              		.loc 1 25 5 is_stmt 1 view .LVU40
+  26:fw-lib-stm32-CocktailOS/kernel/core/watcher.c **** 
+  27:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****     watcher =
+ 188              		.loc 1 27 5 view .LVU41
+  28:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****         (Cocktail_WatcherTypeDef *)malloc(sizeof(Cocktail_WatcherTypeDef));
+ 189              		.loc 1 28 36 is_stmt 0 view .LVU42
+ 190 0004 1820     		movs	r0, #24
+ 191              	.LVL14:
+ 192              		.loc 1 28 36 view .LVU43
+ 193 0006 FFF7FEFF 		bl	malloc
+ 194              	.LVL15:
+  29:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****     if(watcher == NULL) return NULL;
+ 195              		.loc 1 29 5 is_stmt 1 view .LVU44
+ 196              		.loc 1 29 7 is_stmt 0 view .LVU45
+ 197 000a 0346     		mov	r3, r0
+ 198 000c 18B1     		cbz	r0, .L12
+  30:fw-lib-stm32-CocktailOS/kernel/core/watcher.c **** 
+ARM GAS  /tmp/ccEmsbBj.s 			page 5
+
+
+  31:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****     watcher->process = NULL;
+ 199              		.loc 1 31 5 is_stmt 1 view .LVU46
+ 200              		.loc 1 31 22 is_stmt 0 view .LVU47
+ 201 000e 0022     		movs	r2, #0
+ 202 0010 0260     		str	r2, [r0]
+  32:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****     watcher->lock    = NULL;
+ 203              		.loc 1 32 5 is_stmt 1 view .LVU48
+ 204              		.loc 1 32 22 is_stmt 0 view .LVU49
+ 205 0012 4260     		str	r2, [r0, #4]
+  33:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****     watcher->ctx     = ctx;
+ 206              		.loc 1 33 5 is_stmt 1 view .LVU50
+ 207              		.loc 1 33 22 is_stmt 0 view .LVU51
+ 208 0014 4461     		str	r4, [r0, #20]
+  34:fw-lib-stm32-CocktailOS/kernel/core/watcher.c **** 
+  35:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****     return watcher;
+ 209              		.loc 1 35 5 is_stmt 1 view .LVU52
+ 210              	.L12:
+  36:fw-lib-stm32-CocktailOS/kernel/core/watcher.c **** }
+ 211              		.loc 1 36 1 is_stmt 0 view .LVU53
+ 212 0016 1846     		mov	r0, r3
+ 213              	.LVL16:
+ 214              		.loc 1 36 1 view .LVU54
+ 215 0018 10BD     		pop	{r4, pc}
+ 216              		.loc 1 36 1 view .LVU55
+ 217              		.cfi_endproc
+ 218              	.LFE146:
+ 220              		.section	.text.Cocktail_startWatcher,"ax",%progbits
+ 221              		.align	1
+ 222              		.global	Cocktail_startWatcher
+ 223              		.syntax unified
+ 224              		.thumb
+ 225              		.thumb_func
+ 227              	Cocktail_startWatcher:
+ 228              	.LVL17:
+ 229              	.LFB147:
+  37:fw-lib-stm32-CocktailOS/kernel/core/watcher.c **** 
+  38:fw-lib-stm32-CocktailOS/kernel/core/watcher.c **** void
+  39:fw-lib-stm32-CocktailOS/kernel/core/watcher.c **** Cocktail_startWatcher(Cocktail_WatcherTypeDef *watcher)
+  40:fw-lib-stm32-CocktailOS/kernel/core/watcher.c **** {
+ 230              		.loc 1 40 1 is_stmt 1 view -0
+ 231              		.cfi_startproc
+ 232              		@ args = 0, pretend = 0, frame = 0
+ 233              		@ frame_needed = 0, uses_anonymous_args = 0
+ 234              		.loc 1 40 1 is_stmt 0 view .LVU57
+ 235 0000 38B5     		push	{r3, r4, r5, lr}
+ 236              	.LCFI3:
+ 237              		.cfi_def_cfa_offset 16
+ 238              		.cfi_offset 3, -16
+ 239              		.cfi_offset 4, -12
+ 240              		.cfi_offset 5, -8
+ 241              		.cfi_offset 14, -4
+  41:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****     if(watcher->process) return;
+ 242              		.loc 1 41 5 is_stmt 1 view .LVU58
+ 243              		.loc 1 41 15 is_stmt 0 view .LVU59
+ 244 0002 0368     		ldr	r3, [r0]
+ 245              		.loc 1 41 7 view .LVU60
+ 246 0004 03B1     		cbz	r3, .L18
+ARM GAS  /tmp/ccEmsbBj.s 			page 6
+
+
+ 247              	.LVL18:
+ 248              	.L15:
+  42:fw-lib-stm32-CocktailOS/kernel/core/watcher.c **** 
+  43:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****     _WATCHER_INIT_FN(watcher);
+  44:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****     INIT_PROCESS(watcher->process);
+  45:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****     PUT_TASK(watcher->process,
+  46:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****              NEW_TASK(_SCHED_ID_POLLING, watcher_task, watcher));
+  47:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****     SCHEDULE(watcher->process);
+  48:fw-lib-stm32-CocktailOS/kernel/core/watcher.c **** }
+ 249              		.loc 1 48 1 view .LVU61
+ 250 0006 38BD     		pop	{r3, r4, r5, pc}
+ 251              	.LVL19:
+ 252              	.L18:
+ 253              		.loc 1 48 1 view .LVU62
+ 254 0008 0446     		mov	r4, r0
+  43:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****     INIT_PROCESS(watcher->process);
+ 255              		.loc 1 43 5 is_stmt 1 view .LVU63
+ 256 000a 8368     		ldr	r3, [r0, #8]
+ 257 000c 4069     		ldr	r0, [r0, #20]
+ 258              	.LVL20:
+  43:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****     INIT_PROCESS(watcher->process);
+ 259              		.loc 1 43 5 is_stmt 0 view .LVU64
+ 260 000e 9847     		blx	r3
+ 261              	.LVL21:
+  44:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****     PUT_TASK(watcher->process,
+ 262              		.loc 1 44 5 is_stmt 1 view .LVU65
+  44:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****     PUT_TASK(watcher->process,
+ 263              		.loc 1 44 5 view .LVU66
+ 264 0010 2820     		movs	r0, #40
+ 265 0012 FFF7FEFF 		bl	malloc
+ 266              	.LVL22:
+ 267 0016 2060     		str	r0, [r4]
+  44:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****     PUT_TASK(watcher->process,
+ 268              		.loc 1 44 5 view .LVU67
+  44:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****     PUT_TASK(watcher->process,
+ 269              		.loc 1 44 5 view .LVU68
+ 270 0018 0025     		movs	r5, #0
+ 271 001a 0346     		mov	r3, r0
+ 272 001c 43F80C5F 		str	r5, [r3, #12]!
+  44:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****     PUT_TASK(watcher->process,
+ 273              		.loc 1 44 5 view .LVU69
+ 274 0020 0361     		str	r3, [r0, #16]
+  44:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****     PUT_TASK(watcher->process,
+ 275              		.loc 1 44 5 view .LVU70
+  44:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****     PUT_TASK(watcher->process,
+ 276              		.loc 1 44 5 view .LVU71
+ 277 0022 C561     		str	r5, [r0, #28]
+  44:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****     PUT_TASK(watcher->process,
+ 278              		.loc 1 44 5 view .LVU72
+ 279 0024 0562     		str	r5, [r0, #32]
+  44:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****     PUT_TASK(watcher->process,
+ 280              		.loc 1 44 5 view .LVU73
+ 281 0026 80F82450 		strb	r5, [r0, #36]
+  44:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****     PUT_TASK(watcher->process,
+ 282              		.loc 1 44 5 view .LVU74
+  45:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****              NEW_TASK(_SCHED_ID_POLLING, watcher_task, watcher));
+ 283              		.loc 1 45 5 view .LVU75
+ARM GAS  /tmp/ccEmsbBj.s 			page 7
+
+
+ 284              	.LBB6:
+  45:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****              NEW_TASK(_SCHED_ID_POLLING, watcher_task, watcher));
+ 285              		.loc 1 45 5 view .LVU76
+ 286 002a 2246     		mov	r2, r4
+ 287 002c 0849     		ldr	r1, .L19
+ 288 002e 2846     		mov	r0, r5
+ 289 0030 FFF7FEFF 		bl	Cocktail_newTask
+ 290              	.LVL23:
+ 291 0034 0346     		mov	r3, r0
+ 292              	.LVL24:
+  45:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****              NEW_TASK(_SCHED_ID_POLLING, watcher_task, watcher));
+ 293              		.loc 1 45 5 view .LVU77
+ 294              	.LBB7:
+  45:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****              NEW_TASK(_SCHED_ID_POLLING, watcher_task, watcher));
+ 295              		.loc 1 45 5 view .LVU78
+  45:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****              NEW_TASK(_SCHED_ID_POLLING, watcher_task, watcher));
+ 296              		.loc 1 45 5 view .LVU79
+  45:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****              NEW_TASK(_SCHED_ID_POLLING, watcher_task, watcher));
+ 297              		.loc 1 45 5 view .LVU80
+ 298 0036 0561     		str	r5, [r0, #16]
+  45:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****              NEW_TASK(_SCHED_ID_POLLING, watcher_task, watcher));
+ 299              		.loc 1 45 5 view .LVU81
+ 300 0038 2268     		ldr	r2, [r4]
+ 301 003a 1269     		ldr	r2, [r2, #16]
+ 302 003c 1060     		str	r0, [r2]
+  45:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****              NEW_TASK(_SCHED_ID_POLLING, watcher_task, watcher));
+ 303              		.loc 1 45 5 view .LVU82
+ 304 003e 2268     		ldr	r2, [r4]
+ 305 0040 00F11001 		add	r1, r0, #16
+ 306 0044 1161     		str	r1, [r2, #16]
+  45:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****              NEW_TASK(_SCHED_ID_POLLING, watcher_task, watcher));
+ 307              		.loc 1 45 5 view .LVU83
+ 308              	.LBE7:
+  45:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****              NEW_TASK(_SCHED_ID_POLLING, watcher_task, watcher));
+ 309              		.loc 1 45 5 view .LVU84
+  45:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****              NEW_TASK(_SCHED_ID_POLLING, watcher_task, watcher));
+ 310              		.loc 1 45 5 view .LVU85
+ 311 0046 2068     		ldr	r0, [r4]
+ 312              	.LVL25:
+  45:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****              NEW_TASK(_SCHED_ID_POLLING, watcher_task, watcher));
+ 313              		.loc 1 45 5 is_stmt 0 view .LVU86
+ 314 0048 D860     		str	r0, [r3, #12]
+ 315              	.LBE6:
+  45:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****              NEW_TASK(_SCHED_ID_POLLING, watcher_task, watcher));
+ 316              		.loc 1 45 5 is_stmt 1 view .LVU87
+  47:fw-lib-stm32-CocktailOS/kernel/core/watcher.c **** }
+ 317              		.loc 1 47 5 view .LVU88
+ 318 004a FFF7FEFF 		bl	Cocktail_Schedule
+ 319              	.LVL26:
+  47:fw-lib-stm32-CocktailOS/kernel/core/watcher.c **** }
+ 320              		.loc 1 47 5 is_stmt 0 view .LVU89
+ 321 004e DAE7     		b	.L15
+ 322              	.L20:
+ 323              		.align	2
+ 324              	.L19:
+ 325 0050 00000000 		.word	watcher_task
+ 326              		.cfi_endproc
+ARM GAS  /tmp/ccEmsbBj.s 			page 8
+
+
+ 327              	.LFE147:
+ 329              		.section	.text.Cocktail_set_watcher_init_fn,"ax",%progbits
+ 330              		.align	1
+ 331              		.global	Cocktail_set_watcher_init_fn
+ 332              		.syntax unified
+ 333              		.thumb
+ 334              		.thumb_func
+ 336              	Cocktail_set_watcher_init_fn:
+ 337              	.LVL27:
+ 338              	.LFB148:
+  49:fw-lib-stm32-CocktailOS/kernel/core/watcher.c **** 
+  50:fw-lib-stm32-CocktailOS/kernel/core/watcher.c **** void
+  51:fw-lib-stm32-CocktailOS/kernel/core/watcher.c **** Cocktail_set_watcher_init_fn(Cocktail_WatcherTypeDef *watcher,
+  52:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****                              WATCHER_INIT_Fn          init_fn)
+  53:fw-lib-stm32-CocktailOS/kernel/core/watcher.c **** {
+ 339              		.loc 1 53 1 is_stmt 1 view -0
+ 340              		.cfi_startproc
+ 341              		@ args = 0, pretend = 0, frame = 0
+ 342              		@ frame_needed = 0, uses_anonymous_args = 0
+ 343              		@ link register save eliminated.
+  54:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****     watcher->init_fn = init_fn;
+ 344              		.loc 1 54 5 view .LVU91
+ 345              		.loc 1 54 22 is_stmt 0 view .LVU92
+ 346 0000 8160     		str	r1, [r0, #8]
+  55:fw-lib-stm32-CocktailOS/kernel/core/watcher.c **** }
+ 347              		.loc 1 55 1 view .LVU93
+ 348 0002 7047     		bx	lr
+ 349              		.cfi_endproc
+ 350              	.LFE148:
+ 352              		.section	.text.Cocktail_set_watcher_job_fn,"ax",%progbits
+ 353              		.align	1
+ 354              		.global	Cocktail_set_watcher_job_fn
+ 355              		.syntax unified
+ 356              		.thumb
+ 357              		.thumb_func
+ 359              	Cocktail_set_watcher_job_fn:
+ 360              	.LVL28:
+ 361              	.LFB149:
+  56:fw-lib-stm32-CocktailOS/kernel/core/watcher.c **** 
+  57:fw-lib-stm32-CocktailOS/kernel/core/watcher.c **** void
+  58:fw-lib-stm32-CocktailOS/kernel/core/watcher.c **** Cocktail_set_watcher_job_fn(Cocktail_WatcherTypeDef *watcher,
+  59:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****                             WATCHER_JOB_Fn           job_fn)
+  60:fw-lib-stm32-CocktailOS/kernel/core/watcher.c **** {
+ 362              		.loc 1 60 1 is_stmt 1 view -0
+ 363              		.cfi_startproc
+ 364              		@ args = 0, pretend = 0, frame = 0
+ 365              		@ frame_needed = 0, uses_anonymous_args = 0
+ 366              		@ link register save eliminated.
+  61:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****     watcher->job_fn = job_fn;
+ 367              		.loc 1 61 5 view .LVU95
+ 368              		.loc 1 61 21 is_stmt 0 view .LVU96
+ 369 0000 C160     		str	r1, [r0, #12]
+  62:fw-lib-stm32-CocktailOS/kernel/core/watcher.c **** }
+ 370              		.loc 1 62 1 view .LVU97
+ 371 0002 7047     		bx	lr
+ 372              		.cfi_endproc
+ 373              	.LFE149:
+ARM GAS  /tmp/ccEmsbBj.s 			page 9
+
+
+ 375              		.section	.text.Cocktail_set_watcher_cond_fn,"ax",%progbits
+ 376              		.align	1
+ 377              		.global	Cocktail_set_watcher_cond_fn
+ 378              		.syntax unified
+ 379              		.thumb
+ 380              		.thumb_func
+ 382              	Cocktail_set_watcher_cond_fn:
+ 383              	.LVL29:
+ 384              	.LFB150:
+  63:fw-lib-stm32-CocktailOS/kernel/core/watcher.c **** 
+  64:fw-lib-stm32-CocktailOS/kernel/core/watcher.c **** /*
+  65:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****  * @brief Condition to activate Watcher
+  66:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****  */
+  67:fw-lib-stm32-CocktailOS/kernel/core/watcher.c **** void
+  68:fw-lib-stm32-CocktailOS/kernel/core/watcher.c **** Cocktail_set_watcher_cond_fn(Cocktail_WatcherTypeDef *watcher,
+  69:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****                              WATCHER_COND_Fn          cond_fn)
+  70:fw-lib-stm32-CocktailOS/kernel/core/watcher.c **** {
+ 385              		.loc 1 70 1 is_stmt 1 view -0
+ 386              		.cfi_startproc
+ 387              		@ args = 0, pretend = 0, frame = 0
+ 388              		@ frame_needed = 0, uses_anonymous_args = 0
+ 389              		@ link register save eliminated.
+  71:fw-lib-stm32-CocktailOS/kernel/core/watcher.c ****     watcher->cond_fn = cond_fn;
+ 390              		.loc 1 71 5 view .LVU99
+ 391              		.loc 1 71 22 is_stmt 0 view .LVU100
+ 392 0000 0161     		str	r1, [r0, #16]
+  72:fw-lib-stm32-CocktailOS/kernel/core/watcher.c **** }
+ 393              		.loc 1 72 1 view .LVU101
+ 394 0002 7047     		bx	lr
+ 395              		.cfi_endproc
+ 396              	.LFE150:
+ 398              		.text
+ 399              	.Letext0:
+ 400              		.file 2 "/usr/share/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/_default_types.h"
+ 401              		.file 3 "/usr/share/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_stdint.h"
+ 402              		.file 4 "fw-lib-stm32-CocktailOS/kernel/core/task.h"
+ 403              		.file 5 "fw-lib-stm32-CocktailOS/kernel/core/pcb.h"
+ 404              		.file 6 "fw-lib-stm32-CocktailOS/kernel/core/event.h"
+ 405              		.file 7 "fw-lib-stm32-CocktailOS/kernel/core/watcher.h"
+ 406              		.file 8 "/usr/share/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/stdlib.h"
+ 407              		.file 9 "fw-lib-stm32-CocktailOS/kernel/core/sched.h"
+ARM GAS  /tmp/ccEmsbBj.s 			page 10
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 watcher.c
+     /tmp/ccEmsbBj.s:20     .text.watcher_task:0000000000000000 $t
+     /tmp/ccEmsbBj.s:25     .text.watcher_task:0000000000000000 watcher_task
+     /tmp/ccEmsbBj.s:121    .text.watcher_task:0000000000000044 $d
+     /tmp/ccEmsbBj.s:126    .text.Cocktail_invokeWatcher:0000000000000000 $t
+     /tmp/ccEmsbBj.s:132    .text.Cocktail_invokeWatcher:0000000000000000 Cocktail_invokeWatcher
+     /tmp/ccEmsbBj.s:167    .text.Cocktail_getWatcher:0000000000000000 $t
+     /tmp/ccEmsbBj.s:173    .text.Cocktail_getWatcher:0000000000000000 Cocktail_getWatcher
+     /tmp/ccEmsbBj.s:221    .text.Cocktail_startWatcher:0000000000000000 $t
+     /tmp/ccEmsbBj.s:227    .text.Cocktail_startWatcher:0000000000000000 Cocktail_startWatcher
+     /tmp/ccEmsbBj.s:325    .text.Cocktail_startWatcher:0000000000000050 $d
+     /tmp/ccEmsbBj.s:330    .text.Cocktail_set_watcher_init_fn:0000000000000000 $t
+     /tmp/ccEmsbBj.s:336    .text.Cocktail_set_watcher_init_fn:0000000000000000 Cocktail_set_watcher_init_fn
+     /tmp/ccEmsbBj.s:353    .text.Cocktail_set_watcher_job_fn:0000000000000000 $t
+     /tmp/ccEmsbBj.s:359    .text.Cocktail_set_watcher_job_fn:0000000000000000 Cocktail_set_watcher_job_fn
+     /tmp/ccEmsbBj.s:376    .text.Cocktail_set_watcher_cond_fn:0000000000000000 $t
+     /tmp/ccEmsbBj.s:382    .text.Cocktail_set_watcher_cond_fn:0000000000000000 Cocktail_set_watcher_cond_fn
+
+UNDEFINED SYMBOLS
+Cocktail_newTask
+Cocktail_lock
+Cocktail_unlock_unsafe
+malloc
+Cocktail_Schedule
