@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccRWPnVQ.s 			page 1
+ARM GAS  /tmp/cc0jG8ie.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccRWPnVQ.s 			page 1
   48 0008 0446     		mov	r4, r0
   49              	.LVL2:
    9:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****     while(HAL_GetTick() - tick < duration) {}
-ARM GAS  /tmp/ccRWPnVQ.s 			page 2
+ARM GAS  /tmp/cc0jG8ie.s 			page 2
 
 
   50              		.loc 1 9 5 is_stmt 1 view .LVU5
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccRWPnVQ.s 			page 1
  100 0014 0823     		movs	r3, #8
  101 0016 ADF82430 		strh	r3, [sp, #36]	@ movhi
  102 001a 104B     		ldr	r3, .L7+8
-ARM GAS  /tmp/ccRWPnVQ.s 			page 3
+ARM GAS  /tmp/cc0jG8ie.s 			page 3
 
 
  103 001c 0A93     		str	r3, [sp, #40]
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccRWPnVQ.s 			page 1
  145              	.L8:
  146              		.loc 1 27 1 view .LVU27
  147 0052 00BF     		.align	2
-ARM GAS  /tmp/ccRWPnVQ.s 			page 4
+ARM GAS  /tmp/cc0jG8ie.s 			page 4
 
 
  148              	.L7:
@@ -226,43 +226,59 @@ ARM GAS  /tmp/ccRWPnVQ.s 			page 1
  182              	.LVL13:
  183              		.loc 1 37 7 view .LVU32
  184 000a 0028     		cmp	r0, #0
- 185 000c 41D0     		beq	.L13
- 186              	.L11:
+ 185 000c 4BD0     		beq	.L13
+ 186              	.L10:
   38:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c **** 
-  39:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****     while(!MAX11254_is_data_ready(max11254))
-  40:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****         ;
- 187              		.loc 1 40 9 is_stmt 1 discriminator 1 view .LVU33
-  39:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****         ;
- 188              		.loc 1 39 10 discriminator 1 view .LVU34
-  39:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****         ;
- 189              		.loc 1 39 12 is_stmt 0 discriminator 1 view .LVU35
- 190 000e 2046     		mov	r0, r4
- 191 0010 FFF7FEFF 		bl	MAX11254_is_data_ready
-ARM GAS  /tmp/ccRWPnVQ.s 			page 5
-
-
+  39:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****     HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_SET);
+ 187              		.loc 1 39 5 is_stmt 1 view .LVU33
+ 188 000e 0122     		movs	r2, #1
+ 189 0010 8021     		movs	r1, #128
+ 190 0012 2748     		ldr	r0, .L14
+ 191 0014 FFF7FEFF 		bl	HAL_GPIO_WritePin
  192              	.LVL14:
-  39:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****         ;
- 193              		.loc 1 39 10 discriminator 1 view .LVU36
- 194 0014 0028     		cmp	r0, #0
- 195 0016 FAD0     		beq	.L11
-  41:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c **** 
-  42:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****     MAX11254_reg_read_nowait(max11254, MAX11254_RS(DATA0),
- 196              		.loc 1 42 5 is_stmt 1 view .LVU37
- 197 0018 0322     		movs	r2, #3
- 198 001a 0E21     		movs	r1, #14
- 199 001c 2046     		mov	r0, r4
- 200 001e FFF7FEFF 		bl	MAX11254_reg_read_nowait
- 201              	.LVL15:
-  43:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****                              MAX11254_SIZE(DATA0));
-  44:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****     value[0] = MAX11254_FORMAT_SIGNED(max11254->rx);
- 202              		.loc 1 44 5 view .LVU38
- 203              		.loc 1 44 16 is_stmt 0 view .LVU39
- 204 0022 236A     		ldr	r3, [r4, #32]
- 205              	.LVL16:
- 206              	.LBB10:
- 207              	.LBI10:
- 208              		.file 2 "Drivers/CMSIS/Include/cmsis_gcc.h"
+  40:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****     while(!MAX11254_is_data_ready(max11254))
+ 193              		.loc 1 40 5 view .LVU34
+ARM GAS  /tmp/cc0jG8ie.s 			page 5
+
+
+ 194              	.L11:
+  41:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****         ;
+ 195              		.loc 1 41 9 discriminator 1 view .LVU35
+  40:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****     while(!MAX11254_is_data_ready(max11254))
+ 196              		.loc 1 40 10 discriminator 1 view .LVU36
+  40:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****     while(!MAX11254_is_data_ready(max11254))
+ 197              		.loc 1 40 12 is_stmt 0 discriminator 1 view .LVU37
+ 198 0018 2046     		mov	r0, r4
+ 199 001a FFF7FEFF 		bl	MAX11254_is_data_ready
+ 200              	.LVL15:
+  40:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****     while(!MAX11254_is_data_ready(max11254))
+ 201              		.loc 1 40 10 discriminator 1 view .LVU38
+ 202 001e 0028     		cmp	r0, #0
+ 203 0020 FAD0     		beq	.L11
+  42:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****     HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_RESET);
+ 204              		.loc 1 42 5 is_stmt 1 view .LVU39
+ 205 0022 0022     		movs	r2, #0
+ 206 0024 8021     		movs	r1, #128
+ 207 0026 2248     		ldr	r0, .L14
+ 208 0028 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 209              	.LVL16:
+  43:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c **** 
+  44:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****     MAX11254_reg_read_nowait(max11254, MAX11254_RS(DATA0),
+ 210              		.loc 1 44 5 view .LVU40
+ 211 002c 0322     		movs	r2, #3
+ 212 002e 0E21     		movs	r1, #14
+ 213 0030 2046     		mov	r0, r4
+ 214 0032 FFF7FEFF 		bl	MAX11254_reg_read_nowait
+ 215              	.LVL17:
+  45:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****                              MAX11254_SIZE(DATA0));
+  46:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****     value[0] = MAX11254_FORMAT_SIGNED(max11254->rx);
+ 216              		.loc 1 46 5 view .LVU41
+ 217              		.loc 1 46 16 is_stmt 0 view .LVU42
+ 218 0036 236A     		ldr	r3, [r4, #32]
+ 219              	.LVL18:
+ 220              	.LBB10:
+ 221              	.LBI10:
+ 222              		.file 2 "Drivers/CMSIS/Include/cmsis_gcc.h"
    1:Drivers/CMSIS/Include/cmsis_gcc.h **** /**************************************************************************//**
    2:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @file     cmsis_gcc.h
    3:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @brief    CMSIS compiler GCC header file
@@ -282,6 +298,9 @@ ARM GAS  /tmp/ccRWPnVQ.s 			page 1
   17:Drivers/CMSIS/Include/cmsis_gcc.h ****  *
   18:Drivers/CMSIS/Include/cmsis_gcc.h ****  * Unless required by applicable law or agreed to in writing, software
   19:Drivers/CMSIS/Include/cmsis_gcc.h ****  * distributed under the License is distributed on an AS IS BASIS, WITHOUT
+ARM GAS  /tmp/cc0jG8ie.s 			page 6
+
+
   20:Drivers/CMSIS/Include/cmsis_gcc.h ****  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   21:Drivers/CMSIS/Include/cmsis_gcc.h ****  * See the License for the specific language governing permissions and
   22:Drivers/CMSIS/Include/cmsis_gcc.h ****  * limitations under the License.
@@ -298,9 +317,6 @@ ARM GAS  /tmp/ccRWPnVQ.s 			page 1
   33:Drivers/CMSIS/Include/cmsis_gcc.h **** 
   34:Drivers/CMSIS/Include/cmsis_gcc.h **** /* Fallback for __has_builtin */
   35:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef __has_builtin
-ARM GAS  /tmp/ccRWPnVQ.s 			page 6
-
-
   36:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __has_builtin(x) (0)
   37:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
   38:Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -342,6 +358,9 @@ ARM GAS  /tmp/ccRWPnVQ.s 			page 1
   74:Drivers/CMSIS/Include/cmsis_gcc.h ****   struct __attribute__((packed)) T_UINT32 { uint32_t v; };
   75:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic pop
   76:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __UNALIGNED_UINT32(x)                  (((struct T_UINT32 *)(x))->v)
+ARM GAS  /tmp/cc0jG8ie.s 			page 7
+
+
   77:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
   78:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __UNALIGNED_UINT16_WRITE
   79:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic push
@@ -358,9 +377,6 @@ ARM GAS  /tmp/ccRWPnVQ.s 			page 1
   90:Drivers/CMSIS/Include/cmsis_gcc.h ****   __PACKED_STRUCT T_UINT16_READ { uint16_t v; };
   91:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic pop
   92:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __UNALIGNED_UINT16_READ(addr)          (((const struct T_UINT16_READ *)(const void *)(add
-ARM GAS  /tmp/ccRWPnVQ.s 			page 7
-
-
   93:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
   94:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __UNALIGNED_UINT32_WRITE
   95:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic push
@@ -402,6 +418,9 @@ ARM GAS  /tmp/ccRWPnVQ.s 			page 1
  131:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("cpsie i" : : : "memory");
  132:Drivers/CMSIS/Include/cmsis_gcc.h **** }
  133:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ARM GAS  /tmp/cc0jG8ie.s 			page 8
+
+
  134:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  135:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  136:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Disable IRQ Interrupts
@@ -418,9 +437,6 @@ ARM GAS  /tmp/ccRWPnVQ.s 			page 1
  147:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Get Control Register
  148:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Returns the content of the Control Register.
  149:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return               Control Register value
-ARM GAS  /tmp/ccRWPnVQ.s 			page 8
-
-
  150:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  151:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint32_t __get_CONTROL(void)
  152:Drivers/CMSIS/Include/cmsis_gcc.h **** {
@@ -462,6 +478,9 @@ ARM GAS  /tmp/ccRWPnVQ.s 			page 1
  188:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  189:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Set Control Register (non-secure)
  190:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Writes the given value to the non-secure Control Register when in secure state.
+ARM GAS  /tmp/cc0jG8ie.s 			page 9
+
+
  191:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    control  Control Register value to set
  192:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  193:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE void __TZ_set_CONTROL_NS(uint32_t control)
@@ -478,9 +497,6 @@ ARM GAS  /tmp/ccRWPnVQ.s 			page 1
  204:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  205:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint32_t __get_IPSR(void)
  206:Drivers/CMSIS/Include/cmsis_gcc.h **** {
-ARM GAS  /tmp/ccRWPnVQ.s 			page 9
-
-
  207:Drivers/CMSIS/Include/cmsis_gcc.h ****   uint32_t result;
  208:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  209:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MRS %0, ipsr" : "=r" (result) );
@@ -522,6 +538,9 @@ ARM GAS  /tmp/ccRWPnVQ.s 			page 1
  245:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return               PSP Register value
  246:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  247:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint32_t __get_PSP(void)
+ARM GAS  /tmp/cc0jG8ie.s 			page 10
+
+
  248:Drivers/CMSIS/Include/cmsis_gcc.h **** {
  249:Drivers/CMSIS/Include/cmsis_gcc.h ****   uint32_t result;
  250:Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -538,9 +557,6 @@ ARM GAS  /tmp/ccRWPnVQ.s 			page 1
  261:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  262:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint32_t __TZ_get_PSP_NS(void)
  263:Drivers/CMSIS/Include/cmsis_gcc.h **** {
-ARM GAS  /tmp/ccRWPnVQ.s 			page 10
-
-
  264:Drivers/CMSIS/Include/cmsis_gcc.h ****   uint32_t result;
  265:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  266:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MRS %0, psp_ns"  : "=r" (result) );
@@ -582,6 +598,9 @@ ARM GAS  /tmp/ccRWPnVQ.s 			page 1
  302:Drivers/CMSIS/Include/cmsis_gcc.h **** {
  303:Drivers/CMSIS/Include/cmsis_gcc.h ****   uint32_t result;
  304:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ARM GAS  /tmp/cc0jG8ie.s 			page 11
+
+
  305:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MRS %0, msp" : "=r" (result) );
  306:Drivers/CMSIS/Include/cmsis_gcc.h ****   return(result);
  307:Drivers/CMSIS/Include/cmsis_gcc.h **** }
@@ -598,9 +617,6 @@ ARM GAS  /tmp/ccRWPnVQ.s 			page 1
  318:Drivers/CMSIS/Include/cmsis_gcc.h ****   uint32_t result;
  319:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  320:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MRS %0, msp_ns" : "=r" (result) );
-ARM GAS  /tmp/ccRWPnVQ.s 			page 11
-
-
  321:Drivers/CMSIS/Include/cmsis_gcc.h ****   return(result);
  322:Drivers/CMSIS/Include/cmsis_gcc.h **** }
  323:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
@@ -642,6 +658,9 @@ ARM GAS  /tmp/ccRWPnVQ.s 			page 1
  359:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  360:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MRS %0, sp_ns" : "=r" (result) );
  361:Drivers/CMSIS/Include/cmsis_gcc.h ****   return(result);
+ARM GAS  /tmp/cc0jG8ie.s 			page 12
+
+
  362:Drivers/CMSIS/Include/cmsis_gcc.h **** }
  363:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  364:Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -658,9 +677,6 @@ ARM GAS  /tmp/ccRWPnVQ.s 			page 1
  375:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  376:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  377:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
-ARM GAS  /tmp/ccRWPnVQ.s 			page 12
-
-
  378:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Get Priority Mask
  379:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Returns the current state of the priority mask bit from the Priority Mask Register.
  380:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return               Priority Mask value
@@ -702,6 +718,9 @@ ARM GAS  /tmp/ccRWPnVQ.s 			page 1
  416:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  417:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  418:Drivers/CMSIS/Include/cmsis_gcc.h **** #if (defined (__ARM_FEATURE_CMSE ) && (__ARM_FEATURE_CMSE == 3))
+ARM GAS  /tmp/cc0jG8ie.s 			page 13
+
+
  419:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  420:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Set Priority Mask (non-secure)
  421:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Assigns the given value to the non-secure Priority Mask Register when in secure state.
@@ -718,9 +737,6 @@ ARM GAS  /tmp/ccRWPnVQ.s 			page 1
  432:Drivers/CMSIS/Include/cmsis_gcc.h ****      (defined (__ARM_ARCH_7EM__     ) && (__ARM_ARCH_7EM__     == 1)) || \
  433:Drivers/CMSIS/Include/cmsis_gcc.h ****      (defined (__ARM_ARCH_8M_MAIN__ ) && (__ARM_ARCH_8M_MAIN__ == 1))    )
  434:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
-ARM GAS  /tmp/ccRWPnVQ.s 			page 13
-
-
  435:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Enable FIQ
  436:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Enables FIQ interrupts by clearing the F-bit in the CPSR.
  437:Drivers/CMSIS/Include/cmsis_gcc.h ****            Can only be executed in Privileged modes.
@@ -762,6 +778,9 @@ ARM GAS  /tmp/ccRWPnVQ.s 			page 1
  473:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Returns the current value of the non-secure Base Priority register when in secure state.
  474:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return               Base Priority register value
  475:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
+ARM GAS  /tmp/cc0jG8ie.s 			page 14
+
+
  476:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint32_t __TZ_get_BASEPRI_NS(void)
  477:Drivers/CMSIS/Include/cmsis_gcc.h **** {
  478:Drivers/CMSIS/Include/cmsis_gcc.h ****   uint32_t result;
@@ -778,9 +797,6 @@ ARM GAS  /tmp/ccRWPnVQ.s 			page 1
  489:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    basePri  Base Priority value to set
  490:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  491:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE void __set_BASEPRI(uint32_t basePri)
-ARM GAS  /tmp/ccRWPnVQ.s 			page 14
-
-
  492:Drivers/CMSIS/Include/cmsis_gcc.h **** {
  493:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MSR basepri, %0" : : "r" (basePri) : "memory");
  494:Drivers/CMSIS/Include/cmsis_gcc.h **** }
@@ -822,6 +838,9 @@ ARM GAS  /tmp/ccRWPnVQ.s 			page 1
  530:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  531:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MRS %0, faultmask" : "=r" (result) );
  532:Drivers/CMSIS/Include/cmsis_gcc.h ****   return(result);
+ARM GAS  /tmp/cc0jG8ie.s 			page 15
+
+
  533:Drivers/CMSIS/Include/cmsis_gcc.h **** }
  534:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  535:Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -838,9 +857,6 @@ ARM GAS  /tmp/ccRWPnVQ.s 			page 1
  546:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MRS %0, faultmask_ns" : "=r" (result) );
  547:Drivers/CMSIS/Include/cmsis_gcc.h ****   return(result);
  548:Drivers/CMSIS/Include/cmsis_gcc.h **** }
-ARM GAS  /tmp/ccRWPnVQ.s 			page 15
-
-
  549:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
  550:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  551:Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -882,6 +898,9 @@ ARM GAS  /tmp/ccRWPnVQ.s 			page 1
  587:Drivers/CMSIS/Include/cmsis_gcc.h ****   mode.
  588:Drivers/CMSIS/Include/cmsis_gcc.h ****   
  589:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Returns the current value of the Process Stack Pointer Limit (PSPLIM).
+ARM GAS  /tmp/cc0jG8ie.s 			page 16
+
+
  590:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return               PSPLIM Register value
  591:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  592:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint32_t __get_PSPLIM(void)
@@ -898,9 +917,6 @@ ARM GAS  /tmp/ccRWPnVQ.s 			page 1
  603:Drivers/CMSIS/Include/cmsis_gcc.h **** }
  604:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  605:Drivers/CMSIS/Include/cmsis_gcc.h **** #if (defined (__ARM_FEATURE_CMSE) && (__ARM_FEATURE_CMSE == 3))
-ARM GAS  /tmp/ccRWPnVQ.s 			page 16
-
-
  606:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  607:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Get Process Stack Pointer Limit (non-secure)
  608:Drivers/CMSIS/Include/cmsis_gcc.h ****   Devices without ARMv8-M Main Extensions (i.e. Cortex-M23) lack the non-secure
@@ -942,6 +958,9 @@ ARM GAS  /tmp/ccRWPnVQ.s 			page 1
  644:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MSR psplim, %0" : : "r" (ProcStackPtrLimit));
  645:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
  646:Drivers/CMSIS/Include/cmsis_gcc.h **** }
+ARM GAS  /tmp/cc0jG8ie.s 			page 17
+
+
  647:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  648:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  649:Drivers/CMSIS/Include/cmsis_gcc.h **** #if (defined (__ARM_FEATURE_CMSE  ) && (__ARM_FEATURE_CMSE   == 3))
@@ -958,9 +977,6 @@ ARM GAS  /tmp/ccRWPnVQ.s 			page 1
  660:Drivers/CMSIS/Include/cmsis_gcc.h **** #if (!(defined (__ARM_ARCH_8M_MAIN__ ) && (__ARM_ARCH_8M_MAIN__ == 1)))
  661:Drivers/CMSIS/Include/cmsis_gcc.h ****   // without main extensions, the non-secure PSPLIM is RAZ/WI
  662:Drivers/CMSIS/Include/cmsis_gcc.h ****   (void)ProcStackPtrLimit;
-ARM GAS  /tmp/ccRWPnVQ.s 			page 17
-
-
  663:Drivers/CMSIS/Include/cmsis_gcc.h **** #else
  664:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MSR psplim_ns, %0\n" : : "r" (ProcStackPtrLimit));
  665:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
@@ -1002,6 +1018,9 @@ ARM GAS  /tmp/ccRWPnVQ.s 			page 1
  701:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  702:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint32_t __TZ_get_MSPLIM_NS(void)
  703:Drivers/CMSIS/Include/cmsis_gcc.h **** {
+ARM GAS  /tmp/cc0jG8ie.s 			page 18
+
+
  704:Drivers/CMSIS/Include/cmsis_gcc.h **** #if (!(defined (__ARM_ARCH_8M_MAIN__ ) && (__ARM_ARCH_8M_MAIN__ == 1)))
  705:Drivers/CMSIS/Include/cmsis_gcc.h ****   // without main extensions, the non-secure MSPLIM is RAZ/WI
  706:Drivers/CMSIS/Include/cmsis_gcc.h ****   return 0U;
@@ -1018,9 +1037,6 @@ ARM GAS  /tmp/ccRWPnVQ.s 			page 1
  717:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Set Main Stack Pointer Limit
  718:Drivers/CMSIS/Include/cmsis_gcc.h ****   Devices without ARMv8-M Main Extensions (i.e. Cortex-M23) lack the non-secure
  719:Drivers/CMSIS/Include/cmsis_gcc.h ****   Stack Pointer Limit register hence the write is silently ignored in non-secure
-ARM GAS  /tmp/ccRWPnVQ.s 			page 18
-
-
  720:Drivers/CMSIS/Include/cmsis_gcc.h ****   mode.
  721:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  722:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Assigns the given value to the Main Stack Pointer Limit (MSPLIM).
@@ -1062,6 +1078,9 @@ ARM GAS  /tmp/ccRWPnVQ.s 			page 1
  758:Drivers/CMSIS/Include/cmsis_gcc.h ****            (defined (__ARM_ARCH_8M_BASE__ ) && (__ARM_ARCH_8M_BASE__ == 1))    ) */
  759:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  760:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ARM GAS  /tmp/cc0jG8ie.s 			page 19
+
+
  761:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  762:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Get FPSCR
  763:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Returns the current value of the Floating Point Status/Control register.
@@ -1078,9 +1097,6 @@ ARM GAS  /tmp/ccRWPnVQ.s 			page 1
  774:Drivers/CMSIS/Include/cmsis_gcc.h ****   return __builtin_arm_get_fpscr();
  775:Drivers/CMSIS/Include/cmsis_gcc.h **** #else
  776:Drivers/CMSIS/Include/cmsis_gcc.h ****   uint32_t result;
-ARM GAS  /tmp/ccRWPnVQ.s 			page 19
-
-
  777:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  778:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("VMRS %0, fpscr" : "=r" (result) );
  779:Drivers/CMSIS/Include/cmsis_gcc.h ****   return(result);
@@ -1122,6 +1138,9 @@ ARM GAS  /tmp/ccRWPnVQ.s 			page 1
  815:Drivers/CMSIS/Include/cmsis_gcc.h ****   Access to dedicated instructions
  816:Drivers/CMSIS/Include/cmsis_gcc.h ****   @{
  817:Drivers/CMSIS/Include/cmsis_gcc.h **** */
+ARM GAS  /tmp/cc0jG8ie.s 			page 20
+
+
  818:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  819:Drivers/CMSIS/Include/cmsis_gcc.h **** /* Define macros for porting to both thumb1 and thumb2.
  820:Drivers/CMSIS/Include/cmsis_gcc.h ****  * For thumb1, use low register (r0-r7), specified by constraint "l"
@@ -1138,9 +1157,6 @@ ARM GAS  /tmp/ccRWPnVQ.s 			page 1
  831:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  832:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  833:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   No Operation
-ARM GAS  /tmp/ccRWPnVQ.s 			page 20
-
-
  834:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details No Operation does nothing. This instruction can be used for code alignment purposes.
  835:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  836:Drivers/CMSIS/Include/cmsis_gcc.h **** #define __NOP()                             __ASM volatile ("nop")
@@ -1182,6 +1198,9 @@ ARM GAS  /tmp/ccRWPnVQ.s 			page 1
  872:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  873:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Data Synchronization Barrier
  874:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Acts as a special kind of Data Memory Barrier.
+ARM GAS  /tmp/cc0jG8ie.s 			page 21
+
+
  875:Drivers/CMSIS/Include/cmsis_gcc.h ****            It completes when all explicit memory accesses before this instruction complete.
  876:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  877:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE void __DSB(void)
@@ -1198,9 +1217,6 @@ ARM GAS  /tmp/ccRWPnVQ.s 			page 1
  888:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE void __DMB(void)
  889:Drivers/CMSIS/Include/cmsis_gcc.h **** {
  890:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("dmb 0xF":::"memory");
-ARM GAS  /tmp/ccRWPnVQ.s 			page 21
-
-
  891:Drivers/CMSIS/Include/cmsis_gcc.h **** }
  892:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  893:Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -1211,428 +1227,437 @@ ARM GAS  /tmp/ccRWPnVQ.s 			page 1
  898:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return               Reversed value
  899:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  900:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint32_t __REV(uint32_t value)
- 209              		.loc 2 900 31 is_stmt 1 view .LVU40
- 210              	.LBB11:
+ 223              		.loc 2 900 31 is_stmt 1 view .LVU43
+ 224              	.LBB11:
  901:Drivers/CMSIS/Include/cmsis_gcc.h **** {
  902:Drivers/CMSIS/Include/cmsis_gcc.h **** #if (__GNUC__ > 4) || (__GNUC__ == 4 && __GNUC_MINOR__ >= 5)
  903:Drivers/CMSIS/Include/cmsis_gcc.h ****   return __builtin_bswap32(value);
- 211              		.loc 2 903 3 view .LVU41
- 212              		.loc 2 903 10 is_stmt 0 view .LVU42
- 213 0024 1BBA     		rev	r3, r3
- 214              	.LVL17:
- 215              		.loc 2 903 10 view .LVU43
- 216              	.LBE11:
- 217              	.LBE10:
- 218              		.loc 1 44 16 view .LVU44
- 219 0026 43F31703 		sbfx	r3, r3, #0, #24
- 220              		.loc 1 44 14 view .LVU45
- 221 002a 07EE903A 		vmov	s15, r3	@ int
- 222 002e F8EEE77A 		vcvt.f32.s32	s15, s15
- 223 0032 C5ED007A 		vstr.32	s15, [r5]
-  45:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c **** 
-  46:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****     MAX11254_reg_read_nowait(max11254, MAX11254_RS(DATA1),
- 224              		.loc 1 46 5 is_stmt 1 view .LVU46
- 225 0036 0322     		movs	r2, #3
- 226 0038 0F21     		movs	r1, #15
- 227 003a 2046     		mov	r0, r4
- 228 003c FFF7FEFF 		bl	MAX11254_reg_read_nowait
- 229              	.LVL18:
-  47:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****                              MAX11254_SIZE(DATA1));
-  48:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****     value[1] = MAX11254_FORMAT_SIGNED(max11254->rx);
- 230              		.loc 1 48 5 view .LVU47
- 231              		.loc 1 48 16 is_stmt 0 view .LVU48
- 232 0040 236A     		ldr	r3, [r4, #32]
- 233              	.LVL19:
- 234              	.LBB12:
- 235              	.LBI12:
+ 225              		.loc 2 903 3 view .LVU44
+ 226              		.loc 2 903 10 is_stmt 0 view .LVU45
+ 227 0038 1BBA     		rev	r3, r3
+ 228              	.LVL19:
+ 229              		.loc 2 903 10 view .LVU46
+ 230              	.LBE11:
+ 231              	.LBE10:
+ 232              		.loc 1 46 16 view .LVU47
+ 233 003a 43F31703 		sbfx	r3, r3, #0, #24
+ 234              		.loc 1 46 14 view .LVU48
+ 235 003e 07EE903A 		vmov	s15, r3	@ int
+ 236 0042 F8EEE77A 		vcvt.f32.s32	s15, s15
+ 237 0046 C5ED007A 		vstr.32	s15, [r5]
+  47:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c **** 
+  48:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****     MAX11254_reg_read_nowait(max11254, MAX11254_RS(DATA1),
+ 238              		.loc 1 48 5 is_stmt 1 view .LVU49
+ 239 004a 0322     		movs	r2, #3
+ 240 004c 0F21     		movs	r1, #15
+ 241 004e 2046     		mov	r0, r4
+ 242 0050 FFF7FEFF 		bl	MAX11254_reg_read_nowait
+ 243              	.LVL20:
+  49:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****                              MAX11254_SIZE(DATA1));
+  50:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****     value[1] = MAX11254_FORMAT_SIGNED(max11254->rx);
+ 244              		.loc 1 50 5 view .LVU50
+ 245              		.loc 1 50 16 is_stmt 0 view .LVU51
+ 246 0054 236A     		ldr	r3, [r4, #32]
+ARM GAS  /tmp/cc0jG8ie.s 			page 22
+
+
+ 247              	.LVL21:
+ 248              	.LBB12:
+ 249              	.LBI12:
  900:Drivers/CMSIS/Include/cmsis_gcc.h **** {
- 236              		.loc 2 900 31 is_stmt 1 view .LVU49
- 237              	.LBB13:
- 238              		.loc 2 903 3 view .LVU50
- 239              		.loc 2 903 10 is_stmt 0 view .LVU51
- 240 0042 1BBA     		rev	r3, r3
- 241              	.LVL20:
- 242              		.loc 2 903 10 view .LVU52
- 243              	.LBE13:
- 244              	.LBE12:
- 245              		.loc 1 48 16 view .LVU53
- 246 0044 43F31703 		sbfx	r3, r3, #0, #24
- 247              		.loc 1 48 14 view .LVU54
-ARM GAS  /tmp/ccRWPnVQ.s 			page 22
-
-
- 248 0048 07EE903A 		vmov	s15, r3	@ int
- 249 004c F8EEE77A 		vcvt.f32.s32	s15, s15
- 250 0050 C5ED017A 		vstr.32	s15, [r5, #4]
-  49:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c **** 
-  50:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****     MAX11254_reg_read_nowait(max11254, MAX11254_RS(DATA2),
- 251              		.loc 1 50 5 is_stmt 1 view .LVU55
- 252 0054 0322     		movs	r2, #3
- 253 0056 1021     		movs	r1, #16
- 254 0058 2046     		mov	r0, r4
- 255 005a FFF7FEFF 		bl	MAX11254_reg_read_nowait
- 256              	.LVL21:
-  51:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****                              MAX11254_SIZE(DATA2));
-  52:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****     value[2] = MAX11254_FORMAT_SIGNED(max11254->rx);
- 257              		.loc 1 52 5 view .LVU56
- 258              		.loc 1 52 16 is_stmt 0 view .LVU57
- 259 005e 236A     		ldr	r3, [r4, #32]
- 260              	.LVL22:
- 261              	.LBB14:
- 262              	.LBI14:
+ 250              		.loc 2 900 31 is_stmt 1 view .LVU52
+ 251              	.LBB13:
+ 252              		.loc 2 903 3 view .LVU53
+ 253              		.loc 2 903 10 is_stmt 0 view .LVU54
+ 254 0056 1BBA     		rev	r3, r3
+ 255              	.LVL22:
+ 256              		.loc 2 903 10 view .LVU55
+ 257              	.LBE13:
+ 258              	.LBE12:
+ 259              		.loc 1 50 16 view .LVU56
+ 260 0058 43F31703 		sbfx	r3, r3, #0, #24
+ 261              		.loc 1 50 14 view .LVU57
+ 262 005c 07EE903A 		vmov	s15, r3	@ int
+ 263 0060 F8EEE77A 		vcvt.f32.s32	s15, s15
+ 264 0064 C5ED017A 		vstr.32	s15, [r5, #4]
+  51:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c **** 
+  52:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****     MAX11254_reg_read_nowait(max11254, MAX11254_RS(DATA2),
+ 265              		.loc 1 52 5 is_stmt 1 view .LVU58
+ 266 0068 0322     		movs	r2, #3
+ 267 006a 1021     		movs	r1, #16
+ 268 006c 2046     		mov	r0, r4
+ 269 006e FFF7FEFF 		bl	MAX11254_reg_read_nowait
+ 270              	.LVL23:
+  53:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****                              MAX11254_SIZE(DATA2));
+  54:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****     value[2] = MAX11254_FORMAT_SIGNED(max11254->rx);
+ 271              		.loc 1 54 5 view .LVU59
+ 272              		.loc 1 54 16 is_stmt 0 view .LVU60
+ 273 0072 236A     		ldr	r3, [r4, #32]
+ 274              	.LVL24:
+ 275              	.LBB14:
+ 276              	.LBI14:
  900:Drivers/CMSIS/Include/cmsis_gcc.h **** {
- 263              		.loc 2 900 31 is_stmt 1 view .LVU58
- 264              	.LBB15:
- 265              		.loc 2 903 3 view .LVU59
- 266              		.loc 2 903 10 is_stmt 0 view .LVU60
- 267 0060 1BBA     		rev	r3, r3
- 268              	.LVL23:
- 269              		.loc 2 903 10 view .LVU61
- 270              	.LBE15:
- 271              	.LBE14:
- 272              		.loc 1 52 16 view .LVU62
- 273 0062 43F31703 		sbfx	r3, r3, #0, #24
- 274              		.loc 1 52 14 view .LVU63
- 275 0066 07EE903A 		vmov	s15, r3	@ int
- 276 006a F8EEE77A 		vcvt.f32.s32	s15, s15
- 277 006e C5ED027A 		vstr.32	s15, [r5, #8]
-  53:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c **** 
-  54:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****     MAX11254_reg_read_nowait(max11254, MAX11254_RS(DATA3),
- 278              		.loc 1 54 5 is_stmt 1 view .LVU64
- 279 0072 0322     		movs	r2, #3
- 280 0074 1121     		movs	r1, #17
- 281 0076 2046     		mov	r0, r4
- 282 0078 FFF7FEFF 		bl	MAX11254_reg_read_nowait
- 283              	.LVL24:
-  55:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****                              MAX11254_SIZE(DATA3));
-  56:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****     value[3] = MAX11254_FORMAT_SIGNED(max11254->rx);
- 284              		.loc 1 56 5 view .LVU65
- 285              		.loc 1 56 16 is_stmt 0 view .LVU66
- 286 007c 236A     		ldr	r3, [r4, #32]
- 287              	.LVL25:
- 288              	.LBB16:
- 289              	.LBI16:
+ 277              		.loc 2 900 31 is_stmt 1 view .LVU61
+ 278              	.LBB15:
+ 279              		.loc 2 903 3 view .LVU62
+ 280              		.loc 2 903 10 is_stmt 0 view .LVU63
+ 281 0074 1BBA     		rev	r3, r3
+ 282              	.LVL25:
+ 283              		.loc 2 903 10 view .LVU64
+ 284              	.LBE15:
+ 285              	.LBE14:
+ 286              		.loc 1 54 16 view .LVU65
+ 287 0076 43F31703 		sbfx	r3, r3, #0, #24
+ 288              		.loc 1 54 14 view .LVU66
+ 289 007a 07EE903A 		vmov	s15, r3	@ int
+ 290 007e F8EEE77A 		vcvt.f32.s32	s15, s15
+ 291 0082 C5ED027A 		vstr.32	s15, [r5, #8]
+  55:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c **** 
+  56:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****     MAX11254_reg_read_nowait(max11254, MAX11254_RS(DATA3),
+ 292              		.loc 1 56 5 is_stmt 1 view .LVU67
+ 293 0086 0322     		movs	r2, #3
+ 294 0088 1121     		movs	r1, #17
+ 295 008a 2046     		mov	r0, r4
+ARM GAS  /tmp/cc0jG8ie.s 			page 23
+
+
+ 296 008c FFF7FEFF 		bl	MAX11254_reg_read_nowait
+ 297              	.LVL26:
+  57:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****                              MAX11254_SIZE(DATA3));
+  58:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****     value[3] = MAX11254_FORMAT_SIGNED(max11254->rx);
+ 298              		.loc 1 58 5 view .LVU68
+ 299              		.loc 1 58 16 is_stmt 0 view .LVU69
+ 300 0090 236A     		ldr	r3, [r4, #32]
+ 301              	.LVL27:
+ 302              	.LBB16:
+ 303              	.LBI16:
  900:Drivers/CMSIS/Include/cmsis_gcc.h **** {
- 290              		.loc 2 900 31 is_stmt 1 view .LVU67
- 291              	.LBB17:
- 292              		.loc 2 903 3 view .LVU68
- 293              		.loc 2 903 10 is_stmt 0 view .LVU69
- 294 007e 1BBA     		rev	r3, r3
-ARM GAS  /tmp/ccRWPnVQ.s 			page 23
-
-
- 295              	.LVL26:
- 296              		.loc 2 903 10 view .LVU70
- 297              	.LBE17:
- 298              	.LBE16:
- 299              		.loc 1 56 16 view .LVU71
- 300 0080 43F31703 		sbfx	r3, r3, #0, #24
- 301              		.loc 1 56 14 view .LVU72
- 302 0084 07EE903A 		vmov	s15, r3	@ int
- 303 0088 F8EEE77A 		vcvt.f32.s32	s15, s15
- 304 008c C5ED037A 		vstr.32	s15, [r5, #12]
-  57:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c **** }
- 305              		.loc 1 57 1 view .LVU73
- 306 0090 38BD     		pop	{r3, r4, r5, pc}
- 307              	.LVL27:
- 308              	.L13:
+ 304              		.loc 2 900 31 is_stmt 1 view .LVU70
+ 305              	.LBB17:
+ 306              		.loc 2 903 3 view .LVU71
+ 307              		.loc 2 903 10 is_stmt 0 view .LVU72
+ 308 0092 1BBA     		rev	r3, r3
+ 309              	.LVL28:
+ 310              		.loc 2 903 10 view .LVU73
+ 311              	.LBE17:
+ 312              	.LBE16:
+ 313              		.loc 1 58 16 view .LVU74
+ 314 0094 43F31703 		sbfx	r3, r3, #0, #24
+ 315              		.loc 1 58 14 view .LVU75
+ 316 0098 07EE903A 		vmov	s15, r3	@ int
+ 317 009c F8EEE77A 		vcvt.f32.s32	s15, s15
+ 318 00a0 C5ED037A 		vstr.32	s15, [r5, #12]
+  59:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c **** }
+ 319              		.loc 1 59 1 view .LVU76
+ 320 00a4 38BD     		pop	{r3, r4, r5, pc}
+ 321              	.LVL29:
+ 322              	.L13:
   37:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c **** 
- 309              		.loc 1 37 43 is_stmt 1 discriminator 1 view .LVU74
- 310 0092 2046     		mov	r0, r4
- 311 0094 FFF7FEFF 		bl	MAX11254_convert_nowait
- 312              	.LVL28:
- 313 0098 B9E7     		b	.L11
- 314              		.cfi_endproc
- 315              	.LFE148:
- 317              		.global	__aeabi_f2d
- 318              		.global	__aeabi_dmul
- 319              		.global	__aeabi_dadd
- 320              		.global	__aeabi_d2f
- 321              		.section	.rodata.print_data.str1.4,"aMS",%progbits,1
- 322              		.align	2
- 323              	.LC0:
- 324 0000 25642C25 		.ascii	"%d,%d,%d,%d,%d\012\000"
- 324      642C2564 
- 324      2C25642C 
- 324      25640A00 
- 325              		.section	.text.print_data,"ax",%progbits
- 326              		.align	1
- 327              		.global	print_data
- 328              		.syntax unified
- 329              		.thumb
- 330              		.thumb_func
- 332              	print_data:
- 333              	.LVL29:
- 334              	.LFB149:
-  58:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c **** 
-  59:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c **** void
-  60:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c **** print_data(float value[])
-  61:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c **** {
- 335              		.loc 1 61 1 view -0
- 336              		.cfi_startproc
- 337              		@ args = 0, pretend = 0, frame = 104
- 338              		@ frame_needed = 0, uses_anonymous_args = 0
- 339              		.loc 1 61 1 is_stmt 0 view .LVU76
- 340 0000 2DE9F043 		push	{r4, r5, r6, r7, r8, r9, lr}
- 341              	.LCFI5:
- 342              		.cfi_def_cfa_offset 28
- 343              		.cfi_offset 4, -28
- 344              		.cfi_offset 5, -24
-ARM GAS  /tmp/ccRWPnVQ.s 			page 24
+ 323              		.loc 1 37 43 is_stmt 1 discriminator 1 view .LVU77
+ 324 00a6 2046     		mov	r0, r4
+ 325 00a8 FFF7FEFF 		bl	MAX11254_convert_nowait
+ 326              	.LVL30:
+ 327 00ac AFE7     		b	.L10
+ 328              	.L15:
+ 329 00ae 00BF     		.align	2
+ 330              	.L14:
+ 331 00b0 00040240 		.word	1073873920
+ 332              		.cfi_endproc
+ 333              	.LFE148:
+ 335              		.global	__aeabi_f2d
+ 336              		.global	__aeabi_dmul
+ 337              		.global	__aeabi_dadd
+ 338              		.global	__aeabi_d2f
+ 339              		.section	.rodata.print_data.str1.4,"aMS",%progbits,1
+ 340              		.align	2
+ 341              	.LC0:
+ 342 0000 25642C25 		.ascii	"%d,%d,%d,%d,%d\012\000"
+ 342      642C2564 
+ 342      2C25642C 
+ 342      25640A00 
+ 343              		.section	.text.print_data,"ax",%progbits
+ 344              		.align	1
+ 345              		.global	print_data
+ARM GAS  /tmp/cc0jG8ie.s 			page 24
 
 
- 345              		.cfi_offset 6, -20
- 346              		.cfi_offset 7, -16
- 347              		.cfi_offset 8, -12
- 348              		.cfi_offset 9, -8
- 349              		.cfi_offset 14, -4
- 350 0004 9FB0     		sub	sp, sp, #124
- 351              	.LCFI6:
- 352              		.cfi_def_cfa_offset 152
- 353 0006 8046     		mov	r8, r0
-  62:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****     char         buf[100];
- 354              		.loc 1 62 5 is_stmt 1 view .LVU77
-  63:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****     static float avg[4] = { 0, 0, 0, 0 };
- 355              		.loc 1 63 5 view .LVU78
-  64:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****     float       *probe  = avg;
- 356              		.loc 1 64 5 view .LVU79
- 357              	.LVL30:
-  65:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c **** 
-  66:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****     for(uint8_t i = 0; i < 4; i++)
- 358              		.loc 1 66 5 view .LVU80
- 359              	.LBB18:
- 360              		.loc 1 66 9 view .LVU81
- 361              		.loc 1 66 17 is_stmt 0 view .LVU82
- 362 0008 0024     		movs	r4, #0
- 363              		.loc 1 66 5 view .LVU83
- 364 000a 1CE0     		b	.L15
- 365              	.LVL31:
- 366              	.L16:
-  67:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****         avg[i] = value[i] * EMA_WEIGHT + avg[i] * (1.0 - EMA_WEIGHT);
- 367              		.loc 1 67 9 is_stmt 1 discriminator 3 view .LVU84
- 368              		.loc 1 67 23 is_stmt 0 discriminator 3 view .LVU85
- 369 000c 4FEA8409 		lsl	r9, r4, #2
- 370 0010 08EB8403 		add	r3, r8, r4, lsl #2
- 371              		.loc 1 67 27 discriminator 3 view .LVU86
- 372 0014 1868     		ldr	r0, [r3]	@ float
- 373 0016 FFF7FEFF 		bl	__aeabi_f2d
- 374              	.LVL32:
- 375 001a 0646     		mov	r6, r0
- 376 001c 0F46     		mov	r7, r1
- 377              		.loc 1 67 45 discriminator 3 view .LVU87
- 378 001e 214D     		ldr	r5, .L18
- 379 0020 4D44     		add	r5, r5, r9
- 380 0022 2868     		ldr	r0, [r5]	@ float
- 381 0024 FFF7FEFF 		bl	__aeabi_f2d
- 382              	.LVL33:
- 383              		.loc 1 67 49 discriminator 3 view .LVU88
- 384 0028 0022     		movs	r2, #0
- 385 002a 0023     		movs	r3, #0
- 386 002c FFF7FEFF 		bl	__aeabi_dmul
- 387              	.LVL34:
- 388 0030 0246     		mov	r2, r0
- 389 0032 0B46     		mov	r3, r1
- 390              		.loc 1 67 40 discriminator 3 view .LVU89
- 391 0034 3046     		mov	r0, r6
- 392 0036 3946     		mov	r1, r7
- 393 0038 FFF7FEFF 		bl	__aeabi_dadd
- 394              	.LVL35:
- 395 003c FFF7FEFF 		bl	__aeabi_d2f
-ARM GAS  /tmp/ccRWPnVQ.s 			page 25
+ 346              		.syntax unified
+ 347              		.thumb
+ 348              		.thumb_func
+ 350              	print_data:
+ 351              	.LVL31:
+ 352              	.LFB149:
+  60:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c **** 
+  61:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c **** void
+  62:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c **** print_data(float value[])
+  63:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c **** {
+ 353              		.loc 1 63 1 view -0
+ 354              		.cfi_startproc
+ 355              		@ args = 0, pretend = 0, frame = 104
+ 356              		@ frame_needed = 0, uses_anonymous_args = 0
+ 357              		.loc 1 63 1 is_stmt 0 view .LVU79
+ 358 0000 2DE9F043 		push	{r4, r5, r6, r7, r8, r9, lr}
+ 359              	.LCFI5:
+ 360              		.cfi_def_cfa_offset 28
+ 361              		.cfi_offset 4, -28
+ 362              		.cfi_offset 5, -24
+ 363              		.cfi_offset 6, -20
+ 364              		.cfi_offset 7, -16
+ 365              		.cfi_offset 8, -12
+ 366              		.cfi_offset 9, -8
+ 367              		.cfi_offset 14, -4
+ 368 0004 9FB0     		sub	sp, sp, #124
+ 369              	.LCFI6:
+ 370              		.cfi_def_cfa_offset 152
+ 371 0006 8046     		mov	r8, r0
+  64:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****     char         buf[100];
+ 372              		.loc 1 64 5 is_stmt 1 view .LVU80
+  65:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****     static float avg[4] = { 0, 0, 0, 0 };
+ 373              		.loc 1 65 5 view .LVU81
+  66:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****     float       *probe  = avg;
+ 374              		.loc 1 66 5 view .LVU82
+ 375              	.LVL32:
+  67:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c **** 
+  68:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****     for(uint8_t i = 0; i < 4; i++)
+ 376              		.loc 1 68 5 view .LVU83
+ 377              	.LBB18:
+ 378              		.loc 1 68 9 view .LVU84
+ 379              		.loc 1 68 17 is_stmt 0 view .LVU85
+ 380 0008 0024     		movs	r4, #0
+ 381              		.loc 1 68 5 view .LVU86
+ 382 000a 1CE0     		b	.L17
+ 383              	.LVL33:
+ 384              	.L18:
+  69:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****         avg[i] = value[i] * EMA_WEIGHT + avg[i] * (1.0 - EMA_WEIGHT);
+ 385              		.loc 1 69 9 is_stmt 1 discriminator 3 view .LVU87
+ 386              		.loc 1 69 23 is_stmt 0 discriminator 3 view .LVU88
+ 387 000c 4FEA8409 		lsl	r9, r4, #2
+ 388 0010 08EB8403 		add	r3, r8, r4, lsl #2
+ 389              		.loc 1 69 27 discriminator 3 view .LVU89
+ 390 0014 1868     		ldr	r0, [r3]	@ float
+ 391 0016 FFF7FEFF 		bl	__aeabi_f2d
+ 392              	.LVL34:
+ 393 001a 0646     		mov	r6, r0
+ARM GAS  /tmp/cc0jG8ie.s 			page 25
 
 
- 396              	.LVL36:
- 397              		.loc 1 67 16 discriminator 3 view .LVU90
- 398 0040 2860     		str	r0, [r5]	@ float
-  66:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****         avg[i] = value[i] * EMA_WEIGHT + avg[i] * (1.0 - EMA_WEIGHT);
- 399              		.loc 1 66 31 is_stmt 1 discriminator 3 view .LVU91
-  66:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****         avg[i] = value[i] * EMA_WEIGHT + avg[i] * (1.0 - EMA_WEIGHT);
- 400              		.loc 1 66 32 is_stmt 0 discriminator 3 view .LVU92
- 401 0042 0134     		adds	r4, r4, #1
- 402              	.LVL37:
-  66:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****         avg[i] = value[i] * EMA_WEIGHT + avg[i] * (1.0 - EMA_WEIGHT);
- 403              		.loc 1 66 32 discriminator 3 view .LVU93
- 404 0044 E4B2     		uxtb	r4, r4
- 405              	.LVL38:
- 406              	.L15:
-  66:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****         avg[i] = value[i] * EMA_WEIGHT + avg[i] * (1.0 - EMA_WEIGHT);
- 407              		.loc 1 66 24 is_stmt 1 discriminator 1 view .LVU94
-  66:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****         avg[i] = value[i] * EMA_WEIGHT + avg[i] * (1.0 - EMA_WEIGHT);
- 408              		.loc 1 66 5 is_stmt 0 discriminator 1 view .LVU95
- 409 0046 032C     		cmp	r4, #3
- 410 0048 E0D9     		bls	.L16
- 411              	.LBE18:
-  68:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c **** 
-  69:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****     sprintf(buf, "%d,%d,%d,%d,%d\n", HAL_GetTick(), (int32_t)probe[0],
- 412              		.loc 1 69 5 is_stmt 1 view .LVU96
- 413 004a FFF7FEFF 		bl	HAL_GetTick
- 414              	.LVL39:
- 415 004e 0246     		mov	r2, r0
- 416              		.loc 1 69 67 is_stmt 0 view .LVU97
- 417 0050 144B     		ldr	r3, .L18
- 418 0052 93ED006A 		vldr.32	s12, [r3]
-  70:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****             (int32_t)probe[1], (int32_t)probe[2], (int32_t)probe[3]);
- 419              		.loc 1 70 27 view .LVU98
- 420 0056 D3ED017A 		vldr.32	s15, [r3, #4]
- 421              		.loc 1 70 46 view .LVU99
- 422 005a 93ED027A 		vldr.32	s14, [r3, #8]
- 423              		.loc 1 70 65 view .LVU100
- 424 005e D3ED036A 		vldr.32	s13, [r3, #12]
-  69:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****             (int32_t)probe[1], (int32_t)probe[2], (int32_t)probe[3]);
- 425              		.loc 1 69 5 view .LVU101
- 426 0062 FDEEE66A 		vcvt.s32.f32	s13, s13
- 427 0066 CDED026A 		vstr.32	s13, [sp, #8]	@ int
- 428 006a BDEEC77A 		vcvt.s32.f32	s14, s14
- 429 006e 8DED017A 		vstr.32	s14, [sp, #4]	@ int
- 430 0072 FDEEE77A 		vcvt.s32.f32	s15, s15
- 431 0076 CDED007A 		vstr.32	s15, [sp]	@ int
- 432 007a FDEEC67A 		vcvt.s32.f32	s15, s12
- 433 007e 17EE903A 		vmov	r3, s15	@ int
- 434 0082 0949     		ldr	r1, .L18+4
- 435 0084 05A8     		add	r0, sp, #20
- 436 0086 FFF7FEFF 		bl	sprintf
- 437              	.LVL40:
-  71:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****     HAL_UART_Transmit(&huart3, (uint8_t *)buf, strlen(buf), 10);
- 438              		.loc 1 71 5 is_stmt 1 view .LVU102
- 439              		.loc 1 71 48 is_stmt 0 view .LVU103
- 440 008a 05A8     		add	r0, sp, #20
- 441 008c FFF7FEFF 		bl	strlen
- 442              	.LVL41:
-ARM GAS  /tmp/ccRWPnVQ.s 			page 26
+ 394 001c 0F46     		mov	r7, r1
+ 395              		.loc 1 69 45 discriminator 3 view .LVU90
+ 396 001e 214D     		ldr	r5, .L20
+ 397 0020 4D44     		add	r5, r5, r9
+ 398 0022 2868     		ldr	r0, [r5]	@ float
+ 399 0024 FFF7FEFF 		bl	__aeabi_f2d
+ 400              	.LVL35:
+ 401              		.loc 1 69 49 discriminator 3 view .LVU91
+ 402 0028 0022     		movs	r2, #0
+ 403 002a 0023     		movs	r3, #0
+ 404 002c FFF7FEFF 		bl	__aeabi_dmul
+ 405              	.LVL36:
+ 406 0030 0246     		mov	r2, r0
+ 407 0032 0B46     		mov	r3, r1
+ 408              		.loc 1 69 40 discriminator 3 view .LVU92
+ 409 0034 3046     		mov	r0, r6
+ 410 0036 3946     		mov	r1, r7
+ 411 0038 FFF7FEFF 		bl	__aeabi_dadd
+ 412              	.LVL37:
+ 413 003c FFF7FEFF 		bl	__aeabi_d2f
+ 414              	.LVL38:
+ 415              		.loc 1 69 16 discriminator 3 view .LVU93
+ 416 0040 2860     		str	r0, [r5]	@ float
+  68:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****         avg[i] = value[i] * EMA_WEIGHT + avg[i] * (1.0 - EMA_WEIGHT);
+ 417              		.loc 1 68 31 is_stmt 1 discriminator 3 view .LVU94
+  68:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****         avg[i] = value[i] * EMA_WEIGHT + avg[i] * (1.0 - EMA_WEIGHT);
+ 418              		.loc 1 68 32 is_stmt 0 discriminator 3 view .LVU95
+ 419 0042 0134     		adds	r4, r4, #1
+ 420              	.LVL39:
+  68:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****         avg[i] = value[i] * EMA_WEIGHT + avg[i] * (1.0 - EMA_WEIGHT);
+ 421              		.loc 1 68 32 discriminator 3 view .LVU96
+ 422 0044 E4B2     		uxtb	r4, r4
+ 423              	.LVL40:
+ 424              	.L17:
+  68:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****         avg[i] = value[i] * EMA_WEIGHT + avg[i] * (1.0 - EMA_WEIGHT);
+ 425              		.loc 1 68 24 is_stmt 1 discriminator 1 view .LVU97
+  68:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****         avg[i] = value[i] * EMA_WEIGHT + avg[i] * (1.0 - EMA_WEIGHT);
+ 426              		.loc 1 68 5 is_stmt 0 discriminator 1 view .LVU98
+ 427 0046 032C     		cmp	r4, #3
+ 428 0048 E0D9     		bls	.L18
+ 429              	.LBE18:
+  70:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c **** 
+  71:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****     sprintf(buf, "%d,%d,%d,%d,%d\n", HAL_GetTick(), (int32_t)probe[0],
+ 430              		.loc 1 71 5 is_stmt 1 view .LVU99
+ 431 004a FFF7FEFF 		bl	HAL_GetTick
+ 432              	.LVL41:
+ 433 004e 0246     		mov	r2, r0
+ 434              		.loc 1 71 67 is_stmt 0 view .LVU100
+ 435 0050 144B     		ldr	r3, .L20
+ 436 0052 93ED006A 		vldr.32	s12, [r3]
+  72:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****             (int32_t)probe[1], (int32_t)probe[2], (int32_t)probe[3]);
+ 437              		.loc 1 72 27 view .LVU101
+ 438 0056 D3ED017A 		vldr.32	s15, [r3, #4]
+ 439              		.loc 1 72 46 view .LVU102
+ 440 005a 93ED027A 		vldr.32	s14, [r3, #8]
+ 441              		.loc 1 72 65 view .LVU103
+ 442 005e D3ED036A 		vldr.32	s13, [r3, #12]
+ARM GAS  /tmp/cc0jG8ie.s 			page 26
 
 
+  71:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****             (int32_t)probe[1], (int32_t)probe[2], (int32_t)probe[3]);
  443              		.loc 1 71 5 view .LVU104
- 444 0090 0A23     		movs	r3, #10
- 445 0092 82B2     		uxth	r2, r0
- 446 0094 05A9     		add	r1, sp, #20
- 447 0096 0548     		ldr	r0, .L18+8
- 448 0098 FFF7FEFF 		bl	HAL_UART_Transmit
- 449              	.LVL42:
-  72:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c **** }
- 450              		.loc 1 72 1 view .LVU105
- 451 009c 1FB0     		add	sp, sp, #124
- 452              	.LCFI7:
- 453              		.cfi_def_cfa_offset 28
- 454              		@ sp needed
- 455 009e BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
- 456              	.LVL43:
- 457              	.L19:
- 458              		.loc 1 72 1 view .LVU106
- 459 00a2 00BF     		.align	2
- 460              	.L18:
- 461 00a4 00000000 		.word	.LANCHOR0
- 462 00a8 00000000 		.word	.LC0
- 463 00ac 00000000 		.word	huart3
- 464              		.cfi_endproc
- 465              	.LFE149:
- 467              		.section	.text.print_with_average,"ax",%progbits
- 468              		.align	1
- 469              		.global	print_with_average
- 470              		.syntax unified
- 471              		.thumb
- 472              		.thumb_func
- 474              	print_with_average:
- 475              	.LVL44:
- 476              	.LFB150:
-  73:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c **** 
-  74:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c **** void
-  75:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c **** print_with_average(MAX11254_HandleTypeDef *max11254)
-  76:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c **** {
- 477              		.loc 1 76 1 is_stmt 1 view -0
- 478              		.cfi_startproc
- 479              		@ Volatile: function does not return.
- 480              		@ args = 0, pretend = 0, frame = 16
- 481              		@ frame_needed = 0, uses_anonymous_args = 0
- 482              		.loc 1 76 1 is_stmt 0 view .LVU108
- 483 0000 00B5     		push	{lr}
- 484              	.LCFI8:
- 485              		.cfi_def_cfa_offset 4
- 486              		.cfi_offset 14, -4
- 487 0002 85B0     		sub	sp, sp, #20
- 488              	.LCFI9:
- 489              		.cfi_def_cfa_offset 24
- 490 0004 0446     		mov	r4, r0
- 491              	.LVL45:
- 492              	.L21:
-  77:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****     float value[4];
- 493              		.loc 1 77 5 is_stmt 1 discriminator 1 view .LVU109
-  78:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c **** 
-  79:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****     while(1)
-ARM GAS  /tmp/ccRWPnVQ.s 			page 27
+ 444 0062 FDEEE66A 		vcvt.s32.f32	s13, s13
+ 445 0066 CDED026A 		vstr.32	s13, [sp, #8]	@ int
+ 446 006a BDEEC77A 		vcvt.s32.f32	s14, s14
+ 447 006e 8DED017A 		vstr.32	s14, [sp, #4]	@ int
+ 448 0072 FDEEE77A 		vcvt.s32.f32	s15, s15
+ 449 0076 CDED007A 		vstr.32	s15, [sp]	@ int
+ 450 007a FDEEC67A 		vcvt.s32.f32	s15, s12
+ 451 007e 17EE903A 		vmov	r3, s15	@ int
+ 452 0082 0949     		ldr	r1, .L20+4
+ 453 0084 05A8     		add	r0, sp, #20
+ 454 0086 FFF7FEFF 		bl	sprintf
+ 455              	.LVL42:
+  73:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****     HAL_UART_Transmit(&huart3, (uint8_t *)buf, strlen(buf), 10);
+ 456              		.loc 1 73 5 is_stmt 1 view .LVU105
+ 457              		.loc 1 73 48 is_stmt 0 view .LVU106
+ 458 008a 05A8     		add	r0, sp, #20
+ 459 008c FFF7FEFF 		bl	strlen
+ 460              	.LVL43:
+ 461              		.loc 1 73 5 view .LVU107
+ 462 0090 0A23     		movs	r3, #10
+ 463 0092 82B2     		uxth	r2, r0
+ 464 0094 05A9     		add	r1, sp, #20
+ 465 0096 0548     		ldr	r0, .L20+8
+ 466 0098 FFF7FEFF 		bl	HAL_UART_Transmit
+ 467              	.LVL44:
+  74:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c **** }
+ 468              		.loc 1 74 1 view .LVU108
+ 469 009c 1FB0     		add	sp, sp, #124
+ 470              	.LCFI7:
+ 471              		.cfi_def_cfa_offset 28
+ 472              		@ sp needed
+ 473 009e BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
+ 474              	.LVL45:
+ 475              	.L21:
+ 476              		.loc 1 74 1 view .LVU109
+ 477 00a2 00BF     		.align	2
+ 478              	.L20:
+ 479 00a4 00000000 		.word	.LANCHOR0
+ 480 00a8 00000000 		.word	.LC0
+ 481 00ac 00000000 		.word	huart3
+ 482              		.cfi_endproc
+ 483              	.LFE149:
+ 485              		.section	.text.print_with_average,"ax",%progbits
+ 486              		.align	1
+ 487              		.global	print_with_average
+ 488              		.syntax unified
+ 489              		.thumb
+ 490              		.thumb_func
+ 492              	print_with_average:
+ 493              	.LVL46:
+ 494              	.LFB150:
+  75:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c **** 
+  76:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c **** void
+  77:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c **** print_with_average(MAX11254_HandleTypeDef *max11254)
+  78:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c **** {
+ARM GAS  /tmp/cc0jG8ie.s 			page 27
 
 
- 494              		.loc 1 79 5 discriminator 1 view .LVU110
-  80:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****     {
-  81:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****         read_multichannel(max11254, value);
- 495              		.loc 1 81 9 discriminator 1 view .LVU111
- 496 0006 6946     		mov	r1, sp
- 497 0008 2046     		mov	r0, r4
- 498 000a FFF7FEFF 		bl	read_multichannel
- 499              	.LVL46:
-  82:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****         MAX11254_convert_nowait(max11254);
- 500              		.loc 1 82 9 discriminator 1 view .LVU112
- 501 000e 2046     		mov	r0, r4
- 502 0010 FFF7FEFF 		bl	MAX11254_convert_nowait
- 503              	.LVL47:
-  83:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****         print_data(value);
- 504              		.loc 1 83 9 discriminator 1 view .LVU113
- 505 0014 6846     		mov	r0, sp
- 506 0016 FFF7FEFF 		bl	print_data
- 507              	.LVL48:
-  84:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****         fake_sleep(5);
- 508              		.loc 1 84 9 discriminator 1 view .LVU114
- 509 001a 0520     		movs	r0, #5
- 510 001c FFF7FEFF 		bl	fake_sleep
- 511              	.LVL49:
-  79:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****     {
- 512              		.loc 1 79 10 discriminator 1 view .LVU115
- 513 0020 F1E7     		b	.L21
- 514              		.cfi_endproc
- 515              	.LFE150:
- 517              		.section	.bss.avg.0,"aw",%nobits
- 518              		.align	2
- 519              		.set	.LANCHOR0,. + 0
- 522              	avg.0:
- 523 0000 00000000 		.space	16
- 523      00000000 
- 523      00000000 
- 523      00000000 
- 524              		.text
- 525              	.Letext0:
- 526              		.file 3 "/usr/share/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/_default_types.h"
- 527              		.file 4 "/usr/share/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_stdint.h"
- 528              		.file 5 "Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f746xx.h"
- 529              		.file 6 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h"
- 530              		.file 7 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_dma.h"
- 531              		.file 8 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_spi.h"
- 532              		.file 9 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h"
- 533              		.file 10 "fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.h"
- 534              		.file 11 "fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254.h"
- 535              		.file 12 "fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.h"
- 536              		.file 13 "Core/Inc/usart.h"
- 537              		.file 14 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h"
- 538              		.file 15 "/usr/share/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/stdio.h"
- 539              		.file 16 "/usr/share/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/string.h"
-ARM GAS  /tmp/ccRWPnVQ.s 			page 28
+ 495              		.loc 1 78 1 is_stmt 1 view -0
+ 496              		.cfi_startproc
+ 497              		@ Volatile: function does not return.
+ 498              		@ args = 0, pretend = 0, frame = 16
+ 499              		@ frame_needed = 0, uses_anonymous_args = 0
+ 500              		.loc 1 78 1 is_stmt 0 view .LVU111
+ 501 0000 00B5     		push	{lr}
+ 502              	.LCFI8:
+ 503              		.cfi_def_cfa_offset 4
+ 504              		.cfi_offset 14, -4
+ 505 0002 85B0     		sub	sp, sp, #20
+ 506              	.LCFI9:
+ 507              		.cfi_def_cfa_offset 24
+ 508 0004 0446     		mov	r4, r0
+ 509              	.LVL47:
+ 510              	.L23:
+  79:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****     float value[4];
+ 511              		.loc 1 79 5 is_stmt 1 discriminator 1 view .LVU112
+  80:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c **** 
+  81:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****     while(1)
+ 512              		.loc 1 81 5 discriminator 1 view .LVU113
+  82:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****     {
+  83:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****         read_multichannel(max11254, value);
+ 513              		.loc 1 83 9 discriminator 1 view .LVU114
+ 514 0006 6946     		mov	r1, sp
+ 515 0008 2046     		mov	r0, r4
+ 516 000a FFF7FEFF 		bl	read_multichannel
+ 517              	.LVL48:
+  84:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****         MAX11254_convert_nowait(max11254);
+ 518              		.loc 1 84 9 discriminator 1 view .LVU115
+ 519 000e 2046     		mov	r0, r4
+ 520 0010 FFF7FEFF 		bl	MAX11254_convert_nowait
+ 521              	.LVL49:
+  85:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****         print_data(value);
+ 522              		.loc 1 85 9 discriminator 1 view .LVU116
+ 523 0014 6846     		mov	r0, sp
+ 524 0016 FFF7FEFF 		bl	print_data
+ 525              	.LVL50:
+  86:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****         fake_sleep(5);
+ 526              		.loc 1 86 9 discriminator 1 view .LVU117
+ 527 001a 0520     		movs	r0, #5
+ 528 001c FFF7FEFF 		bl	fake_sleep
+ 529              	.LVL51:
+  81:fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/examples/max11254_loadcell.c ****     {
+ 530              		.loc 1 81 10 discriminator 1 view .LVU118
+ 531 0020 F1E7     		b	.L23
+ 532              		.cfi_endproc
+ 533              	.LFE150:
+ 535              		.section	.bss.avg.0,"aw",%nobits
+ 536              		.align	2
+ 537              		.set	.LANCHOR0,. + 0
+ 540              	avg.0:
+ 541 0000 00000000 		.space	16
+ 541      00000000 
+ 541      00000000 
+ 541      00000000 
+ 542              		.text
+ARM GAS  /tmp/cc0jG8ie.s 			page 28
+
+
+ 543              	.Letext0:
+ 544              		.file 3 "/usr/share/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/_default_types.h"
+ 545              		.file 4 "/usr/share/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_stdint.h"
+ 546              		.file 5 "Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f746xx.h"
+ 547              		.file 6 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h"
+ 548              		.file 7 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_gpio.h"
+ 549              		.file 8 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_dma.h"
+ 550              		.file 9 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_spi.h"
+ 551              		.file 10 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h"
+ 552              		.file 11 "fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254_register.h"
+ 553              		.file 12 "fw-lib-stm32-BuildKit/adc-toolkit/max11254-spi/max11254.h"
+ 554              		.file 13 "fw-lib-stm32-CocktailOS/kernel/peripheral/cocktail_gpio.h"
+ 555              		.file 14 "Core/Inc/usart.h"
+ 556              		.file 15 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h"
+ 557              		.file 16 "/usr/share/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/stdio.h"
+ 558              		.file 17 "/usr/share/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/string.h"
+ARM GAS  /tmp/cc0jG8ie.s 			page 29
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 max11254_loadcell.c
-     /tmp/ccRWPnVQ.s:20     .text.fake_sleep:0000000000000000 $t
-     /tmp/ccRWPnVQ.s:26     .text.fake_sleep:0000000000000000 fake_sleep
-     /tmp/ccRWPnVQ.s:69     .text.init_adc:0000000000000000 $t
-     /tmp/ccRWPnVQ.s:75     .text.init_adc:0000000000000000 init_adc
-     /tmp/ccRWPnVQ.s:149    .text.init_adc:0000000000000054 $d
-     /tmp/ccRWPnVQ.s:156    .text.read_multichannel:0000000000000000 $t
-     /tmp/ccRWPnVQ.s:162    .text.read_multichannel:0000000000000000 read_multichannel
-     /tmp/ccRWPnVQ.s:322    .rodata.print_data.str1.4:0000000000000000 $d
-     /tmp/ccRWPnVQ.s:326    .text.print_data:0000000000000000 $t
-     /tmp/ccRWPnVQ.s:332    .text.print_data:0000000000000000 print_data
-     /tmp/ccRWPnVQ.s:461    .text.print_data:00000000000000a4 $d
-     /tmp/ccRWPnVQ.s:468    .text.print_with_average:0000000000000000 $t
-     /tmp/ccRWPnVQ.s:474    .text.print_with_average:0000000000000000 print_with_average
-     /tmp/ccRWPnVQ.s:518    .bss.avg.0:0000000000000000 $d
-     /tmp/ccRWPnVQ.s:522    .bss.avg.0:0000000000000000 avg.0
+     /tmp/cc0jG8ie.s:20     .text.fake_sleep:0000000000000000 $t
+     /tmp/cc0jG8ie.s:26     .text.fake_sleep:0000000000000000 fake_sleep
+     /tmp/cc0jG8ie.s:69     .text.init_adc:0000000000000000 $t
+     /tmp/cc0jG8ie.s:75     .text.init_adc:0000000000000000 init_adc
+     /tmp/cc0jG8ie.s:149    .text.init_adc:0000000000000054 $d
+     /tmp/cc0jG8ie.s:156    .text.read_multichannel:0000000000000000 $t
+     /tmp/cc0jG8ie.s:162    .text.read_multichannel:0000000000000000 read_multichannel
+     /tmp/cc0jG8ie.s:331    .text.read_multichannel:00000000000000b0 $d
+     /tmp/cc0jG8ie.s:340    .rodata.print_data.str1.4:0000000000000000 $d
+     /tmp/cc0jG8ie.s:344    .text.print_data:0000000000000000 $t
+     /tmp/cc0jG8ie.s:350    .text.print_data:0000000000000000 print_data
+     /tmp/cc0jG8ie.s:479    .text.print_data:00000000000000a4 $d
+     /tmp/cc0jG8ie.s:486    .text.print_with_average:0000000000000000 $t
+     /tmp/cc0jG8ie.s:492    .text.print_with_average:0000000000000000 print_with_average
+     /tmp/cc0jG8ie.s:536    .bss.avg.0:0000000000000000 $d
+     /tmp/cc0jG8ie.s:540    .bss.avg.0:0000000000000000 avg.0
 
 UNDEFINED SYMBOLS
 HAL_GetTick
@@ -1640,6 +1665,7 @@ MAX11254_Init
 MAX11254_preset_multichannel_scan
 MAX11254_set_rate
 MAX11254_is_data_ready
+HAL_GPIO_WritePin
 MAX11254_reg_read_nowait
 MAX11254_convert_nowait
 __aeabi_f2d
